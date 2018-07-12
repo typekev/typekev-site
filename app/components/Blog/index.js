@@ -5,7 +5,9 @@
  */
 
 import React from 'react';
-import Rebloggr from 'components/Rebloggr';
+import Rebloggr from 'rebloggr';
+
+// import Rebloggr from 'components/Rebloggr';
 import ConsoleLine from 'mdi-material-ui/ConsoleLine';
 import BookOpenPageVariant from 'mdi-material-ui/BookOpenPageVariant';
 import Typist from 'react-typist';

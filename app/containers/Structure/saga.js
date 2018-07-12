@@ -26,8 +26,12 @@ export function* getProfileDataSaga(action) {
 
 export function* toggleIndeterminateProgressMotionSaga(action) {
   try {
+    const { pathname } = action.payload;
+    if (pathname && pathname.includes('#')) {
+      throw 'Accessing hash url';
+    }
+
     if (action.payload.state.from) {
-      const { pathname } = action.payload;
       const { from } = action.payload.state;
       const nextPath = pathname === '/' ? '/about' : pathname;
       const previousPath = from === '/' ? '/about' : from;

@@ -12,6 +12,8 @@ import { medium } from 'static/Dimens';
 injectGlobal`
     html,
     body {
+      position: fixed;
+      -webkit-overflow-scrolling: touch;
       height: 100%;
       width: 100%;
       overflow: hidden;
@@ -148,6 +150,10 @@ injectGlobal`
 
       .Cursor {
         width: 0.5rem;
+      }
+
+      .Typist .Cursor {
+        display: none;
       }
     }
   `;

@@ -173,6 +173,7 @@
     "react-swipeable-views": "^0.12.14",
     "react-swipeable-views-utils": "^0.12.14",
     "react-typist": "^2.0.4",
+    "rebloggr": "^0.1.0",
     "redux": "4.0.0",
     "redux-immutable": "4.0.0",
     "redux-saga": "0.16.0",

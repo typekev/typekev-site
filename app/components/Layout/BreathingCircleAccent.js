@@ -33,8 +33,11 @@ const BreathingCircleAccent = styled.div`
   background: ${backgroundLightGradient};
   box-shadow: ${shadow};
   transform: scale(1.1);
-  animation: ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 1s;
   z-index: 0;
+
+  @media (min-width: ${medium}) {
+    animation: ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 1s;
+  }
 `;
 
 export default BreathingCircleAccent;

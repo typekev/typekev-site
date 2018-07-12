@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
 import { backgroundContrastLightGradient } from 'static/Colors';
-import { medium } from 'static/Dimens';
 import { shadow } from 'static/Accents';
 
 const breath = keyframes`

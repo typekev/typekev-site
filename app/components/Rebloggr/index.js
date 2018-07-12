@@ -1,31 +1,33 @@
 import React from 'react';
 import 'whatwg-fetch';
 
-class Rebloggr extends React.Component {
+export default class Rebloggr extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { postsList: [] };
+    this.state = { postList: [] };
   }
   componentWillMount() {
-    if (this.state.postsList.length === 0) {
-      this.generatePostsList();
+    const { blogUrl } = this.props;
+    const { postList } = this.state;
+    if (postList.length === 0) {
+      this.generatePostList(blogUrl);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { onComplete = () => {} } = this.props;
-    const { postsList } = this.state;
-    if (prevState.postsList !== postsList) {
-      onComplete(postsList);
+    const { postList } = this.state;
+    if (prevState.postList !== postList) {
+      onComplete(postList);
     }
   }
 
-  generatePostsList(blogUrl = 'https://blog.typekev.com', props) {
-    const exposedWordPressPostsList = blogUrl + '/wp-json/wp/v2/posts';
-    fetch(exposedWordPressPostsList)
+  generatePostList(blogUrl = 'https://blog.typekev.com', props) {
+    const exposedWordPressPostList = blogUrl + '/wp-json/wp/v2/posts';
+    fetch(exposedWordPressPostList)
       .then(response => response.json())
-      .then(postsList => {
-        this.setState({ postsList });
+      .then(postList => {
+        this.setState({ postList });
       });
   }
 
@@ -41,13 +43,13 @@ class Rebloggr extends React.Component {
       cta,
       linkTarget = '_blank',
       loadingComponent,
-      className,
+      ...rest,
     } = this.props;
-    const { postsList } = this.state;
+    const { postList } = this.state;
     return (
-      <div id="Rebloggr" className={className}>
-        {postsList.length < 1 && loadingComponent}
-        {postsList.map(post => {
+      <div id="Rebloggr" {...rest}>
+        {postList.length < 1 && loadingComponent}
+        {postList.map(post => {
           const { id, title, date, excerpt, link } = post;
           return (
             <div key={id}>
@@ -69,4 +71,3 @@ class Rebloggr extends React.Component {
     );
   }
 }
-export default Rebloggr;

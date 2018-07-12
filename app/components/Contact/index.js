@@ -95,7 +95,7 @@ export default class Contact extends React.PureComponent {
                 <br />
                 <span>
                   Find me everywhere as{' '}
-                  <a href="https://twitter.com/typekev">
+                  <a href="https://twitter.com/typekev" target="_blank">
                     <strong>@typekev</strong>
                   </a>
                 </span>
@@ -103,6 +103,10 @@ export default class Contact extends React.PureComponent {
             </ContactOptionContainer>
           </span>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }
