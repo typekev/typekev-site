@@ -117,6 +117,7 @@ class Structure extends React.Component {
           className="hide-for-large"
           open={isMenuOpen}
           onClose={openMenu}
+          onOpen={openMenu}
         >
           <DrawerButton
             title=""
