@@ -27,7 +27,7 @@ import {
 import reducer from './reducer';
 import saga from './saga';
 
-import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -113,7 +113,11 @@ class Structure extends React.Component {
             </IconButton>,
           ]}
         />
-        <Drawer open={isMenuOpen} onClose={openMenu}>
+        <SwipeableDrawer
+          className="hide-for-large"
+          open={isMenuOpen}
+          onClose={openMenu}
+        >
           <DrawerButton
             title=""
             icon={<ChevronLeft style={styles.drawerChevronLeft} />}
@@ -125,7 +129,7 @@ class Structure extends React.Component {
           <DrawerButton title="Discover" to="/discover" onClick={openMenu} />
           <DrawerButton title="Blog" to="/blog" onClick={openMenu} />
           <DrawerButton title="Contact" to="/contact" onClick={openMenu} />
-        </Drawer>
+        </SwipeableDrawer>
         <Layout
           openNotif={openNotif}
           openDialog={openDialog}
