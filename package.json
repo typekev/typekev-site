@@ -1,7 +1,7 @@
 {
   "name": "typekev.com",
-  "version": "0.0.1",
-  "description": "My baby, built with React Boilerplate",
+  "version": "2.0.0",
+  "description": "My site, built on React",
   "repository": {
     "type": "git",
     "url": "git://github.com/typekev/typekev-site.git"
