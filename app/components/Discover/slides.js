@@ -134,7 +134,7 @@ const slides = [
           I like to keep up with the latest tech news.
           <br />
           <strong>UXPeak</strong> is an online magazine where writers share
-          there thoughts on design, technology, and programming.
+          their thoughts on design, technology, and programming.
           <br />
           <br />
           I built the site for fun, but it has since become an active hub for
