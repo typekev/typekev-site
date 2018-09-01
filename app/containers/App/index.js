@@ -24,8 +24,10 @@ function StructuredRoute(props) {
 }
 
 export default function App() {
+  const { hash } = window.location;
   return (
     <Switch>
+      {!!hash && <Redirect to={`${hash.substring(hash.indexOf('#') + 1)}`} />}
       <StructuredRoute exact path="/" component={About} />
       <StructuredRoute path="/discover/:index?" component={Discover} />
       <StructuredRoute path="/contact" component={Contact} />
