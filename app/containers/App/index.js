@@ -9,25 +9,34 @@ import Contact from 'components/Contact/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Structure from 'containers/Structure';
 
-function StructuredRoute(props) {
-  const { component: Component, ...rest } = props;
-  return (
-    <Route
-      render={props => (
-        <Structure {...props}>
-          <Component {...rest} />
-        </Structure>
-      )}
-      {...rest}
-    />
-  );
-}
+const normalizePath = hash =>
+  hash
+    .split('')
+    .filter(
+      (char, indexOfChar) => char !== '/' || char !== hash[indexOfChar + 1],
+    )
+    .join('');
+
+const StructuredRoute = ({ component: Component, ...rest }) => (
+  <Route
+    render={props => (
+      <Structure {...props}>
+        <Component {...rest} />
+      </Structure>
+    )}
+    {...rest}
+  />
+);
 
 export default function App() {
   const { hash } = window.location;
   return (
     <Switch>
-      {!!hash && <Redirect to={`${hash.substring(hash.indexOf('#') + 1)}`} />}
+      {!!hash && (
+        <Redirect
+          to={`${normalizePath(hash).substring(hash.indexOf('#') + 1)}`}
+        />
+      )}
       <StructuredRoute exact path="/" component={About} />
       <StructuredRoute path="/discover/:index?" component={Discover} />
       <StructuredRoute path="/contact" component={Contact} />
