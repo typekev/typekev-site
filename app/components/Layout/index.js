@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import {
   Typography,
@@ -43,8 +44,7 @@ const styles = {
 
 const year = new Date().getFullYear();
 
-const Layout = props => {
-  const { children, openNotif, openMenu, menuItemsList } = props;
+function Layout({ children, openNotif, openMenu, menuItemsList }) {
   return (
     <div>
       <AppBar>
@@ -66,11 +66,13 @@ const Layout = props => {
             style={styles.flex}
             noWrap
           >
-            <span>typekev</span>
-            <span className="show-for-medium font-weight-very-light">
-              {' '}
-              fullstack developer
-            </span>
+            <Link to="/">
+              <span>typekev</span>
+              <span className="show-for-medium font-weight-very-light">
+                {' '}
+                fullstack developer
+              </span>
+            </Link>
           </Typography>
           {menuItemsList}
           <Tooltip title="My open source work">
@@ -119,6 +121,6 @@ const Layout = props => {
       </Footer>
     </div>
   );
-};
+}
 
 export default withRouter(Layout);

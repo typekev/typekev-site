@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { medium } from 'static/Dimens';
+import { medium, large } from 'static/Dimens';
 
 const CardExpander = styled.div`
   position: relative;
@@ -13,6 +13,10 @@ const CardExpander = styled.div`
   @media (min-width: ${medium}) {
     height: calc(100vh - (8rem));
     padding: 1rem 4rem;
+  }
+
+  @media (min-width: ${large}) {
+    overflow-y: hidden;
   }
 `;
 
