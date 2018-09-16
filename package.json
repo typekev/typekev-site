@@ -1,6 +1,6 @@
 {
   "name": "typekev.com",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "My site, built on React",
   "repository": {
     "type": "git",
@@ -143,7 +143,7 @@
     ]
   },
   "dependencies": {
-    "@material-ui/core": "^1.3.1",
+    "@material-ui/core": "^3.0.3",
     "babel-polyfill": "6.26.0",
     "chalk": "^2.4.1",
     "compression": "1.7.2",
