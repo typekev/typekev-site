@@ -1,10 +1,11 @@
 import React from 'react';
 
-import Button from '@material-ui/core/Button';
 import Facebook from 'mdi-material-ui/Facebook';
 import Twitter from 'mdi-material-ui/Twitter';
-import LinkedIn from 'mdi-material-ui/LinkedIn';
+import LinkedIn from 'mdi-material-ui/Linkedin';
 import Instagram from 'mdi-material-ui/Instagram';
+
+import SocialMediaButton from './SocialMediaButton';
 
 const getButtonIconByName = buttonName => {
   switch (buttonName) {
@@ -21,36 +22,52 @@ const getButtonIconByName = buttonName => {
   }
 };
 
+const getButtonColorByName = buttonName => {
+  switch (buttonName) {
+    case 'Twitter':
+      return '#1da1f2';
+    case 'Facebook':
+      return '#3b5998';
+    case 'LinkedIn':
+      return '#007bb5';
+    case 'Instagram':
+      return '#e4405f';
+    default:
+      return buttonName;
+  }
+};
+
 const getSocialMediaButtons = buttonNames =>
   buttonNames.map(buttonName => {
     const icon = getButtonIconByName(buttonName);
     return (
-      <div key={buttonName} className="small-6 medium-shrink cell text-align-center">
-        <Button
-          color="default"
-          variant="fab"
+      <div key={buttonName} className="small-6 medium-3 cell">
+        <SocialMediaButton
+          color="secondary"
+          variant="contained"
           target="_Blank"
           href={`https://${buttonName}.com/${
             buttonName === 'LinkedIn' ? 'in/' : ''
           }typekev`}
+          background={getButtonColorByName(buttonName)}
         >
           {icon}
-        </Button>
+        </SocialMediaButton>
       </div>
     );
   });
 
-export default function SocialMediaButtons(props) {
+export default function SocialMediaButtons() {
   const socialMediaButtonsList = [
     'Twitter',
-    'Facebook',
-    'Instagram',
     'LinkedIn',
+    'Instagram',
+    'Facebook',
   ];
   const buttons = getSocialMediaButtons(socialMediaButtonsList);
   return (
-    <div className="grid-x grid-margin-x grid-padding-y">
-      <div className="large-auto cell" />
+    <div className="grid-x">
+      <div className="cell" />
       {buttons}
     </div>
   );
