@@ -13,6 +13,8 @@ import {
 import { Bell, Menu, GithubCircle, Copyright } from 'mdi-material-ui';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
+import logo from 'images/typekev-red-logo.svg';
+
 import {
   accentColor,
   backgroundContrast,
@@ -23,6 +25,7 @@ import CardContainer from './CardContainer';
 import BreathingCircle from './BreathingCircle';
 import BreathingCircleAccent from './BreathingCircleAccent';
 import Footer from './Footer';
+import HeaderLogo from './HeaderLogo';
 
 const styles = {
   flex: {
@@ -67,6 +70,9 @@ function Layout({ children, openNotif, openMenu, menuItemsList }) {
             noWrap
           >
             <Link to="/">
+              <span className="show-for-large">
+                <HeaderLogo src={logo} alt="typekev logo" />
+              </span>
               <span>typekev</span>
               <span className="show-for-medium font-weight-very-light">
                 {' '}
