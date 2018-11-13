@@ -42,6 +42,9 @@ injectGlobal`
 
     p {
       margin: 0;
+      a {
+        text-decoration: underline;
+      }
     }
 
     a {

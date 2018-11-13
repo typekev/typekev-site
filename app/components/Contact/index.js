@@ -8,8 +8,6 @@ import React from 'react';
 import Forum from 'mdi-material-ui/Forum';
 import Typist from 'react-typist';
 
-import Instagram from 'mdi-material-ui/Instagram';
-
 import { backgroundContrastLight } from 'static/Colors';
 
 import SocialMediaButtons from './SocialMediaButtons';
@@ -71,12 +69,12 @@ export default class Contact extends React.PureComponent {
                   </li>
                   <br />
                 </ul>
-                <div>
+                <p>
                   If this fits your enquiry, you can reach me at{' '}
                   <a href="mailto:kev@typekev.com">
-                    <strong>kev@typekev.com</strong>.
-                  </a>
-                </div>
+                    <strong>kev@typekev.com</strong>
+                  </a>.
+                </p>
               </div>
             </ContactOptionContainer>
             <ContactOptionContainer className="large-6 cell">
@@ -93,12 +91,12 @@ export default class Contact extends React.PureComponent {
                   <SocialMediaButtons />
                 </span>
                 <br />
-                <span>
+                <p>
                   Find me everywhere as{' '}
                   <a href="https://twitter.com/typekev" target="_blank">
                     <strong>@typekev</strong>
                   </a>
-                </span>
+                </p>
               </div>
             </ContactOptionContainer>
           </span>

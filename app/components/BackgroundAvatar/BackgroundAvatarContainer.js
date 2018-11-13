@@ -32,8 +32,9 @@ const BackgroundAvatarContainer = styled.div`
 
   @media (max-width: ${medium}) {
     background-image: ${props => `linear-gradient( to left top, 
-    rgba(28, 34, 71, 0.75), 
-    rgba(208, 0, 53, 0.95) ),
+    rgba(208, 0, 53, 0.55),
+    rgba(28, 34, 71, 0.45)
+    ),
     url(${props.src})`};
     left: calc(50% - 50vw);
     width: 100vw;
