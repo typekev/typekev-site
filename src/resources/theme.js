@@ -3,16 +3,16 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export const themeMap = {
   palette: {
     primary: {
-      main: '#74ABC6',
+      main: '#9CB6D9',
     },
     secondary: {
-      main: '#F7F3A9',
+      main: '#F2E6A7',
     },
     error: {
       main: '#D33332',
     },
     background: {
-      default: '#E9DFC8',
+      default: '#D9CDB8',
     },
   },
 };
