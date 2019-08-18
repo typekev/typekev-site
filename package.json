@@ -22,7 +22,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm test -- --watchAll=false"
+      "pre-push": "npm test -- --coverage --watchAll=false"
     }
   },
   "dependencies": {
