@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from 'resources/theme';
 import App from 'components/App';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <App />
-  </ThemeProvider>,
+  </MuiThemeProvider>,
   document.querySelector('#root'),
 );

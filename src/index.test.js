@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import App from 'components/App';
 import theme from 'resources/theme';
 
@@ -16,10 +16,10 @@ it('should render without crashing', () => {
   require('./index.js');
 
   expect(ReactDOM.render).toHaveBeenCalledWith(
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <App />
-    </ThemeProvider>,
+    </MuiThemeProvider>,
     div,
   );
 });

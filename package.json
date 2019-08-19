@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.3.2",
-    "@material-ui/styles": "^4.3.0",
     "@mdi/js": "^4.0.96",
     "@mdi/react": "^1.2.1",
     "react": "^16.9.0",
@@ -73,11 +72,24 @@
       "prettier/react"
     ],
     "rules": {
-      "max-len": ["error", {"code": 100}],
-      "prefer-promise-reject-errors": ["off"],
-      "react/jsx-filename-extension": ["off"],
-      "react/prop-types": ["warn"],
-      "no-return-assign": ["off"]
+      "max-len": [
+        "error",
+        {
+          "code": 100
+        }
+      ],
+      "prefer-promise-reject-errors": [
+        "off"
+      ],
+      "react/jsx-filename-extension": [
+        "off"
+      ],
+      "react/prop-types": [
+        "warn"
+      ],
+      "no-return-assign": [
+        "off"
+      ]
     },
     "settings": {
       "import/resolver": {
