@@ -15,6 +15,15 @@ export const themeMap = {
       default: '#D9CDB8',
     },
   },
+  overrides: {
+    MuiDrawer: {
+      paper: {
+        width: 240,
+        flexShrink: 0,
+        background: '#D9CDB8',
+      },
+    },
+  },
 };
 
 export default createMuiTheme(themeMap);

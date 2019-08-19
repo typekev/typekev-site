@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import MuiBox from '@material-ui/core/Box';
 import Header from 'components/Header';
 import Copyright from 'components/Copyright';
+import Drawer from 'components/Drawer';
+import useDrawer from '../../hooks/useDrawer';
 
 const Root = styled.div`
   display: flex;
@@ -15,13 +17,18 @@ const Box = styled(MuiBox)`
 `;
 
 export default function App() {
+  const [open, toggleDrawer] = useDrawer();
+
   return (
-    <Root>
-      <Header />
-      <Box>
-        <div />
-      </Box>
-      <Copyright />
-    </Root>
+    <>
+      <Root>
+        <Header open={open} toggleDrawer={toggleDrawer} />
+        <Box>
+          <div />
+        </Box>
+        <Copyright />
+      </Root>
+      <Drawer open={open} toggleDrawer={toggleDrawer} />
+    </>
   );
 }
