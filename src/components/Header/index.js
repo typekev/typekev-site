@@ -1,20 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
 import { mdiMenu, mdiMenuOpen } from '@mdi/js';
+import Title from 'components/Title';
 
-const Title = styled(Typography)`
-  flex: 1 1 auto;
-  white-space: pre;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
+export const getPath = open => (open ? mdiMenuOpen : mdiMenu);
 
 export default function Header({ open, toggleDrawer }) {
   return (
@@ -25,7 +19,7 @@ export default function Header({ open, toggleDrawer }) {
         </Title>
         <Hidden xsDown>
           <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer}>
-            <Icon path={open ? mdiMenuOpen : mdiMenu} size={1} horizontal />
+            <Icon path={getPath(open)} size={1} horizontal />
           </IconButton>
         </Hidden>
       </Toolbar>
