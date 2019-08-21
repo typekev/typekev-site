@@ -14,6 +14,8 @@ describe('Root component', () => {
 
   it('renders a Root component with a reduced width based on the drawer width', () => {
     const wrapper = mount(<Root open />);
-    expect(wrapper).toHaveStyleRule('width', `calc(100% - ${drawerWidth}px)`);
+    expect(wrapper).toHaveStyleRule('width', `calc(100% - ${drawerWidth}px)`, {
+      media: '(min-width:600px)',
+    });
   });
 });
