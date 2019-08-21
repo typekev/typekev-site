@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import Divider from '@material-ui/core/Divider';
 import MuiDrawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Hidden from '@material-ui/core/Hidden';
 import MuiButton from '@material-ui/core/Button';
+import Links from 'components/Drawer/Links';
 import theme from 'resources/theme';
 
 const breakpointHeight = css`
@@ -26,13 +26,13 @@ export const Button = styled(MuiButton)`
   ${breakpointHeight}
 `;
 
-const drawer = (
-  <>
-    <Divider />
-  </>
-);
-
 export default function Drawer({ open, toggleDrawer }) {
+  const drawerContent = (
+    <>
+      <Spacer />
+      <Links toggleDrawer={toggleDrawer} />
+    </>
+  );
   return (
     <nav aria-label="navigation">
       <Hidden smUp>
@@ -44,20 +44,17 @@ export default function Drawer({ open, toggleDrawer }) {
             keepMounted: true,
           }}
         >
-          <Spacer />
-          {drawer}
+          {drawerContent}
         </SwipeableDrawer>
       </Hidden>
       <Hidden xsDown>
         <MuiDrawer variant="persistent" open={open} onClose={toggleDrawer}>
-          <Spacer />
-          {drawer}
+          {drawerContent}
         </MuiDrawer>
       </Hidden>
       <Hidden mdDown>
         <MuiDrawer variant="permanent" open>
-          <Spacer />
-          {drawer}
+          {drawerContent}
         </MuiDrawer>
       </Hidden>
     </nav>
