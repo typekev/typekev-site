@@ -14,14 +14,31 @@ export default function Header({ open, toggleDrawer }) {
   return (
     <AppBar position="static" color="primary" elevation={1}>
       <Toolbar>
-        <Hidden xsDown lgUp>
-          <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer}>
-            <Icon path={getPath(open)} size={1} />
+        <Hidden lgUp>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open navigation drawer"
+            onClick={toggleDrawer}
+          >
+            <Hidden smUp>
+              <Icon path={getPath(open)} size={1} />
+            </Hidden>
+            <Hidden xsDown>
+              <Icon path={getPath(open)} size={1.125} />
+            </Hidden>
           </IconButton>
         </Hidden>
-        <Title variant="h6" color="inherit">
-          <strong>typekev</strong> | Software Engineer
-        </Title>
+        <Hidden smUp>
+          <Title variant="h6">
+            <strong>typekev</strong> | software engineer
+          </Title>
+        </Hidden>
+        <Hidden xsDown>
+          <Title>
+            <strong>typekev</strong> | software engineer
+          </Title>
+        </Hidden>
       </Toolbar>
     </AppBar>
   );
