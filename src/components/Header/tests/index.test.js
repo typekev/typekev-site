@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header, { getPath } from 'components/Header';
-import { mdiMenuOpen, mdiMenu } from '@mdi/js';
+import { mdiBackburger, mdiMenu } from '@mdi/js';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -9,9 +9,9 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it('should return mdiMenuOpen', () => {
+it('should return mdiBackburger', () => {
   const open = true;
-  expect(getPath(open)).toBe(mdiMenuOpen);
+  expect(getPath(open)).toBe(mdiBackburger);
 });
 
 it('should return mdiMenu', () => {

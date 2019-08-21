@@ -6,8 +6,6 @@ import MuiDrawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Hidden from '@material-ui/core/Hidden';
 import MuiButton from '@material-ui/core/Button';
-import Icon from '@mdi/react';
-import { mdiMenuOpen } from '@mdi/js';
 import theme from 'resources/theme';
 
 const breakpointHeight = css`
@@ -39,7 +37,6 @@ export default function Drawer({ open, toggleDrawer }) {
     <nav aria-label="navigation">
       <Hidden smUp>
         <SwipeableDrawer
-          anchor="right"
           open={open}
           onClose={toggleDrawer}
           onOpen={toggleDrawer}
@@ -47,22 +44,18 @@ export default function Drawer({ open, toggleDrawer }) {
             keepMounted: true,
           }}
         >
-          <Spacer>
-            <Button color="inherit" aria-label="open drawer" onClick={toggleDrawer} fullWidth>
-              <Icon path={mdiMenuOpen} size={1.25} horizontal /> Close
-            </Button>
-          </Spacer>
+          <Spacer />
           {drawer}
         </SwipeableDrawer>
       </Hidden>
       <Hidden xsDown>
-        <MuiDrawer variant="persistent" anchor="right" open={open} onClose={toggleDrawer}>
+        <MuiDrawer variant="persistent" open={open} onClose={toggleDrawer}>
           <Spacer />
           {drawer}
         </MuiDrawer>
       </Hidden>
       <Hidden mdDown>
-        <MuiDrawer variant="permanent" anchor="right" open>
+        <MuiDrawer variant="permanent" open>
           <Spacer />
           {drawer}
         </MuiDrawer>

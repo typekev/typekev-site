@@ -15,6 +15,7 @@ export default function App() {
 
   return (
     <>
+      <Drawer open={open} toggleDrawer={toggleDrawer} />
       <Root open={open}>
         <Header open={open} toggleDrawer={toggleDrawer} />
         <Main>
@@ -22,7 +23,6 @@ export default function App() {
         </Main>
         <Copyright />
       </Root>
-      <Drawer open={open} toggleDrawer={toggleDrawer} />
     </>
   );
 }

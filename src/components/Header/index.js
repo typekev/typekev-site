@@ -5,23 +5,23 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
-import { mdiMenu, mdiMenuOpen } from '@mdi/js';
+import { mdiMenu, mdiBackburger } from '@mdi/js';
 import Title from 'components/Title';
 
-export const getPath = open => (open ? mdiMenuOpen : mdiMenu);
+export const getPath = open => (open ? mdiBackburger : mdiMenu);
 
 export default function Header({ open, toggleDrawer }) {
   return (
     <AppBar position="static" color="primary" elevation={1}>
       <Toolbar>
+        <Hidden xsDown lgUp>
+          <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer}>
+            <Icon path={getPath(open)} size={1} />
+          </IconButton>
+        </Hidden>
         <Title variant="h6" color="inherit">
           <strong>typekev</strong> | Software Engineer
         </Title>
-        <Hidden xsDown lgUp>
-          <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer}>
-            <Icon path={getPath(open)} size={1} horizontal />
-          </IconButton>
-        </Hidden>
       </Toolbar>
     </AppBar>
   );

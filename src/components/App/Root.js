@@ -5,9 +5,11 @@ import theme, { drawerWidth } from 'resources/theme';
 const Root = styled(Box)`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  float: right;
   transition: width 225ms;
+  min-height: 100vh;
   width: 100%;
+
   ${[theme.breakpoints.up('sm')]} {
     ${({ open }) =>
       open &&
