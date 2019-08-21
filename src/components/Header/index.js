@@ -12,12 +12,12 @@ export const getPath = open => (open ? mdiMenuOpen : mdiMenu);
 
 export default function Header({ open, toggleDrawer }) {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color="primary" elevation={1}>
       <Toolbar>
         <Title variant="h6" color="inherit">
           <strong>typekev</strong> | Software Engineer
         </Title>
-        <Hidden xsDown>
+        <Hidden xsDown lgUp>
           <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer}>
             <Icon path={getPath(open)} size={1} horizontal />
           </IconButton>

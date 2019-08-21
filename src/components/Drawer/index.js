@@ -18,11 +18,11 @@ const breakpointHeight = css`
   }
 `;
 
-const Spacer = styled.div`
+export const Spacer = styled.div`
   ${breakpointHeight}
 `;
 
-const Button = styled(MuiButton)`
+export const Button = styled(MuiButton)`
   padding: 0 5.5rem 0 2rem !important;
   justify-content: space-between !important;
   ${breakpointHeight}
@@ -37,7 +37,7 @@ const drawer = (
 export default function Drawer({ open, toggleDrawer }) {
   return (
     <nav aria-label="navigation">
-      <Hidden smUp implementation="css">
+      <Hidden smUp>
         <SwipeableDrawer
           anchor="right"
           open={open}
@@ -55,13 +55,13 @@ export default function Drawer({ open, toggleDrawer }) {
           {drawer}
         </SwipeableDrawer>
       </Hidden>
-      <Hidden mdDown implementation="css">
+      <Hidden xsDown>
         <MuiDrawer variant="persistent" anchor="right" open={open} onClose={toggleDrawer}>
           <Spacer />
           {drawer}
         </MuiDrawer>
       </Hidden>
-      <Hidden mdDown implementation="css">
+      <Hidden mdDown>
         <MuiDrawer variant="permanent" anchor="right" open>
           <Spacer />
           {drawer}

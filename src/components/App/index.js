@@ -1,18 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import MuiBox from '@material-ui/core/Box';
 import Header from 'components/Header';
 import Copyright from 'components/Copyright';
 import Drawer from 'components/Drawer';
-import useDrawer from '../../hooks/useDrawer';
+import Root from 'components/App/Root';
+import useDrawer from 'hooks/useDrawer';
 
-const Root = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const Box = styled(MuiBox)`
+export const Main = styled.div`
   flex: 1 1 auto;
 `;
 
@@ -21,11 +15,11 @@ export default function App() {
 
   return (
     <>
-      <Root>
+      <Root open={open}>
         <Header open={open} toggleDrawer={toggleDrawer} />
-        <Box>
+        <Main>
           <div />
-        </Box>
+        </Main>
         <Copyright />
       </Root>
       <Drawer open={open} toggleDrawer={toggleDrawer} />

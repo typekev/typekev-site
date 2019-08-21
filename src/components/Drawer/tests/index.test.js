@@ -1,15 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Drawer from 'components/Drawer';
+import Drawer, { Spacer, Button } from 'components/Drawer';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Drawer open toggleDrawer={() => {}} />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('Drawer component', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Drawer open toggleDrawer={() => {}} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
 
-it('renders a Title component without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Drawer open toggleDrawer={() => {}} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  it('renders a Spacer component without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Spacer />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders a Button component without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Button>test</Button>, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });
