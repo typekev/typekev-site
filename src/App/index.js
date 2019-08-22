@@ -8,6 +8,7 @@ import Root from 'App/Root';
 import useDrawer from 'hooks/useDrawer';
 
 export const Home = React.lazy(() => import('routes/Home'));
+export const About = React.lazy(() => import('routes/About'));
 export const Work = React.lazy(() => import('routes/Work'));
 export const Blog = React.lazy(() => import('routes/Blog'));
 export const Contact = React.lazy(() => import('routes/Contact'));
@@ -26,7 +27,8 @@ export default function App() {
         <Header open={open} toggleDrawer={toggleDrawer} />
         <Main>
           <Suspense fallback={<div>Loading...</div>}>
-            <Route exact path={['/', '/about']} component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
             <Route path="/work" component={Work} />
             <Route path="/blog" component={Blog} />
             <Route path="/contact" component={Contact} />
