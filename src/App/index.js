@@ -26,7 +26,7 @@ export default function App() {
         <Header open={open} toggleDrawer={toggleDrawer} />
         <Main>
           <Suspense fallback={<div>Loading...</div>}>
-            <Route exact path="/" component={Home} />
+            <Route exact path={['/', '/about']} component={Home} />
             <Route path="/work" component={Work} />
             <Route path="/blog" component={Blog} />
             <Route path="/contact" component={Contact} />

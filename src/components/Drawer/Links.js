@@ -7,12 +7,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Icon from '@mdi/react';
 import { mdiInformationVariant, mdiDesktopClassic, mdiPostOutline, mdiAt } from '@mdi/js';
-import { Link } from '@material-ui/core';
+import Link from 'components/Link';
 
 export default function Links({ toggleDrawer }) {
   const getLinks = listItems =>
     listItems.map(({ name, iconPath }) => (
-      <Link color="inherit" href="/#/" key={name} onClick={toggleDrawer}>
+      <Link color="inherit" to={`/${name.toLowerCase()}`} key={name} onClick={toggleDrawer}>
         <ListItem button>
           <ListItemIcon>
             <Icon path={iconPath} size={1} />
