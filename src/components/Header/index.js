@@ -7,6 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
 import { mdiMenu, mdiBackburger } from '@mdi/js';
 import Title from 'components/Title';
+import HeaderText from 'components/Header/HeaderText';
 
 export const getPath = open => (open ? mdiBackburger : mdiMenu);
 
@@ -31,12 +32,12 @@ export default function Header({ open, toggleDrawer }) {
         </Hidden>
         <Hidden smUp>
           <Title variant="h6">
-            <strong>typekev</strong> | software engineer
+            <HeaderText />
           </Title>
         </Hidden>
         <Hidden xsDown>
           <Title>
-            <strong>typekev</strong> | software engineer
+            <HeaderText />
           </Title>
         </Hidden>
       </Toolbar>

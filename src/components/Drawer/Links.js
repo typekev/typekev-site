@@ -12,7 +12,7 @@ import { Link } from '@material-ui/core';
 export default function Links({ toggleDrawer }) {
   const getLinks = listItems =>
     listItems.map(({ name, iconPath }) => (
-      <Link href="/#/" key={name} onClick={toggleDrawer}>
+      <Link color="inherit" href="/#/" key={name} onClick={toggleDrawer}>
         <ListItem button>
           <ListItemIcon>
             <Icon path={iconPath} size={1} />

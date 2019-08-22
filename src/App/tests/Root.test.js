@@ -2,7 +2,7 @@ import 'jest-styled-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import Root from 'components/App/Root';
+import Root from 'App/Root';
 import { drawerWidth } from 'resources/theme';
 
 describe('Root component', () => {
