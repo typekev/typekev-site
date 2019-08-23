@@ -8,11 +8,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Icon from '@mdi/react';
 import {
-  mdiInformationVariant,
   mdiDesktopClassic,
   mdiPostOutline,
-  mdiAt,
-  mdiHomeModern,
+  mdiRocket,
+  mdiLighthouse,
+  mdiMailboxUpOutline,
 } from '@mdi/js';
 
 const getLinks = (listItems, toggleDrawer) =>
@@ -43,15 +43,15 @@ export default function Links({ toggleDrawer }) {
       <List>
         {getLinks(
           [
-            { name: 'Home', to: '/', iconPath: mdiHomeModern },
-            { name: 'About', iconPath: mdiInformationVariant },
+            { name: 'Exlpore', to: '/', iconPath: mdiRocket },
+            { name: 'Discover', iconPath: mdiLighthouse },
             { name: 'Work', iconPath: mdiDesktopClassic },
             { name: 'Blog', iconPath: mdiPostOutline },
           ],
           toggleDrawer,
         )}
         <Divider />
-        {getLinks([{ name: 'Contact', iconPath: mdiAt }], toggleDrawer)}
+        {getLinks([{ name: 'Contact', iconPath: mdiMailboxUpOutline }], toggleDrawer)}
       </List>
     </>
   );

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from 'routes/Home';
+import Discover from 'routes/Discover';
 
-describe('Home route', () => {
+describe('Discover route', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Home />, div);
+    ReactDOM.render(<Discover />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

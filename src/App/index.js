@@ -1,14 +1,15 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Header from 'components/Header';
 import Copyright from 'components/Copyright';
 import Drawer from 'components/Drawer';
 import Root from 'App/Root';
 import useDrawer from 'hooks/useDrawer';
 
-export const Home = React.lazy(() => import('routes/Home'));
-export const About = React.lazy(() => import('routes/About'));
+export const Exlpore = React.lazy(() => import('routes/Exlpore'));
+export const Discover = React.lazy(() => import('routes/Discover'));
 export const Work = React.lazy(() => import('routes/Work'));
 export const Blog = React.lazy(() => import('routes/Blog'));
 export const Contact = React.lazy(() => import('routes/Contact'));
@@ -26,9 +27,9 @@ export default function App() {
       <Root open={open}>
         <Header open={open} toggleDrawer={toggleDrawer} />
         <Main>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
+          <Suspense fallback={<LinearProgress color="secondary" />}>
+            <Route exact path="/" component={Exlpore} />
+            <Route exact path="/discover" component={Discover} />
             <Route path="/work" component={Work} />
             <Route path="/blog" component={Blog} />
             <Route path="/contact" component={Contact} />

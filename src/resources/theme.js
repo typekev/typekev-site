@@ -3,21 +3,23 @@ import defaultTheme from '@material-ui/core/styles/defaultTheme';
 
 export const drawerWidth = 240;
 
-export const themeMap = {
-  palette: {
-    primary: {
-      main: '#9CB6D9',
-    },
-    secondary: {
-      main: '#F2E6A7',
-    },
-    error: {
-      main: '#D33332',
-    },
-    background: {
-      default: '#D9CDB8',
-    },
+const palette = {
+  primary: {
+    main: '#AFC8E0',
   },
+  secondary: {
+    main: '#F9F3AA',
+  },
+  error: {
+    main: '#D33332',
+  },
+  background: {
+    default: '#EDE8DD',
+  },
+};
+
+export const themeMap = {
+  palette,
   overrides: {
     MuiBox: {
       root: {
@@ -30,7 +32,7 @@ export const themeMap = {
       paper: {
         width: drawerWidth,
         flexShrink: 0,
-        background: '#D9CDB8',
+        background: palette.background.default,
       },
     },
   },

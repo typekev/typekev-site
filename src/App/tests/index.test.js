@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import App, { Main, Home, About, Work, Blog, Contact } from 'App';
+import App, { Main, Exlpore, Discover, Work, Blog, Contact } from 'App';
 
 describe('App component', () => {
   it('renders without crashing', () => {
@@ -15,22 +15,22 @@ describe('App component', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('renders a Home route without crashing', () => {
+  it('renders a Exlpore route without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Suspense fallback={<div>Loading...</div>}>
-        <Home />
+        <Exlpore />
       </Suspense>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('renders a About route without crashing', () => {
+  it('renders a Discover route without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Suspense fallback={<div>Loading...</div>}>
-        <About />
+        <Discover />
       </Suspense>,
       div,
     );
