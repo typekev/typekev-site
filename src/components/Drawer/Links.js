@@ -15,9 +15,11 @@ import {
   mdiMailboxUpOutline,
 } from '@mdi/js';
 
-const getLinks = (listItems, toggleDrawer) =>
+export const getLinks = (listItems, toggleDrawer) =>
   listItems.map(({ name, to, iconPath }) => {
     const path = to || `/${name.toLowerCase()}`;
+    const selected = window.location.pathname === path;
+
     return (
       <ListItem
         button
@@ -25,7 +27,7 @@ const getLinks = (listItems, toggleDrawer) =>
         to={path}
         key={name}
         onClick={toggleDrawer}
-        selected={window.location.pathname === path}
+        selected={selected}
       >
         <ListItemIcon>
           <Icon path={iconPath} size={1} />
