@@ -22,7 +22,6 @@ const getLinks = (listItems, toggleDrawer) =>
       <ListItem
         button
         component={Link}
-        color="inherit"
         to={path}
         key={name}
         onClick={toggleDrawer}
@@ -58,5 +57,9 @@ export default function Links({ toggleDrawer }) {
 }
 
 Links.propTypes = {
-  toggleDrawer: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func,
+};
+
+Links.defaultProps = {
+  toggleDrawer: () => {},
 };

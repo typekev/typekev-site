@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import MuiDrawer from '@material-ui/core/Drawer';
@@ -26,11 +27,11 @@ export const Button = styled(MuiButton)`
   ${breakpointHeight}
 `;
 
-export default function Drawer({ open, toggleDrawer }) {
+function Drawer({ open, toggleDrawer }) {
   const drawerContent = (
     <>
       <Spacer />
-      <Links toggleDrawer={toggleDrawer} />
+      <Links />
     </>
   );
   return (
@@ -44,18 +45,17 @@ export default function Drawer({ open, toggleDrawer }) {
             keepMounted: true,
           }}
         >
-          {drawerContent}
+          <Spacer />
+          <Links toggleDrawer={toggleDrawer} />
         </SwipeableDrawer>
       </Hidden>
       <Hidden xsDown>
-        <MuiDrawer variant="persistent" open={open} onClose={toggleDrawer}>
+        <MuiDrawer variant="persistent" open={open}>
           {drawerContent}
         </MuiDrawer>
       </Hidden>
       <Hidden mdDown>
-        <MuiDrawer variant="permanent" open>
-          {drawerContent}
-        </MuiDrawer>
+        <MuiDrawer variant="permanent">{drawerContent}</MuiDrawer>
       </Hidden>
     </nav>
   );
@@ -65,3 +65,5 @@ Drawer.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
 };
+
+export default withRouter(Drawer);
