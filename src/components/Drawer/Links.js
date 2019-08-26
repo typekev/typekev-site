@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
 import {
   mdiDesktopClassic,
@@ -13,18 +13,22 @@ import {
   mdiRocket,
   mdiLighthouse,
   mdiMailboxUpOutline,
+  mdiGithubFace,
 } from '@mdi/js';
+import { RouterLink } from 'components/Link';
+import ExternalLink from 'components/Link/ExternalLink';
 
 export const getLinks = (listItems, toggleDrawer) =>
-  listItems.map(({ name, to, iconPath }) => {
+  listItems.map(({ name, to, iconPath, component = RouterLink }) => {
     const path = to || `/${name.toLowerCase()}`;
     const selected = window.location.pathname === path;
 
     return (
       <ListItem
         button
-        component={Link}
+        component={component}
         to={path}
+        href={path}
         key={name}
         onClick={toggleDrawer}
         selected={selected}
@@ -53,6 +57,20 @@ export default function Links({ toggleDrawer }) {
         )}
         <Divider />
         {getLinks([{ name: 'Contact', iconPath: mdiMailboxUpOutline }], toggleDrawer)}
+        <Hidden smUp>
+          <Divider />
+          {getLinks(
+            [
+              {
+                name: 'Contributions to OS',
+                to: 'https://github.com/typekev',
+                component: ExternalLink,
+                iconPath: mdiGithubFace,
+              },
+            ],
+            toggleDrawer,
+          )}
+        </Hidden>
       </List>
     </>
   );
