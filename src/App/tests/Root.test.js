@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import Root from 'App/Root';
-import { drawerWidth } from 'resources/theme';
+import { drawerWidth } from 'resources/constants';
 
 describe('Root component', () => {
   it('renders a Root component without crashing', () => {

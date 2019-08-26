@@ -1,22 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
-
-export const drawerWidth = 256;
-
-const palette = {
-  primary: {
-    main: '#AFC8E0',
-  },
-  secondary: {
-    main: '#F9F3AA',
-  },
-  error: {
-    main: '#D33332',
-  },
-  background: {
-    default: '#EDE8DD',
-  },
-};
+import palette from 'resources/palette';
+import { drawerWidth } from 'resources/constants';
 
 export const themeMap = {
   palette,

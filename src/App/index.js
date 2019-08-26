@@ -16,6 +16,7 @@ export const Contact = React.lazy(() => import('routes/Contact'));
 
 export const Main = styled.div`
   flex: 1 1 auto;
+  display: flex;
 `;
 
 export default function App() {

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import Box from '@material-ui/core/Box';
-import theme, { drawerWidth } from 'resources/theme';
+import theme from 'resources/theme';
+import { drawerWidth } from 'resources/constants';
 
 const Root = styled(Box)`
   display: flex;
