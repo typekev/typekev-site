@@ -4,8 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
+import Tooltip from '@material-ui/core/Tooltip';
 import Icon from '@mdi/react';
-import { mdiMenu, mdiBackburger } from '@mdi/js';
+import { mdiMenu, mdiBackburger, mdiGithubFace } from '@mdi/js';
 import Title from 'components/Title';
 import HeaderText from 'components/Header/HeaderText';
 
@@ -39,6 +40,13 @@ export default function Header({ open, toggleDrawer }) {
           <Title>
             <HeaderText />
           </Title>
+        </Hidden>
+        <Hidden xsDown>
+          <Tooltip title="Contributions to open source" placement="left">
+            <IconButton href="https://github.com/typekev" target="_blank">
+              <Icon path={mdiGithubFace} size={1.125} />
+            </IconButton>
+          </Tooltip>
         </Hidden>
       </Toolbar>
     </AppBar>
