@@ -7,6 +7,7 @@ import Copyright from 'components/Copyright';
 import Drawer from 'components/Drawer';
 import Root from 'App/Root';
 import useDrawer from 'hooks/useDrawer';
+import Page from 'templates/Page';
 
 export const Exlpore = React.lazy(() => import('routes/Exlpore'));
 export const Discover = React.lazy(() => import('routes/Discover'));
@@ -28,13 +29,15 @@ export default function App() {
       <Root open={open}>
         <Header open={open} toggleDrawer={toggleDrawer} />
         <Main>
-          <Suspense fallback={<LinearProgress color="secondary" />}>
-            <Route exact path="/" component={Exlpore} />
-            <Route exact path="/discover" component={Discover} />
-            <Route path="/work" component={Work} />
-            <Route path="/blog" component={Blog} />
-            <Route path="/contact" component={Contact} />
-          </Suspense>
+          <Page>
+            <Suspense fallback={<LinearProgress color="secondary" />}>
+              <Route exact path="/" component={Exlpore} />
+              <Route exact path="/discover" component={Discover} />
+              <Route path="/work" component={Work} />
+              <Route path="/blog" component={Blog} />
+              <Route path="/contact" component={Contact} />
+            </Suspense>
+          </Page>
         </Main>
         <Copyright />
       </Root>
