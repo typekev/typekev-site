@@ -23,8 +23,7 @@ const breath = keyframes`
 
 const Sun = styled.div`
   ${sunPositioning}
-  animation: ${breath} 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  z-index: 0;
+  animation: ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 `;
 
 export default Sun;

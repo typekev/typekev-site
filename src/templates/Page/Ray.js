@@ -25,9 +25,8 @@ const Ray = styled.div`
   ${sunPositioning}
   border-width: 0;
   border-style: solid;
-  animation: ${blast} 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: ${blast} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   animation-delay: ${({ delay }) => delay}s;
-  z-index: 0;
 `;
 
 export default Ray;
