@@ -1,5 +1,6 @@
 import React from 'react';
+import Page from 'templates/Page';
 
 export default function Work() {
-  return <div>Work</div>;
+  return <Page>Work</Page>;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
+import Page from 'templates/Page';
 
 export default function Discover() {
-  return <div>Discover</div>;
+  return <Page>Discover</Page>;
 }

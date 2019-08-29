@@ -1,5 +1,6 @@
 import React from 'react';
+import Page from 'templates/Page';
 
 export default function Blog() {
-  return <div>Blog</div>;
+  return <Page>Blog</Page>;
 }
