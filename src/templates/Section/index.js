@@ -6,6 +6,7 @@ const Section = styled.section`
   overflow: hidden scroll;
   z-index: 1;
   pointer-events: none;
+  display: flex;
 
   * {
     pointer-events: initial;
