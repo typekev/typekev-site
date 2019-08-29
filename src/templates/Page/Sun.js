@@ -1,6 +1,9 @@
-import styled, { keyframes } from 'styled-components';
+import { withRouter } from 'react-router-dom';
+import styled, { css, keyframes } from 'styled-components';
+import position from 'templates/Page/position';
+import focused from 'templates/Page/focused';
+import focusedShifted from 'templates/Page/focusedShifted';
 import theme from 'resources/theme';
-import sunPositioning from 'templates/Page/sunPositioning';
 
 const {
   palette: { secondary },
@@ -22,8 +25,14 @@ const breath = keyframes`
 `;
 
 const Sun = styled.div`
-  ${sunPositioning}
+  ${position}
+  ${({ open, location: { pathname } }) =>
+    pathname === '/' &&
+    css`
+      ${focused}
+      ${open && focusedShifted}
+    `};
   animation: ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 `;
 
-export default Sun;
+export default withRouter(Sun);

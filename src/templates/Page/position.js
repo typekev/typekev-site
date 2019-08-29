@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import theme from 'resources/theme';
 
-const sunPositioning = css`
+const position = css`
   position: fixed;
   margin-top: calc(50vh - 25vmin - 3.5rem);
   margin-bottom: calc(50vh - 25vmin);
@@ -12,10 +12,11 @@ const sunPositioning = css`
   max-height: 100%;
   z-index: 0;
   pointer-events: none;
+  transition: all 1s cubic-bezier(0, 0, 0.2, 1) 0ms;
 
   ${[theme.breakpoints.up('sm')]} {
     margin-top: calc(50vh - 25vmin - 4rem);
   }
 `;
 
-export default sunPositioning;
+export default position;

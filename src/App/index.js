@@ -29,7 +29,7 @@ export default function App() {
       <Root open={open}>
         <Header open={open} toggleDrawer={toggleDrawer} />
         <Main>
-          <Page>
+          <Page open={open}>
             <Suspense fallback={<LinearProgress color="secondary" />}>
               <Route exact path="/" component={Exlpore} />
               <Route exact path="/discover" component={Discover} />

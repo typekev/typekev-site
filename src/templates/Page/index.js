@@ -5,16 +5,14 @@ import Sun from 'templates/Page/Sun';
 import Ray from 'templates/Page/Ray';
 import Stars from 'templates/Page/Stars';
 
-export default function Page({ children }) {
+export default function Page({ children, open }) {
   return (
     <>
       <Stars />
-      <Ray delay={0} />
-      <Ray delay={0.125} />
-      <Ray delay={0.75} />
-      <Ray delay={1.5} />
-      <Ray delay={2.75} />
-      <Sun />
+      {[0, 0.125, 0.75, 1.5, 2.75].map(delay => (
+        <Ray delay={delay} open={open} />
+      ))}
+      <Sun open={open} />
       <Section>{children}</Section>
     </>
   );
@@ -22,4 +20,5 @@ export default function Page({ children }) {
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
+  open: PropTypes.bool.isRequired,
 };
