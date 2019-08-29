@@ -14,4 +14,15 @@ describe('Sun component', () => {
     );
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  it('renders with the open prop without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <Router>
+        <Sun open />
+      </Router>,
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });

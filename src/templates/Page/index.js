@@ -10,7 +10,7 @@ export default function Page({ children, open }) {
     <>
       <Stars />
       {[0, 0.125, 0.75, 1.5, 2.75].map(delay => (
-        <Ray delay={delay} open={open} />
+        <Ray key={delay} delay={delay} open={open} />
       ))}
       <Sun open={open} />
       <Section>{children}</Section>
@@ -20,5 +20,9 @@ export default function Page({ children, open }) {
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
+};
+
+Page.defaultProps = {
+  open: false,
 };
