@@ -14,7 +14,7 @@ export const getPath = open => (open ? mdiBackburger : mdiMenu);
 
 export default function Header({ open, toggleDrawer }) {
   return (
-    <AppBar position="static" color="primary" elevation={1}>
+    <AppBar position="sticky" color="primary" elevation={2}>
       <Toolbar>
         <Hidden lgUp>
           <IconButton
