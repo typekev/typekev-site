@@ -1,20 +1,20 @@
 import theme from 'resources/theme';
 
 const {
-  palette: { secondary },
+  palette: { primary, secondary },
 } = theme;
 
 const particleParams = {
   particles: {
     number: {
-      value: 150,
+      value: 100,
       density: {
         enable: true,
-        value_area: 300,
+        value_area: 500,
       },
     },
     color: {
-      value: secondary.light,
+      value: secondary.main,
     },
     shape: {
       type: 'circle',
@@ -22,22 +22,28 @@ const particleParams = {
     opacity: {
       value: 1,
       anim: {
-        enable: false,
+        enable: true,
         speed: 1,
-        opacity_min: 0.05,
+        opacity_min: 0.25,
         sync: false,
       },
     },
     size: {
-      value: 2.5,
+      value: 5,
       random: true,
+      anim: {
+        enable: true,
+        speed: 5,
+        size_min: 3,
+        sync: false,
+      },
     },
     line_linked: {
       enable: true,
       distance: 50,
-      color: secondary.dark,
-      opacity: 0.5,
-      width: 0.6,
+      color: primary.light,
+      opacity: 1,
+      width: 2.25,
     },
     move: {
       direction: 'right',
