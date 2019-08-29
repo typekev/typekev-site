@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Exlpore from 'routes/Exlpore';
+import Explore from 'routes/Explore';
 
-describe('Exlpore route', () => {
+describe('Explore route', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Exlpore />, div);
+    ReactDOM.render(<Explore />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

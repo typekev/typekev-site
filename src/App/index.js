@@ -9,7 +9,7 @@ import Root from 'App/Root';
 import useDrawer from 'hooks/useDrawer';
 import Page from 'templates/Page';
 
-export const Exlpore = React.lazy(() => import('routes/Exlpore'));
+export const Explore = React.lazy(() => import('routes/Explore'));
 export const Discover = React.lazy(() => import('routes/Discover'));
 export const Work = React.lazy(() => import('routes/Work'));
 export const Blog = React.lazy(() => import('routes/Blog'));
@@ -31,7 +31,7 @@ export default function App() {
         <Main>
           <Page open={open}>
             <Suspense fallback={<LinearProgress color="secondary" />}>
-              <Route exact path="/" component={Exlpore} />
+              <Route exact path="/" component={Explore} />
               <Route exact path="/discover" component={Discover} />
               <Route path="/work" component={Work} />
               <Route path="/blog" component={Blog} />
