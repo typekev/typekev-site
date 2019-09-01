@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Header from 'components/Header';
@@ -31,11 +31,14 @@ export default function App() {
         <Main>
           <Page open={open}>
             <Suspense fallback={<LinearProgress color="secondary" />}>
-              <Route exact path="/" component={Explore} />
-              <Route exact path="/discover" component={Discover} />
-              <Route path="/work" component={Work} />
-              <Route path="/blog" component={Blog} />
-              <Route path="/contact" component={Contact} />
+              <Switch>
+                <Route exact path="/" component={Explore} />
+                <Route path="/discover" component={Discover} />
+                <Route path="/work" component={Work} />
+                <Route path="/blog" component={Blog} />
+                <Route path="/contact" component={Contact} />
+                <Redirect to="/" />
+              </Switch>
             </Suspense>
           </Page>
         </Main>
