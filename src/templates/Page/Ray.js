@@ -31,11 +31,14 @@ const Ray = styled.div`
     css`
       ${focused}
       ${open && focusedShifted}
+      ${[theme.breakpoints.up('lg')]} {
+        ${focusedShifted}
+      }
     `};
   border-width: 0;
   border-style: solid;
   animation: ${blast} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  animation-delay: ${({ delay }) => delay}s;
+  animation-delay: ${({ delay }) => delay + 8}s;
 `;
 
 export default withRouter(Ray);

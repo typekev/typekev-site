@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Fade from '@material-ui/core/Fade';
+import Transition from 'components/Transition';
 import Section from 'templates/Section';
 import Sun from 'templates/Page/Sun';
 import Ray from 'templates/Page/Ray';
@@ -8,12 +10,18 @@ import Stars from 'templates/Page/Stars';
 export default function Page({ children, open }) {
   return (
     <>
-      <Stars />
+      <Transition in component={Fade} timeout={3300}>
+        <Stars />
+      </Transition>
       {[0, 0.125, 0.75, 1.5, 2.75].map(delay => (
         <Ray key={delay} delay={delay} open={open} />
       ))}
       <Sun open={open} />
-      <Section>{children}</Section>
+      <Transition in component={Fade} delay={775} timeout={775}>
+        <Section component="section" fixed>
+          {children}
+        </Section>
+      </Transition>
     </>
   );
 }

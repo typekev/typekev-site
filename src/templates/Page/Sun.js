@@ -11,8 +11,8 @@ const {
 
 const breath = keyframes`
   0% {
-     transform:scale(.7);
-     background-color: ${secondary.main};
+    transform:scale(.7);
+    background-color: ${secondary.main};
   }
   50% {
     transform:scale(1.5);
@@ -24,6 +24,15 @@ const breath = keyframes`
   }
 `;
 
+const fade = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 const Sun = styled.div`
   ${position}
   ${({ open, location: { pathname } }) =>
@@ -31,8 +40,13 @@ const Sun = styled.div`
     css`
       ${focused}
       ${open && focusedShifted}
+      ${[theme.breakpoints.up('lg')]} {
+        ${focusedShifted}
+      }
     `};
-  animation: ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  opacity: 0;
+  animation: ${fade} 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards 550ms,
+    ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 225ms;
 `;
 
 export default withRouter(Sun);

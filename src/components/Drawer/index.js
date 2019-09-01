@@ -6,6 +6,8 @@ import MuiDrawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Hidden from '@material-ui/core/Hidden';
 import MuiButton from '@material-ui/core/Button';
+import Fade from '@material-ui/core/Fade';
+import Transition from 'components/Transition';
 import Links from 'components/Drawer/Links';
 import theme from 'resources/theme';
 
@@ -35,29 +37,31 @@ function Drawer({ open, toggleDrawer }) {
     </>
   );
   return (
-    <nav aria-label="navigation">
-      <Hidden smUp>
-        <SwipeableDrawer
-          open={open}
-          onClose={toggleDrawer}
-          onOpen={toggleDrawer}
-          ModalProps={{
-            keepMounted: true,
-          }}
-        >
-          <Spacer />
-          <Links toggleDrawer={toggleDrawer} />
-        </SwipeableDrawer>
-      </Hidden>
-      <Hidden xsDown>
-        <MuiDrawer variant="persistent" open={open}>
-          {drawerContent}
-        </MuiDrawer>
-      </Hidden>
-      <Hidden mdDown>
-        <MuiDrawer variant="permanent">{drawerContent}</MuiDrawer>
-      </Hidden>
-    </nav>
+    <Transition in component={Fade} timeout={550}>
+      <nav aria-label="navigation">
+        <Hidden smUp>
+          <SwipeableDrawer
+            open={open}
+            onClose={toggleDrawer}
+            onOpen={toggleDrawer}
+            ModalProps={{
+              keepMounted: true,
+            }}
+          >
+            <Spacer />
+            <Links toggleDrawer={toggleDrawer} />
+          </SwipeableDrawer>
+        </Hidden>
+        <Hidden xsDown>
+          <MuiDrawer variant="persistent" open={open}>
+            {drawerContent}
+          </MuiDrawer>
+        </Hidden>
+        <Hidden mdDown>
+          <MuiDrawer variant="permanent">{drawerContent}</MuiDrawer>
+        </Hidden>
+      </nav>
+    </Transition>
   );
 }
 
