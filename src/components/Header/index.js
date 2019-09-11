@@ -40,7 +40,7 @@ export default function Header({ open, toggleDrawer }) {
             </Title>
           </Hidden>
           <Hidden xsDown>
-            <Title>
+            <Title variant="h5">
               <HeaderText />
             </Title>
           </Hidden>
