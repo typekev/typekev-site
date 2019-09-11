@@ -1,14 +1,12 @@
 import styled, { css } from 'styled-components';
+import Container from '@material-ui/core/Container';
 
-const Content = styled.div`
-  display: flex;
+const Content = styled(Container)`
   ${({ align }) =>
     align === 'center' &&
     css`
-      flex-direction: column;
-      flex: 1 1 auto;
       align-self: center;
-      margin-top: -25vmin;
+      margin-top: calc(-25vmin - 2rem);
     `}
 `;
 
