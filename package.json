@@ -26,12 +26,13 @@
     }
   },
   "dependencies": {
-    "@material-ui/core": "^4.3.3",
+    "@material-ui/core": "^4.4.1",
     "@mdi/js": "^4.0.96",
     "@mdi/react": "^1.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-mk": "0.0.18",
     "react-particles-js": "^2.7.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
