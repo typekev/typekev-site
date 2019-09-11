@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import Container from '@material-ui/core/Container';
 
-const Section = styled(Container)`
+const Section = styled.section`
   flex: 1 1 100%;
   max-width: 100%;
   overflow: hidden scroll;
