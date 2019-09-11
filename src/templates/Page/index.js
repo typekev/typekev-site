@@ -18,9 +18,7 @@ export default function Page({ children, open }) {
       ))}
       <Sun open={open} />
       <Transition in component={Fade} delay={775} timeout={775}>
-        <Section component="section" fixed>
-          {children}
-        </Section>
+        <Section>{children}</Section>
       </Transition>
     </>
   );
