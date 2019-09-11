@@ -7,10 +7,10 @@ const {
 const particleParams = {
   particles: {
     number: {
-      value: 100,
+      value: 80,
       density: {
         enable: true,
-        value_area: 750,
+        value_area: 800,
       },
     },
     color: {

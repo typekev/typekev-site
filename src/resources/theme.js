@@ -20,6 +20,17 @@ export const themeMap = {
         background: palette.background.default,
       },
     },
+    MuiInputBase: {
+      input: {
+        textAlign: 'center',
+      },
+    },
+    MuiTextField: {
+      root: {
+        width: '32rem',
+        maxWidth: '100%',
+      },
+    },
   },
 };
 
