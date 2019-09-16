@@ -29,6 +29,7 @@
     "@material-ui/core": "^4.4.1",
     "@mdi/js": "^4.0.96",
     "@mdi/react": "^1.2.1",
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -36,7 +37,8 @@
     "react-particles-js": "^2.7.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "enzyme": "^3.10.0",
