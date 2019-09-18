@@ -1,20 +1,12 @@
-export const checkValidity = status => status >= 200 && status < 300;
+import checkStatus from 'utils/checkStatus';
+import parseJSON from 'utils/parseJSON';
 
-export const throwError = response => {
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
-};
-
-export const checkStatus = response =>
-  checkValidity(response.status) ? response : throwError(response);
-
-export const parseJSON = response => response.json();
+export const logError = error => console.error('request failed', error);
 
 const request = (...args) =>
   fetch(...args)
     .then(checkStatus)
     .then(parseJSON)
-    .catch(error => console.error('request failed', error));
+    .catch(logError);
 
 export default request;
