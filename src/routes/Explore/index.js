@@ -12,8 +12,6 @@ export default function Explore() {
   const [{ streamUrl }, startChat, sendMessage] = useChat();
   const [messages, setMessages] = useState([]);
 
-  console.log('messages', messages);
-
   return (
     <Transition in component={Grow}>
       <Content align="center" maxWidth="md">
