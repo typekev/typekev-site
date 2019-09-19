@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { getDirectLineConversation, sendDirectLineMessage } from 'routes/Explore/api';
 
-const getConversation = async setConversation => {
+export const initialState = {};
+
+export const getConversation = async setConversation => {
   try {
     const conversation = await getDirectLineConversation();
     setConversation(conversation);
   } catch (err) {
-    setConversation(null);
+    setConversation(initialState);
   }
 };
 
 export default function useChat() {
-  const [{ conversationId, token, streamUrl }, setConversation] = useState({});
+  const [{ conversationId, token, streamUrl }, setConversation] = useState(initialState);
   const startChat = () => getConversation(setConversation);
-  const sendMessage = text => text && sendDirectLineMessage({ conversationId, token, text });
+  const sendMessage = text =>
+    typeof text === 'string' && sendDirectLineMessage({ conversationId, token, text });
   return [{ conversationId, token, streamUrl }, startChat, sendMessage];
 }
