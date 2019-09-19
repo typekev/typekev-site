@@ -8,6 +8,16 @@ import useChat from 'hooks/useChat';
 import Form from 'routes/Explore/Form';
 import Bot from 'routes/Explore/Bot';
 
+export const botIntroText = [
+  // 400,
+  'Welcome, visitor',
+  // "I'm Kevin's autonomous assistant",
+  // 'What can I help you with?',
+];
+
+export const handleTyping = messages => ({ type }) =>
+  messages.length > 0 ? type(...messages) : type(...botIntroText);
+
 export default function Explore() {
   const [{ streamUrl }, startChat, sendMessage] = useChat();
   const [messages, setMessages] = useState([]);
@@ -17,18 +27,7 @@ export default function Explore() {
       <Content align="center" maxWidth="md">
         <Bot startChat={startChat} streamUrl={streamUrl} setMessages={setMessages} />
         <Title variant="h6" align="center">
-          <Keyboard sentenceDelayPerCharRange={[0, 0]}>
-            {({ type }) =>
-              messages.length > 0
-                ? type(...messages)
-                : type(
-                    // 400,
-                    'Welcome, visitor',
-                    // "I'm Kevin's autonomous assistant",
-                    // 'What can I help you with?',
-                  )
-            }
-          </Keyboard>
+          <Keyboard sentenceDelayPerCharRange={[0, 0]}>{handleTyping(messages)}</Keyboard>
           <Cursor />
         </Title>
         <Form sendMessage={sendMessage} />
