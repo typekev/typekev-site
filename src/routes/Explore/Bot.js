@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import useSocket from 'hooks/useSockets';
+import useSocket from 'hooks/useSocket';
 import debounce from 'lodash.debounce';
 
 export const setInitialSocket = (streamUrl, socket, setSocket) =>
