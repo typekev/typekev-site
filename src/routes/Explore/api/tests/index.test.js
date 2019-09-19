@@ -40,7 +40,7 @@ describe('Explore route APIs', () => {
 
     expect(fetch.mock.calls.length).toEqual(1);
     expect(fetch.mock.calls[0][0]).toEqual(
-      `${baseUrl}/v3/directline/conversations/${response.conversationId}/activities`,
+      `${baseUrl}v3/directline/conversations/${response.conversationId}/activities`,
     );
     expect(fetch.mock.calls[0][1]).toEqual({
       method: 'POST',
