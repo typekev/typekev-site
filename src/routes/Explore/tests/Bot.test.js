@@ -30,8 +30,8 @@ describe('Explore route', () => {
     const messages = ['Test'];
     const clearMessages = jest.fn();
     handleSetMessage(
+      messages,
       returnedMessages => expect(returnedMessages).toBe(messages),
-      { current: messages },
       clearMessages,
     )();
 
