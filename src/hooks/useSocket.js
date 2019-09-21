@@ -20,11 +20,13 @@ const useSocket = () => {
   const [messages, setMessages] = useState(initialState);
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
+
   useEffect(() => {
-    setListener(socket, messagesRef.current, setMessages);
+    setListener(socket, messagesRef.current, setMessages)();
     return clearListener(socket);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
+
   return [
     socket,
     (...args) => setSocket(new WebSocket(...args)),
