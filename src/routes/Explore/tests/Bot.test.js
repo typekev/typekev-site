@@ -4,7 +4,7 @@ import Bot, { setInitialSocket, debounceMessages, handleSetMessage } from 'route
 
 const streamUrl = 'wss://directline.botframework.com';
 
-describe('Explore route', () => {
+describe('Bot component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Bot startChat={() => {}} streamUrl={streamUrl} setMessages={() => {}} />, div);

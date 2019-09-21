@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Form, { onSubmit, onChange, initialState } from 'routes/Explore/Form';
 
-describe('Explore route', () => {
+describe('Form component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Form sendMessage={() => {}} />, div);
