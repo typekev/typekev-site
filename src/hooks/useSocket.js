@@ -10,20 +10,22 @@ export const onMessageReceived = (messages, setMessages) => ({ data }) =>
       .map(({ text }) => text),
   ]);
 
-export const setListener = (socket, messages, setMessages) => () =>
+export const getListener = (socket, messages, setMessages) =>
   socket && socket.addEventListener('message', onMessageReceived(messages, setMessages));
 
-export const clearListener = socket => () => socket && socket.removeEventListener('message');
+export const clearListener = (socket, listener) => () =>
+  socket && socket.removeEventListener('message', listener);
 
 const useSocket = () => {
   const [socket, setSocket] = useState();
   const [messages, setMessages] = useState(initialState);
+  const [listener, setListener] = useState(initialState);
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
 
   useEffect(() => {
-    setListener(socket, messagesRef.current, setMessages)();
-    return clearListener(socket);
+    setListener(getListener(socket, messagesRef.current, setMessages));
+    return clearListener(socket, listener);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 

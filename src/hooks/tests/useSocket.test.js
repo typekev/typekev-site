@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import useSocket, {
-  setListener,
+  getListener,
   clearListener,
   onMessageReceived,
   initialState,
@@ -54,11 +54,11 @@ describe('useSocket hook', () => {
     expect(messages).toBe(initialState);
   });
 
-  it('calls setListener triggering addEventListener if socket evaluates to true', () => {
+  it('calls getListener triggering addEventListener if socket evaluates to true', () => {
     const addEventListener = jest.fn();
-    setListener()();
+    getListener();
     expect(addEventListener.mock.calls.length).toBe(0);
-    setListener({ addEventListener }, [], () => {})();
+    getListener({ addEventListener }, [], () => {});
     expect(addEventListener.mock.calls.length).toBe(1);
   });
 
