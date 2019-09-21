@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Keyboard, { Cursor } from 'react-mk';
 import Grow from '@material-ui/core/Grow';
+import useChat from 'hooks/useChat';
 import Content from 'templates/Content';
 import Transition from 'components/Transition';
-import Title from 'components/Title';
-import useChat from 'hooks/useChat';
 import Form from 'routes/Explore/Form';
 import Bot from 'routes/Explore/Bot';
+import Chat from 'routes/Explore/Chat';
 
 export const botIntroText = [
   // 400,
@@ -26,10 +25,7 @@ export default function Explore() {
     <Transition in component={Grow}>
       <Content align="center" maxWidth="md">
         <Bot startChat={startChat} streamUrl={streamUrl} setMessages={setMessages} />
-        <Title variant="h6" align="center">
-          <Keyboard sentenceDelayPerCharRange={[0, 0]}>{handleTyping(messages)}</Keyboard>
-          <Cursor />
-        </Title>
+        <Chat messages={messages} handleTyping={handleTyping} />
         <Form sendMessage={sendMessage} />
       </Content>
     </Transition>
