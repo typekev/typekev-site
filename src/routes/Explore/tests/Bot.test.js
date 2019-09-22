@@ -19,19 +19,16 @@ describe('Bot component', () => {
   });
 
   it('calls debounceMessages and returns false if messages.length < 1', () => {
-    const messages = ['Test'];
-    expect(typeof debounceMessages(messages, () => {}, { current: messages }, () => {})).toBe(
-      'undefined',
-    );
-    expect(debounceMessages([])).toBe(false);
+    const messagesRef = { current: [] };
+    expect(debounceMessages(messagesRef)).toBe(false);
   });
 
   it('calls handleSetMessage and triggers setMessages with messages, then clearMessages', () => {
-    const messages = ['Test'];
+    const messagesRef = { current: ['Test'] };
     const clearMessages = jest.fn();
     handleSetMessage(
-      messages,
-      returnedMessages => expect(returnedMessages).toBe(messages),
+      messagesRef,
+      returnedMessages => expect(returnedMessages).toBe(messagesRef.current),
       clearMessages,
     )();
 
