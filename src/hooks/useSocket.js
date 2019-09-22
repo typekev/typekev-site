@@ -2,16 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 
 export const initialState = [];
 
-export const onMessageReceived = (messages, setMessages) => ({ data }) =>
+export const onMessageReceived = (messagesRef, setMessages) => ({ data }) =>
   setMessages([
-    ...messages,
+    ...messagesRef.current,
     ...JSON.parse(data)
       .activities.filter(({ from: { id }, text }) => text && id === 'typekev-bot')
       .map(({ text }) => text),
   ]);
 
-export const getListener = (socket, messages, setMessages) =>
-  socket && socket.addEventListener('message', onMessageReceived(messages, setMessages));
+export const getListener = (socket, messagesRef, setMessages) =>
+  socket && socket.addEventListener('message', onMessageReceived(messagesRef, setMessages));
 
 export const clearListener = (socket, listener) => () =>
   socket && socket.removeEventListener('message', listener);
@@ -19,12 +19,11 @@ export const clearListener = (socket, listener) => () =>
 const useSocket = () => {
   const [socket, setSocket] = useState();
   const [messages, setMessages] = useState(initialState);
-  const [listener, setListener] = useState(initialState);
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
-
+  console.log(messages);
   useEffect(() => {
-    setListener(getListener(socket, messagesRef.current, setMessages));
+    const listener = getListener(socket, messagesRef, setMessages);
     return clearListener(socket, listener);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
