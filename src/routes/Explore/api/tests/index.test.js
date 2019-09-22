@@ -1,5 +1,7 @@
 import { getDirectLineConversation, sendDirectLineMessage } from 'routes/Explore/api';
 
+const { REACT_APP_BOT_ORIGIN } = process.env;
+
 const response = {
   conversationId: 'conversationId',
   token: 'token',
@@ -21,7 +23,7 @@ describe('Explore route APIs', () => {
     });
 
     expect(fetch.mock.calls.length).toEqual(1);
-    expect(fetch.mock.calls[0][0]).toEqual('http://localhost:3978/directline/conversations');
+    expect(fetch.mock.calls[0][0]).toEqual(`${REACT_APP_BOT_ORIGIN}directline/conversations`);
   });
 
   it('sends a POST to the bot and returns a conversationId', () => {
