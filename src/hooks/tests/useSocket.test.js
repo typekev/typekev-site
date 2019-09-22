@@ -31,10 +31,13 @@ describe('useSocket hook', () => {
   });
 
   it('calls onMessageReceived passing an array of messages to setMessages', () => {
-    const messages = ['Test'];
-    const activities = [{ from: { id: 'typekev-bot' }, text: messages[0] }];
-    onMessageReceived(messages, returnedMessages =>
-      expect(returnedMessages).toStrictEqual([...messages, ...activities.map(({ text }) => text)]),
+    const messagesRef = { current: ['Test'] };
+    const activities = [{ from: { id: 'typekev-bot' }, text: messagesRef.current[0] }];
+    onMessageReceived(messagesRef, returnedMessages =>
+      expect(returnedMessages).toStrictEqual([
+        ...messagesRef.current,
+        ...activities.map(({ text }) => text),
+      ]),
     )({ data: JSON.stringify({ activities }) });
   });
 
@@ -55,10 +58,11 @@ describe('useSocket hook', () => {
   });
 
   it('calls getListener triggering addEventListener if socket evaluates to true', () => {
+    const messagesRef = { current: [] };
     const addEventListener = jest.fn();
     getListener();
     expect(addEventListener.mock.calls.length).toBe(0);
-    getListener({ addEventListener }, [], () => {});
+    getListener({ addEventListener }, messagesRef, () => {});
     expect(addEventListener.mock.calls.length).toBe(1);
   });
 

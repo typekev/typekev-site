@@ -5,18 +5,20 @@ import debounce from 'lodash.debounce';
 export const setInitialSocket = (streamUrl, socket, setSocket) =>
   streamUrl && !socket && setSocket(streamUrl);
 
-export const handleSetMessage = (messages, setMessages, clearMessages) => () => {
-  setMessages(messages);
+export const handleSetMessage = (messagesRef, setMessages, clearMessages) => () => {
+  setMessages(messagesRef.current);
   clearMessages();
 };
 
-export const debounceMessages = (messages, setMessages, clearMessages) =>
-  messages.length > 0 && debounce(handleSetMessage(messages, setMessages, clearMessages), 0)();
+export const debounceMessages = (messagesRef, setMessages, clearMessages) =>
+  messagesRef.current.length > 0 &&
+  debounce(handleSetMessage(messagesRef, setMessages, clearMessages), 1500)();
 
 export default function Bot({ startChat, streamUrl, setMessages }) {
   const [socket, setSocket, messages, clearMessages] = useSocket();
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
+  // console.log(messages)
 
   useEffect(() => {
     startChat();
@@ -29,7 +31,7 @@ export default function Bot({ startChat, streamUrl, setMessages }) {
   }, [streamUrl]);
 
   useEffect(() => {
-    debounceMessages(messagesRef.current, setMessages, clearMessages);
+    debounceMessages(messagesRef, setMessages, clearMessages);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages.length]);
 
