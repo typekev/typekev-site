@@ -5,7 +5,7 @@ export const initialState = {};
 
 export const getConversation = async setConversation => {
   try {
-    const conversation = await getDirectLineConversation();
+    const conversation = (await getDirectLineConversation()) || initialState;
     setConversation(conversation);
   } catch (err) {
     setConversation(initialState);
