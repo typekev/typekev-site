@@ -7,16 +7,6 @@ import Form from 'routes/Explore/Form';
 import Bot from 'routes/Explore/Bot';
 import Chat from 'routes/Explore/Chat';
 
-export const botIntroText = [
-  // 400,
-  'Welcome, visitor',
-  // "I'm Kevin's autonomous assistant",
-  // 'What can I help you with?',
-];
-
-export const handleTyping = messages => ({ type }) =>
-  messages.length > 0 ? type(...messages) : type(...botIntroText);
-
 export default function Explore() {
   const [{ streamUrl }, startChat, sendMessage] = useChat();
   const [messages, setMessages] = useState([]);
@@ -25,7 +15,7 @@ export default function Explore() {
     <Transition in component={Grow}>
       <Content align="center" maxWidth="md">
         <Bot startChat={startChat} streamUrl={streamUrl} setMessages={setMessages} />
-        <Chat messages={messages} handleTyping={handleTyping} />
+        <Chat messages={messages} />
         <Form sendMessage={sendMessage} />
       </Content>
     </Transition>
