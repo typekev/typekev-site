@@ -16,7 +16,7 @@ export default function Chat({ messages }) {
   return useMemo(
     () => (
       <Title variant="h6" align="center">
-        <Keyboard sentenceDelayPerCharRange={[0, 0]}>{handleTyping(messages)}</Keyboard>
+        <Keyboard>{handleTyping(messages)}</Keyboard>
         <Cursor />
       </Title>
     ),
