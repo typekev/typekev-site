@@ -14,7 +14,7 @@ export const onSubmit = (sendMessage, setValue, value) => e => {
 
 export const onChange = setValue => ({ currentTarget }) => setValue(currentTarget.value);
 
-export default function Form({ sendMessage }) {
+export default function Form({ sendMessage, disabled }) {
   const [value, setValue] = useState(initialState.value);
 
   return (
@@ -22,6 +22,7 @@ export default function Form({ sendMessage }) {
       <TextField
         onChange={onChange(setValue)}
         value={value}
+        disabled={disabled}
         id="chatbot-input"
         margin="dense"
         autoFocus
@@ -36,4 +37,5 @@ export default function Form({ sendMessage }) {
 
 Form.propTypes = {
   sendMessage: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };

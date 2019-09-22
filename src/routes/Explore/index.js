@@ -11,12 +11,14 @@ export default function Explore() {
   const [{ streamUrl }, startChat, sendMessage] = useChat();
   const [messages, setMessages] = useState([]);
 
+  const disabled = !streamUrl;
+
   return (
     <Transition in component={Grow}>
       <Content align="center" maxWidth="md">
         <Bot startChat={startChat} streamUrl={streamUrl} setMessages={setMessages} />
         <Chat messages={messages} />
-        <Form sendMessage={sendMessage} />
+        <Form sendMessage={sendMessage} disabled={disabled} />
       </Content>
     </Transition>
   );
