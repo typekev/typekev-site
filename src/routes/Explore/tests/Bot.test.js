@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Bot, { setInitialSocket, debounceMessages, handleSetMessage } from 'routes/Explore/Bot';
 
 const streamUrl = 'wss://directline.botframework.com';
+const messagesRef = { current: ['Test'] };
 
 describe('Bot component', () => {
   it('renders without crashing', () => {
@@ -19,12 +20,12 @@ describe('Bot component', () => {
   });
 
   it('calls debounceMessages and returns false if messages.length < 1', () => {
-    const messagesRef = { current: [] };
-    expect(debounceMessages(messagesRef)).toBe(false);
+    const messagesRefEmpty = { current: [] };
+    expect(debounceMessages(messagesRefEmpty)).toBe(false);
+    expect(() => debounceMessages(messagesRef)).not.toThrow();
   });
 
   it('calls handleSetMessage and triggers setMessages with messages, then clearMessages', () => {
-    const messagesRef = { current: ['Test'] };
     const clearMessages = jest.fn();
     handleSetMessage(
       messagesRef,
