@@ -3,7 +3,7 @@ import request from 'utils/request';
 const { REACT_APP_BOT_ORIGIN } = process.env;
 
 export const getDirectLineConversation = () =>
-  request(`${REACT_APP_BOT_ORIGIN}/directline/conversations`, { method: 'POST' });
+  request(`${REACT_APP_BOT_ORIGIN}directline/conversations`, { method: 'POST' });
 
 export const sendDirectLineMessage = ({ conversationId, token, text, type = 'message' }) =>
   request(
