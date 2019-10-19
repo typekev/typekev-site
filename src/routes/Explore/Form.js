@@ -28,7 +28,7 @@ export default function Form({ sendMessage, disabled }) {
         autoFocus
         hiddenLabel
         variant="filled"
-        placeholder="Tell me something..."
+        placeholder={disabled ? 'The bot is typing...' : 'Tell me something...'}
         inputProps={{ 'aria-label': 'chatbot input' }}
       />
     </form>
