@@ -6,7 +6,6 @@ export const logError = error => console.error('request failed', error);
 const request = (...args) =>
   fetch(...args)
     .then(checkStatus)
-    .then(parseJSON)
-    .catch(logError);
+    .then(parseJSON);
 
 export default request;
