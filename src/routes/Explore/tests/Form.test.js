@@ -5,7 +5,9 @@ import Form, { onSubmit, onChange, initialState } from 'routes/Explore/Form';
 describe('Form component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Form sendMessage={() => {}} />, div);
+    ReactDOM.render(<Form sendMessage={() => {}} disabled />, div);
+    ReactDOM.unmountComponentAtNode(div);
+    ReactDOM.render(<Form sendMessage={() => {}} disabled={false} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -13,7 +15,11 @@ describe('Form component', () => {
     const value = 'Test';
     const preventDefault = jest.fn();
 
-    onSubmit(v => expect(v).toBe(value), v => expect(v).toBe(initialState.value), value)({
+    onSubmit(
+      message => expect(message).toBe(value),
+      initialValue => expect(initialValue).toBe(initialState.value),
+      value,
+    )({
       preventDefault,
     });
 
