@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 
-export const initialState = [];
+export const initialState = [
+  1500,
+  'Welcome, visitor',
+  "I'm Kevin's autonomous assistant",
+  'What can I help you with?',
+];
 
 export const onMessageReceived = (messagesRef, setMessages) => ({ data }) =>
   setMessages([
@@ -19,9 +24,10 @@ export const clearListener = (socket, listener) => () =>
 const useSocket = () => {
   const [socket, setSocket] = useState();
   const [messages, setMessages] = useState(initialState);
+
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
-  console.log(messages);
+
   useEffect(() => {
     const listener = getListener(socket, messagesRef, setMessages);
     return clearListener(socket, listener);
@@ -31,8 +37,8 @@ const useSocket = () => {
   return [
     socket,
     (...args) => setSocket(new WebSocket(...args)),
-    messages,
-    () => setMessages(initialState),
+    messagesRef.current,
+    () => setMessages(['']),
   ];
 };
 

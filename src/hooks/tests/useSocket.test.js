@@ -26,6 +26,10 @@ describe('useSocket hook', () => {
 
     expect(socket).toBe(undefined);
     expect(typeof setSocket).toBe('function');
+    expect(() => setSocket('wss://echo.websocket.org')).not.toThrow();
+    expect(() => setSocket()).toThrow(
+      "Failed to construct 'WebSocket': 1 argument required, but only 0 present.",
+    );
     expect(messages).toBe(initialState);
     expect(typeof clearMessages).toBe('function');
   });
@@ -54,7 +58,7 @@ describe('useSocket hook', () => {
       hook: [, , messages],
     } = getProps(wrapper);
 
-    expect(messages).toBe(initialState);
+    expect(messages).toEqual(['']);
   });
 
   it('calls getListener triggering addEventListener if socket evaluates to true', () => {

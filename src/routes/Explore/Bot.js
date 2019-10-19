@@ -1,24 +1,19 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import useSocket from 'hooks/useSocket';
-import debounce from 'lodash.debounce';
+import useChat from 'hooks/useChat';
+import Chat from 'routes/Explore/Chat';
+import Form from 'routes/Explore/Form';
 
 export const setInitialSocket = (streamUrl, socket, setSocket) =>
   streamUrl && !socket && setSocket(streamUrl);
 
-export const handleSetMessage = (messagesRef, setMessages, clearMessages) => () => {
-  setMessages(messagesRef.current);
-  clearMessages();
-};
+export const getIsDisabled = (streamUrl, messagesLength) => !streamUrl || messagesLength === 0;
 
-export const debounceMessages = (messagesRef, setMessages, clearMessages) =>
-  messagesRef.current.length > 0 &&
-  debounce(handleSetMessage(messagesRef, setMessages, clearMessages), 1500)();
-
-export default function Bot({ startChat, streamUrl, setMessages }) {
+export default function Bot() {
   const [socket, setSocket, messages, clearMessages] = useSocket();
-  const messagesRef = useRef(messages);
-  messagesRef.current = messages;
-  // console.log(messages)
+  const [{ streamUrl }, startChat, sendMessage] = useChat(clearMessages);
+
+  const disabled = getIsDisabled(streamUrl, messages.filter(Boolean).length);
 
   useEffect(() => {
     startChat();
@@ -30,10 +25,10 @@ export default function Bot({ startChat, streamUrl, setMessages }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [streamUrl]);
 
-  useEffect(() => {
-    debounceMessages(messagesRef, setMessages, clearMessages);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messages.length]);
-
-  return null;
+  return (
+    <>
+      <Chat messages={messages} disabled={disabled} />
+      <Form sendMessage={sendMessage} disabled={disabled} />
+    </>
+  );
 }

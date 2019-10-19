@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import useChat, { getConversation, initialState } from 'hooks/useChat';
 
-const HookWrapper = ({ hook }) => <div hook={hook()} />;
+const HookWrapper = ({ hook }) => <div hook={hook(() => {})} />;
 
 HookWrapper.propTypes = {
   hook: PropTypes.func.isRequired,
