@@ -1,9 +1,22 @@
-import request from 'utils/request';
+import request, { logError } from 'utils/request';
 
 const { REACT_APP_BOT_ORIGIN } = process.env;
 
-export const getDirectLineConversation = () =>
-  request(`${REACT_APP_BOT_ORIGIN}directline/conversations`, { method: 'POST' });
+export const getDirectLineConversation = token =>
+  request(`${REACT_APP_BOT_ORIGIN}directline/conversations`, {
+    method: 'POST',
+    body: JSON.stringify({ token }),
+  }).catch(logError);
+
+export const connectToDirectLineConversation = (
+  conversationId,
+  token,
+  text,
+  sendDirectLineMessage,
+) => () =>
+  getDirectLineConversation(token).then(() =>
+    sendDirectLineMessage({ conversationId, token, text }),
+  );
 
 export const sendDirectLineMessage = ({ conversationId, token, text, type = 'message' }) =>
   request(
@@ -22,6 +35,6 @@ export const sendDirectLineMessage = ({ conversationId, token, text, type = 'mes
         text,
       }),
     },
-  );
+  ).catch(connectToDirectLineConversation(conversationId, token, text, sendDirectLineMessage));
 
 export default { getDirectLineConversation };
