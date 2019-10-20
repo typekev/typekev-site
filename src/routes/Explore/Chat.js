@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 import Keyboard, { Cursor } from 'react-mk';
 import Fade from '@material-ui/core/Fade';
-import debounce from 'lodash.debounce';
+import Typography from '@material-ui/core/Typography';
 import Transition from 'components/Transition';
-import Title from 'components/Title';
 import TypingIndicator from 'components/TypingIndicator';
 import { initialState } from 'hooks/useSocket';
 
@@ -62,7 +62,7 @@ export default function Chat({ messages, disabled }) {
   });
 
   return (
-    <Title variant="h6" align="center">
+    <Typography variant="h6" align="center">
       <Transition
         component={Fade}
         in={getShouldDisplayChat(shouldDisplayChat, displayingInitialMessage)}
@@ -102,7 +102,7 @@ export default function Chat({ messages, disabled }) {
       >
         <TypingIndicator />
       </Transition>
-    </Title>
+    </Typography>
   );
 }
 
