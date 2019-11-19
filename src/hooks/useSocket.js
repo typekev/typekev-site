@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 
+const sampleQuestions = ['Who is Kevin?', 'What does Kevin do?', 'Where does Kevin work?'];
+
+const getSampleQuestion = () => sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
+
 export const initialState = [
-  1500,
+  1000,
   'Welcome, visitor',
   "I'm Kevin's autonomous assistant",
-  'What can I help you with?',
+  `What can I help you with? You can ask me something like '${getSampleQuestion()}'`,
 ];
 
 export const onMessageReceived = (messagesRef, setMessages) => ({ data }) =>
