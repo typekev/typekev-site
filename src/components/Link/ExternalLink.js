@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import A from 'components/A';
 
 /* eslint-disable react/jsx-props-no-spreading */
 
 function ExternalLink({ children, href, innerRef, ...rest }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+    <A href={href} target="_blank" rel="noopener noreferrer" {...rest}>
       {children}
-    </a>
+    </A>
   );
 }
 
