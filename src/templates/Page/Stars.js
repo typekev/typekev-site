@@ -8,6 +8,7 @@ const StyledParticles = styled(Particles)`
     position: fixed;
     right: 0;
     left: 0;
+    bottom: 1.25rem;
     z-index: 0;
   }
 `;
