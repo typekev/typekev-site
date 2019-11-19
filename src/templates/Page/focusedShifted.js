@@ -1,8 +1,11 @@
 import { css } from 'styled-components';
 import { drawerWidth } from 'resources/constants';
+import theme from 'resources/theme';
 
 const focusedShifted = css`
-  margin-left: calc(50% - 10vmin - ${drawerWidth / 2}px);
+  ${[theme.breakpoints.up('sm')]} {
+    right: calc(50% - 10vmin - ${drawerWidth / 2}px);
+  }
 `;
 
 export default focusedShifted;
