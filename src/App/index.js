@@ -8,6 +8,7 @@ import Drawer from 'components/Drawer';
 import Root from 'App/Root';
 import useDrawer from 'hooks/useDrawer';
 import Page from 'templates/Page';
+import './index.css';
 
 export const Explore = React.lazy(() => import('routes/Explore'));
 export const Discover = React.lazy(() => import('routes/Discover'));
