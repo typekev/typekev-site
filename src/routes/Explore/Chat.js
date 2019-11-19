@@ -65,7 +65,7 @@ export default function Chat({ messages, disabled }) {
     <Typography variant="h6" align="center">
       <Transition
         component={Fade}
-        in={getShouldDisplayChat(shouldDisplayChat, displayingInitialMessage)}
+        in={!!getShouldDisplayChat(shouldDisplayChat, displayingInitialMessage)}
         timeout={delay / 2}
         delay={0}
       >
@@ -107,6 +107,6 @@ export default function Chat({ messages, disabled }) {
 }
 
 Chat.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  messages: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   disabled: PropTypes.bool.isRequired,
 };
