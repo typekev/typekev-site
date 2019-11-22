@@ -18,6 +18,11 @@ describe('App component', () => {
     expect(setCookie.mock.calls[0][0]).toEqual(TYPEKEV_SITE_PREFERS_COLOR_SCHEME);
     expect(setCookie.mock.calls[0][1]).toEqual(COLOR_SCHEME_CODE_MAP.LIGHT);
     expect(setCookie.mock.calls[0][2].path).toEqual('/');
+    togglePrefersColorScheme(COLOR_SCHEME_CODE_MAP.LIGHT, setCookie)();
+    expect(setCookie.mock.calls.length).toBe(2);
+    expect(setCookie.mock.calls[1][0]).toEqual(TYPEKEV_SITE_PREFERS_COLOR_SCHEME);
+    expect(setCookie.mock.calls[1][1]).toEqual(COLOR_SCHEME_CODE_MAP.DARK);
+    expect(setCookie.mock.calls[1][2].path).toEqual('/');
   });
 
   it('renders a Main component without crashing', () => {
