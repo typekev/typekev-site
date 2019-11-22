@@ -34,7 +34,7 @@ export const getLinks = (listItems, toggleDrawer) =>
         selected={selected}
       >
         <ListItemIcon>
-          <Icon path={iconPath} size={1} />
+          <Icon path={iconPath} size={1} color="currentColor" />
         </ListItemIcon>
         <ListItemText primary={name} />
       </ListItem>
