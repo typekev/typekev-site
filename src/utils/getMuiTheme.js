@@ -1,20 +1,20 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import palette from 'resources/palette';
-import { drawerWidth } from 'resources/constants';
+import { DRAWER_WIDTH } from 'resources/constants';
 
 export const themeMap = ({ background }) => ({
   overrides: {
     MuiBox: {
       root: {
         [defaultTheme.breakpoints.up('lg')]: {
-          width: `calc(100% - ${drawerWidth}px)`,
+          width: `calc(100% - ${DRAWER_WIDTH}px)`,
         },
       },
     },
     MuiDrawer: {
       paper: {
-        width: drawerWidth,
+        width: DRAWER_WIDTH,
         flexShrink: 0,
         background: background.default,
       },

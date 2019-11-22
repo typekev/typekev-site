@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import Box from '@material-ui/core/Box';
-import { drawerWidth } from 'resources/constants';
+import { DRAWER_WIDTH } from 'resources/constants';
 
 const Root = styled(Box)`
   display: flex;
@@ -15,7 +15,7 @@ const Root = styled(Box)`
     ${({ open }) =>
       open &&
       css`
-        width: calc(100% - ${drawerWidth}px);
+        width: calc(100% - ${DRAWER_WIDTH}px);
       `}
   }
 `;
