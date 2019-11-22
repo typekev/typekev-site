@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
+import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import Box from '@material-ui/core/Box';
-import theme from 'resources/theme';
 import { drawerWidth } from 'resources/constants';
 
 const Root = styled(Box)`
@@ -11,7 +11,7 @@ const Root = styled(Box)`
   min-height: 100vh;
   width: 100%;
 
-  ${[theme.breakpoints.up('sm')]} {
+  ${[defaultTheme.breakpoints.up('sm')]} {
     ${({ open }) =>
       open &&
       css`
