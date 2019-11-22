@@ -4,6 +4,8 @@ import Container from '@material-ui/core/Container';
 const Content = styled(Container)`
   margin-top: 3rem;
   margin-bottom: 6rem;
+  pointer-events: none;
+
   ${({ align }) =>
     align === 'center' &&
     css`
