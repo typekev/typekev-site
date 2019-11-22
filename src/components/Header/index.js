@@ -46,11 +46,20 @@ export default function Header({ open, toggleDrawer, togglePrefersColorScheme })
               </IconButton>
             </Tooltip>
           </Hidden>
-          <Tooltip title="Toggle color scheme" placement="bottom">
-            <IconButton onClick={togglePrefersColorScheme}>
-              <Icon path={mdiBrightness4} size={1.125} color="currentColor" />
-            </IconButton>
-          </Tooltip>
+          <Hidden smUp>
+            <Tooltip title="Toggle color scheme" placement="bottom">
+              <IconButton edge="end" onClick={togglePrefersColorScheme}>
+                <Icon path={mdiBrightness4} size={1} color="currentColor" />
+              </IconButton>
+            </Tooltip>
+          </Hidden>
+          <Hidden xsDown>
+            <Tooltip title="Toggle color scheme" placement="bottom">
+              <IconButton onClick={togglePrefersColorScheme}>
+                <Icon path={mdiBrightness4} size={1.25} color="currentColor" />
+              </IconButton>
+            </Tooltip>
+          </Hidden>
         </Toolbar>
       </AppBar>
     </Transition>
