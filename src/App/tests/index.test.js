@@ -1,12 +1,23 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import App, { Main, Explore, Discover, Work, Blog, Contact } from 'App';
+import App, { togglePrefersColorScheme, Main, Explore, Discover, Work, Blog, Contact } from 'App';
+import { TYPEKEV_SITE_PREFERS_COLOR_SCHEME } from 'resources/constants';
 
 describe('App component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('calls setCookie with passed preferences and toggles the color scheme', () => {
+    const setCookie = jest.fn();
+    togglePrefersColorScheme('DARK', setCookie)();
+
+    expect(setCookie.mock.calls.length).toBe(1);
+    expect(setCookie.mock.calls[0][0]).toEqual(TYPEKEV_SITE_PREFERS_COLOR_SCHEME);
+    expect(setCookie.mock.calls[0][1]).toEqual('LIGHT');
+    expect(setCookie.mock.calls[0][2].path).toEqual('/');
   });
 
   it('renders a Main component without crashing', () => {
