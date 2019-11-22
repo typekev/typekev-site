@@ -32,6 +32,7 @@
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
+    "react-cookie": "^4.0.1",
     "react-dom": "^16.9.0",
     "react-mk": "^1.0.5",
     "react-particles-js": "^2.7.0",
