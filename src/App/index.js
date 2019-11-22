@@ -13,7 +13,11 @@ import Copyright from 'components/Copyright';
 import Drawer from 'components/Drawer';
 import Root from 'App/Root';
 import './index.css';
-import { TYPEKEV_SITE_PREFERS_COLOR_SCHEME, PREFERS_COLOR_SCHEME } from 'resources/constants';
+import {
+  TYPEKEV_SITE_PREFERS_COLOR_SCHEME,
+  PREFERS_COLOR_SCHEME,
+  COLOR_SCHEME_CODE_MAP,
+} from 'resources/constants';
 
 export const Explore = React.lazy(() => import('routes/Explore'));
 export const Discover = React.lazy(() => import('routes/Discover'));
@@ -24,7 +28,9 @@ export const Contact = React.lazy(() => import('routes/Contact'));
 export const togglePrefersColorScheme = (SELECTED_COLOR_SCHEME, setCookie) => () =>
   setCookie(
     TYPEKEV_SITE_PREFERS_COLOR_SCHEME,
-    SELECTED_COLOR_SCHEME === 'DARK' ? 'LIGHT' : 'DARK',
+    SELECTED_COLOR_SCHEME === COLOR_SCHEME_CODE_MAP.DARK
+      ? COLOR_SCHEME_CODE_MAP.LIGHT
+      : COLOR_SCHEME_CODE_MAP.DARK,
     {
       path: '/',
     },
