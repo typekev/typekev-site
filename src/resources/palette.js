@@ -1,19 +1,40 @@
 const palette = {
-  primary: {
-    main: '#AFC8E0',
-    dark: '#7A8C9C',
-    light: '#BFD3E6',
+  LIGHT: {
+    primary: {
+      main: '#c1dfff',
+      dark: '#90adcc',
+      light: '#f4ffff',
+    },
+    secondary: {
+      main: '#feffc1',
+      dark: '#cacc90',
+      light: '#fffff4',
+    },
+    error: {
+      main: '#ff4542',
+    },
+    background: {
+      default: '#fdf9f6',
+    },
   },
-  secondary: {
-    main: '#F9F3AA',
-    dark: '#AEAA76',
-    light: '#FAF5BB',
-  },
-  error: {
-    main: '#D33332',
-  },
-  background: {
-    default: '#EDE8DD',
+  DARK: {
+    type: 'dark',
+    primary: {
+      main: '#040424',
+      dark: '#04DBFF',
+      light: '#E70447',
+    },
+    secondary: {
+      main: '#DA0443',
+      dark: '#C0043B',
+      light: '#E70447',
+    },
+    error: {
+      main: '#C2043C',
+    },
+    background: {
+      default: '#1B2033',
+    },
   },
 };
 

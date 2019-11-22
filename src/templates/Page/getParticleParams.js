@@ -1,10 +1,4 @@
-import theme from 'resources/theme';
-
-const {
-  palette: { primary },
-} = theme;
-
-const particleParams = {
+const getParticleParams = ({ palette: { primary, error } }) => ({
   particles: {
     number: {
       value: 500,
@@ -14,7 +8,7 @@ const particleParams = {
       },
     },
     color: {
-      value: primary.main,
+      value: primary.dark,
     },
     shape: {
       type: 'circle',
@@ -24,7 +18,7 @@ const particleParams = {
       anim: {
         enable: true,
         speed: 1,
-        opacity_min: 0.5,
+        opacity_min: 0.75,
         sync: false,
       },
     },
@@ -41,7 +35,7 @@ const particleParams = {
     line_linked: {
       enable: true,
       distance: 50,
-      color: primary.dark,
+      color: error.main,
       opacity: 1,
       width: 0.5,
     },
@@ -65,7 +59,7 @@ const particleParams = {
     },
     modes: {
       grab: {
-        distance: 50,
+        distance: 200,
         line_linked: {
           opacity: 1,
         },
@@ -77,6 +71,6 @@ const particleParams = {
     },
   },
   retina_detect: true,
-};
+});
 
-export default particleParams;
+export default getParticleParams;

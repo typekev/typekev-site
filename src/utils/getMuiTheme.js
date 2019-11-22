@@ -3,8 +3,7 @@ import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import palette from 'resources/palette';
 import { drawerWidth } from 'resources/constants';
 
-export const themeMap = {
-  palette,
+export const themeMap = ({ background }) => ({
   overrides: {
     MuiBox: {
       root: {
@@ -17,7 +16,7 @@ export const themeMap = {
       paper: {
         width: drawerWidth,
         flexShrink: 0,
-        background: palette.background.default,
+        background: background.default,
       },
     },
     MuiInputBase: {
@@ -32,6 +31,12 @@ export const themeMap = {
       },
     },
   },
-};
+});
 
-export default createMuiTheme(themeMap);
+const getMuiTheme = SELECTED_COLOR_SCHEME =>
+  createMuiTheme({
+    palette: palette[SELECTED_COLOR_SCHEME],
+    ...themeMap(palette[SELECTED_COLOR_SCHEME]),
+  });
+
+export default getMuiTheme;

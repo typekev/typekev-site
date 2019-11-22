@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import App from 'App';
-import theme from 'resources/theme';
+import getMuiTheme from 'utils/getMuiTheme';
 
 jest.mock('react-dom', () => ({ render: jest.fn() }));
 
@@ -16,7 +16,7 @@ it('renders without crashing', () => {
   require('./index.js');
 
   expect(ReactDOM.render).toHaveBeenCalledWith(
-    <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={getMuiTheme('DARK')}>
       <CssBaseline />
       <App />
     </MuiThemeProvider>,
