@@ -23,7 +23,9 @@ export const Contact = React.lazy(() => import('routes/Contact'));
 const TYPEKEV_SITE_PREFERS_COLOR_SCHEME = 'typekev-site-prefers-color-scheme';
 
 const PREFERS_COLOR_SCHEME =
-  window.matchMedia('(prefers-color-scheme: dark)').matches === true ? 'DARK' : 'LIGHT';
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches === true
+    ? 'DARK'
+    : 'LIGHT';
 
 const togglePrefersColorScheme = (SELECTED_COLOR_SCHEME, setCookie) => () =>
   setCookie(
@@ -46,8 +48,6 @@ export default function App() {
   const SELECTED_COLOR_SCHEME = cookies[TYPEKEV_SITE_PREFERS_COLOR_SCHEME] || PREFERS_COLOR_SCHEME;
 
   const theme = getMuiTheme(SELECTED_COLOR_SCHEME);
-
-  console.log(window.matchMedia('(prefers-color-scheme: dark)'));
 
   return (
     <MuiThemeProvider theme={theme}>
