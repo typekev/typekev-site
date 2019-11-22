@@ -6,6 +6,9 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import getMuiTheme from 'utils/getMuiTheme';
+import getPrefersColorScheme from 'utils/getPrefersColorScheme';
+import { TYPEKEV_SITE_PREFERS_COLOR_SCHEME, COLOR_SCHEME_CODE_MAP } from 'resources/constants';
+
 import Page from 'templates/Page';
 import useDrawer from 'hooks/useDrawer';
 import Header from 'components/Header';
@@ -13,11 +16,6 @@ import Copyright from 'components/Copyright';
 import Drawer from 'components/Drawer';
 import Root from 'App/Root';
 import './index.css';
-import {
-  TYPEKEV_SITE_PREFERS_COLOR_SCHEME,
-  PREFERS_COLOR_SCHEME,
-  COLOR_SCHEME_CODE_MAP,
-} from 'resources/constants';
 
 export const Explore = React.lazy(() => import('routes/Explore'));
 export const Discover = React.lazy(() => import('routes/Discover'));
@@ -45,7 +43,8 @@ export default function App() {
   const [open, toggleDrawer] = useDrawer();
   const [cookies, setCookie] = useCookies([TYPEKEV_SITE_PREFERS_COLOR_SCHEME]);
 
-  const SELECTED_COLOR_SCHEME = cookies[TYPEKEV_SITE_PREFERS_COLOR_SCHEME] || PREFERS_COLOR_SCHEME;
+  const SELECTED_COLOR_SCHEME =
+    cookies[TYPEKEV_SITE_PREFERS_COLOR_SCHEME] || getPrefersColorScheme();
 
   const theme = getMuiTheme(SELECTED_COLOR_SCHEME);
 
