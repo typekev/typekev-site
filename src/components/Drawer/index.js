@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import MuiDrawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -9,12 +10,11 @@ import MuiButton from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Transition from 'components/Transition';
 import Links from 'components/Drawer/Links';
-import theme from 'resources/theme';
 
 const breakpointHeight = css`
   height: 4rem;
 
-  ${theme.breakpoints.down('xs')} {
+  ${defaultTheme.breakpoints.down('xs')} {
     height: 3.5rem;
   }
 `;

@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import theme from 'resources/theme';
+import defaultTheme from '@material-ui/core/styles/defaultTheme';
 
 const position = css`
   position: fixed;
@@ -14,7 +14,7 @@ const position = css`
   z-index: 0;
   transition: all 1s cubic-bezier(0, 0, 0.2, 1) 0ms;
 
-  ${[theme.breakpoints.up('sm')]} {
+  ${[defaultTheme.breakpoints.up('sm')]} {
     margin-top: calc(50vh - 25vmin - 4rem);
   }
 `;

@@ -1,13 +1,15 @@
 import styled, { css } from 'styled-components';
-import theme from 'resources/theme';
-
-const {
-  palette: { background, primary },
-} = theme;
+import { withTheme } from '@material-ui/core';
 
 const InvertedText = styled.span`
-  background-color: ${primary.dark};
-  color: ${background.default};
+  ${({
+    theme: {
+      palette: { background, primary },
+    },
+  }) => css`
+    background-color: ${primary.dark};
+    color: ${background.default};
+  `}
   padding: 1rem;
   border-radius: 0.25rem;
 
@@ -18,4 +20,4 @@ const InvertedText = styled.span`
     `}
 `;
 
-export default InvertedText;
+export default withTheme(InvertedText);

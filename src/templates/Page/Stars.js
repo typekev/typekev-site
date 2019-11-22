@@ -1,8 +1,9 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 import styled from 'styled-components';
+import { useTheme } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
-import particleParams from 'templates/Page/particleParams';
+import getParticleParams from 'templates/Page/getParticleParams';
 import Transition from 'components/Transition';
 
 const StyledParticles = styled(Particles)`
@@ -16,10 +17,13 @@ const StyledParticles = styled(Particles)`
 `;
 
 export default function Stars() {
+  const theme = useTheme();
+  const params = getParticleParams(theme);
+
   return (
     <Transition in component={Fade}>
       <div>
-        <StyledParticles params={particleParams} />
+        <StyledParticles params={params} />
       </div>
     </Transition>
   );

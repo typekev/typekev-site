@@ -1,37 +1,34 @@
 import { withRouter } from 'react-router-dom';
 import styled, { css, keyframes } from 'styled-components';
+import { withTheme } from '@material-ui/core/styles';
 import position from 'templates/Page/position';
 import focused from 'templates/Page/focused';
 import focusedShifted from 'templates/Page/focusedShifted';
-import theme from 'resources/theme';
-
-const {
-  palette: { secondary },
-} = theme;
 
 const blast = keyframes`
   0% {
      transform:scale(.7);
      opacity: 1;
-     border-color: ${secondary.light};
      border-width: 1rem;
   }
   50% {
     transform:scale(2.5);
     opacity: 0;
-    border-color: ${secondary.light};
     border-width: 0rem;
   }
 `;
 
 const Ray = styled.div`
   ${position}
+  ${({ theme }) => css`
+    border-color: ${theme.palette.secondary.main};
+  `}
   ${({ open, location: { pathname } }) =>
     pathname === '/' &&
     css`
       ${focused}
       ${open && focusedShifted}
-      ${[theme.breakpoints.up('lg')]} {
+      ${({ theme }) => [theme.breakpoints.up('lg')]} {
         ${focusedShifted}
       }
     `};
@@ -41,4 +38,4 @@ const Ray = styled.div`
   animation-delay: ${({ delay }) => delay + 8}s;
 `;
 
-export default withRouter(Ray);
+export default withRouter(withTheme(Ray));
