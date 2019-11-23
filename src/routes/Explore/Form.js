@@ -20,6 +20,8 @@ export const onSubmit = (sendMessage, setValue, value) => e => {
 
 export const onChange = setValue => ({ currentTarget }) => setValue(currentTarget.value);
 
+export const onGetRandomQuestion = setValue => () => setValue(getSampleQuestion());
+
 export default function Form({ sendMessage, disabled }) {
   const [value, setValue] = useState(initialState.value);
 
@@ -43,8 +45,8 @@ export default function Form({ sendMessage, disabled }) {
                 <IconButton
                   edge="start"
                   aria-label="generate a random question"
-                  onClick={() => setValue(getSampleQuestion())}
-                  onMouseDown={() => setValue(getSampleQuestion())}
+                  onClick={onGetRandomQuestion(setValue)}
+                  onMouseDown={onGetRandomQuestion(setValue)}
                 >
                   <Icon path={mdiRobot} size={1} color="currentColor" />
                 </IconButton>
