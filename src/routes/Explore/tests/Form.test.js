@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form, { onSubmit, onChange, initialState } from 'routes/Explore/Form';
+import Form, { onSubmit, onChange, onGetRandomQuestion, initialState } from 'routes/Explore/Form';
+import { sampleQuestions } from 'hooks/useSocket';
 
 describe('Form component', () => {
   it('renders without crashing', () => {
@@ -30,5 +31,14 @@ describe('Form component', () => {
     const event = { currentTarget: { value: 'Test' } };
 
     onChange(value => expect(value).toBe(event.currentTarget.value))(event);
+  });
+
+  it('calls onGetRandomQuestion and triggers setValue with a string argument', () => {
+    const setValue = jest.fn();
+
+    onGetRandomQuestion(setValue)();
+
+    expect(setValue.mock.calls.length).toBe(1);
+    expect(sampleQuestions).toContain(setValue.mock.calls[0][0]);
   });
 });

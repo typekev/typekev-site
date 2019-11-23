@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-const sampleQuestions = ['Who is Kevin?', 'What does Kevin do?', 'Where does Kevin work?'];
+export const sampleQuestions = ['Who is Kevin?', 'What does Kevin do?', 'Where does Kevin work?'];
 
 export const getSampleQuestion = () =>
   sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
