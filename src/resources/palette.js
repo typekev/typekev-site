@@ -6,9 +6,9 @@ const palette = {
       light: '#f4ffff',
     },
     secondary: {
-      main: '#feffc1',
-      dark: '#cacc90',
-      light: '#fffff4',
+      main: '#fff869',
+      light: '#ffff9b',
+      dark: '#c9c536',
     },
     error: {
       main: '#ff4542',
@@ -21,13 +21,13 @@ const palette = {
     type: 'dark',
     primary: {
       main: '#040424',
-      dark: '#04DBFF',
       light: '#E70447',
+      dark: '#04DBFF',
     },
     secondary: {
       main: '#DA0443',
-      dark: '#C0043B',
       light: '#E70447',
+      dark: '#C0043B',
     },
     error: {
       main: '#C2043C',
