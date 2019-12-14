@@ -53,6 +53,7 @@ const DevoteamLogoWrapper = styled.div`
     animation: ${fade} 3300ms cubic-bezier(0.4, 0, 0.2, 1) forwards 500ms,
       ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0ms,
       ${sway} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0ms;
+    z-index: -1;
 
     ${[defaultTheme.breakpoints.up('sm')]} {
       margin-top: calc(50vh - (25vmin + 3.5rem) - 3.5rem);
