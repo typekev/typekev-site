@@ -2,8 +2,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import palette from 'resources/palette';
 import { DRAWER_WIDTH } from 'resources/constants';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
-export const themeMap = ({ background }) => ({
+export const themeMap = ({ primary, background }) => ({
   overrides: {
     MuiBox: {
       root: {
@@ -16,7 +17,10 @@ export const themeMap = ({ background }) => ({
       paper: {
         width: DRAWER_WIDTH,
         flexShrink: 0,
-        background: background.default,
+        backgroundColor: background.default,
+        [defaultTheme.breakpoints.up('sm')]: {
+          backgroundColor: fade(background.default, 0.2),
+        },
       },
     },
     MuiInputBase: {
@@ -28,6 +32,11 @@ export const themeMap = ({ background }) => ({
       root: {
         width: '32rem',
         maxWidth: '100%',
+      },
+    },
+    MuiTooltip: {
+      tooltip: {
+        backgroundColor: primary.dark,
       },
     },
   },
