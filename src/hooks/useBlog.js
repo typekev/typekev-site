@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { getBlogPosts } from 'routes/Blog/api';
 
-export const initialState = [];
+export const initialState = {};
 
 export const getPosts = async setPosts => {
   try {
-    const conversation = (await getBlogPosts()) || initialState;
-    setPosts(conversation);
+    const posts = (await getBlogPosts()) || initialState;
+    setPosts(posts);
   } catch (err) {
     setPosts(initialState);
   }
