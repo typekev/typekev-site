@@ -11,6 +11,34 @@ import InvertedText from 'components/InvertedText';
 import Link from 'components/Link';
 import { ButtonGroup } from '@material-ui/core';
 
+export const compare = (a, b) => (a.timestamp > b.timestamp ? -1 : 1);
+
+export const sortPosts = posts => posts.sort(compare);
+
+export const getDelay = index => (index + 1) * 800;
+
+const doType = ({ delay, title }) => ({ type }) => type(delay, title);
+
+export const renderPosts = posts => () =>
+  posts.map(({ title, published }, index) => {
+    const delay = getDelay(index);
+
+    return (
+      <div key={title}>
+        <Transition in component={Fade} delay={delay} timeout={1000}>
+          <ButtonGroup variant="outlined" color="inherit">
+            <Button disabled>{published}</Button>
+            <Button component={Link}>
+              <Keyboard keyPressDelayRange={[40, 90]}>{doType({ delay, title })}</Keyboard>
+            </Button>
+          </ButtonGroup>
+        </Transition>
+        <br />
+        <br />
+      </div>
+    );
+  });
+
 export default function Blog() {
   const [posts] = useBlog();
 
@@ -25,31 +53,7 @@ export default function Blog() {
         </Typography>
         <br />
         <br />
-        {useMemo(
-          () =>
-            Object.values(posts)
-              .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
-              .map(({ title, published }, index) => {
-                const delay = (index + 1) * 800;
-                return (
-                  <div key={title}>
-                    <Transition in component={Fade} delay={delay} timeout={1000}>
-                      <ButtonGroup variant="outlined" color="inherit">
-                        <Button disabled>{published}</Button>
-                        <Button component={Link}>
-                          <Keyboard keyPressDelayRange={[40, 90]}>
-                            {({ type }) => type(delay, title)}
-                          </Keyboard>
-                        </Button>
-                      </ButtonGroup>
-                    </Transition>
-                    <br />
-                    <br />
-                  </div>
-                );
-              }),
-          [posts],
-        )}
+        {useMemo(renderPosts(sortPosts(Object.values(posts))), [posts])}
       </Content>
     </Transition>
   );
