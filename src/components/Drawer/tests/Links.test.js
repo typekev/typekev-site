@@ -36,7 +36,7 @@ describe('Links component', () => {
     const TestList = getLinks([{ name: 'Contact', iconPath: '' }], () => {});
     expect(TestList.length).toBe(1);
     const TestListItem = shallow(TestList[0]);
-    expect(TestListItem.props().to).toBe('/contact');
+    expect(TestListItem.props().to).toBe('/contact/');
   });
 
   it('returns an array containing a single ListItem that that points to explore page', () => {
