@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import useBlog, { getPosts, initialState } from 'hooks/useBlog';
+import useBlog, { getPosts, getSinglePost, initialState } from 'hooks/useBlog';
 
 const HookWrapper = ({ hook }) => <div hook={hook(() => {})} />;
 
@@ -26,7 +26,11 @@ describe('useBlog hook', () => {
     expect(typeof posts).toBe('object');
   });
 
-  it('calls getPosts and returns null', () => {
+  it('calls getPosts and returns an empty object', () => {
     getPosts(posts => expect(posts).toBe(initialState));
+  });
+
+  it('calls getSinglePost and returns an empty object', () => {
+    getSinglePost(post => expect(post).toBe(initialState));
   });
 });
