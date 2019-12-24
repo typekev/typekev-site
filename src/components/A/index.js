@@ -14,6 +14,7 @@ const A = styled.a`
   padding: 0.0625rem 0.25rem;
   border-radius: 0.125rem;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  word-break: break-word;
 
   &:hover {
     ${({
