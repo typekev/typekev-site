@@ -15,12 +15,12 @@ import DevoteamLogoWrapper from './DevoteamLogoWrapper';
 export default function Work() {
   return (
     <Transition in component={Grow}>
-      <Content fixed align="left">
+      <Content fixed>
         <DevoteamLogoWrapper>
           <DevoteamLogo />
         </DevoteamLogoWrapper>
         <Typography variant="h5">
-          <InvertedText align="left">
+          <InvertedText>
             <Keyboard>I am a #DigitalTransformaker</Keyboard>
             <Cursor />
           </InvertedText>

@@ -12,12 +12,6 @@ const Content = styled(Container)`
       align-self: center;
       margin-top: calc(-25vmin - 2rem);
     `}
-
-  ${({ align }) =>
-    align === 'left' &&
-    css`
-      max-width: 75%;
-    `}
 `;
 
 export default Content;

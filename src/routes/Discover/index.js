@@ -20,9 +20,9 @@ const yearsCounter =
 export default function Discover() {
   return (
     <Transition in component={Grow}>
-      <Content fixed align="left">
+      <Content fixed>
         <Typography variant="h5">
-          <InvertedText align="left">
+          <InvertedText>
             <Keyboard>I am an explorer</Keyboard>
             <Cursor />
           </InvertedText>
@@ -48,9 +48,9 @@ export default function Discover() {
           advocate for clean code, agile development, and innovative technologies.
           <br />
           <br />I am the proud husband of my wife{' '}
-          <A href="https://typeclo.com/">Clouie, who is also a developer.</A> Together we are the
+          <A href="https://typeclo.com/">Clouie, who is also a developer</A>. Together we are the
           happy parents of{' '}
-          <A href="https://www.instagram.com/p/B13P55ZB2f4/">our son Casey; our future engineer.</A>
+          <A href="https://www.instagram.com/p/B13P55ZB2f4/">our son Casey; our future engineer</A>.
           <br />
           <br />
           We have a passion for life, learning, and technology.

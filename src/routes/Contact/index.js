@@ -14,9 +14,9 @@ import SocialMediaButton from './SocialMediaButton';
 export default function Contact() {
   return (
     <Transition in component={Grow}>
-      <Content fixed align="left">
+      <Content fixed>
         <Typography variant="h5">
-          <InvertedText align="left">
+          <InvertedText>
             <Keyboard>I am a talker</Keyboard>
             <Cursor />
           </InvertedText>
