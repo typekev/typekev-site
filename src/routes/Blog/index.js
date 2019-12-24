@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import Grow from '@material-ui/core/Grow';
 import Fade from '@material-ui/core/Fade';
@@ -124,3 +125,9 @@ export default function Blog({
     </Transition>
   );
 }
+
+Blog.propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  match: PropTypes.shape({ params: PropTypes.shape({ postId: PropTypes.string }).isRequired })
+    .isRequired,
+};
