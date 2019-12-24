@@ -43,6 +43,6 @@ describe('Links component', () => {
     const TestList = getLinks([{ name: 'Explore', to: '/', iconPath: '' }], () => {});
     expect(TestList.length).toBe(1);
     const TestListItem = shallow(TestList[0]);
-    expect(TestListItem.props().to).toBe('/');
+    expect(TestListItem.props().to).toBe('');
   });
 });
