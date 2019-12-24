@@ -10,7 +10,7 @@ const posts = [
 describe('Blog route', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Blog />, div);
+    ReactDOM.render(<Blog match={{ params: { postId: 'post.md.json' } }} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
