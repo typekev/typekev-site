@@ -5,4 +5,9 @@ export const getBlogPosts = () =>
     method: 'GET',
   }).catch(logError);
 
-export default { getBlogPosts };
+export const getBlogPost = location =>
+  request(`https://typekev.github.io/typekev-blog/posts/json/${location}`, {
+    method: 'GET',
+  }).catch(logError);
+
+export default { getBlogPosts, getBlogPost };
