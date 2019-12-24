@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Blog, { compare, sortPosts, getDelay, renderPosts } from 'routes/Blog';
 
 const posts = [
@@ -32,12 +31,7 @@ describe('Blog route', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     const Posts = renderPosts(posts);
-    ReactDOM.render(
-      <Router>
-        <Posts />
-      </Router>,
-      div,
-    );
+    ReactDOM.render(<Posts />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
