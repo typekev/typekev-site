@@ -21,9 +21,9 @@ export const getSinglePost = setPost => async location => {
   }
 };
 
-export default function useBlog() {
+export default function useBlog(initialPost) {
   const [posts, setPosts] = useState(initialState);
-  const [post, setPost] = useState(initialState);
+  const [post, setPost] = useState(initialPost || initialState);
 
   useEffect(() => {
     getPosts(setPosts);
