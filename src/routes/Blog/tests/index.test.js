@@ -39,7 +39,7 @@ describe('Blog route', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('tests setPostId function onClick', () => {
+  it('triggers a onClick event within the return of renderPosts, triggering setPostId', () => {
     const Posts = renderPosts(posts, setPostId);
 
     const wrapper = shallow(<Posts />);
