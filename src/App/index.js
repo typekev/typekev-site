@@ -66,7 +66,7 @@ export default function App() {
                   <Route exact path="/" component={Explore} />
                   <Route path="/discover" component={Discover} />
                   <Route path="/work" component={Work} />
-                  <Route path="/blog" component={Blog} />
+                  <Route path="/blog/:postId?" component={Blog} />
                   <Route path="/contact" component={Contact} />
                   <Redirect to="/" />
                 </Switch>
