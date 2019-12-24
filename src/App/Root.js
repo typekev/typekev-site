@@ -18,6 +18,10 @@ const Root = styled(Box)`
         width: calc(100% - ${DRAWER_WIDTH}px);
       `}
   }
+
+  ${[defaultTheme.breakpoints.up('lg')]} {
+    width: calc(100% - ${DRAWER_WIDTH}px);
+  }
 `;
 
 export default Root;

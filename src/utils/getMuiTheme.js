@@ -6,13 +6,6 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 
 export const themeMap = ({ primary, background }) => ({
   overrides: {
-    MuiBox: {
-      root: {
-        [defaultTheme.breakpoints.up('lg')]: {
-          width: `calc(100% - ${DRAWER_WIDTH}px)`,
-        },
-      },
-    },
     MuiDrawer: {
       paper: {
         width: DRAWER_WIDTH,
