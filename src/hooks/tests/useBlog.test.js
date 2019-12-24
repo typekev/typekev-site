@@ -31,6 +31,6 @@ describe('useBlog hook', () => {
   });
 
   it('calls getSinglePost and returns an empty object', () => {
-    getSinglePost(post => expect(post).toBe(initialState));
+    getSinglePost(post => expect(post).toBe(initialState))('post.md.json');
   });
 });
