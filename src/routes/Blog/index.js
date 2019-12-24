@@ -52,8 +52,9 @@ export default function Blog({
   match: {
     params: { postId },
   },
+  initialPost,
 }) {
-  const [posts, { title, content }, getPost] = useBlog();
+  const [posts, { title, content }, getPost] = useBlog(initialPost);
 
   const setPostId = id => history.push(`/blog/${id}`);
   const clearPostId = () => setPostId('');
@@ -130,4 +131,9 @@ Blog.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   match: PropTypes.shape({ params: PropTypes.shape({ postId: PropTypes.string }).isRequired })
     .isRequired,
+  initialPost: PropTypes.shape({}),
+};
+
+Blog.defaultProps = {
+  initialPost: undefined,
 };
