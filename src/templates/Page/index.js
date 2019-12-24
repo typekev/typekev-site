@@ -20,7 +20,7 @@ export default function Page({ children, open }) {
       <Transition in component={Fade} timeout={3300}>
         <Stars />
       </Transition>
-      {[0, 0.125, 0.75, 1.5, 2.75].map(delay => (
+      {[0.125, 0.75].map(delay => (
         <Ray key={delay} delay={delay} open={open} />
       ))}
       <Sun open={open} />
