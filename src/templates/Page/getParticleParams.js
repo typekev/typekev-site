@@ -1,7 +1,7 @@
 const getParticleParams = ({ palette: { primary, error } }) => ({
   particles: {
     number: {
-      value: 500,
+      value: 300,
       density: {
         enable: true,
         value_area: 10000,
