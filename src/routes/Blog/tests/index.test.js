@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import Blog, { compare, sortPosts, getDelay, renderPosts } from 'routes/Blog';
+import { Button } from '@material-ui/core';
 
 const posts = [
   { title: 'Title 1', published: 'Date', timestamp: 1 },
   { title: 'Title 1', published: 'Date', timestamp: 2 },
 ];
+
+const setPostId = jest.fn();
 
 describe('Blog route', () => {
   it('renders without crashing', () => {
@@ -30,9 +34,17 @@ describe('Blog route', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    const setPostId = () => {};
     const Posts = renderPosts(posts, setPostId);
     ReactDOM.render(<Posts />, div);
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('tests setPostId function onClick', () => {
+    const Posts = renderPosts(posts, setPostId);
+
+    const wrapper = shallow(<Posts />);
+    const button = wrapper.find(Button).at(1);
+    button.props().onClick();
+    expect(setPostId.mock.calls.length).toEqual(1);
   });
 });
