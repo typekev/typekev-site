@@ -30,7 +30,8 @@ describe('Blog route', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    const Posts = renderPosts(posts);
+    const setPostId = () => {};
+    const Posts = renderPosts(posts, setPostId);
     ReactDOM.render(<Posts />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
