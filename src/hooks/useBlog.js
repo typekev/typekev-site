@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getBlogPosts } from 'routes/Blog/api';
+import { getBlogPosts, getBlogPost } from 'routes/Blog/api';
 
 export const initialState = {};
 
@@ -12,12 +12,24 @@ export const getPosts = async setPosts => {
   }
 };
 
+export const getSinglePost = setPost => async location => {
+  try {
+    const post = (location && (await getBlogPost(location))) || initialState;
+    setPost(post);
+  } catch (err) {
+    setPost(initialState);
+  }
+};
+
 export default function useBlog() {
   const [posts, setPosts] = useState(initialState);
+  const [post, setPost] = useState(initialState);
 
   useEffect(() => {
     getPosts(setPosts);
   }, []);
 
-  return [posts];
+  const getPost = getSinglePost(setPost);
+
+  return [posts, post, getPost];
 }
