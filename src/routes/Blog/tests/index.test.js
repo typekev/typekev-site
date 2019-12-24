@@ -18,6 +18,12 @@ describe('Blog route', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Blog match={{ params: {} }} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
   it('compares two posts by timestamp', () => {
     expect(compare(...posts)).toEqual(1);
     expect(compare(...posts.reverse())).toEqual(-1);
