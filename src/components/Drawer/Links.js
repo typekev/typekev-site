@@ -20,14 +20,14 @@ import ExternalLink from 'components/Link/ExternalLink';
 
 export const getLinks = (listItems, toggleDrawer) =>
   listItems.map(({ name, to, iconPath, component = RouterLink }) => {
-    const path = to || `/${name.toLowerCase()}`;
-    const selected = window.location.pathname === path;
+    const path = to !== undefined ? to : name.toLowerCase();
+    const selected = window.location.pathname.split('/')[1] === path;
 
     return (
       <ListItem
         button
         component={component}
-        to={path}
+        to={`/${path}${path ? '/' : ''}`}
         href={path}
         key={name}
         onClick={toggleDrawer}
@@ -48,7 +48,7 @@ export default function Links({ toggleDrawer }) {
       <List>
         {getLinks(
           [
-            { name: 'Explore', to: '/', iconPath: mdiRocket },
+            { name: 'Explore', to: '', iconPath: mdiRocket },
             { name: 'Discover', iconPath: mdiLighthouse },
             { name: 'Work', iconPath: mdiDesktopClassic },
             { name: 'Blog', iconPath: mdiPostOutline },
