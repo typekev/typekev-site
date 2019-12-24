@@ -40,9 +40,9 @@ describe('Links component', () => {
   });
 
   it('returns an array containing a single ListItem that that points to explore page', () => {
-    const TestList = getLinks([{ name: 'Explore', to: '/', iconPath: '' }], () => {});
+    const TestList = getLinks([{ name: 'Explore', to: '', iconPath: '' }], () => {});
     expect(TestList.length).toBe(1);
     const TestListItem = shallow(TestList[0]);
-    expect(TestListItem.props().to).toBe('');
+    expect(TestListItem.props().to).toBe('/');
   });
 });
