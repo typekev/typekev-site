@@ -34,12 +34,19 @@ export const togglePrefersColorScheme = (SELECTED_COLOR_SCHEME, setCookie) => ()
     },
   );
 
+export const normalizePath = hash =>
+  hash
+    .split('')
+    .filter((char, indexOfChar) => char !== '/' || char !== hash[indexOfChar + 1])
+    .join('');
+
 export const Main = styled.div`
   flex: 1 1 auto;
   display: flex;
 `;
 
 export default function App() {
+  const { hash } = window.location;
   const [open, toggleDrawer] = useDrawer();
   const [cookies, setCookie] = useCookies([TYPEKEV_SITE_PREFERS_COLOR_SCHEME]);
 
@@ -63,11 +70,14 @@ export default function App() {
             <Page open={open}>
               <Suspense fallback={<LinearProgress color="secondary" />}>
                 <Switch>
-                  <Route exact path="/" component={Explore} />
                   <Route path="/discover" component={Discover} />
                   <Route path="/work" component={Work} />
                   <Route path="/blog/:postId?" component={Blog} />
                   <Route path="/contact" component={Contact} />
+                  {!!hash && (
+                    <Redirect to={`${normalizePath(hash).substring(hash.indexOf('#') + 1)}`} />
+                  )}
+                  <Route exact path="/" component={Explore} />
                   <Redirect to="/" />
                 </Switch>
               </Suspense>
