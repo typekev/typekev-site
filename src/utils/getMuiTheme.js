@@ -4,7 +4,7 @@ import palette from 'resources/palette';
 import { DRAWER_WIDTH } from 'resources/constants';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-export const themeMap = ({ primary, background }) => ({
+export const themeMap = ({ secondary, background }) => ({
   overrides: {
     MuiDrawer: {
       paper: {
@@ -29,7 +29,8 @@ export const themeMap = ({ primary, background }) => ({
     },
     MuiTooltip: {
       tooltip: {
-        backgroundColor: primary.dark,
+        backgroundColor: secondary.main,
+        color: 'inherit',
       },
     },
   },
