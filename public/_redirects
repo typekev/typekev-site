@@ -1,0 +1,4 @@
+/discover       /#/discover
+/work           /#/work
+/blog/*         /#/blog/:splat
+/contact        /#/contact
