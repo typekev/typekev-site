@@ -16,6 +16,7 @@ const StyledButton = styled(Button)`
 
   text-align: left;
   display: flow-root !important;
+  text-transform: initial !important;
 `;
 
 function InvertedText({ ...rest }) {
