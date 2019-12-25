@@ -6,7 +6,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Keyboard, { Cursor } from 'react-mk';
 import Content from 'templates/Content';
 import Transition from 'components/Transition';
-import InvertedText from 'components/InvertedText';
+import Title from 'components/Title';
 import A from 'components/A';
 import Link from 'components/Link';
 import DevoteamLogo from 'components/DevoteamLogo';
@@ -20,10 +20,10 @@ export default function Work() {
           <DevoteamLogo />
         </DevoteamLogoWrapper>
         <Typography variant="h5">
-          <InvertedText>
+          <Title>
             <Keyboard>I am a #DigitalTransformaker</Keyboard>
             <Cursor />
-          </InvertedText>
+          </Title>
         </Typography>
         <br />
         <br />

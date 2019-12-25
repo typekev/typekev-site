@@ -7,7 +7,7 @@ import Icon from '@mdi/react';
 import { ButtonGroup } from '@material-ui/core';
 import Content from 'templates/Content';
 import Transition from 'components/Transition';
-import InvertedText from 'components/InvertedText';
+import Title from 'components/Title';
 import A from 'components/A';
 import SocialMediaButton from './SocialMediaButton';
 
@@ -16,10 +16,10 @@ export default function Contact() {
     <Transition in component={Grow}>
       <Content fixed>
         <Typography variant="h5">
-          <InvertedText>
+          <Title>
             <Keyboard>I am a talker</Keyboard>
             <Cursor />
-          </InvertedText>
+          </Title>
         </Typography>
         <br />
         <br />

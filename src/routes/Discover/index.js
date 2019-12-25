@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Keyboard, { Cursor } from 'react-mk';
 import Content from 'templates/Content';
 import Transition from 'components/Transition';
-import InvertedText from 'components/InvertedText';
+import Title from 'components/Title';
 import A from 'components/A';
 import Link from 'components/Link';
 
@@ -22,10 +22,10 @@ export default function Discover() {
     <Transition in component={Grow}>
       <Content fixed>
         <Typography variant="h5">
-          <InvertedText>
+          <Title>
             <Keyboard>I am an explorer</Keyboard>
             <Cursor />
-          </InvertedText>
+          </Title>
         </Typography>
         <br />
         <br />

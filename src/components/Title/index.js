@@ -19,7 +19,7 @@ const StyledButton = styled(Button)`
   text-transform: initial !important;
 `;
 
-function InvertedText({ ...rest }) {
+function Title({ ...rest }) {
   // eslint-disable-next-line react/jsx-props-no-spreading
   return (
     <StyledButton
@@ -32,4 +32,4 @@ function InvertedText({ ...rest }) {
   );
 }
 
-export default withTheme(InvertedText);
+export default withTheme(Title);

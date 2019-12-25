@@ -12,7 +12,7 @@ import Keyboard, { Cursor } from 'react-mk';
 import useBlog from 'hooks/useBlog';
 import Content from 'templates/Content';
 import Transition from 'components/Transition';
-import InvertedText from 'components/InvertedText';
+import Title from 'components/Title';
 import A from 'components/A';
 import PostList from './PostList';
 import PostContent from './PostContent';
@@ -83,7 +83,7 @@ export default function Blog({
                   </Button>
                 </Transition>
               )}
-              <InvertedText>
+              <Title>
                 {postId && !title ? (
                   ''
                 ) : (
@@ -95,12 +95,12 @@ export default function Blog({
                   </Keyboard>
                 )}
                 <Cursor />
-              </InvertedText>
+              </Title>
             </ButtonGroup>
           </Hidden>
           <Hidden mdUp>
             <ButtonGroup variant="outlined">
-              <InvertedText>
+              <Title>
                 {postId && !title ? (
                   ''
                 ) : (
@@ -112,7 +112,7 @@ export default function Blog({
                   </Keyboard>
                 )}
                 <Cursor />
-              </InvertedText>
+              </Title>
             </ButtonGroup>
           </Hidden>
         </Typography>
