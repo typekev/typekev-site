@@ -38,7 +38,8 @@ export const normalizePath = hash =>
   hash
     .split('')
     .filter((char, indexOfChar) => char !== '/' || char !== hash[indexOfChar + 1])
-    .join('');
+    .join('')
+    .substring(1);
 
 export const Main = styled.div`
   flex: 1 1 auto;
@@ -74,9 +75,7 @@ export default function App() {
                   <Route path="/work" component={Work} />
                   <Route path="/blog/:postId?" component={Blog} />
                   <Route path="/contact" component={Contact} />
-                  {!!hash && (
-                    <Redirect to={`${normalizePath(hash).substring(hash.indexOf('#') + 1)}`} />
-                  )}
+                  {!!hash && <Redirect to={normalizePath(hash)} />}
                   <Route exact path="/" component={Explore} />
                   <Redirect to="/" />
                 </Switch>
