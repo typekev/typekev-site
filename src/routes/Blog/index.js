@@ -79,7 +79,7 @@ export default function Blog({
                     variant="contained"
                     onClick={clearPostId}
                   >
-                    Back
+                    Go back
                   </Button>
                 </Transition>
               )}
