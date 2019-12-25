@@ -98,6 +98,23 @@ export default function Blog({
               </InvertedText>
             </ButtonGroup>
           </Hidden>
+          <Hidden mdUp>
+            <ButtonGroup variant="outlined">
+              <InvertedText>
+                {postId && !title ? (
+                  ''
+                ) : (
+                  <Keyboard
+                    sentenceDelayPerCharRange={[0, 0]}
+                    keyPressDelayRange={title && [60, 80]}
+                  >
+                    {title || 'I am a thinker'}
+                  </Keyboard>
+                )}
+                <Cursor />
+              </InvertedText>
+            </ButtonGroup>
+          </Hidden>
         </Typography>
         <br />
         <Transition in={!!content} component={Fade} timeout={1000} delay={100}>
