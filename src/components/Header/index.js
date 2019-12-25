@@ -9,7 +9,7 @@ import Fade from '@material-ui/core/Fade';
 import Icon from '@mdi/react';
 import { mdiMenu, mdiBackburger, mdiGithubFace, mdiBrightness4 } from '@mdi/js';
 import Transition from 'components/Transition';
-import Title from 'components/Title';
+import HeaderTitle from 'components/Header/HeaderTitle';
 import HeaderText from 'components/Header/HeaderText';
 
 export const getPath = open => (open ? mdiBackburger : mdiMenu);
@@ -30,14 +30,14 @@ export default function Header({ open, toggleDrawer, togglePrefersColorScheme })
             </IconButton>
           </Hidden>
           <Hidden smUp>
-            <Title variant="h6" color="textPrimary">
+            <HeaderTitle variant="h6" color="textPrimary">
               <HeaderText />
-            </Title>
+            </HeaderTitle>
           </Hidden>
           <Hidden xsDown>
-            <Title variant="h5" color="textPrimary">
+            <HeaderTitle variant="h5" color="textPrimary">
               <HeaderText />
-            </Title>
+            </HeaderTitle>
           </Hidden>
           <Hidden xsDown>
             <Tooltip title="Contributions to open source" placement="bottom">
