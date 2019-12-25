@@ -71,10 +71,10 @@ export default function App() {
             <Page open={open}>
               <Suspense fallback={<LinearProgress color="secondary" />}>
                 <Switch>
-                  <Route path="/discover" component={Discover} />
-                  <Route path="/work" component={Work} />
-                  <Route path="/blog/:postId?" component={Blog} />
-                  <Route path="/contact" component={Contact} />
+                  <Route exact path="/discover" component={Discover} />
+                  <Route exact path="/work" component={Work} />
+                  <Route exact path="/blog/:postId?" component={Blog} />
+                  <Route exact path="/contact" component={Contact} />
                   {!!hash && <Redirect to={normalizePath(hash)} />}
                   <Route exact path="/" component={Explore} />
                   <Redirect to="/" />
