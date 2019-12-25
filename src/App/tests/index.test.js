@@ -1,10 +1,23 @@
 import React, { Suspense } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import App, { togglePrefersColorScheme, Main, Explore, Discover, Work, Blog, Contact } from 'App';
+import App, {
+  togglePrefersColorScheme,
+  normalizePath,
+  Main,
+  Explore,
+  Discover,
+  Work,
+  Blog,
+  Contact,
+} from 'App';
 import { TYPEKEV_SITE_PREFERS_COLOR_SCHEME, COLOR_SCHEME_CODE_MAP } from 'resources/constants';
+
+const hash = '#/work';
 
 describe('App component', () => {
   it('renders without crashing', () => {
+    window.location.hash = hash;
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
@@ -23,6 +36,12 @@ describe('App component', () => {
     expect(setCookie.mock.calls[1][0]).toEqual(TYPEKEV_SITE_PREFERS_COLOR_SCHEME);
     expect(setCookie.mock.calls[1][1]).toEqual(COLOR_SCHEME_CODE_MAP.DARK);
     expect(setCookie.mock.calls[1][2].path).toEqual('/');
+  });
+
+  it('normalizes a hashed path to a proper route', () => {
+    const path = normalizePath(hash);
+
+    expect(path).toEqual(hash.slice(1));
   });
 
   it('renders a Main component without crashing', () => {
@@ -56,9 +75,11 @@ describe('App component', () => {
   it('renders a Work route without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <Suspense fallback={<div>Loading...</div>}>
-        <Work />
-      </Suspense>,
+      <Router>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Work />
+        </Suspense>
+      </Router>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
