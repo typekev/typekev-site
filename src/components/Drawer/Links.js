@@ -48,8 +48,8 @@ export default function Links({ toggleDrawer }) {
       <List>
         {getLinks(
           [
-            { name: 'Explore', to: '', iconPath: mdiRocket },
-            { name: 'Discover', iconPath: mdiLighthouse },
+            { name: 'Explore', to: '', iconPath: mdiLighthouse },
+            { name: 'Discover', iconPath: mdiRocket },
             { name: 'Work', iconPath: devoteamLogoPath },
             { name: 'Blog', iconPath: mdiPostOutline },
           ],
