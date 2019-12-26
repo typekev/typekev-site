@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import SpeechRecognition from 'react-speech-recognition';
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@mdi/react';
-import { mdiSend, mdiRobot } from '@mdi/js';
+import { mdiSend, mdiRobot, mdiMicrophone, mdiMicrophoneOff } from '@mdi/js';
 import { Container, Tooltip } from '@material-ui/core';
 import { getSampleQuestion } from 'hooks/useSocket';
 
@@ -23,8 +24,24 @@ export const onChange = setValue => ({ currentTarget }) => setValue(currentTarge
 
 export const onGetRandomQuestion = setValue => () => setValue(getSampleQuestion());
 
-export default function Form({ sendMessage, disabled }) {
+function Form({
+  sendMessage,
+  disabled,
+  interimTranscript,
+  transcript,
+  startListening,
+  stopListening,
+  listening,
+  browserSupportsSpeechRecognition,
+}) {
   const [value, setValue] = useState(initialState.value);
+
+  useEffect(() => {
+    if (browserSupportsSpeechRecognition && listening) {
+      onChange(setValue)({ currentTarget: { value: interimTranscript || transcript } });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [interimTranscript, transcript]);
 
   return (
     <Container maxWidth="sm">
@@ -45,7 +62,6 @@ export default function Form({ sendMessage, disabled }) {
                     edge="start"
                     aria-label="generate a random question"
                     onClick={onGetRandomQuestion(setValue)}
-                    onMouseDown={onGetRandomQuestion(setValue)}
                   >
                     <Icon path={mdiRobot} size={1} color="currentColor" />
                   </IconButton>
@@ -54,19 +70,37 @@ export default function Form({ sendMessage, disabled }) {
             }
             endAdornment={
               <InputAdornment position="end">
-                <Tooltip title="Submit">
-                  <span>
-                    <IconButton
-                      disabled={!value}
-                      edge="end"
-                      aria-label="submit message"
-                      onClick={onSubmit(sendMessage, setValue, value)}
-                      onMouseDown={onSubmit(sendMessage, setValue, value)}
-                    >
-                      <Icon path={mdiSend} size={1} color="currentColor" />
-                    </IconButton>
-                  </span>
-                </Tooltip>
+                {browserSupportsSpeechRecognition && !value ? (
+                  <Tooltip title="Tap to talk">
+                    <span>
+                      <IconButton
+                        edge="end"
+                        aria-label="submit message"
+                        disabled={disabled}
+                        onClick={listening ? stopListening : startListening}
+                      >
+                        <Icon
+                          path={listening ? mdiMicrophoneOff : mdiMicrophone}
+                          size={1}
+                          color="currentColor"
+                        />
+                      </IconButton>
+                    </span>
+                  </Tooltip>
+                ) : (
+                  <Tooltip title="Submit">
+                    <span>
+                      <IconButton
+                        edge="end"
+                        aria-label="submit message"
+                        disabled={disabled || !value}
+                        onClick={onSubmit(sendMessage, setValue, value)}
+                      >
+                        <Icon path={mdiSend} size={1} color="currentColor" />
+                      </IconButton>
+                    </span>
+                  </Tooltip>
+                )}
               </InputAdornment>
             }
           />
@@ -79,4 +113,17 @@ export default function Form({ sendMessage, disabled }) {
 Form.propTypes = {
   sendMessage: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  interimTranscript: PropTypes.string.isRequired,
+  transcript: PropTypes.string.isRequired,
+  startListening: PropTypes.func.isRequired,
+  stopListening: PropTypes.func.isRequired,
+  listening: PropTypes.bool.isRequired,
+  browserSupportsSpeechRecognition: PropTypes.bool.isRequired,
 };
+
+const options = {
+  autoStart: false,
+  continuous: false,
+};
+
+export default SpeechRecognition(options)(Form);

@@ -6,7 +6,9 @@ import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import Transition from 'components/Transition';
 import TypingIndicator from 'components/TypingIndicator';
-import { initialState } from 'hooks/useSocket';
+import { initialState, returnedVisitorWelcome } from 'hooks/useSocket';
+import { useCookies } from 'react-cookie';
+import { TYPEKEV_SITE_PREV_WELCOMED } from 'resources/constants';
 
 export const delay = 3000;
 export const defaultSentenceDelayRange = [50, 75];
@@ -24,8 +26,13 @@ export const getShouldDisplayChat = (shouldDisplayChat, displayingInitialMessage
   shouldDisplayChat || displayingInitialMessage;
 
 export default function Chat({ messages, disabled }) {
-  const [debouncedMessages, setDebouncedMessages] = useState(initialState);
-  const [shouldDisplayChat, setShouldDisplayChat] = useState(initialState);
+  const [cookies] = useCookies([TYPEKEV_SITE_PREV_WELCOMED]);
+  const [debouncedMessages, setDebouncedMessages] = useState(
+    cookies[TYPEKEV_SITE_PREV_WELCOMED] ? returnedVisitorWelcome : initialState,
+  );
+  const [shouldDisplayChat, setShouldDisplayChat] = useState(
+    cookies[TYPEKEV_SITE_PREV_WELCOMED] ? returnedVisitorWelcome : initialState,
+  );
 
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
