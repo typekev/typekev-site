@@ -110,13 +110,11 @@ describe('App component', () => {
 
   it('renders a Helmet with a light theme', () => {
     const div = document.createElement('div');
-    const Helmet = getHelmet(false);
-    ReactDOM.render(<Helmet />, div);
+    ReactDOM.render(<div>{getHelmet(false)}</div>, div);
   });
 
   it('renders a Helmet with a dark theme', () => {
     const div = document.createElement('div');
-    const Helmet = getHelmet(true);
-    ReactDOM.render(<Helmet />, div);
+    ReactDOM.render(<div>{getHelmet(true)}</div>, div);
   });
 });
