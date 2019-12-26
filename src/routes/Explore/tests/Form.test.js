@@ -6,9 +6,44 @@ import { sampleQuestions } from 'hooks/useSocket';
 describe('Form component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Form sendMessage={() => {}} disabled />, div);
+    ReactDOM.render(
+      <Form
+        sendMessage={() => {}}
+        disabled
+        interimTranscript=""
+        transcript=""
+        startListening={() => {}}
+        stopListening={() => {}}
+      />,
+      div,
+    );
     ReactDOM.unmountComponentAtNode(div);
-    ReactDOM.render(<Form sendMessage={() => {}} disabled={false} />, div);
+    ReactDOM.render(
+      <Form
+        sendMessage={() => {}}
+        disabled={false}
+        interimTranscript=""
+        transcript="transcript"
+        startListening={() => {}}
+        stopListening={() => {}}
+        browserSupportsSpeechRecognition
+      />,
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+    ReactDOM.render(
+      <Form
+        sendMessage={() => {}}
+        disabled={false}
+        interimTranscript=""
+        transcript="transcript"
+        startListening={() => {}}
+        stopListening={() => {}}
+        listening
+        browserSupportsSpeechRecognition
+      />,
+      div,
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
 
