@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App, {
   togglePrefersColorScheme,
   normalizePath,
+  getHelmet,
   Main,
   Explore,
   Discover,
@@ -105,5 +106,17 @@ describe('App component', () => {
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders a Helmet with a light theme', () => {
+    const div = document.createElement('div');
+    const Helmet = getHelmet(false);
+    ReactDOM.render(<Helmet />, div);
+  });
+
+  it('renders a Helmet with a dark theme', () => {
+    const div = document.createElement('div');
+    const Helmet = getHelmet(true);
+    ReactDOM.render(<Helmet />, div);
   });
 });
