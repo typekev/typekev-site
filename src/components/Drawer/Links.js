@@ -8,7 +8,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
 import {
-  mdiDesktopClassic,
   mdiPostOutline,
   mdiRocket,
   mdiLighthouse,
@@ -17,6 +16,7 @@ import {
 } from '@mdi/js';
 import { RouterLink } from 'components/Link';
 import ExternalLink from 'components/Link/ExternalLink';
+import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
 
 export const getLinks = (listItems, toggleDrawer) =>
   listItems.map(({ name, to, iconPath, component = RouterLink }) => {
@@ -50,7 +50,7 @@ export default function Links({ toggleDrawer }) {
           [
             { name: 'Explore', to: '', iconPath: mdiRocket },
             { name: 'Discover', iconPath: mdiLighthouse },
-            { name: 'Work', iconPath: mdiDesktopClassic },
+            { name: 'Work', iconPath: devoteamLogoPath },
             { name: 'Blog', iconPath: mdiPostOutline },
           ],
           toggleDrawer,
