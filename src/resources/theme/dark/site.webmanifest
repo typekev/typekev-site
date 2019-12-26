@@ -1,0 +1,18 @@
+{
+    "name": "Kevin Gonzalez | Software Engineer",
+    "short_name": "typekev",
+    "icons": [
+        {
+            "src": "android-chrome-dark-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-dark-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#040424",
+    "background_color": "#040424"
+}

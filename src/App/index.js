@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,7 +9,19 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import getMuiTheme from 'utils/getMuiTheme';
 import getPrefersColorScheme from 'utils/getPrefersColorScheme';
 import { TYPEKEV_SITE_PREFERS_COLOR_SCHEME, COLOR_SCHEME_CODE_MAP } from 'resources/constants';
-
+import palette from 'resources/palette';
+import siteManifestLight from 'resources/theme/light/site.webmanifest';
+import siteManifestDark from 'resources/theme/dark/site.webmanifest';
+import lightFavicon from 'resources/theme/light/favicon.ico';
+import lightFavicon16 from 'resources/theme/light/favicon-16x16.png';
+import lightFavicon32 from 'resources/theme/light/favicon-32x32.png';
+import lightFavicon194 from 'resources/theme/light/favicon-194x194.png';
+import darkFavicon from 'resources/theme/dark/favicon.ico';
+import darkFavicon16 from 'resources/theme/dark/favicon-16x16.png';
+import darkFavicon32 from 'resources/theme/dark/favicon-32x32.png';
+import darkFavicon194 from 'resources/theme/dark/favicon-194x194.png';
+import lightAndroidChrome192 from 'resources/theme/light/android-chrome-192x192.png';
+import darkAndroidChrome192 from 'resources/theme/dark/android-chrome-192x192.png';
 import Page from 'templates/Page';
 import useDrawer from 'hooks/useDrawer';
 import Header from 'components/Header';
@@ -58,6 +71,27 @@ export default function App() {
 
   return (
     <MuiThemeProvider theme={theme}>
+      {SELECTED_COLOR_SCHEME === COLOR_SCHEME_CODE_MAP.DARK ? (
+        <Helmet>
+          <link rel="shortcut icon" href={darkFavicon} />
+          <link rel="icon" type="image/png" sizes="16x16" href={darkFavicon16} />
+          <link rel="icon" type="image/png" sizes="32x32" href={darkFavicon32} />
+          <link rel="icon" type="image/png" sizes="194x194" href={darkFavicon194} />
+          <link rel="icon" type="image/png" sizes="192x192" href={darkAndroidChrome192} />
+          <link rel="manifest" href={siteManifestDark} />
+          <meta name="theme-color" content={palette.DARK.primary.main} />
+        </Helmet>
+      ) : (
+        <Helmet>
+          <link rel="shortcut icon" href={lightFavicon} />
+          <link rel="icon" type="image/png" sizes="16x16" href={lightFavicon16} />
+          <link rel="icon" type="image/png" sizes="32x32" href={lightFavicon32} />
+          <link rel="icon" type="image/png" sizes="194x194" href={lightFavicon194} />
+          <link rel="icon" type="image/png" sizes="192x192" href={lightAndroidChrome192} />
+          <link rel="manifest" href={siteManifestLight} />
+          <meta name="theme-color" content={palette.LIGHT.primary.main} />
+        </Helmet>
+      )}
       <CssBaseline />
       <Router>
         <Drawer open={open} toggleDrawer={toggleDrawer} />
