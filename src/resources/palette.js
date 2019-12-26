@@ -11,7 +11,7 @@ const palette = {
       dark: '#c9c536',
     },
     error: {
-      main: '#ff4542',
+      main: '#db2624',
     },
     background: {
       default: '#fdf9f6',
