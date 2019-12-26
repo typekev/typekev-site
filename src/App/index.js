@@ -59,6 +59,29 @@ export const Main = styled.div`
   display: flex;
 `;
 
+export const getHelmet = isDark =>
+  isDark ? (
+    <Helmet>
+      <link rel="shortcut icon" href={darkFavicon} />
+      <link rel="icon" type="image/png" sizes="16x16" href={darkFavicon16} />
+      <link rel="icon" type="image/png" sizes="32x32" href={darkFavicon32} />
+      <link rel="icon" type="image/png" sizes="194x194" href={darkFavicon194} />
+      <link rel="icon" type="image/png" sizes="192x192" href={darkAndroidChrome192} />
+      <link rel="manifest" href={siteManifestDark} />
+      <meta name="theme-color" content={palette.DARK.primary.main} />
+    </Helmet>
+  ) : (
+    <Helmet>
+      <link rel="shortcut icon" href={lightFavicon} />
+      <link rel="icon" type="image/png" sizes="16x16" href={lightFavicon16} />
+      <link rel="icon" type="image/png" sizes="32x32" href={lightFavicon32} />
+      <link rel="icon" type="image/png" sizes="194x194" href={lightFavicon194} />
+      <link rel="icon" type="image/png" sizes="192x192" href={lightAndroidChrome192} />
+      <link rel="manifest" href={siteManifestLight} />
+      <meta name="theme-color" content={palette.LIGHT.primary.main} />
+    </Helmet>
+  );
+
 export default function App() {
   const { hash } = window.location;
   const [open, toggleDrawer] = useDrawer();
@@ -71,27 +94,7 @@ export default function App() {
 
   return (
     <MuiThemeProvider theme={theme}>
-      {SELECTED_COLOR_SCHEME === COLOR_SCHEME_CODE_MAP.DARK ? (
-        <Helmet>
-          <link rel="shortcut icon" href={darkFavicon} />
-          <link rel="icon" type="image/png" sizes="16x16" href={darkFavicon16} />
-          <link rel="icon" type="image/png" sizes="32x32" href={darkFavicon32} />
-          <link rel="icon" type="image/png" sizes="194x194" href={darkFavicon194} />
-          <link rel="icon" type="image/png" sizes="192x192" href={darkAndroidChrome192} />
-          <link rel="manifest" href={siteManifestDark} />
-          <meta name="theme-color" content={palette.DARK.primary.main} />
-        </Helmet>
-      ) : (
-        <Helmet>
-          <link rel="shortcut icon" href={lightFavicon} />
-          <link rel="icon" type="image/png" sizes="16x16" href={lightFavicon16} />
-          <link rel="icon" type="image/png" sizes="32x32" href={lightFavicon32} />
-          <link rel="icon" type="image/png" sizes="194x194" href={lightFavicon194} />
-          <link rel="icon" type="image/png" sizes="192x192" href={lightAndroidChrome192} />
-          <link rel="manifest" href={siteManifestLight} />
-          <meta name="theme-color" content={palette.LIGHT.primary.main} />
-        </Helmet>
-      )}
+      {getHelmet(SELECTED_COLOR_SCHEME === COLOR_SCHEME_CODE_MAP.DARK)}
       <CssBaseline />
       <Router>
         <Drawer open={open} toggleDrawer={toggleDrawer} />
