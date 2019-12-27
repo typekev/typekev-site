@@ -11,7 +11,7 @@ export const initialState = [
   1000,
   'Welcome, visitor',
   "I'm Kevin's autonomous assistant.",
-  `Ask me something like '${getSampleQuestion()}`,
+  `Ask me something like '${getSampleQuestion()}'`,
 ];
 
 export const returnedVisitorWelcome = ['Welcome back, visitor'];
