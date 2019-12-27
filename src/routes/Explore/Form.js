@@ -57,14 +57,23 @@ function Form({
             inputProps={{ 'aria-label': 'chatbot input' }}
             startAdornment={
               <InputAdornment position="start">
-                <Tooltip title="Generate a random question">
-                  <IconButton
-                    edge="start"
-                    aria-label="generate a random question"
-                    onClick={onGetRandomQuestion(setValue)}
-                  >
-                    <Icon path={mdiRobot} size={1} color="currentColor" />
-                  </IconButton>
+                <Tooltip
+                  title={
+                    value
+                      ? 'Looks like you are already have a question'
+                      : 'Generate a random question'
+                  }
+                >
+                  <span>
+                    <IconButton
+                      edge="start"
+                      aria-label="generate a random question"
+                      disabled={disabled || value}
+                      onClick={onGetRandomQuestion(setValue)}
+                    >
+                      <Icon path={mdiRobot} size={1} color="currentColor" />
+                    </IconButton>
+                  </span>
                 </Tooltip>
               </InputAdornment>
             }
@@ -75,7 +84,7 @@ function Form({
                     <span>
                       <IconButton
                         edge="end"
-                        aria-label="submit message"
+                        aria-label="tap to talk"
                         disabled={disabled}
                         onClick={listening ? stopListening : startListening}
                       >
@@ -88,11 +97,11 @@ function Form({
                     </span>
                   </Tooltip>
                 ) : (
-                  <Tooltip title="Submit">
+                  <Tooltip title="Send message">
                     <span>
                       <IconButton
                         edge="end"
-                        aria-label="submit message"
+                        aria-label="send message"
                         disabled={disabled || !value}
                         onClick={onSubmit(sendMessage, setValue, value)}
                       >
