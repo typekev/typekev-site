@@ -5,10 +5,20 @@ import FormControl from '@material-ui/core/FormControl';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+import Container from '@material-ui/core/Container';
+import Fade from '@material-ui/core/Fade';
 import Icon from '@mdi/react';
 import { mdiSend, mdiRobot, mdiMicrophone, mdiMicrophoneOff } from '@mdi/js';
-import { Container, Tooltip } from '@material-ui/core';
 import { getSampleQuestion } from 'hooks/useSocket';
+import Transition from 'components/Transition';
+import Link from 'components/Link';
+
+const PROMPT_DESTINATION_MAP = {
+  'Learn more about Kevin': '/discover/',
+  "Learn about Kevin's job": '/work/',
+};
 
 export const initialState = {
   value: '',
@@ -25,6 +35,7 @@ export const onChange = setValue => ({ currentTarget }) => setValue(currentTarge
 export const onGetRandomQuestion = setValue => () => setValue(getSampleQuestion());
 
 function Form({
+  prompts,
   sendMessage,
   disabled,
   interimTranscript,
@@ -115,11 +126,32 @@ function Form({
           />
         </FormControl>
       </form>
+      <br />
+      <Transition
+        component={Fade}
+        in={prompts.length > 0 && !disabled}
+        timeout={1000}
+        delay={disabled ? 0 : 500}
+      >
+        <div>
+          {prompts.map(prompt => (
+            <Button
+              variant="contained"
+              color="primary"
+              component={Link}
+              to={PROMPT_DESTINATION_MAP[prompt]}
+            >
+              {prompt}
+            </Button>
+          ))}
+        </div>
+      </Transition>
     </Container>
   );
 }
 
 Form.propTypes = {
+  prompts: PropTypes.arrayOf(PropTypes.string).isRequired,
   sendMessage: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   interimTranscript: PropTypes.string.isRequired,
