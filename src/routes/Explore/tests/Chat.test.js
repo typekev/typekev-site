@@ -2,11 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Chat, {
   handleTyping,
-  delay,
   defaultSentenceDelayRange,
   minSentenceVisibilityDurationRange,
   getSentenceDelayRange,
-  getDelay,
   getShouldDisplayChat,
 } from 'routes/Explore/Chat';
 import { initialState } from 'hooks/useSocket';
@@ -33,13 +31,6 @@ describe('Chat component', () => {
     expect(shortSentenceDelayRange).toEqual(
       minSentenceVisibilityDurationRange.map(time => time / 1),
     );
-  });
-
-  it('returns a delay if disable is falsy else returns 0', () => {
-    const disabledDelay = getDelay(true);
-    expect(disabledDelay).toBe(0);
-    const enabledDelay = getDelay(false);
-    expect(enabledDelay).toBe(delay);
   });
 
   it('returns true if shouldDisplayChat or displayingInitialMessage are truthy', () => {
