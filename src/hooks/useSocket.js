@@ -16,16 +16,30 @@ export const initialState = [
 
 export const returnedVisitorWelcome = ['Welcome back, visitor'];
 
-export const onMessageReceived = (messagesRef, setMessages) => ({ data }) =>
-  setMessages([
-    ...messagesRef.current,
-    ...JSON.parse(data)
-      .activities.filter(({ from: { id }, text }) => text && id === 'typekev-bot')
-      .map(({ text }) => text),
-  ]);
+export const onMessageReceived = (messagesRef, setMessages, setPrompts) => ({ data }) => {
+  const { activities } = JSON.parse(data);
+  const messageActivities = [
+    ...messagesRef.current.filter(Boolean),
+    ...activities.filter(({ from: { id }, text }) => text && id === 'typekev-bot'),
+  ];
+  const prompts = messageActivities
+    .filter(({ suggestedActions }) => suggestedActions)
+    .reduce(
+      (accumulatedPrompts, { suggestedActions }) => [
+        ...accumulatedPrompts,
+        ...suggestedActions.actions.map(({ title }) => title),
+      ],
+      [],
+    );
 
-export const getListener = (socket, messagesRef, setMessages) =>
-  socket && socket.addEventListener('message', onMessageReceived(messagesRef, setMessages));
+  const messages = messageActivities.map(({ text }) => text);
+  setMessages(messages);
+  setPrompts(prompts);
+};
+
+export const getListener = (socket, messagesRef, setMessages, setPrompts) =>
+  socket &&
+  socket.addEventListener('message', onMessageReceived(messagesRef, setMessages, setPrompts));
 
 export const clearListener = (socket, listener) => () =>
   socket && socket.removeEventListener('message', listener);
@@ -36,6 +50,7 @@ const useSocket = () => {
   const [messages, setMessages] = useState(
     cookies[TYPEKEV_SITE_PREV_WELCOMED] ? returnedVisitorWelcome : initialState,
   );
+  const [prompts, setPrompts] = useState([]);
 
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
@@ -47,7 +62,7 @@ const useSocket = () => {
   );
 
   useEffect(() => {
-    const listener = getListener(socket, messagesRef, setMessages);
+    const listener = getListener(socket, messagesRef, setMessages, setPrompts);
     return clearListener(socket, listener);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
@@ -57,6 +72,7 @@ const useSocket = () => {
     (...args) => setSocket(new WebSocket(...args)),
     messagesRef.current,
     () => setMessages(['']),
+    prompts,
   ];
 };
 
