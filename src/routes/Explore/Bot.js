@@ -10,7 +10,7 @@ export const setInitialSocket = (streamUrl, socket, setSocket) =>
 export const getIsDisabled = (streamUrl, messagesLength) => !streamUrl || messagesLength === 0;
 
 export default function Bot() {
-  const [socket, setSocket, messages, clearMessages] = useSocket();
+  const [socket, setSocket, messages, clearMessages, prompts] = useSocket();
   const [{ streamUrl }, startChat, sendMessage] = useChat(clearMessages);
 
   const disabled = getIsDisabled(streamUrl, messages.filter(Boolean).length);
@@ -28,7 +28,7 @@ export default function Bot() {
   return (
     <>
       <Chat messages={messages} disabled={disabled} />
-      <Form sendMessage={sendMessage} disabled={disabled} />
+      <Form prompts={prompts} sendMessage={sendMessage} disabled={disabled} />
     </>
   );
 }
