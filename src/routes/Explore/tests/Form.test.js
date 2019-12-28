@@ -9,6 +9,7 @@ describe('Form component', () => {
     ReactDOM.render(
       <Form
         sendMessage={() => {}}
+        prompts={[]}
         disabled
         interimTranscript=""
         transcript=""
@@ -21,6 +22,7 @@ describe('Form component', () => {
     ReactDOM.render(
       <Form
         sendMessage={() => {}}
+        prompts={['Prompt']}
         disabled={false}
         interimTranscript=""
         transcript="transcript"
@@ -34,6 +36,7 @@ describe('Form component', () => {
     ReactDOM.render(
       <Form
         sendMessage={() => {}}
+        prompts={[]}
         disabled={false}
         interimTranscript=""
         transcript="transcript"
