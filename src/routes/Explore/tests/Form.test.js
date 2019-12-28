@@ -9,6 +9,7 @@ import Form, {
   initialState,
   CHAT_INPUT_ID,
   focusChat,
+  submitTranscript,
 } from 'routes/Explore/Form';
 import { sampleQuestions } from 'hooks/useSocket';
 
@@ -88,6 +89,15 @@ describe('Form component', () => {
     expect(chatInput.focus.mock.calls.length).toBe(0);
     expect(focusChat('test', false, chatInput, false)).toBe(undefined);
     expect(chatInput.focus.mock.calls.length).toBe(1);
+  });
+
+  it('calls submit if conditions are met', () => {
+    const submit = jest.fn();
+    expect(!!submitTranscript('', submit)).toBe(false);
+    expect(submit.mock.calls.length).toBe(0);
+    expect(submitTranscript('test', submit)).toBe(undefined);
+    expect(submit.mock.calls.length).toBe(1);
+    expect(typeof submit.mock.calls[0][0].preventDefault).toBe('function');
   });
 
   it('calls onSubmit and triggers internal functions with correct return values', () => {
