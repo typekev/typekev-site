@@ -22,6 +22,10 @@ export const onMessageReceived = (messagesRef, setMessages, setPrompts) => ({ da
     ({ from: { id }, text }) => text && id === 'typekev-bot',
   );
 
+  if (!messageActivities.length) {
+    return;
+  }
+
   const prompts = messageActivities
     .filter(({ suggestedActions }) => suggestedActions)
     .reduce(
