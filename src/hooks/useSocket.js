@@ -9,12 +9,12 @@ export const getSampleQuestion = () =>
 
 export const initialState = [
   500,
-  'Welcome, visitor',
+  'Welcome, visitor.',
   "I'm Kevin's autonomous assistant.",
   `Ask me something like '${getSampleQuestion()}'`,
 ];
 
-export const returnedVisitorWelcome = [500, 'Welcome back, visitor'];
+export const returnedVisitorWelcome = [500, 'Welcome back, visitor.'];
 
 export const onMessageReceived = (messagesRef, setMessages, setPrompts) => ({ data }) => {
   const { activities } = JSON.parse(data);
