@@ -21,6 +21,8 @@ export const CHAT_INPUT_ID = 'chatbot-input';
 export const focusChat = (value, disabled, chatInput, isChatFocused) =>
   (value || !disabled) && chatInput && !isChatFocused && chatInput.focus();
 
+export const submitTranscript = (value, submit) => value && submit({ preventDefault: () => {} });
+
 const PROMPT_DESTINATION_MAP = {
   'Learn more about Kevin': '/discover/',
   "Learn about Kevin's job": '/work/',
@@ -64,6 +66,11 @@ function Form({
     const chatInput = document.getElementById(CHAT_INPUT_ID);
     focusChat(value, disabled, chatInput, document.activeElement.id === CHAT_INPUT_ID);
   }, [value, disabled]);
+
+  useEffect(() => {
+    submitTranscript(value, onSubmit(sendMessage, setValue, value));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listening]);
 
   return (
     <Container maxWidth="sm">
