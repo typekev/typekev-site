@@ -16,7 +16,10 @@ import { mdiSend, mdiRobot, mdiMicrophone, mdiMicrophoneOff } from '@mdi/js';
 import { getSampleQuestion } from 'hooks/useSocket';
 import Transition from 'components/Transition';
 
-const CHAT_INPUT_ID = 'chatbot-input';
+export const CHAT_INPUT_ID = 'chatbot-input';
+
+export const focusChat = (value, disabled, chatInput, isChatFocused) =>
+  (value || !disabled) && chatInput && !isChatFocused && chatInput.focus();
 
 const PROMPT_DESTINATION_MAP = {
   'Learn more about Kevin': '/discover/',
@@ -59,9 +62,7 @@ function Form({
 
   useEffect(() => {
     const chatInput = document.getElementById(CHAT_INPUT_ID);
-    if ((value || !disabled) && chatInput && document.activeElement.id !== CHAT_INPUT_ID) {
-      chatInput.focus();
-    }
+    focusChat(value, disabled, chatInput, document.activeElement.id === CHAT_INPUT_ID);
   }, [value, disabled]);
 
   return (
