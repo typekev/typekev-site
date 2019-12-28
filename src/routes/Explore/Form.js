@@ -58,8 +58,9 @@ function Form({
   }, [interimTranscript, transcript]);
 
   useEffect(() => {
-    if ((value || !disabled) && document.activeElement.id !== CHAT_INPUT_ID) {
-      document.getElementById(CHAT_INPUT_ID).focus();
+    const chatInput = document.getElementById(CHAT_INPUT_ID);
+    if ((value || !disabled) && chatInput && document.activeElement.id !== CHAT_INPUT_ID) {
+      chatInput.focus();
     }
   }, [value, disabled]);
 
