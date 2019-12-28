@@ -8,20 +8,20 @@ export const getSampleQuestion = () =>
   sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
 
 export const initialState = [
-  1000,
+  500,
   'Welcome, visitor',
   "I'm Kevin's autonomous assistant.",
   `Ask me something like '${getSampleQuestion()}'`,
 ];
 
-export const returnedVisitorWelcome = ['Welcome back, visitor'];
+export const returnedVisitorWelcome = [500, 'Welcome back, visitor'];
 
 export const onMessageReceived = (messagesRef, setMessages, setPrompts) => ({ data }) => {
   const { activities } = JSON.parse(data);
-  const messageActivities = [
-    ...messagesRef.current.filter(Boolean),
-    ...activities.filter(({ from: { id }, text }) => text && id === 'typekev-bot'),
-  ];
+  const messageActivities = activities.filter(
+    ({ from: { id }, text }) => text && id === 'typekev-bot',
+  );
+
   const prompts = messageActivities
     .filter(({ suggestedActions }) => suggestedActions)
     .reduce(
@@ -32,7 +32,7 @@ export const onMessageReceived = (messagesRef, setMessages, setPrompts) => ({ da
       [],
     );
 
-  const messages = messageActivities.map(({ text }) => text);
+  const messages = [...messagesRef.current, ...messageActivities.map(({ text }) => text)];
   setMessages(messages);
   setPrompts(prompts);
 };
