@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Form, { onSubmit, onChange, onGetRandomQuestion, initialState } from 'routes/Explore/Form';
 import { sampleQuestions } from 'hooks/useSocket';
 
@@ -7,44 +8,50 @@ describe('Form component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <Form
-        sendMessage={() => {}}
-        prompts={[]}
-        disabled
-        interimTranscript=""
-        transcript=""
-        startListening={() => {}}
-        stopListening={() => {}}
-      />,
+      <Router>
+        <Form
+          sendMessage={() => {}}
+          prompts={[]}
+          disabled
+          interimTranscript=""
+          transcript=""
+          startListening={() => {}}
+          stopListening={() => {}}
+        />
+      </Router>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
     ReactDOM.render(
-      <Form
-        sendMessage={() => {}}
-        prompts={['Prompt']}
-        disabled={false}
-        interimTranscript=""
-        transcript="transcript"
-        startListening={() => {}}
-        stopListening={() => {}}
-        browserSupportsSpeechRecognition
-      />,
+      <Router>
+        <Form
+          sendMessage={() => {}}
+          prompts={['Prompt']}
+          disabled={false}
+          interimTranscript=""
+          transcript="transcript"
+          startListening={() => {}}
+          stopListening={() => {}}
+          browserSupportsSpeechRecognition
+        />
+      </Router>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
     ReactDOM.render(
-      <Form
-        sendMessage={() => {}}
-        prompts={[]}
-        disabled={false}
-        interimTranscript=""
-        transcript="transcript"
-        startListening={() => {}}
-        stopListening={() => {}}
-        listening
-        browserSupportsSpeechRecognition
-      />,
+      <Router>
+        <Form
+          sendMessage={() => {}}
+          prompts={[]}
+          disabled={false}
+          interimTranscript=""
+          transcript="transcript"
+          startListening={() => {}}
+          stopListening={() => {}}
+          listening
+          browserSupportsSpeechRecognition
+        />
+      </Router>,
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
