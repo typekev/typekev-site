@@ -16,6 +16,8 @@ import { mdiSend, mdiRobot, mdiMicrophone, mdiMicrophoneOff } from '@mdi/js';
 import { getSampleQuestion } from 'hooks/useSocket';
 import Transition from 'components/Transition';
 
+const CHAT_INPUT_ID = 'chatbot-input';
+
 const PROMPT_DESTINATION_MAP = {
   'Learn more about Kevin': '/discover/',
   "Learn about Kevin's job": '/work/',
@@ -55,6 +57,12 @@ function Form({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interimTranscript, transcript]);
 
+  useEffect(() => {
+    if (value && document.activeElement.id !== CHAT_INPUT_ID) {
+      document.getElementById(CHAT_INPUT_ID).focus();
+    }
+  }, [value]);
+
   return (
     <Container maxWidth="sm">
       <form onSubmit={onSubmit(sendMessage, setValue, value)}>
@@ -63,7 +71,7 @@ function Form({
             onChange={onChange(setValue)}
             value={value}
             disabled={disabled}
-            id="chatbot-input"
+            id={CHAT_INPUT_ID}
             margin="dense"
             placeholder={disabled ? 'The bot is typing' : 'Tell me something'}
             inputProps={{ 'aria-label': 'chatbot input' }}
