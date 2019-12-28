@@ -33,7 +33,7 @@ const Sun = styled.div`
     background-color: ${theme.palette.secondary.main};
   `}
   ${({ open, location: { pathname } }) =>
-    pathname === '/' &&
+    (pathname === '/' || pathname === '/explore/') &&
     css`
       ${focused}
       ${open && focusedShifted}

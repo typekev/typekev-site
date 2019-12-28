@@ -24,7 +24,7 @@ const Ray = styled.div`
     border-color: ${theme.palette.secondary.main};
   `}
   ${({ open, location: { pathname } }) =>
-    pathname === '/' &&
+    (pathname === '/' || pathname === '/explore/') &&
     css`
       ${focused}
       ${open && focusedShifted}

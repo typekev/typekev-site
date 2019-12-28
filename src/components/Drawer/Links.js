@@ -20,8 +20,9 @@ import ExternalLink from 'components/Link/ExternalLink';
 import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
 
 export const getLinks = (listItems, toggleDrawer) =>
-  listItems.map(({ name, to, href, iconPath, component = RouterLink, transform }) => {
-    const path = to !== undefined ? to : name.toLowerCase();
+  listItems.map(({ name, href, iconPath, component = RouterLink, transform }) => {
+    const path = name.toLowerCase();
+    const to = `/${path}/`;
     const selected = window.location.pathname.split('/')[1] === path;
 
     return (
@@ -29,7 +30,7 @@ export const getLinks = (listItems, toggleDrawer) =>
         button
         key={name}
         component={component}
-        to={`/${path}${path ? '/' : ''}`}
+        to={to}
         href={href}
         onClick={toggleDrawer}
         selected={selected}
@@ -49,7 +50,7 @@ export default function Links({ toggleDrawer }) {
       <List>
         {getLinks(
           [
-            { name: 'Explore', to: '', iconPath: mdiLighthouse },
+            { name: 'Explore', iconPath: mdiLighthouse },
             { name: 'Discover', iconPath: mdiRocket },
             { name: 'Work', iconPath: devoteamLogoPath, transform: 'translate(2, 2)' },
             { name: 'Blog', iconPath: mdiPostOutline },
