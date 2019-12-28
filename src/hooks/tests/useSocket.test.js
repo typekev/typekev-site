@@ -44,7 +44,15 @@ describe('useSocket hook', () => {
         suggestedActions: { actions: [{ title: 'Suggested Action' }] },
       },
     ];
-    onMessageReceived(
+    const userActivities = [
+      {
+        from: { id: 'typekev-site-user' },
+        text: messagesRef.current[0],
+        suggestedActions: { actions: [{ title: 'Suggested Action' }] },
+      },
+    ];
+
+    const doSetValues = onMessageReceived(
       messagesRef,
       returnedMessages =>
         expect(returnedMessages).toStrictEqual([
@@ -61,7 +69,10 @@ describe('useSocket hook', () => {
             [],
           ),
         ),
-    )({ data: JSON.stringify({ activities }) });
+    );
+
+    doSetValues({ data: JSON.stringify({ activities }) });
+    doSetValues({ data: JSON.stringify({ activities: userActivities }) });
   });
 
   it('calls clearMessages causing messages to return initialState', () => {
