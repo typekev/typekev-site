@@ -5,7 +5,6 @@ import Chat, {
   defaultSentenceDelayRange,
   minSentenceVisibilityDurationRange,
   getSentenceDelayRange,
-  getShouldDisplayChat,
 } from 'routes/Explore/Chat';
 import { initialState } from 'hooks/useSocket';
 
@@ -31,12 +30,5 @@ describe('Chat component', () => {
     expect(shortSentenceDelayRange).toEqual(
       minSentenceVisibilityDurationRange.map(time => time / 1),
     );
-  });
-
-  it('returns true if shouldDisplayChat or displayingInitialMessage are truthy', () => {
-    const shouldNotDisplayChat = getShouldDisplayChat(false, false);
-    expect(shouldNotDisplayChat).toBe(false);
-    const shouldDisplayChat = getShouldDisplayChat(true, false);
-    expect(shouldDisplayChat).toBe(true);
   });
 });
