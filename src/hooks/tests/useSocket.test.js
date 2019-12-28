@@ -34,14 +34,32 @@ describe('useSocket hook', () => {
     expect(typeof clearMessages).toBe('function');
   });
 
-  it('calls onMessageReceived passing an array of messages to setMessages', () => {
+  it('passes an array of messages to setMessages and an array of prompts to setPrompts', () => {
     const messagesRef = { current: ['Test'] };
-    const activities = [{ from: { id: 'typekev-bot' }, text: messagesRef.current[0] }];
-    onMessageReceived(messagesRef, returnedMessages =>
-      expect(returnedMessages).toStrictEqual([
-        ...messagesRef.current,
-        ...activities.map(({ text }) => text),
-      ]),
+    const activities = [
+      {
+        from: { id: 'typekev-bot' },
+        text: messagesRef.current[0],
+        suggestedActions: { actions: [{ title: 'Suggested Action' }] },
+      },
+    ];
+    onMessageReceived(
+      messagesRef,
+      returnedMessages =>
+        expect(returnedMessages).toStrictEqual([
+          ...messagesRef.current,
+          ...activities.map(({ text }) => text),
+        ]),
+      returnedPrompts =>
+        expect(returnedPrompts).toStrictEqual(
+          activities.reduce(
+            (accumulatedPrompts, { suggestedActions }) => [
+              ...accumulatedPrompts,
+              ...suggestedActions.actions.map(({ title }) => title),
+            ],
+            [],
+          ),
+        ),
     )({ data: JSON.stringify({ activities }) });
   });
 
