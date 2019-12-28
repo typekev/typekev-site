@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import SpeechRecognition from 'react-speech-recognition';
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import Container from '@material-ui/core/Container';
@@ -13,7 +15,6 @@ import Icon from '@mdi/react';
 import { mdiSend, mdiRobot, mdiMicrophone, mdiMicrophoneOff } from '@mdi/js';
 import { getSampleQuestion } from 'hooks/useSocket';
 import Transition from 'components/Transition';
-import Link from 'components/Link';
 
 const PROMPT_DESTINATION_MAP = {
   'Learn more about Kevin': '/discover/',
@@ -79,7 +80,7 @@ function Form({
                     <IconButton
                       edge="start"
                       aria-label="generate a random question"
-                      disabled={disabled || value}
+                      disabled={disabled || !!value}
                       onClick={onGetRandomQuestion(setValue)}
                     >
                       <Icon path={mdiRobot} size={1} color="currentColor" />
@@ -133,18 +134,13 @@ function Form({
         timeout={1000}
         delay={disabled ? 0 : 500}
       >
-        <div>
+        <ButtonGroup variant="contained" color="primary">
           {prompts.map(prompt => (
-            <Button
-              variant="contained"
-              color="primary"
-              component={Link}
-              to={PROMPT_DESTINATION_MAP[prompt]}
-            >
+            <Button key={prompt} component={Link} to={PROMPT_DESTINATION_MAP[prompt]}>
               {prompt}
             </Button>
           ))}
-        </div>
+        </ButtonGroup>
       </Transition>
     </Container>
   );
