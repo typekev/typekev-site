@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SpeechRecognition from 'react-speech-recognition';
 import PropTypes from 'prop-types';
+import noop from 'lodash.noop';
 import FormControl from '@material-ui/core/FormControl';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -21,7 +22,7 @@ export const CHAT_INPUT_ID = 'chatbot-input';
 export const focusChat = (value, disabled, chatInput, isChatFocused) =>
   (value || !disabled) && chatInput && !isChatFocused && chatInput.focus();
 
-export const submitTranscript = (value, submit) => value && submit({ preventDefault: () => {} });
+export const submitTranscript = (value, submit) => value && submit({ preventDefault: noop });
 
 const PROMPT_DESTINATION_MAP = {
   'Learn more about Kevin': '/discover/',

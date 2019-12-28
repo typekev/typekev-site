@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header, { getPath } from 'components/Header';
+import noop from 'lodash.noop';
 import { mdiBackburger, mdiMenu } from '@mdi/js';
+import Header, { getPath } from 'components/Header';
 
 describe('Header component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Header open toggleDrawer={() => {}} />, div);
+    ReactDOM.render(<Header open toggleDrawer={noop} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 

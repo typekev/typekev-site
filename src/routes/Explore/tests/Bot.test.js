@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import noop from 'lodash.noop';
 import Bot, { setInitialSocket, getIsDisabled } from 'routes/Explore/Bot';
 
 const streamUrl = 'wss://directline.botframework.com';
@@ -8,7 +9,7 @@ const streamUrl = 'wss://directline.botframework.com';
 describe('Bot component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Bot startChat={() => {}} streamUrl={streamUrl} setMessages={() => {}} />, div);
+    ReactDOM.render(<Bot startChat={noop} streamUrl={streamUrl} setMessages={noop} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -16,7 +17,7 @@ describe('Bot component', () => {
     setInitialSocket(streamUrl, undefined, returnedStreamUrl =>
       expect(returnedStreamUrl).toBe(streamUrl),
     );
-    expect(setInitialSocket(streamUrl, true, () => {})).toBe(false);
+    expect(setInitialSocket(streamUrl, true, noop)).toBe(false);
   });
 
   it('calls getIsDisabled and returns true if messagesLength === 0 or streamUrl is falsy', () => {

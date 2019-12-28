@@ -30,6 +30,7 @@
     "@mdi/js": "^4.0.96",
     "@mdi/react": "^1.2.1",
     "eslint": "^6.8.0",
+    "lodash.noop": "^3.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-cookie": "^4.0.1",

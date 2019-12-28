@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { shallow } from 'enzyme';
+import noop from 'lodash.noop';
 import Links, { getLinks } from 'components/Drawer/Links';
 
 describe('Links component', () => {
@@ -9,7 +10,7 @@ describe('Links component', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Router>
-        <Links toggleDrawer={() => {}} />
+        <Links toggleDrawer={noop} />
       </Router>,
       div,
     );
@@ -33,14 +34,14 @@ describe('Links component', () => {
   });
 
   it('returns an array containing a single ListItem that that points to contact page', () => {
-    const TestList = getLinks([{ name: 'Contact', iconPath: '' }], () => {});
+    const TestList = getLinks([{ name: 'Contact', iconPath: '' }], noop);
     expect(TestList.length).toBe(1);
     const TestListItem = shallow(TestList[0]);
     expect(TestListItem.props().to).toBe('/contact/');
   });
 
   it('returns an array containing a single ListItem that that points to explore page', () => {
-    const TestList = getLinks([{ name: 'Explore', to: '', iconPath: '' }], () => {});
+    const TestList = getLinks([{ name: 'Explore', to: '', iconPath: '' }], noop);
     expect(TestList.length).toBe(1);
     const TestListItem = shallow(TestList[0]);
     expect(TestListItem.props().to).toBe('/');

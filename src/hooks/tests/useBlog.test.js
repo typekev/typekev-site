@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
+import noop from 'lodash.noop';
 import useBlog, { getPosts, getSinglePost, initialState } from 'hooks/useBlog';
 
-const HookWrapper = ({ hook }) => <div hook={hook(() => {})} />;
+const HookWrapper = ({ hook }) => <div hook={hook(noop)} />;
 
 HookWrapper.propTypes = {
   hook: PropTypes.func.isRequired,

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
+import noop from 'lodash.noop';
 import useSocket, {
   getListener,
   clearListener,
@@ -84,7 +85,7 @@ describe('useSocket hook', () => {
     const addEventListener = jest.fn();
     getListener();
     expect(addEventListener.mock.calls.length).toBe(0);
-    getListener({ addEventListener }, messagesRef, () => {});
+    getListener({ addEventListener }, messagesRef, noop);
     expect(addEventListener.mock.calls.length).toBe(1);
   });
 

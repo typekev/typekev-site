@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { mount } from 'enzyme';
+import noop from 'lodash.noop';
 import Form, {
   onSubmit,
   onChange,
@@ -20,12 +21,12 @@ describe('Form component', () => {
       <Router>
         <Form
           prompts={[]}
-          sendMessage={() => {}}
+          sendMessage={noop}
           disabled
           interimTranscript=""
           transcript=""
-          startListening={() => {}}
-          stopListening={() => {}}
+          startListening={noop}
+          stopListening={noop}
         />
       </Router>,
       div,
@@ -35,11 +36,11 @@ describe('Form component', () => {
       <Router>
         <Form
           prompts={['Prompt']}
-          sendMessage={() => {}}
+          sendMessage={noop}
           interimTranscript=""
           transcript="transcript"
-          startListening={() => {}}
-          stopListening={() => {}}
+          startListening={noop}
+          stopListening={noop}
           browserSupportsSpeechRecognition
         />
       </Router>,
@@ -50,11 +51,11 @@ describe('Form component', () => {
       <Router>
         <Form
           prompts={[]}
-          sendMessage={() => {}}
+          sendMessage={noop}
           interimTranscript=""
           transcript="transcript"
-          startListening={() => {}}
-          stopListening={() => {}}
+          startListening={noop}
+          stopListening={noop}
           listening
           browserSupportsSpeechRecognition
         />
@@ -68,11 +69,11 @@ describe('Form component', () => {
     const wrapper = mount(
       <Form
         prompts={[]}
-        sendMessage={() => {}}
+        sendMessage={noop}
         interimTranscript=""
         transcript="transcript"
-        startListening={() => {}}
-        stopListening={() => {}}
+        startListening={noop}
+        stopListening={noop}
         listening
         browserSupportsSpeechRecognition
       />,

@@ -11,6 +11,4 @@ function DevoteamLogo() {
   );
 }
 
-DevoteamLogo.propTypes = {};
-
 export default DevoteamLogo;

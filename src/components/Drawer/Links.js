@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import noop from 'lodash.noop';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -81,5 +82,5 @@ Links.propTypes = {
 };
 
 Links.defaultProps = {
-  toggleDrawer: () => {},
+  toggleDrawer: noop,
 };
