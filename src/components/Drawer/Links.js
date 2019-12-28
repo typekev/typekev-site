@@ -20,17 +20,17 @@ import ExternalLink from 'components/Link/ExternalLink';
 import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
 
 export const getLinks = (listItems, toggleDrawer) =>
-  listItems.map(({ name, to, iconPath, component = RouterLink, transform }) => {
+  listItems.map(({ name, to, href, iconPath, component = RouterLink, transform }) => {
     const path = to !== undefined ? to : name.toLowerCase();
     const selected = window.location.pathname.split('/')[1] === path;
 
     return (
       <ListItem
         button
+        key={name}
         component={component}
         to={`/${path}${path ? '/' : ''}`}
-        href={path}
-        key={name}
+        href={href}
         onClick={toggleDrawer}
         selected={selected}
       >
@@ -64,7 +64,7 @@ export default function Links({ toggleDrawer }) {
             [
               {
                 name: 'Contributions to OS',
-                to: 'https://github.com/typekev',
+                href: 'https://github.com/typekev',
                 component: ExternalLink,
                 iconPath: mdiGithubFace,
               },
