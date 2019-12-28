@@ -16,9 +16,6 @@ export const getSentenceDelayRange = messageLength =>
 
 export const handleTyping = messages => ({ type }) => type(...messages);
 
-export const getShouldDisplayChat = (hasMessages, displayingInitialMessage) =>
-  hasMessages || displayingInitialMessage;
-
 export default function Chat({ messages, disabled }) {
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
@@ -28,12 +25,7 @@ export default function Chat({ messages, disabled }) {
 
   return (
     <Typography variant="h6" align="center">
-      <Transition
-        component={Fade}
-        in={!!getShouldDisplayChat(hasMessages, displayingInitialMessage)}
-        timeout={hasMessages ? 500 : 0}
-        delay={0}
-      >
+      <Transition component={Fade} in={hasMessages} timeout={hasMessages ? 500 : 0} delay={0}>
         <div>
           {useMemo(
             () =>
@@ -58,12 +50,7 @@ export default function Chat({ messages, disabled }) {
           <Cursor />
         </div>
       </Transition>
-      <Transition
-        component={Fade}
-        in={!getShouldDisplayChat(hasMessages, displayingInitialMessage)}
-        timeout={500}
-        delay={0}
-      >
+      <Transition component={Fade} in={!hasMessages} timeout={500} delay={0}>
         <TypingIndicator />
       </Transition>
     </Typography>
