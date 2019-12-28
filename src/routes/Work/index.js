@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Grow from '@material-ui/core/Grow';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -8,7 +9,6 @@ import Content from 'templates/Content';
 import Transition from 'components/Transition';
 import Title from 'components/Title';
 import A from 'components/A';
-import Link from 'components/Link';
 import DevoteamLogo from 'components/DevoteamLogo';
 import DevoteamLogoWrapper from './DevoteamLogoWrapper';
 

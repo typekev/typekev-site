@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Grow from '@material-ui/core/Grow';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -7,7 +8,6 @@ import Content from 'templates/Content';
 import Transition from 'components/Transition';
 import Title from 'components/Title';
 import A from 'components/A';
-import Link from 'components/Link';
 
 const CURRENT_DATE = new Date();
 const CURRENT_MONTH_IN_YEAR = CURRENT_DATE.getMonth();
