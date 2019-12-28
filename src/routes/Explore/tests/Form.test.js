@@ -1,7 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Form, { onSubmit, onChange, onGetRandomQuestion, initialState } from 'routes/Explore/Form';
+import { mount } from 'enzyme';
+import Form, {
+  onSubmit,
+  onChange,
+  onGetRandomQuestion,
+  initialState,
+  CHAT_INPUT_ID,
+  focusChat,
+} from 'routes/Explore/Form';
 import { sampleQuestions } from 'hooks/useSocket';
 
 describe('Form component', () => {
@@ -10,8 +18,8 @@ describe('Form component', () => {
     ReactDOM.render(
       <Router>
         <Form
-          sendMessage={() => {}}
           prompts={[]}
+          sendMessage={() => {}}
           disabled
           interimTranscript=""
           transcript=""
@@ -25,9 +33,8 @@ describe('Form component', () => {
     ReactDOM.render(
       <Router>
         <Form
-          sendMessage={() => {}}
           prompts={['Prompt']}
-          disabled={false}
+          sendMessage={() => {}}
           interimTranscript=""
           transcript="transcript"
           startListening={() => {}}
@@ -41,9 +48,8 @@ describe('Form component', () => {
     ReactDOM.render(
       <Router>
         <Form
-          sendMessage={() => {}}
           prompts={[]}
-          disabled={false}
+          sendMessage={() => {}}
           interimTranscript=""
           transcript="transcript"
           startListening={() => {}}
@@ -55,6 +61,33 @@ describe('Form component', () => {
       div,
     );
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders Form with chatInput', () => {
+    const wrapper = mount(
+      <Form
+        prompts={[]}
+        sendMessage={() => {}}
+        interimTranscript=""
+        transcript="transcript"
+        startListening={() => {}}
+        stopListening={() => {}}
+        listening
+        browserSupportsSpeechRecognition
+      />,
+    );
+    const chatInput = wrapper.find(`#${CHAT_INPUT_ID}`).hostNodes();
+    expect(chatInput.length).toBe(1);
+  });
+
+  it('calls chatInput.focus if conditions are met', () => {
+    const chatInput = { focus: jest.fn() };
+    expect(!!focusChat('', true, chatInput, false)).toBe(false);
+    expect(!!focusChat('test', false, chatInput, true)).toBe(false);
+    expect(!!focusChat('', true, chatInput, true)).toBe(false);
+    expect(chatInput.focus.mock.calls.length).toBe(0);
+    expect(focusChat('test', false, chatInput, false)).toBe(undefined);
+    expect(chatInput.focus.mock.calls.length).toBe(1);
   });
 
   it('calls onSubmit and triggers internal functions with correct return values', () => {
