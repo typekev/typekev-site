@@ -58,10 +58,10 @@ function Form({
   }, [interimTranscript, transcript]);
 
   useEffect(() => {
-    if (value && document.activeElement.id !== CHAT_INPUT_ID) {
+    if ((value || !disabled) && document.activeElement.id !== CHAT_INPUT_ID) {
       document.getElementById(CHAT_INPUT_ID).focus();
     }
-  }, [value]);
+  }, [value, disabled]);
 
   return (
     <Container maxWidth="sm">
