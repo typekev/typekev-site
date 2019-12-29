@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import noop from 'lodash.noop';
-import Links, { getLinks } from 'components/Drawer/Links';
+import Links, { getCurrentPath, getLinks } from 'components/Drawer/Links';
 
 describe('Links component', () => {
   it('renders without crashing', () => {
@@ -45,5 +45,10 @@ describe('Links component', () => {
     expect(TestList.length).toBe(1);
     const TestListItem = shallow(TestList[0]);
     expect(TestListItem.props().to).toBe('/explore/');
+  });
+
+  it('returns argument if not equal to an empty string, else returns explore', () => {
+    expect(getCurrentPath('contact')).toEqual('contact');
+    expect(getCurrentPath('')).toEqual('explore');
   });
 });
