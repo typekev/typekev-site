@@ -19,12 +19,14 @@ import { RouterLink } from 'components/Link';
 import ExternalLink from 'components/Link/ExternalLink';
 import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
 
+export const getCurrentPath = currentPath => (currentPath === '' ? 'explore' : currentPath);
+
 export const getLinks = (listItems, toggleDrawer) =>
   listItems.map(({ name, href, iconPath, component = RouterLink, transform }) => {
     const path = name.toLowerCase();
     const to = `/${path}/`;
-    const currentPath = window.location.pathname.split('/')[1];
-    const selected = (currentPath === '' ? 'explore' : currentPath) === path;
+    const currentPath = getCurrentPath(window.location.pathname.split('/')[1]);
+    const selected = currentPath === path;
 
     return (
       <ListItem
