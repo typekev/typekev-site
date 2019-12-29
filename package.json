@@ -46,6 +46,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "coveralls": "^3.0.9",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -66,6 +67,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "eslint 'src/**/*.{js,jsx}' --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'"
   },
