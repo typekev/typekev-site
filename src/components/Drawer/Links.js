@@ -23,7 +23,8 @@ export const getLinks = (listItems, toggleDrawer) =>
   listItems.map(({ name, href, iconPath, component = RouterLink, transform }) => {
     const path = name.toLowerCase();
     const to = `/${path}/`;
-    const selected = window.location.pathname.split('/')[1] === path;
+    const currentPath = window.location.pathname.split('/')[1];
+    const selected = (currentPath === '' ? 'explore' : currentPath) === path;
 
     return (
       <ListItem
