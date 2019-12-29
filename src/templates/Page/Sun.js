@@ -5,6 +5,7 @@ import { withTheme } from '@material-ui/core/styles';
 import position from 'templates/Page/position';
 import focused from 'templates/Page/focused';
 import focusedShifted from 'templates/Page/focusedShifted';
+import { getCurrentPath } from 'components/Drawer/Links';
 
 const breath = keyframes`
   0% {
@@ -33,7 +34,7 @@ const Sun = styled.div`
     background-color: ${theme.palette.secondary.main};
   `}
   ${({ open, location: { pathname } }) =>
-    (pathname === '/' || pathname === '/explore/') &&
+    (pathname === '/' || getCurrentPath(window.location.pathname.split('/')[1]) === 'explore') &&
     css`
       ${focused}
       ${open && focusedShifted}
