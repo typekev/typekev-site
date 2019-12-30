@@ -61,8 +61,8 @@ describe('Blog route', () => {
   });
 
   it('returns a delay based on the formula (index + 1) * 800', () => {
-    expect(getDelay(1)).toEqual(800);
-    expect(getDelay(10)).toEqual(8000);
+    expect(getDelay(1)).toEqual(250);
+    expect(getDelay(10)).toEqual(2500);
   });
 
   it('renders without crashing', () => {
