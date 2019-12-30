@@ -6,7 +6,7 @@ const PostList = styled.ul`
   list-style-type: none;
 
   & li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
     & span {
       text-align: left !important;
     }
