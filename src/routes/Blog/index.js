@@ -21,7 +21,7 @@ export const compare = (a, b) => (a.timestamp > b.timestamp ? -1 : 1);
 
 export const sortPosts = posts => posts.sort(compare);
 
-export const getDelay = index => index * 800;
+export const getDelay = index => index * 250;
 
 const doType = ({ delay, title }) => ({ type }) => type(delay, title);
 
@@ -31,7 +31,7 @@ export const renderPosts = (posts, setPostId) => () =>
 
     return (
       <li key={title}>
-        <Transition in component={Fade} delay={delay} timeout={1000}>
+        <Transition in component={Fade} delay={delay} timeout={1250}>
           <ButtonGroup variant="outlined" color="inherit">
             <Hidden xsDown>
               <Button disabled variant="contained">
@@ -39,7 +39,7 @@ export const renderPosts = (posts, setPostId) => () =>
               </Button>
             </Hidden>
             <Button onClick={() => setPostId(location)}>
-              <Keyboard keyPressDelayRange={[40, 80]}>{doType({ delay, title })}</Keyboard>
+              <Keyboard keyPressDelayRange={[30, 50]}>{doType({ delay, title })}</Keyboard>
             </Button>
           </ButtonGroup>
         </Transition>
@@ -134,7 +134,7 @@ export default function Blog({
           </PostContent>
         </Transition>
         <br />
-        <Transition in={!content} component={Fade} timeout={content ? 0 : 700}>
+        <Transition in={!content} component={Fade} timeout={content ? 0 : 200}>
           <PostList visible={!content}>
             {useMemo(renderPosts(sortPosts(Object.values(posts)), setPostId), [posts])}
           </PostList>
