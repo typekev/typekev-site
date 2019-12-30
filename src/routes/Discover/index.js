@@ -35,7 +35,7 @@ export default function Discover() {
           <br />I have explored, and continue to explore all the technology that interests me: from
           front-end web and mobile development with <A href="https://reactjs.org">React</A> (for
           instance <A href="https://github.com/typekev/typekev-site">this website</A> that
-          you&apos;re using right noe was made with React!); to blockchain engineering with
+          you&apos;re using right now was made with React!); to blockchain engineering with{' '}
           <A href="https://www.hyperledger.org/">Hyperledger</A>; to building machine learning
           models with <A href="https://www.python.org/">Python</A>; to architecting cloud and
           serverless solutions on <A href="https://azure.microsoft.com/en-us/">Azure</A>,{' '}

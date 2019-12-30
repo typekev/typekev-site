@@ -31,7 +31,7 @@ export default function Work() {
           At <A href="https://lu.devoteam.com/">Devoteam Luxembourg</A> I function as a consultant,
           a leader, a teacher, and a confidant.
           <br />
-          <br />I specialize in three general areas software engineering:
+          <br />I specialize in three general areas of software development:
           <ol>
             <li>
               <strong>Machine Learning and Artificial Intelligence development</strong>, usually
