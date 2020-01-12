@@ -34,14 +34,20 @@ describe('Explore route APIs', () => {
 
   it('connects to an existing conversation and calls sendDirectLineMessage', () => {
     fetch.mockResponseOnce(JSON.stringify(response));
-
-    connectToDirectLineConversation(response.conversationId, response.token, text, messageArgs =>
+    const sendDirectLineMessageMock = messageArgs =>
       expect(messageArgs).toEqual({
         conversationId: response.conversationId,
         token: response.token,
         text,
-      }),
-    )();
+      });
+    const setConversation = conversationArgs =>
+      expect(conversationArgs).toEqual({
+        conversationId: response.conversationId,
+        token: response.token,
+        streamUrl: response.streamUrl,
+      });
+
+    connectToDirectLineConversation(text, sendDirectLineMessageMock, setConversation)();
 
     expect(fetch.mock.calls.length).toEqual(1);
     expect(fetch.mock.calls[0][0]).toEqual(`${REACT_APP_BOT_ORIGIN}directline/conversations`);
