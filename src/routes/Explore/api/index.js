@@ -9,16 +9,21 @@ export const getDirectLineConversation = token =>
   }).catch(logError);
 
 export const connectToDirectLineConversation = (
-  conversationId,
-  token,
   text,
   sendDirectLineMessage,
+  setConversation,
 ) => () =>
-  getDirectLineConversation(token).then(() =>
-    sendDirectLineMessage({ conversationId, token, text }),
-  );
+  getDirectLineConversation()
+    .then(({ conversationId, token, ...rest }) => {
+      sendDirectLineMessage({ conversationId, token, text });
+      return { conversationId, token, ...rest };
+    })
+    .then(setConversation);
 
-export const sendDirectLineMessage = ({ conversationId, token, text, type = 'message' }) =>
+export const sendDirectLineMessage = (
+  { conversationId, token, text, type = 'message' },
+  setConversation,
+) =>
   request(
     `https://directline.botframework.com/v3/directline/conversations/${conversationId}/activities`,
     {
@@ -35,6 +40,6 @@ export const sendDirectLineMessage = ({ conversationId, token, text, type = 'mes
         text,
       }),
     },
-  ).catch(connectToDirectLineConversation(conversationId, token, text, sendDirectLineMessage));
+  ).catch(connectToDirectLineConversation(text, sendDirectLineMessage, setConversation));
 
 export default { getDirectLineConversation };
