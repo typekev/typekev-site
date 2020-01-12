@@ -52,13 +52,13 @@ export default function Work() {
           If you&apos;d like to work with Devoteam and myself, you are more than welcome to get in
           touch with me.
           <br />
-          You may also be interested in some of my written work.
+          You may also be interested in reading some of the articles I&apos;ve authored.
         </Typography>
         <br />
         <br />
         <ButtonGroup variant="contained" color="secondary" aria-label="navigation links">
           <Button component={Link} to="/blog">
-            Click here to read about my work
+            Click here to view my writings
           </Button>
           <Button component={Link} to="/contact">
             Click here to contact me
