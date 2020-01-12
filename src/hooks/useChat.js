@@ -17,6 +17,6 @@ export default function useChat(clearMessages) {
   const startChat = () => getConversation(setConversation);
   const sendMessage = text =>
     typeof text === 'string' &&
-    sendDirectLineMessage({ conversationId, token, text }, clearMessages());
+    sendDirectLineMessage({ conversationId, token, text }, setConversation, clearMessages());
   return [{ conversationId, token, streamUrl }, startChat, sendMessage];
 }
