@@ -1,6 +1,6 @@
 import {
   getDirectLineConversation,
-  connectToDirectLineConversation,
+  startNewDirectLineConversationFromMessage,
   sendDirectLineMessage,
 } from 'routes/Explore/api';
 
@@ -47,7 +47,7 @@ describe('Explore route APIs', () => {
         streamUrl: response.streamUrl,
       });
 
-    connectToDirectLineConversation(text, sendDirectLineMessageMock, setConversation)();
+    startNewDirectLineConversationFromMessage(text, sendDirectLineMessageMock, setConversation)();
 
     expect(fetch.mock.calls.length).toEqual(1);
     expect(fetch.mock.calls[0][0]).toEqual(`${REACT_APP_BOT_ORIGIN}directline/conversations`);

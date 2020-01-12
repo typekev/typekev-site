@@ -8,7 +8,7 @@ export const getDirectLineConversation = token =>
     body: JSON.stringify({ token }),
   }).catch(logError);
 
-export const connectToDirectLineConversation = (
+export const startNewDirectLineConversationFromMessage = (
   text,
   sendDirectLineMessage,
   setConversation,
@@ -40,6 +40,6 @@ export const sendDirectLineMessage = (
         text,
       }),
     },
-  ).catch(connectToDirectLineConversation(text, sendDirectLineMessage, setConversation));
+  ).catch(startNewDirectLineConversationFromMessage(text, sendDirectLineMessage, setConversation));
 
 export default { getDirectLineConversation };
