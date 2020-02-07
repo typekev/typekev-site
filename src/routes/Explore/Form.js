@@ -90,7 +90,7 @@ function Form({
                 <Tooltip
                   title={
                     value
-                      ? 'Looks like you are already have a question'
+                      ? "You've already started typing a question"
                       : 'Generate a random question'
                   }
                 >
