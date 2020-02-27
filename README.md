@@ -2,10 +2,14 @@
 
 > The third iteration of my personal website built&mdash;of course&mdash;with React.
 
+## See it live on [typekev.com](https://typekev.com/)
+
 <br/>
-<div align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/typekev/material-ui/typekev/update-showcase/docs/static/images/showcase/typekev.jpg" width="100%" />
-</div>
+<a href="https://typekev.com">
+  <div align="center">
+    <img alt="Logo" src="https://raw.githubusercontent.com/typekev/material-ui/typekev/update-showcase/docs/static/images/showcase/typekev.jpg" width="100%" />
+  </div>
+</a>
 <br/>
 
 ### 🛠 Use `npm start` to run locally
