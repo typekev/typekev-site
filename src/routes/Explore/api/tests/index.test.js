@@ -40,12 +40,7 @@ describe('Explore route APIs', () => {
         token: response.token,
         text,
       });
-    const setConversation = conversationArgs =>
-      expect(conversationArgs).toEqual({
-        conversationId: response.conversationId,
-        token: response.token,
-        streamUrl: response.streamUrl,
-      });
+    const setConversation = conversationArgs => expect(conversationArgs).toEqual(response);
 
     startNewDirectLineConversationFromMessage(text, sendDirectLineMessageMock, setConversation)();
 
@@ -57,12 +52,7 @@ describe('Explore route APIs', () => {
     fetch.mockResponseOnce(JSON.stringify({ id: response.conversationId }));
 
     const baseUrl = 'https://directline.botframework.com/';
-    const setConversation = conversationArgs =>
-      expect(conversationArgs).toEqual({
-        conversationId: response.conversationId,
-        token: response.token,
-        streamUrl: response.streamUrl,
-      });
+    const setConversation = conversationArgs => expect(conversationArgs).toEqual(response);
 
     sendDirectLineMessage(
       {
