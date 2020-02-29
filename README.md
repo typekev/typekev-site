@@ -1,4 +1,4 @@
-# [typekev.com](https://typekev.com/) [![Build Status](https://travis-ci.org/typekev/typekev-site.svg?branch=master)](https://travis-ci.org/typekev/typekev-site) [![Coverage Status](https://coveralls.io/repos/github/typekev/typekev-site/badge.svg?branch=master)](https://coveralls.io/github/typekev/typekev-site?branch=master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+# [typekev.com](https://typekev.com/) [![Build Status](https://travis-ci.com/typekev/typekev-site.svg?branch=master)](https://travis-ci.com/typekev/typekev-site) [![Coverage Status](https://coveralls.io/repos/github/typekev/typekev-site/badge.svg?branch=master)](https://coveralls.io/github/typekev/typekev-site?branch=master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 > The third iteration of my personal website built&mdash;of course&mdash;with React.
 
