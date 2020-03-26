@@ -4,7 +4,6 @@ import noop from 'lodash.noop';
 import Bot, { setInitialSocket, getIsDisabled } from 'routes/Explore/Bot';
 
 const streamUrl = 'wss://directline.botframework.com';
-// const messagesRef = { current: ['Test'] };
 
 describe('Bot component', () => {
   it('renders without crashing', () => {
