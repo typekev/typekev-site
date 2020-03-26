@@ -23,7 +23,7 @@ export default function Discover() {
       <Content fixed>
         <Typography variant="h5">
           <Title>
-            <Keyboard>I am an explorer</Keyboard>
+            <Keyboard>I am an adventurer</Keyboard>
             <Cursor />
           </Title>
         </Typography>
@@ -32,10 +32,10 @@ export default function Discover() {
         <Typography variant="body1">
           Hi, I&apos;m a full stack software engineer, and <i>I really like technology.</i>
           <br />
-          <br />I have explored, and continue to explore all the technology that interests me: from
-          front-end web and mobile development with <A href="https://reactjs.org">React</A> (for
-          instance <A href="https://github.com/typekev/typekev-site">this website</A> that
-          you&apos;re using right now was made with React!); to blockchain engineering with{' '}
+          <br />I continuously explore all the technologies that interest me: from front-end web and
+          mobile development with <A href="https://reactjs.org">React</A> (for instance{' '}
+          <A href="https://github.com/typekev/typekev-site">this website</A> that you&apos;re using
+          right now was made with React!); to blockchain engineering with{' '}
           <A href="https://www.hyperledger.org/">Hyperledger</A>; to building machine learning
           models with <A href="https://www.python.org/">Python</A>; to architecting cloud and
           serverless solutions on <A href="https://azure.microsoft.com/en-us/">Azure</A>,{' '}
