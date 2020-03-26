@@ -8,18 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
-import {
-  mdiPostOutline,
-  mdiRocket,
-  mdiLighthouse,
-  mdiMailboxUpOutline,
-  mdiGithubFace,
-} from '@mdi/js';
+import { mdiPostOutline, mdiRocket, mdiLighthouse, mdiMailboxUpOutline, mdiGithub } from '@mdi/js';
 import { RouterLink } from 'components/Link';
 import ExternalLink from 'components/Link/ExternalLink';
 import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
 
-export const getCurrentPath = currentPath => (currentPath === '' ? 'explore' : currentPath);
+export const getCurrentPath = (currentPath) => (currentPath === '' ? 'explore' : currentPath);
 
 export const getLinks = (listItems, toggleDrawer) =>
   listItems.map(({ name, href, iconPath, component = RouterLink, transform }) => {
@@ -70,7 +64,7 @@ export default function Links({ toggleDrawer }) {
                 name: 'Contributions to OS',
                 href: 'https://github.com/typekev',
                 component: ExternalLink,
-                iconPath: mdiGithubFace,
+                iconPath: mdiGithub,
               },
             ],
             toggleDrawer,

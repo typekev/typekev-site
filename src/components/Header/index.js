@@ -7,12 +7,12 @@ import Hidden from '@material-ui/core/Hidden';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import Icon from '@mdi/react';
-import { mdiMenu, mdiBackburger, mdiGithubFace, mdiBrightness4 } from '@mdi/js';
+import { mdiMenu, mdiBackburger, mdiGithub, mdiBrightness4 } from '@mdi/js';
 import Transition from 'components/Transition';
 import HeaderTitle from 'components/Header/HeaderTitle';
 import HeaderText from 'components/Header/HeaderText';
 
-export const getPath = open => (open ? mdiBackburger : mdiMenu);
+export const getPath = (open) => (open ? mdiBackburger : mdiMenu);
 
 export default function Header({ open, toggleDrawer, togglePrefersColorScheme }) {
   return (
@@ -42,7 +42,7 @@ export default function Header({ open, toggleDrawer, togglePrefersColorScheme })
           <Hidden xsDown>
             <Tooltip title="Contributions to open source" placement="bottom">
               <IconButton href="https://github.com/typekev" target="_blank">
-                <Icon path={mdiGithubFace} size={1.125} color="currentColor" />
+                <Icon path={mdiGithub} size={1.125} color="currentColor" />
               </IconButton>
             </Tooltip>
           </Hidden>
