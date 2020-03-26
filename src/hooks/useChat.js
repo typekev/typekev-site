@@ -3,14 +3,8 @@ import { getDirectLineConversation, sendDirectLineMessage } from 'routes/Explore
 
 export const initialState = {};
 
-export const getConversation = async setConversation => {
-  try {
-    const conversation = (await getDirectLineConversation()) || initialState;
-    setConversation(conversation);
-  } catch (err) {
-    setConversation(initialState);
-  }
-};
+export const getConversation = async setConversation =>
+  setConversation((await getDirectLineConversation()) || initialState);
 
 export default function useChat(clearMessages) {
   const [{ conversationId, token, streamUrl }, setConversation] = useState(initialState);
