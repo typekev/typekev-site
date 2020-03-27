@@ -6,17 +6,27 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import IconButton from '@material-ui/core/IconButton';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
-import { mdiPostOutline, mdiRocket, mdiLighthouse, mdiMailboxUpOutline, mdiGithub } from '@mdi/js';
+import {
+  mdiPostOutline,
+  mdiRocket,
+  mdiLighthouse,
+  mdiMailboxUpOutline,
+  mdiGithub,
+  mdiGamepadVariant,
+} from '@mdi/js';
 import { RouterLink } from 'components/Link';
 import ExternalLink from 'components/Link/ExternalLink';
 import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
+import { Tooltip } from '@material-ui/core';
 
-export const getCurrentPath = (currentPath) => (currentPath === '' ? 'explore' : currentPath);
+export const getCurrentPath = currentPath => (currentPath === '' ? 'explore' : currentPath);
 
 export const getLinks = (listItems, toggleDrawer) =>
-  listItems.map(({ name, href, iconPath, component = RouterLink, transform }) => {
+  listItems.map(({ name, href, iconPath, secondaryAction, component = RouterLink, transform }) => {
     const path = name.toLowerCase();
     const to = `/${path}/`;
     const currentPath = getCurrentPath(window.location.pathname.split('/')[1]);
@@ -36,6 +46,7 @@ export const getLinks = (listItems, toggleDrawer) =>
           <Icon path={iconPath} size={1} color="currentColor" transform={transform} />
         </ListItemIcon>
         <ListItemText primary={name} />
+        {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
       </ListItem>
     );
   });
@@ -48,7 +59,17 @@ export default function Links({ toggleDrawer }) {
         {getLinks(
           [
             { name: 'Explore', iconPath: mdiLighthouse },
-            { name: 'Discover', iconPath: mdiRocket },
+            {
+              name: 'Discover',
+              iconPath: mdiRocket,
+              secondaryAction: (
+                <Tooltip title="Coming soon" placement="top">
+                  <IconButton edge="end">
+                    <Icon path={mdiGamepadVariant} size={1} color="currentColor" />
+                  </IconButton>
+                </Tooltip>
+              ),
+            },
             { name: 'Work', iconPath: devoteamLogoPath, transform: 'translate(2, 2)' },
             { name: 'Blog', iconPath: mdiPostOutline },
           ],
