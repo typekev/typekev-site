@@ -22,5 +22,5 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           REPOSITORY_NAME: typekev/typekev.github.io
-          BRANCH: gh-pages
+          BRANCH: master
           FOLDER: build
