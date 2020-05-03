@@ -64,7 +64,7 @@ export default function Projects({
           {projectId ? (
             <>
               <ProjectContent fixed>
-                <Box height="100%" boxShadow={20}>
+                <Box height="100%" boxShadow={10}>
                   <iframe width="100%" height="100%" title="test" src="/" />
                 </Box>
                 <br />
