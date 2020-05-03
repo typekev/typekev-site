@@ -65,11 +65,13 @@ export default function Links({ toggleDrawer }) {
               name: 'Discover',
               iconPath: mdiRocket,
               secondaryAction: (
-                <Tooltip title="Coming soon" placement="top">
-                  <IconButton edge="end">
-                    <Icon path={mdiGamepadVariant} size={1} color="currentColor" />
-                  </IconButton>
-                </Tooltip>
+                <RouterLink to="/discover/projects/">
+                  <Tooltip title="Discover projects" placement="top">
+                    <IconButton edge="end">
+                      <Icon path={mdiGamepadVariant} size={1} color="currentColor" />
+                    </IconButton>
+                  </Tooltip>
+                </RouterLink>
               ),
             },
             { name: 'Work', iconPath: devoteamLogoPath, transform: 'translate(2, 2)' },
