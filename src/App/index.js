@@ -111,7 +111,7 @@ export default function App() {
                 <Switch>
                   <Route exact path="/explore/" component={Explore} />
                   <Route exact path="/discover/" component={Discover} />
-                  <Route exact path="/discover/projects" component={Projects} />
+                  <Route exact path="/discover/projects/:projectId?" component={Projects} />
                   <Route exact path="/work/" component={Work} />
                   <Route exact path="/blog/:postId?" component={Blog} />
                   <Route exact path="/contact/" component={Contact} />
