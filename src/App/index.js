@@ -32,6 +32,7 @@ import './index.css';
 
 export const Explore = React.lazy(() => import('routes/Explore'));
 export const Discover = React.lazy(() => import('routes/Discover'));
+export const Projects = React.lazy(() => import('routes/Projects'));
 export const Work = React.lazy(() => import('routes/Work'));
 export const Blog = React.lazy(() => import('routes/Blog'));
 export const Contact = React.lazy(() => import('routes/Contact'));
@@ -110,6 +111,7 @@ export default function App() {
                 <Switch>
                   <Route exact path="/explore/" component={Explore} />
                   <Route exact path="/discover/" component={Discover} />
+                  <Route exact path="/discover/projects" component={Projects} />
                   <Route exact path="/work/" component={Work} />
                   <Route exact path="/blog/:postId?" component={Blog} />
                   <Route exact path="/contact/" component={Contact} />
