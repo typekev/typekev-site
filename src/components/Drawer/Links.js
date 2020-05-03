@@ -19,37 +19,39 @@ import {
   mdiGamepadVariant,
 } from '@mdi/js';
 import { RouterLink } from 'components/Link';
-import ExternalLink from 'components/Link/ExternalLink';
 import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
 import { Tooltip } from '@material-ui/core';
 
 export const getCurrentPath = currentPath => (currentPath === '' ? 'explore' : currentPath);
 
 export const getLinks = (listItems, toggleDrawer) =>
-  listItems.map(({ name, href, iconPath, secondaryAction, component = RouterLink, transform }) => {
-    const path = name.toLowerCase();
-    const to = `/${path}/`;
-    const currentPath = getCurrentPath(window.location.pathname.split('/')[1]);
-    const selected = currentPath === path;
+  listItems.map(
+    ({ name, href, iconPath, secondaryAction, transform, component = RouterLink, target }) => {
+      const path = name.toLowerCase();
+      const to = `/${path}/`;
+      const currentPath = getCurrentPath(window.location.pathname.split('/')[1]);
+      const selected = currentPath === path;
 
-    return (
-      <ListItem
-        button
-        key={name}
-        component={component}
-        to={to}
-        href={href}
-        onClick={toggleDrawer}
-        selected={selected}
-      >
-        <ListItemIcon>
-          <Icon path={iconPath} size={1} color="currentColor" transform={transform} />
-        </ListItemIcon>
-        <ListItemText primary={name} />
-        {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
-      </ListItem>
-    );
-  });
+      return (
+        <ListItem
+          button
+          key={name}
+          component={component}
+          to={to}
+          href={href}
+          onClick={toggleDrawer}
+          selected={selected}
+          target={target}
+        >
+          <ListItemIcon>
+            <Icon path={iconPath} size={1} color="currentColor" transform={transform} />
+          </ListItemIcon>
+          <ListItemText primary={name} />
+          {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
+        </ListItem>
+      );
+    },
+  );
 
 export default function Links({ toggleDrawer }) {
   return (
@@ -84,7 +86,8 @@ export default function Links({ toggleDrawer }) {
               {
                 name: 'Contributions to OS',
                 href: 'https://github.com/typekev',
-                component: ExternalLink,
+                component: 'a',
+                target: '_blank',
                 iconPath: mdiGithub,
               },
             ],

@@ -80,24 +80,24 @@ export default function Contact() {
             <ButtonGroup size="large" variant="outlined">
               <SocialMediaButton
                 href="https://instagram.com/typekev"
-                target="_Blank"
+                target="_blank"
                 color="#e4405f"
               >
                 <Icon path={mdiInstagram} size={1} color="currentColor" />
               </SocialMediaButton>
               <SocialMediaButton
                 href="https://linkedin.com/in/typekev"
-                target="_Blank"
+                target="_blank"
                 color="#007bb5"
               >
                 <Icon path={mdiLinkedin} size={1} color="currentColor" />
               </SocialMediaButton>
-              <SocialMediaButton href="https://twitter.com/typekev" target="_Blank" color="#1da1f2">
+              <SocialMediaButton href="https://twitter.com/typekev" target="_blank" color="#1da1f2">
                 <Icon path={mdiTwitter} size={1} color="currentColor" />
               </SocialMediaButton>
               <SocialMediaButton
                 href="https://facebook.com/typekev"
-                target="_Blank"
+                target="_blank"
                 color="#3b5998"
               >
                 <Icon path={mdiFacebook} size={1} color="currentColor" />
