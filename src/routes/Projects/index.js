@@ -24,7 +24,11 @@ export default function Projects({
   const setProjectId = id => history.push(`/discover/projects/${id}`);
   const clearProjectId = () => setProjectId('');
   const title =
-    projectId && projectId.replace('-', ' ').replace(/\b\w/g, char => char.toUpperCase());
+    projectId &&
+    projectId
+      .split('-')
+      .join(' ')
+      .replace(/\b\w/g, char => char.toUpperCase());
 
   return (
     <Transition in component={Grow}>
@@ -85,9 +89,9 @@ export default function Projects({
                       TypeScript
                     </Button>
                   </Hidden>
-                  <Button onClick={() => setProjectId('react-pathing')}>
+                  <Button onClick={() => setProjectId('react-pathing-(coming-soon)')}>
                     <Keyboard keyPressDelayRange={[30, 50]}>
-                      React Pathing&mdash;A Pathfinding Algorithm Visualizer
+                      React Pathing&mdash;A Pathfinding Algorithm Visualizer (Coming Soon)
                     </Keyboard>
                   </Button>
                 </ButtonGroup>
