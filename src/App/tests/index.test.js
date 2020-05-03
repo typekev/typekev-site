@@ -11,6 +11,7 @@ import App, {
   Work,
   Blog,
   Contact,
+  Projects,
 } from 'App';
 import { TYPEKEV_SITE_PREFERS_COLOR_SCHEME, COLOR_SCHEME_CODE_MAP } from 'resources/constants';
 
@@ -67,6 +68,17 @@ describe('App component', () => {
     ReactDOM.render(
       <Suspense fallback={<div>Loading...</div>}>
         <Discover />
+      </Suspense>,
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders a Projects route without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <Suspense fallback={<div>Loading...</div>}>
+        <Projects />
       </Suspense>,
       div,
     );

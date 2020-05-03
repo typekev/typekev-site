@@ -32,4 +32,10 @@ describe('Projects route', () => {
     button.props().onClick();
     expect(push.mock.calls.length).toEqual(1);
   });
+
+  it('triggers a onClick event that sets setProjectId', () => {
+    const wrapper = shallow(<Projects history={{ push }} match={{ params: {} }} />);
+    const button = wrapper.find(Button).at(1);
+    button.props().onClick();
+  });
 });
