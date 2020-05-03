@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PostList = styled.ul`
+const List = styled.ul`
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -13,4 +13,4 @@ const PostList = styled.ul`
   }
 `;
 
-export default PostList;
+export default List;

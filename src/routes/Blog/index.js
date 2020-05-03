@@ -14,7 +14,7 @@ import Content from 'templates/Content';
 import Transition from 'components/Transition';
 import Title from 'components/Title';
 import A from 'components/A';
-import PostList from './PostList';
+import List from 'components/List';
 import PostContent from './PostContent';
 
 export const compare = (a, b) => (a.timestamp > b.timestamp ? -1 : 1);
@@ -135,9 +135,9 @@ export default function Blog({
         </Transition>
         <br />
         <Transition in={!content} component={Fade} timeout={content ? 0 : 200}>
-          <PostList visible={!content}>
+          <List visible={!content}>
             {useMemo(renderPosts(sortPosts(Object.values(posts)), setPostId), [posts])}
-          </PostList>
+          </List>
         </Transition>
       </Content>
     </Transition>
