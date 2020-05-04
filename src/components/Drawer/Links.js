@@ -65,7 +65,7 @@ export default function Links({ toggleDrawer }) {
               name: 'Discover',
               iconPath: mdiRocket,
               secondaryAction: (
-                <RouterLink to="/discover/projects/">
+                <RouterLink to="/discover/projects/" onClick={toggleDrawer}>
                   <Tooltip title="Discover projects" placement="top">
                     <IconButton edge="end">
                       <Icon path={mdiGamepadVariant} size={1} color="currentColor" />
