@@ -65,7 +65,12 @@ export default function Projects({
             <>
               <ProjectContent fixed>
                 <Box height="100%" boxShadow={10}>
-                  <iframe width="100%" height="100%" title="test" src="/" />
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    title="test"
+                    src={`https://typekev.github.io/${projectId}/`}
+                  />
                 </Box>
                 <br />
                 <br />
@@ -89,9 +94,9 @@ export default function Projects({
                       TypeScript
                     </Button>
                   </Hidden>
-                  <Button onClick={() => setProjectId('react-pathing-(coming-soon)')}>
+                  <Button onClick={() => setProjectId('react-pathing')}>
                     <Keyboard keyPressDelayRange={[30, 50]}>
-                      React Pathing&mdash;A Pathfinding Algorithm Visualizer (Coming Soon)
+                      React Pathing&mdash;A Pathfinding Algorithm Visualizer (WIP)
                     </Keyboard>
                   </Button>
                 </ButtonGroup>
