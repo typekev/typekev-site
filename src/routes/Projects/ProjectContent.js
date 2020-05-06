@@ -6,6 +6,7 @@ const ProjectContent = styled(Container)`
 
   & > div {
     border-radius: 0.25rem;
+    position: relative;
   }
 
   & iframe {
