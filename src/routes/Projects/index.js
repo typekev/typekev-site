@@ -14,6 +14,7 @@ import Transition from 'components/Transition';
 import Title from 'components/Title';
 import List from 'components/List';
 import ProjectContent from './ProjectContent';
+import ProjectSkeleton from './ProjectSkeleton';
 
 export default function Projects({
   history,
@@ -65,12 +66,13 @@ export default function Projects({
             <>
               <ProjectContent fixed>
                 <Box height="100%" boxShadow={10}>
-                  <iframe
+                  <ProjectSkeleton />
+                  {/* <iframe
                     width="100%"
                     height="100%"
                     title="test"
                     src={`https://typekev.github.io/${projectId}/`}
-                  />
+                  /> */}
                 </Box>
                 <br />
                 <br />
