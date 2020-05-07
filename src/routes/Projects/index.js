@@ -31,34 +31,44 @@ export default function Projects({
       .join(' ')
       .replace(/\b\w/g, char => char.toUpperCase());
 
+  const titleEl = (
+    <Title>
+      {title ? (
+        <Keyboard key={title} sentenceDelayPerCharRange={[0, 0]} keyPressDelayRange={[60, 80]}>
+          {title}
+        </Keyboard>
+      ) : (
+        <Keyboard sentenceDelayPerCharRange={[0, 0]}>I am a maker</Keyboard>
+      )}
+      <Cursor />
+    </Title>
+  );
+
   return (
     <Transition in component={Grow}>
       <Content fixed>
         <Typography variant="h5">
-          <ButtonGroup variant="outlined">
-            {!!projectId && (
-              <Transition in={!!projectId} component={Zoom}>
-                <Button
-                  disableElevation
-                  color="secondary"
-                  size="large"
-                  variant="contained"
-                  onClick={clearProjectId}
-                >
-                  Go back
-                </Button>
-              </Transition>
-            )}
-            <Title>
-              <Keyboard
-                sentenceDelayPerCharRange={[0, 0]}
-                keyPressDelayRange={projectId && [60, 80]}
-              >
-                {title || 'I am a thinker'}
-              </Keyboard>
-              <Cursor />
-            </Title>
-          </ButtonGroup>
+          <Hidden smDown>
+            <ButtonGroup variant="outlined">
+              {!!title && (
+                <Transition in={!!title} component={Zoom}>
+                  <Button
+                    disableElevation
+                    color="secondary"
+                    size="large"
+                    variant="contained"
+                    onClick={clearProjectId}
+                  >
+                    Go back
+                  </Button>
+                </Transition>
+              )}
+              {titleEl}
+            </ButtonGroup>
+          </Hidden>
+          <Hidden mdUp>
+            <ButtonGroup variant="outlined">{titleEl}</ButtonGroup>
+          </Hidden>
         </Typography>
         <br />
         <Transition in={!!projectId} component={Fade} timeout={1000}>
@@ -67,12 +77,12 @@ export default function Projects({
               <ProjectContent fixed>
                 <Box height="100%" boxShadow={10}>
                   <ProjectSkeleton />
-                  {/* <iframe
+                  <iframe
                     width="100%"
                     height="100%"
                     title="test"
                     src={`https://typekev.github.io/${projectId}/`}
-                  /> */}
+                  />
                 </Box>
                 <br />
                 <br />

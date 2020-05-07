@@ -64,6 +64,19 @@ export default function Blog({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId]);
 
+  const titleEl = (
+    <Title>
+      {postId && title ? (
+        <Keyboard key={postId} sentenceDelayPerCharRange={[0, 0]} keyPressDelayRange={[60, 80]}>
+          {title}
+        </Keyboard>
+      ) : (
+        <Keyboard sentenceDelayPerCharRange={[0, 0]}>I am a thinker</Keyboard>
+      )}
+      <Cursor />
+    </Title>
+  );
+
   return (
     <Transition in component={Grow}>
       <Content fixed>
@@ -83,37 +96,11 @@ export default function Blog({
                   </Button>
                 </Transition>
               )}
-              <Title>
-                {postId && !title ? (
-                  ''
-                ) : (
-                  <Keyboard
-                    sentenceDelayPerCharRange={[0, 0]}
-                    keyPressDelayRange={title && [60, 80]}
-                  >
-                    {title || 'I am a thinker'}
-                  </Keyboard>
-                )}
-                <Cursor />
-              </Title>
+              {titleEl}
             </ButtonGroup>
           </Hidden>
           <Hidden mdUp>
-            <ButtonGroup variant="outlined">
-              <Title>
-                {postId && !title ? (
-                  ''
-                ) : (
-                  <Keyboard
-                    sentenceDelayPerCharRange={[0, 0]}
-                    keyPressDelayRange={title && [60, 80]}
-                  >
-                    {title || 'I am a thinker'}
-                  </Keyboard>
-                )}
-                <Cursor />
-              </Title>
-            </ButtonGroup>
+            <ButtonGroup variant="outlined">{titleEl}</ButtonGroup>
           </Hidden>
         </Typography>
         <br />
