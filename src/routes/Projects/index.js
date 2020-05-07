@@ -80,7 +80,7 @@ export default function Projects({
                   <iframe
                     width="100%"
                     height="100%"
-                    title="test"
+                    title={title}
                     src={`https://typekev.github.io/${projectId}/`}
                   />
                 </Box>
