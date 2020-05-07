@@ -32,6 +32,9 @@ export const themeMap = ({ secondary, background }) => ({
         backgroundColor: secondary.main,
         color: 'inherit',
       },
+      arrow: {
+        color: secondary.main,
+      },
     },
   },
 });
