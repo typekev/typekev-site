@@ -57,7 +57,7 @@ export const getGlobalCss = theme =>
         borderRadius: '50%',
       },
       '.active > button': {
-        backgroundColor: `${fade(theme.palette.primary.contrastText, 0.2)} !important`,
+        backgroundColor: `${fade(theme.palette.primary.contrastText, 0.15)} !important`,
         borderRadius: 0,
       },
     },
