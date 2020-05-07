@@ -21,6 +21,7 @@ import {
 import { RouterLink } from 'components/Link';
 import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
 import { Tooltip } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 export const getCurrentPath = currentPath => (currentPath === '' ? 'explore' : currentPath);
 
@@ -65,13 +66,13 @@ export default function Links({ toggleDrawer }) {
               name: 'Discover',
               iconPath: mdiRocket,
               secondaryAction: (
-                <RouterLink to="/discover/projects/" onClick={toggleDrawer}>
+                <NavLink to="/discover/projects/" onClick={toggleDrawer}>
                   <Tooltip arrow title="Discover projects" placement="top">
                     <IconButton edge="end">
                       <Icon path={mdiGamepadVariant} size={1} color="currentColor" />
                     </IconButton>
                   </Tooltip>
-                </RouterLink>
+                </NavLink>
               ),
             },
             { name: 'Work', iconPath: devoteamLogoPath, transform: 'translate(2, 2)' },
