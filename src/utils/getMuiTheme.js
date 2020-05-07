@@ -50,8 +50,15 @@ export const getGlobalCss = theme =>
     // @global is handled by jss-plugin-global.
     '@global': {
       // You should target [class*="MuiButton-root"] instead if you nest themes.
+      button: {
+        transition:
+          // eslint-disable-next-line max-len
+          'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-radius 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important',
+        borderRadius: '50%',
+      },
       '.active > button': {
         backgroundColor: `${fade(theme.palette.primary.contrastText, 0.2)} !important`,
+        borderRadius: 0,
       },
     },
   })(() => null);
