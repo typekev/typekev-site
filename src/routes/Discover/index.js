@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Grow from '@material-ui/core/Grow';
 import Typography from '@material-ui/core/Typography';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Keyboard, { Cursor } from 'react-mk';
 import Content from 'templates/Content';
@@ -57,9 +58,14 @@ export default function Discover() {
         </Typography>
         <br />
         <br />
-        <Button component={Link} to="/work" variant="contained" color="secondary">
-          Click here to learn more about what I do
-        </Button>
+        <ButtonGroup variant="contained" color="secondary" aria-label="navigation links">
+          <Button component={Link} to="/work">
+            Click here to learn more about what I do
+          </Button>
+          <Button component={Link} to="projects">
+            Click here to play with my projects
+          </Button>
+        </ButtonGroup>
       </Content>
     </Transition>
   );
