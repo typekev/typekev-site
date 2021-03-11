@@ -10,7 +10,7 @@ const TIMING_MAP = {
 
 const typeNames = ({ type }) => type('Kevin Gonzalez ', 'typekev ');
 const typeTitles = time => ({ type }) => type(time, ' software engineer');
-const getTiming = isFirstImpression => () =>
+export const getTiming = isFirstImpression => () =>
   isFirstImpression ? TIMING_MAP.LONG : TIMING_MAP.SHORT;
 
 export default function HeaderText() {
