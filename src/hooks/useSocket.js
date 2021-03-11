@@ -8,13 +8,13 @@ export const getSampleQuestion = () =>
   sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
 
 export const initialState = [
-  500,
+  2000,
   'Welcome, visitor.',
   "I'm Kevin's autonomous assistant.",
   `Ask me something like '${getSampleQuestion()}'`,
 ];
 
-export const returnedVisitorWelcome = [500, 'Welcome back, visitor.'];
+export const returnedVisitorWelcome = [2000, 'Welcome back, visitor.'];
 
 export const onMessageReceived = (messagesRef, setMessages, setPrompts) => ({ data }) => {
   const { activities } = JSON.parse(data);
@@ -59,10 +59,12 @@ const useSocket = () => {
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
 
-  useEffect(() =>
-    setCookie(TYPEKEV_SITE_PREV_WELCOMED, 'true', {
-      path: '/',
-    }),
+  useEffect(
+    () =>
+      ['/', '/explore/'].includes(window.location.pathname) &&
+      setCookie(TYPEKEV_SITE_PREV_WELCOMED, 'true', {
+        path: '/',
+      }),
   );
 
   useEffect(() => {
