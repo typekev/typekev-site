@@ -10,6 +10,8 @@ const TIMING_MAP = {
 
 const typeNames = ({ type }) => type('Kevin Gonzalez ', 'typekev ');
 const typeTitles = time => ({ type }) => type(time, ' software engineer');
+const getTiming = isFirstImpression => () =>
+  isFirstImpression ? TIMING_MAP.LONG : TIMING_MAP.SHORT;
 
 export default function HeaderText() {
   const [cookies] = useCookies([TYPEKEV_SITE_PREV_WELCOMED]);
@@ -19,7 +21,7 @@ export default function HeaderText() {
     !cookies[TYPEKEV_SITE_PREV_WELCOMED] && ['/', '/explore/'].includes(window.location.pathname);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const timing = useMemo(() => (isFirstImpression ? TIMING_MAP.LONG : TIMING_MAP.SHORT), []);
+  const timing = useMemo(getTiming(isFirstImpression), []);
 
   useEffect(() => {
     setTimeout(() => setBlink(false), timing.blink);
