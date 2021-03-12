@@ -59,12 +59,14 @@ const useSocket = () => {
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
 
-  useEffect(
-    () =>
-      ['/', '/explore/'].includes(window.location.pathname) &&
-      setCookie(TYPEKEV_SITE_PREV_WELCOMED, 'true', {
+  useEffect(() =>
+    setCookie(
+      TYPEKEV_SITE_PREV_WELCOMED,
+      ['/', '/explore/'].includes(window.location.pathname) ? 'true' : '',
+      {
         path: '/',
-      }),
+      },
+    ),
   );
 
   useEffect(() => {
