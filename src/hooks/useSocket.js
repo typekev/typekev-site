@@ -62,6 +62,7 @@ const useSocket = () => {
   useEffect(() =>
     setCookie(
       TYPEKEV_SITE_PREV_WELCOMED,
+      /* istanbul ignore next */
       ['/', '/explore/'].includes(window.location.pathname) ? 'true' : '',
       {
         path: '/',

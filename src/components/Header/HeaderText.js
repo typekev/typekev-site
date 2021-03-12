@@ -10,6 +10,7 @@ const TIMING_MAP = {
 
 const typeNames = ({ type }) => type('Kevin Gonzalez ', 'typekev ');
 const typeTitles = time => ({ type }) => type(time, ' software engineer');
+
 export const getTiming = isFirstImpression => () =>
   isFirstImpression ? TIMING_MAP.LONG : TIMING_MAP.SHORT;
 
@@ -24,6 +25,7 @@ export default function HeaderText() {
   const timing = useMemo(getTiming(isFirstImpression), []);
 
   useEffect(() => {
+    /* istanbul ignore next */
     setTimeout(() => setBlink(false), timing.blink);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
