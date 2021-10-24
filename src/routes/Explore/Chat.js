@@ -1,25 +1,63 @@
-import React, { useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import Keyboard, { Cursor } from 'react-mk';
-import Title from 'components/Title';
+import Fade from '@material-ui/core/Fade';
+import Typography from '@material-ui/core/Typography';
+import Transition from 'components/Transition';
+import TypingIndicator from 'components/TypingIndicator';
+import { initialState } from 'hooks/useSocket';
 
-export const botIntroText = [
-  // 400,
-  'Welcome, visitor',
-  // "I'm Kevin's autonomous assistant",
-  // 'What can I help you with?',
-];
+export const defaultSentenceDelayRange = [50, 75];
+export const minSentenceVisibilityDurationRange = [1000, 1200];
+export const getSentenceDelayRange = messageLength =>
+  messageLength * defaultSentenceDelayRange[0] > minSentenceVisibilityDurationRange[0]
+    ? defaultSentenceDelayRange
+    : minSentenceVisibilityDurationRange.map(time => time / messageLength);
 
-export const handleTyping = messages => ({ type }) =>
-  messages.length > 0 ? type(...messages) : type(...botIntroText);
+export const handleTyping = messages => ({ type }) => type(...messages);
 
-export default function Chat({ messages }) {
-  return useMemo(
-    () => (
-      <Title variant="h6" align="center">
-        <Keyboard>{handleTyping(messages)}</Keyboard>
-        <Cursor />
-      </Title>
-    ),
-    [messages],
+export default function Chat({ messages, disabled }) {
+  const messagesRef = useRef(messages);
+  messagesRef.current = messages;
+
+  const displayingInitialMessage = messages[0] === initialState[0];
+  const hasMessages = messages.filter(Boolean).length > 0;
+
+  return (
+    <Typography variant="h6" align="center">
+      <Transition component={Fade} in={hasMessages} timeout={hasMessages ? 500 : 0} delay={0}>
+        <div>
+          {useMemo(
+            () =>
+              hasMessages && (
+                <Keyboard
+                  sentenceDelayPerCharRange={
+                    /* istanbul ignore next */
+                    disabled && !displayingInitialMessage
+                      ? [0, 0]
+                      : getSentenceDelayRange(
+                          Math.min(...messages.map(message => message.length).filter(Boolean)),
+                        )
+                  }
+                  keyPressDelayRange={[65, 80]}
+                >
+                  {handleTyping(messages)}
+                </Keyboard>
+              ),
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            [messages],
+          )}
+          <Cursor />
+        </div>
+      </Transition>
+      <Transition component={Fade} in={!hasMessages} timeout={500} delay={0}>
+        <TypingIndicator />
+      </Transition>
+    </Typography>
   );
 }
+
+Chat.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
+  disabled: PropTypes.bool.isRequired,
+};

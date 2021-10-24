@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import noop from 'lodash.noop';
 import Drawer, { Spacer, Button } from 'components/Drawer';
 
 describe('Drawer component', () => {
@@ -8,7 +9,7 @@ describe('Drawer component', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Router>
-        <Drawer open toggleDrawer={() => {}} />
+        <Drawer open toggleDrawer={noop} />
       </Router>,
       div,
     );

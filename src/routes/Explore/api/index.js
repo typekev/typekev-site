@@ -1,11 +1,29 @@
-import request from 'utils/request';
+import request, { logError } from 'utils/request';
 
 const { REACT_APP_BOT_ORIGIN } = process.env;
 
-export const getDirectLineConversation = () =>
-  request(`${REACT_APP_BOT_ORIGIN}directline/conversations`, { method: 'POST' });
+export const getDirectLineConversation = token =>
+  request(`${REACT_APP_BOT_ORIGIN}directline/conversations`, {
+    method: 'POST',
+    body: JSON.stringify({ token }),
+  }).catch(logError);
 
-export const sendDirectLineMessage = ({ conversationId, token, text, type = 'message' }) =>
+export const startNewDirectLineConversationFromMessage = (
+  text,
+  sendDirectLineMessage,
+  setConversation,
+) => () =>
+  getDirectLineConversation()
+    .then(({ conversationId, token, ...rest }) => {
+      sendDirectLineMessage({ conversationId, token, text });
+      return { conversationId, token, ...rest };
+    })
+    .then(setConversation);
+
+export const sendDirectLineMessage = (
+  { conversationId, token, text, type = 'message' },
+  setConversation,
+) =>
   request(
     `https://directline.botframework.com/v3/directline/conversations/${conversationId}/activities`,
     {
@@ -22,6 +40,6 @@ export const sendDirectLineMessage = ({ conversationId, token, text, type = 'mes
         text,
       }),
     },
-  );
+  ).catch(startNewDirectLineConversationFromMessage(text, sendDirectLineMessage, setConversation));
 
 export default { getDirectLineConversation };

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Bot, { setInitialSocket, debounceMessages, handleSetMessage } from 'routes/Explore/Bot';
+import noop from 'lodash.noop';
+import Bot, { setInitialSocket, getIsDisabled } from 'routes/Explore/Bot';
 
 const streamUrl = 'wss://directline.botframework.com';
-const messagesRef = { current: ['Test'] };
 
 describe('Bot component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Bot startChat={() => {}} streamUrl={streamUrl} setMessages={() => {}} />, div);
+    ReactDOM.render(<Bot startChat={noop} streamUrl={streamUrl} setMessages={noop} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
@@ -16,23 +16,13 @@ describe('Bot component', () => {
     setInitialSocket(streamUrl, undefined, returnedStreamUrl =>
       expect(returnedStreamUrl).toBe(streamUrl),
     );
-    expect(setInitialSocket(streamUrl, true, () => {})).toBe(false);
+    expect(setInitialSocket(streamUrl, true, noop)).toBe(false);
   });
 
-  it('calls debounceMessages and returns false if messages.length < 1', () => {
-    const messagesRefEmpty = { current: [] };
-    expect(debounceMessages(messagesRefEmpty)).toBe(false);
-    expect(() => debounceMessages(messagesRef)).not.toThrow();
-  });
-
-  it('calls handleSetMessage and triggers setMessages with messages, then clearMessages', () => {
-    const clearMessages = jest.fn();
-    handleSetMessage(
-      messagesRef,
-      returnedMessages => expect(returnedMessages).toBe(messagesRef.current),
-      clearMessages,
-    )();
-
-    expect(clearMessages.mock.calls.length).toBe(1);
+  it('calls getIsDisabled and returns true if messagesLength === 0 or streamUrl is falsy', () => {
+    expect(getIsDisabled(undefined, 0)).toBe(true);
+    expect(getIsDisabled('stream url', 0)).toBe(true);
+    expect(getIsDisabled(undefined, 10)).toBe(true);
+    expect(getIsDisabled('stream url', 10)).toBe(false);
   });
 });

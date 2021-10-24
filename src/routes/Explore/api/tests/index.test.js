@@ -1,4 +1,8 @@
-import { getDirectLineConversation, sendDirectLineMessage } from 'routes/Explore/api';
+import {
+  getDirectLineConversation,
+  startNewDirectLineConversationFromMessage,
+  sendDirectLineMessage,
+} from 'routes/Explore/api';
 
 const { REACT_APP_BOT_ORIGIN } = process.env;
 
@@ -9,6 +13,8 @@ const response = {
   streamUrl: 'streamUrl',
   referenceGrammarId: 'referenceGrammarId',
 };
+
+const text = 'Test';
 
 describe('Explore route APIs', () => {
   beforeEach(() => {
@@ -26,17 +32,36 @@ describe('Explore route APIs', () => {
     expect(fetch.mock.calls[0][0]).toEqual(`${REACT_APP_BOT_ORIGIN}directline/conversations`);
   });
 
+  it('connects to an existing conversation and calls sendDirectLineMessage', () => {
+    fetch.mockResponseOnce(JSON.stringify(response));
+    const sendDirectLineMessageMock = messageArgs =>
+      expect(messageArgs).toEqual({
+        conversationId: response.conversationId,
+        token: response.token,
+        text,
+      });
+    const setConversation = conversationArgs => expect(conversationArgs).toEqual(response);
+
+    startNewDirectLineConversationFromMessage(text, sendDirectLineMessageMock, setConversation)();
+
+    expect(fetch.mock.calls.length).toEqual(1);
+    expect(fetch.mock.calls[0][0]).toEqual(`${REACT_APP_BOT_ORIGIN}directline/conversations`);
+  });
+
   it('sends a POST to the bot and returns a conversationId', () => {
     fetch.mockResponseOnce(JSON.stringify({ id: response.conversationId }));
 
-    const text = 'Test';
     const baseUrl = 'https://directline.botframework.com/';
+    const setConversation = conversationArgs => expect(conversationArgs).toEqual(response);
 
-    sendDirectLineMessage({
-      conversationId: response.conversationId,
-      token: response.token,
-      text,
-    }).then(res => {
+    sendDirectLineMessage(
+      {
+        conversationId: response.conversationId,
+        token: response.token,
+        text,
+      },
+      setConversation,
+    ).then(res => {
       expect(res.id).toEqual(response.conversationId);
     });
 

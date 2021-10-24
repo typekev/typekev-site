@@ -1,26 +1,21 @@
 import { withRouter } from 'react-router-dom';
 import styled, { css, keyframes } from 'styled-components';
+import defaultTheme from '@material-ui/core/styles/defaultTheme';
+import { withTheme } from '@material-ui/core/styles';
 import position from 'templates/Page/position';
 import focused from 'templates/Page/focused';
 import focusedShifted from 'templates/Page/focusedShifted';
-import theme from 'resources/theme';
-
-const {
-  palette: { secondary },
-} = theme;
+import { getCurrentPath } from 'components/Drawer/Links';
 
 const breath = keyframes`
   0% {
     transform:scale(.7);
-    background-color: ${secondary.main};
   }
   50% {
     transform:scale(1.5);
-    background-color: ${secondary.light};
   }
   100% {
     transform:scale(.7);
-    background-color: ${secondary.main};
   }
 `;
 
@@ -35,12 +30,15 @@ const fade = keyframes`
 
 const Sun = styled.div`
   ${position}
+  ${({ theme }) => css`
+    background-color: ${theme.palette.secondary.main};
+  `}
   ${({ open, location: { pathname } }) =>
-    pathname === '/' &&
+    (pathname === '/' || getCurrentPath(window.location.pathname.split('/')[1]) === 'explore') &&
     css`
       ${focused}
       ${open && focusedShifted}
-      ${[theme.breakpoints.up('lg')]} {
+      ${[defaultTheme.breakpoints.up('lg')]} {
         ${focusedShifted}
       }
     `};
@@ -49,4 +47,4 @@ const Sun = styled.div`
     ${breath} 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 225ms;
 `;
 
-export default withRouter(Sun);
+export default withRouter(withTheme(Sun));

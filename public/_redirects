@@ -1,0 +1,6 @@
+/explore                /#/explore
+/discover               /#/discover
+/discover/projects/*    /#/discover/projects/:splat
+/work                   /#/work
+/blog/*                 /#/blog/:splat
+/contact                /#/contact

@@ -1,45 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import noop from 'lodash.noop';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import IconButton from '@material-ui/core/IconButton';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@mdi/react';
 import {
-  mdiDesktopClassic,
   mdiPostOutline,
   mdiRocket,
   mdiLighthouse,
   mdiMailboxUpOutline,
-  mdiGithubFace,
+  mdiGithub,
+  mdiGamepadVariant,
 } from '@mdi/js';
 import { RouterLink } from 'components/Link';
-import ExternalLink from 'components/Link/ExternalLink';
+import devoteamLogoPath from 'components/DevoteamLogo/devoteamLogoPath';
+import { Tooltip } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
+
+export const getCurrentPath = currentPath => (currentPath === '' ? 'explore' : currentPath);
 
 export const getLinks = (listItems, toggleDrawer) =>
-  listItems.map(({ name, to, iconPath, component = RouterLink }) => {
-    const path = to || `/${name.toLowerCase()}`;
-    const selected = window.location.pathname === path;
+  listItems.map(
+    ({ name, href, iconPath, secondaryAction, transform, component = RouterLink, target }) => {
+      const path = name.toLowerCase();
+      const to = `/${path}/`;
+      const currentPath = getCurrentPath(window.location.pathname.split('/')[1]);
+      const selected = currentPath === path;
 
-    return (
-      <ListItem
-        button
-        component={component}
-        to={path}
-        href={path}
-        key={name}
-        onClick={toggleDrawer}
-        selected={selected}
-      >
-        <ListItemIcon>
-          <Icon path={iconPath} size={1} />
-        </ListItemIcon>
-        <ListItemText primary={name} />
-      </ListItem>
-    );
-  });
+      return (
+        <ListItem
+          button
+          key={name}
+          component={component}
+          to={to}
+          href={href}
+          onClick={toggleDrawer}
+          selected={selected}
+          target={target}
+        >
+          <ListItemIcon>
+            <Icon path={iconPath} size={1} color="currentColor" transform={transform} />
+          </ListItemIcon>
+          <ListItemText primary={name} />
+          {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
+        </ListItem>
+      );
+    },
+  );
 
 export default function Links({ toggleDrawer }) {
   return (
@@ -48,9 +61,21 @@ export default function Links({ toggleDrawer }) {
       <List>
         {getLinks(
           [
-            { name: 'Explore', to: '/', iconPath: mdiRocket },
-            { name: 'Discover', iconPath: mdiLighthouse },
-            { name: 'Work', iconPath: mdiDesktopClassic },
+            { name: 'Explore', iconPath: mdiLighthouse },
+            {
+              name: 'Discover',
+              iconPath: mdiRocket,
+              secondaryAction: (
+                <NavLink to="/discover/projects/" onClick={toggleDrawer}>
+                  <Tooltip arrow title="Discover projects" placement="top">
+                    <IconButton edge="end">
+                      <Icon path={mdiGamepadVariant} size={1} color="currentColor" />
+                    </IconButton>
+                  </Tooltip>
+                </NavLink>
+              ),
+            },
+            { name: 'Work', iconPath: devoteamLogoPath, transform: 'translate(2, 2)' },
             { name: 'Blog', iconPath: mdiPostOutline },
           ],
           toggleDrawer,
@@ -63,9 +88,10 @@ export default function Links({ toggleDrawer }) {
             [
               {
                 name: 'Contributions to OS',
-                to: 'https://github.com/typekev',
-                component: ExternalLink,
-                iconPath: mdiGithubFace,
+                href: 'https://github.com/typekev',
+                component: 'a',
+                target: '_blank',
+                iconPath: mdiGithub,
               },
             ],
             toggleDrawer,
@@ -81,5 +107,5 @@ Links.propTypes = {
 };
 
 Links.defaultProps = {
-  toggleDrawer: () => {},
+  toggleDrawer: noop,
 };
