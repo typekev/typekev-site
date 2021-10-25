@@ -1,3 +1,4 @@
+import en from './en/translation.json';
 import { ConvertedToObjectType, TranslationJsonType } from './types';
 
 /**
@@ -5,8 +6,7 @@ import { ConvertedToObjectType, TranslationJsonType } from './types';
  * Your components can import this file in 'messages.ts' files which would ruin the HMR if this isn't a separate module
  */
 export const translations: ConvertedToObjectType<TranslationJsonType> =
-  {} as any;
-
+  {} as typeof en;
 /*
  * Converts the static JSON file into an object where keys are identical
  * but values are strings concatenated according to syntax.

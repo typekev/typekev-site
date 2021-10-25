@@ -1,3 +1,16 @@
 {
-  "title": "welcome"
+  "Hi, I'm Kevin": "Hi, I'm Kevin. I make software and lead engineering teams. I specialize in building AI-powered, data-intensive software systems.",
+  "Companies I've worked for": "Companies I've worked for",
+  "EmailTree AI": "EmailTree AI",
+  "Devoteam": "Devoteam",
+  "Microsoft": "Microsoft",
+  "Deloitte": "Deloitte",
+  "PricewaterhouseCoopers": "PricewaterhouseCoopers",
+  "European Investment Bank": "European Investment Bank",
+  "companies_list": "$t(EmailTree AI), $t(Devoteam), $t(Microsoft), $t(Deloitte), $t(PricewaterhouseCoopers), $t(European Investment Bank)",
+  "+ More": "+ More",
+  "Things I've written": "Things I've written",
+  "Ways you can contact me": "Ways you can contact me",
+  "LinkedIn": "LinkedIn",
+  "Email": "Email"
 }
