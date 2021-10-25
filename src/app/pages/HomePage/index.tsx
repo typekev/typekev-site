@@ -9,8 +9,7 @@ export function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Home Page</title>
-        <meta name="description" content="A Boilerplate application homepage" />
+        <title>Software Engineer</title>
       </Helmet>
       <Section>{t(translations["Hi, I'm Kevin"])}</Section>
       <Section title={t(translations["Companies I've worked for"])}>

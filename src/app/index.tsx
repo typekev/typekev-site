@@ -16,10 +16,11 @@ import { useTranslation } from 'react-i18next';
 
 export function App() {
   const { i18n } = useTranslation();
+
   return (
     <BrowserRouter>
       <Helmet
-        titleTemplate="Kevin Gonzalez &endash; %s"
+        titleTemplate="Kevin Gonzalez — %s"
         defaultTitle="Software Engineer"
         htmlAttributes={{ lang: i18n.language }}
       >

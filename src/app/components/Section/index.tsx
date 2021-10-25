@@ -20,8 +20,10 @@ export const Section = memo(({ title, children }: PropsWithChildren<Props>) => {
 });
 
 const SectionTitle = styled.div`
+  font-size: 1.5em;
+  line-height: 1;
   margin-top: 3em;
-  font-size: 1em;
+  margin-left: 0.25em;
 `;
 
 const SectionContent = styled.div`

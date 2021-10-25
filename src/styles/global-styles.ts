@@ -8,7 +8,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    padding: 5vw 2vw;
   }
 
   #root {
@@ -16,10 +18,8 @@ export const GlobalStyle = createGlobalStyle`
     min-width: 100%;
   }
 
-  p,
-  label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
-    line-height: 1.5em;
+  strong {
+    font-weight: 400;
   }
 
   input, select {
