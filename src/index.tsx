@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
+import '@fontsource/inter/200.css';
 import '@fontsource/inter/300.css';
 import '@fontsource/inter/400.css';
 
