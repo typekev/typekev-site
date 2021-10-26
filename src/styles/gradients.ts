@@ -1,21 +1,28 @@
 import { css } from 'styled-components/macro';
+import { palette } from './palette';
 
 export const gradients = {
   bgThemeLight: css`
-    background: linear-gradient(322deg, #fdf9f6, #fdf9f7, #fdf9f8, #fdf9f9);
+    background: linear-gradient(
+      322deg,
+      ${palette.retroOffWhite[400]},
+      ${palette.retroOffWhite[300]},
+      ${palette.retroOffWhite[200]},
+      ${palette.retroOffWhite[100]}
+    );
   `,
   bgFocused: css`
     background: linear-gradient(
       91.36deg,
-      #eca658 0%,
-      #f391a6 13.02%,
-      #e188c3 25.52%,
-      #a58de3 37.5%,
-      #56abec 49.48%,
-      #737eb7 63.02%,
-      #c8638c 72.92%,
-      #dd5d57 84.38%,
-      #df6c51 97.92%
+      ${palette.pastelOrange[100]} 0%,
+      ${palette.pastelPink[100]} 13.02%,
+      ${palette.pastelPink[200]} 25.52%,
+      ${palette.pastelPurple[100]} 37.5%,
+      ${palette.pastelBlue[100]} 49.48%,
+      ${palette.pastelPurple[200]} 63.02%,
+      ${palette.pastelPink[300]} 72.92%,
+      ${palette.pastelRed[100]} 84.38%,
+      ${palette.pastelRed[200]} 97.92%
     );
   `,
 };

@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { gradients } from './gradients';
 import { media } from './media';
+import { palette } from './palette';
 
 export const GlobalStyle = createGlobalStyle`
   html,
@@ -34,6 +35,17 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  a {
+    transition: 125ms;
+    text-decoration-thickness: 3px;
+    color: ${palette.pastelBlue[100]};
+    font-weight: 300;
+
+    :hover {
+      color: ${palette.pastelPurple[100]};
+    }
   }
 
   b {

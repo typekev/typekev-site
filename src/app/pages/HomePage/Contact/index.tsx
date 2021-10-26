@@ -9,21 +9,26 @@ import { useTranslation } from 'react-i18next';
 import { translations } from 'locales/translations';
 
 import { Section } from 'app/components/Section';
-import { FocusedText } from 'app/components/FocusedText';
 
-interface Props {}
+const links = {
+  linkedIn: 'https://linkedin.com/in/typekev',
+  email: 'mailto:kevin.gonzalez@emailtree.ai',
+  emailCopy: 'kevin.gonzalez@emailtree.ai',
+};
 
-export const Contact = memo((props: Props) => {
+export const Contact = memo(() => {
   const { t } = useTranslation();
 
   return (
     <Section title={t(translations['Ways you can contact me'])}>
       <ul>
         <li>
-          <FocusedText hover>{t(translations.LinkedIn)}</FocusedText>
+          <a href={links.linkedIn} target="_blank" rel="noreferrer">
+            {t(translations.LinkedIn)}
+          </a>
         </li>
         <li>
-          <FocusedText hover>{t(translations.Email)}</FocusedText>
+          <a href={links.email}>{t(translations.Email)}</a>
         </li>
       </ul>
     </Section>
