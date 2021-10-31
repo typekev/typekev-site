@@ -5,6 +5,7 @@
  */
 import { memo } from 'react';
 import { Trans } from 'react-i18next';
+import styled from 'styled-components/macro';
 
 import { translations } from 'locales/translations';
 
@@ -17,6 +18,7 @@ export const About = memo(() => {
       <Trans
         i18nKey={translations["Hi, I'm Kevin"]}
         components={{
+          name: <Name />,
           bold: <strong />,
           focused: <FocusedText />,
         }}
@@ -24,3 +26,7 @@ export const About = memo(() => {
     </Section>
   );
 });
+
+const Name = styled.span`
+  font-family: 'Averia Serif Libre', serif;
+`;

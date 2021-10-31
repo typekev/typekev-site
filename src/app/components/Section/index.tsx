@@ -23,8 +23,8 @@ export const Section = memo(({ title, children }: PropsWithChildren<Props>) => {
 
 const SectionTitle = styled.h2`
   font-size: 1.25em;
-  line-height: 0;
   margin-top: 4em;
+  margin-bottom: 0.25em;
   margin-left: 1px;
 
   ${css`

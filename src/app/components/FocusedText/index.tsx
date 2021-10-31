@@ -6,6 +6,7 @@
 import { ComponentPropsWithoutRef } from 'hoist-non-react-statics/node_modules/@types/react';
 import { memo, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components/macro';
+
 import { animations } from 'styles/animations';
 import { gradients } from 'styles/gradients';
 
@@ -24,19 +25,31 @@ export const FocusedText = memo(
 );
 
 const Text = styled.span<Props>`
+  border-radius: 1em;
+  margin: 0 -0.25em;
+  padding: 0.125em 0.25em;
+  font-weight: 400;
+
   ${({ hover }) =>
     hover
       ? css`
+          font-weight: 300;
+
           :hover {
-            ${gradients.bgFocused}
-            ${animations.bgSwayText}
-            font-weight: 400;
-            letter-spacing: -0.0125em;
+            background: ${gradients.bgFocused};
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: ${animations.bgPosSway};
           }
         `
       : css`
-          ${gradients.bgFocused}
-          ${animations.bgSwayText}
-          font-weight: 400;
+          background: ${gradients.bgFocused};
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: ${animations.bgPosSway};
         `}
+
+  background-size: 500% 500%;
 `;

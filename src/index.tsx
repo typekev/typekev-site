@@ -17,7 +17,7 @@ import 'sanitize.css/sanitize.css';
 import '@fontsource/inter/200.css';
 import '@fontsource/inter/300.css';
 import '@fontsource/inter/400.css';
-
+import '@fontsource/averia-serif-libre/300.css';
 // Import root app
 import { App } from 'app';
 

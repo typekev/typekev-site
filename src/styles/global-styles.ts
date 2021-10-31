@@ -14,16 +14,24 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Inter", sans-serif;
     font-weight: 200;
     line-height: 1.25;
-    ${gradients.bgThemeLight}
+    background: ${gradients.bgThemeLight};
   }
 
   #root {
     min-height: 100%;
     min-width: 100%;
-    padding: 10vw 7vw 20vw 7vw;
+    padding: 18vw 6vw;
+
+    ${media.small`
+      padding: 16vw 6vw;
+    `}
+
+    ${media.medium`
+      padding: 13vw 5vw;
+    `}
 
     ${media.large`
-      padding: 5vw 2vw 10vw 2vw;
+      padding: 9vw 4vw;
     `}
   }
 

@@ -1,18 +1,17 @@
-import { css } from 'styled-components/macro';
 import { palette } from './palette';
 
 export const gradients = {
-  bgThemeLight: css`
-    background: linear-gradient(
+  bgThemeLight: `
+    linear-gradient(
       322deg,
       ${palette.retroOffWhite[400]},
       ${palette.retroOffWhite[300]},
       ${palette.retroOffWhite[200]},
       ${palette.retroOffWhite[100]}
-    );
+    )
   `,
-  bgFocused: css`
-    background: linear-gradient(
+  bgFocused: `
+    linear-gradient(
       91.36deg,
       ${palette.pastelOrange[100]} 0%,
       ${palette.pastelPink[100]} 13.02%,
@@ -23,6 +22,6 @@ export const gradients = {
       ${palette.pastelPink[300]} 72.92%,
       ${palette.pastelRed[100]} 84.38%,
       ${palette.pastelRed[200]} 97.92%
-    );
+    )
   `,
 };
