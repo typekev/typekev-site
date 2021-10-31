@@ -7,6 +7,7 @@
 
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
+import smoothscroll from 'smoothscroll-polyfill';
 
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
@@ -29,6 +30,8 @@ import reportWebVitals from 'reportWebVitals';
 
 // Initialize languages
 import './locales/i18n';
+
+smoothscroll.polyfill();
 
 const store = configureAppStore();
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;

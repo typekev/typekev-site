@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { Blog } from '..';
+import { Blog } from '../Blog';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {

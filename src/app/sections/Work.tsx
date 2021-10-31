@@ -3,7 +3,7 @@
  * Work
  *
  */
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useState, ComponentPropsWithoutRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { translations } from 'locales/translations';
@@ -11,7 +11,7 @@ import { translations } from 'locales/translations';
 import { Section } from 'app/components/Section';
 import { FocusedText } from 'app/components/FocusedText';
 
-export const Work = memo(() => {
+export const Work = memo((props: ComponentPropsWithoutRef<typeof Section>) => {
   const { t } = useTranslation();
   const [isHovering, setIsHovering] = useState(false);
 
@@ -21,7 +21,7 @@ export const Work = memo(() => {
   );
 
   return (
-    <Section title={t(translations["Companies I've worked for"])}>
+    <Section title={t(translations["Companies I've worked for"])} {...props}>
       <Trans
         i18nKey={translations.companies_list}
         components={{

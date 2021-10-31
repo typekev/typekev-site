@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import { Section } from '..';
+import { Robot } from '../Robot';
 
-describe('<Section  />', () => {
+describe('<Robot  />', () => {
   it('should match snapshot', () => {
-    const loadingIndicator = render(<Section title="Title">Text</Section>);
+    const loadingIndicator = render(<Robot />);
     expect(loadingIndicator.container.firstChild).toMatchSnapshot();
   });
 });

@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import { Robot } from '..';
+import { FocusedText } from '../FocusedText';
 
-describe('<Robot  />', () => {
+describe('<FocusedText  />', () => {
   it('should match snapshot', () => {
-    const loadingIndicator = render(<Robot />);
+    const loadingIndicator = render(<FocusedText />);
     expect(loadingIndicator.container.firstChild).toMatchSnapshot();
   });
 });

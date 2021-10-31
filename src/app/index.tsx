@@ -14,8 +14,9 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'styles/global-styles';
 import { useThemeMode } from 'hooks/useThemeMode';
 
-import { HomePage } from './pages/HomePage/Loadable';
+import { Sections } from './Sections';
 import { ThemeModeToggle } from './components/ThemeModeToggle';
+import { RouterPath } from 'types';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -39,7 +40,11 @@ export function App() {
           toggleThemeMode={toggleThemeMode}
         />
         <Switch>
-          <Route exact path={['/', '/about', '/work']} component={HomePage} />
+          <Route
+            exact
+            path={`/:section(${Object.values(RouterPath).join('|')})?`}
+            component={Sections}
+          />
           <Redirect to="/" />
         </Switch>
         <GlobalStyle />

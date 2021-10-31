@@ -3,7 +3,7 @@
  * FocusedText
  *
  */
-import { ComponentPropsWithoutRef } from 'hoist-non-react-statics/node_modules/@types/react';
+import { ComponentPropsWithoutRef } from 'react';
 import { memo, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components/macro';
 
@@ -41,6 +41,7 @@ const Text = styled.span<Props>`
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: ${animations.bgPosSway};
+            background-size: 400% 400%;
           }
         `
       : css`
@@ -49,7 +50,6 @@ const Text = styled.span<Props>`
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           animation: ${animations.bgPosSway};
+          background-size: 400% 400%;
         `}
-
-  background-size: 500% 500%;
 `;

@@ -3,23 +3,30 @@
  * Section
  *
  */
-import { memo, PropsWithChildren, ReactNode } from 'react';
+import {
+  memo,
+  PropsWithChildren,
+  ReactNode,
+  ComponentPropsWithoutRef,
+} from 'react';
 import styled, { css } from 'styled-components/macro';
 
 import { media } from 'styles/media';
 
-interface Props {
+interface Props extends Omit<ComponentPropsWithoutRef<'h2'>, 'title'> {
   title?: ReactNode;
 }
 
-export const Section = memo(({ title, children }: PropsWithChildren<Props>) => {
-  return (
-    <>
-      {title !== undefined && <SectionTitle>{title}</SectionTitle>}
-      <SectionContent>{children}</SectionContent>
-    </>
-  );
-});
+export const Section = memo(
+  ({ title, children, ...rest }: PropsWithChildren<Props>) => {
+    return (
+      <>
+        {title !== undefined && <SectionTitle {...rest}>{title}</SectionTitle>}
+        <SectionContent>{children}</SectionContent>
+      </>
+    );
+  },
+);
 
 const SectionTitle = styled.h2`
   font-size: 1.25em;

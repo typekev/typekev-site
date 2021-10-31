@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { Contact } from '..';
+import { Contact } from '../Contact';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {

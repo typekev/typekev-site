@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import { FocusedText } from '..';
+import { Section } from '../Section';
 
-describe('<FocusedText  />', () => {
+describe('<Section  />', () => {
   it('should match snapshot', () => {
-    const loadingIndicator = render(<FocusedText />);
+    const loadingIndicator = render(<Section title="Title">Text</Section>);
     expect(loadingIndicator.container.firstChild).toMatchSnapshot();
   });
 });

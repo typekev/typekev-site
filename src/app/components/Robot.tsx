@@ -3,7 +3,7 @@
  * Robot
  *
  */
-import { memo } from 'react';
+import { memo, ComponentPropsWithoutRef } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Icon } from '@mdi/react';
 import {
@@ -37,25 +37,26 @@ const emotes: Record<RobotEmotion, string> = {
   [RobotEmotion.ANGRY]: mdiRobotAngryOutline,
 };
 
-interface Props {
+interface Props extends ComponentPropsWithoutRef<'div'> {
   emote?: RobotEmotion;
 }
 
-export const Robot = memo(({ emote = RobotEmotion.NEUTRAL }: Props) => {
-  return (
-    <RobotBox>
-      <RobotHead path={emotes[emote]} color="transparent" />
-    </RobotBox>
-  );
-});
+export const Robot = memo(
+  ({ emote = RobotEmotion.NEUTRAL, ...rest }: Props) => {
+    return (
+      <RobotBox {...rest}>
+        <RobotHead path={emotes[emote]} color="transparent" />
+      </RobotBox>
+    );
+  },
+);
 
 const RobotBox = styled.div`
   position: relative;
   float: right;
   top: 1em;
-  margin-top: -0.5em;
-  width: 5.5em;
-  height: 5.5em;
+  width: 5em;
+  height: 5em;
   border-radius: 50%;
 
   ${css`
@@ -100,6 +101,7 @@ const RobotHead = styled(Icon)`
 
   pointer-events: none;
   position: absolute;
+  margin-top: -1em;
   width: inherit;
   background: ${gradients.bgFocused};
   background-size: 1000% 1000%;
