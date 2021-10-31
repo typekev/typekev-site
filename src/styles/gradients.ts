@@ -10,6 +10,15 @@ export const gradients = {
       ${palette.retroOffWhite[100]}
     )
   `,
+  bgThemeDark: `
+    linear-gradient(
+      322deg,
+      ${palette.retroOffBlack[400]},
+      ${palette.retroOffBlack[300]},
+      ${palette.retroOffBlack[200]},
+      ${palette.retroOffBlack[100]}
+    )
+  `,
   bgFocused: `
     linear-gradient(
       91.36deg,

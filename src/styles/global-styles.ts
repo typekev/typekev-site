@@ -1,9 +1,14 @@
-import { createGlobalStyle } from 'styled-components';
-import { gradients } from './gradients';
+import { createGlobalStyle, ThemeProps } from 'styled-components/macro';
+
+import { Theme } from 'types';
+
 import { media } from './media';
 import { palette } from './palette';
+import { theme } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
+  ${({ theme: { mode } }: ThemeProps<Theme>) => theme[mode]}
+
   html,
   body {
     height: 100%;
@@ -11,10 +16,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    overflow: auto;
     font-family: "Inter", sans-serif;
     font-weight: 200;
     line-height: 1.25;
-    background: ${gradients.bgThemeLight};
+    background: var(--bg);
+    background-attachment: fixed;
+    color: var(--fg);
   }
 
   #root {
