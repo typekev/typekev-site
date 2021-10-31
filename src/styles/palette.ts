@@ -6,7 +6,7 @@ export const palette = {
     400: '#fdf9f6',
   },
   retroOffBlack: {
-    100: ' #1e1d1d',
+    100: '#1e1d1d',
     200: '#111010',
     300: '#040404',
     400: '#010101',

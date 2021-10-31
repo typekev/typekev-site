@@ -27,5 +27,5 @@ export const useThemeMode = () => {
     }
   }, []);
 
-  return [themeMode, toggleThemeMode];
+  return { themeMode, toggleThemeMode };
 };

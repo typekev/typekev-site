@@ -12,13 +12,14 @@ import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle } from 'styles/global-styles';
+import { useThemeMode } from 'hooks/useThemeMode';
 
 import { HomePage } from './pages/HomePage/Loadable';
-import { useThemeMode } from 'hooks/useThemeMode';
+import { ThemeModeToggle } from './components/ThemeModeToggle';
 
 export function App() {
   const { i18n } = useTranslation();
-  const [themeMode] = useThemeMode();
+  const { themeMode, toggleThemeMode } = useThemeMode();
 
   return (
     <ThemeProvider theme={{ mode: themeMode }}>
@@ -33,9 +34,12 @@ export function App() {
             content="The personal website of Kevin Gonzalez"
           />
         </Helmet>
-
+        <ThemeModeToggle
+          themeMode={themeMode}
+          toggleThemeMode={toggleThemeMode}
+        />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path={['/', '/about', '/work']} component={HomePage} />
           <Redirect to="/" />
         </Switch>
         <GlobalStyle />

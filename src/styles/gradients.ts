@@ -1,22 +1,13 @@
 import { palette } from './palette';
 
 export const gradients = {
-  bgThemeLight: `
+  bg: `
     linear-gradient(
       322deg,
-      ${palette.retroOffWhite[400]},
-      ${palette.retroOffWhite[300]},
-      ${palette.retroOffWhite[200]},
-      ${palette.retroOffWhite[100]}
-    )
-  `,
-  bgThemeDark: `
-    linear-gradient(
-      322deg,
-      ${palette.retroOffBlack[400]},
-      ${palette.retroOffBlack[300]},
-      ${palette.retroOffBlack[200]},
-      ${palette.retroOffBlack[100]}
+      var(--bg1),
+      var(--bg2),
+      var(--bg3),
+      var(--bg4)
     )
   `,
   bgFocused: `

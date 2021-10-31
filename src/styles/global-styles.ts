@@ -1,6 +1,7 @@
 import { createGlobalStyle, ThemeProps } from 'styled-components/macro';
 
 import { Theme } from 'types';
+import { gradients } from './gradients';
 
 import { media } from './media';
 import { palette } from './palette';
@@ -20,9 +21,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Inter", sans-serif;
     font-weight: 200;
     line-height: 1.25;
-    background: var(--bg);
+    background: ${gradients.bg};
     background-attachment: fixed;
     color: var(--fg);
+    transition: --bg1 150ms, --bg2 300ms, --bg3 450ms, --bg4 600ms, color 450ms;
   }
 
   #root {
