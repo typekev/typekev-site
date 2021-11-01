@@ -7,6 +7,7 @@
 
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
+import 'intersection-observer';
 import smoothscroll from 'smoothscroll-polyfill';
 
 import { StrictMode } from 'react';
@@ -31,6 +32,8 @@ import reportWebVitals from 'reportWebVitals';
 // Initialize languages
 import './locales/i18n';
 
+import { ThemeModeProvider } from 'contexts/ThemeModeContext';
+
 smoothscroll.polyfill();
 
 const store = configureAppStore();
@@ -40,7 +43,9 @@ ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <StrictMode>
-        <App />
+        <ThemeModeProvider>
+          <App />
+        </ThemeModeProvider>
       </StrictMode>
     </HelmetProvider>
   </Provider>,

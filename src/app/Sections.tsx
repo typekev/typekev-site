@@ -2,7 +2,10 @@ import { useLayoutEffect } from 'react';
 import { useParams } from 'react-router';
 
 import { RouterPath } from 'types';
-import { Robot } from 'app/components/Robot';
+import { scrollTo } from 'utils/scrollTo';
+
+import { Robot } from './components/robot/Loadable';
+import { NavBar } from './components/navBar/Loadable';
 
 import { About } from './sections/About';
 import { Work } from './sections/Work';
@@ -13,18 +16,20 @@ export function Sections() {
   const { section } = useParams<{ section?: RouterPath }>();
 
   useLayoutEffect(() => {
-    if (section) {
-      document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    if (section && !window.pageYOffset && !document.documentElement.scrollTop) {
+      scrollTo(section);
     }
-  }, [section]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      <About id="about" />
-      <Robot id="robot" />
-      <Work id="work" />
-      <Blog id="blog" />
-      <Contact id="contact" />
+      <NavBar />
+      <About id={RouterPath.about} />
+      <Robot />
+      <Work id={RouterPath.work} />
+      <Blog id={RouterPath.blog} />
+      <Contact id={RouterPath.contact} />
     </>
   );
 }

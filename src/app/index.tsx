@@ -6,21 +6,21 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
+import { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Redirect, Route, BrowserRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from 'styled-components';
 
+import { RouterPath } from 'types';
 import { GlobalStyle } from 'styles/global-styles';
-import { useThemeMode } from 'hooks/useThemeMode';
 
 import { Sections } from './Sections';
-import { ThemeModeToggle } from './components/ThemeModeToggle';
-import { RouterPath } from 'types';
+import { ThemeModeContext } from 'contexts/ThemeModeContext';
 
 export function App() {
   const { i18n } = useTranslation();
-  const { themeMode, toggleThemeMode } = useThemeMode();
+  const { themeMode } = useContext(ThemeModeContext);
 
   return (
     <ThemeProvider theme={{ mode: themeMode }}>
@@ -35,17 +35,14 @@ export function App() {
             content="The personal website of Kevin Gonzalez"
           />
         </Helmet>
-        <ThemeModeToggle
-          themeMode={themeMode}
-          toggleThemeMode={toggleThemeMode}
-        />
+
         <Switch>
           <Route
             exact
             path={`/:section(${Object.values(RouterPath).join('|')})?`}
             component={Sections}
           />
-          <Redirect to="/" />
+          <Redirect to={RouterPath.about} />
         </Switch>
         <GlobalStyle />
       </BrowserRouter>

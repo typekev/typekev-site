@@ -30,18 +30,18 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     min-height: 100%;
     min-width: 100%;
-    padding: 18vw 6vw;
+    padding: 0 6vw 36vw 6vw;
 
     ${media.small`
-      padding: 16vw 6vw;
+      padding: 0 6vw 32vw 6vw;
     `}
 
     ${media.medium`
-      padding: 13vw 5vw;
+      padding: 0 5vw 26vw 5vw;
     `}
 
     ${media.large`
-      padding: 9vw 4vw;
+      padding: 0 4vw 18vw 4vw;
     `}
   }
 
@@ -57,8 +57,8 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     transition: 125ms;
-    text-decoration-thickness: 3px;
-    color: ${palette.pastelBlue[100]};
+    text-decoration-thickness: 4px;
+    color: var(--fg);
     font-weight: 300;
 
     :hover {

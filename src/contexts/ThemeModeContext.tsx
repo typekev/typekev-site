@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { createContext, useState, useEffect, PropsWithChildren } from 'react';
 import { ThemeMode } from 'types';
 
 const THEME_MODE_LOCAL_KEY = 'themeMode';
@@ -8,7 +8,12 @@ const POSSIBLE_THEME_MODES = Object.values(ThemeMode);
 const stringIsThemeMode = (maybeTM: string | null): maybeTM is ThemeMode =>
   POSSIBLE_THEME_MODES.includes(maybeTM as ThemeMode);
 
-export const useThemeMode = () => {
+export const ThemeModeContext = createContext({
+  themeMode: ThemeMode.light,
+  toggleThemeMode: () => {},
+});
+
+export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
   const [themeMode, setThemeMode] = useState<ThemeMode>(ThemeMode.light);
 
   const toggleThemeMode = () => {
@@ -27,5 +32,9 @@ export const useThemeMode = () => {
     }
   }, []);
 
-  return { themeMode, toggleThemeMode };
+  return (
+    <ThemeModeContext.Provider value={{ themeMode, toggleThemeMode }}>
+      {children}
+    </ThemeModeContext.Provider>
+  );
 };
