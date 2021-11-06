@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from 'styled-components';
 
 import { RouterPath } from 'types';
-import { GlobalStyle } from 'styles/global-styles';
+import { GlobalStyle, GlobalStyleProperties } from 'styles/global-styles';
 
 import { Sections } from './Sections';
 import { ThemeModeContext } from 'contexts/ThemeModeContext';
@@ -23,29 +23,32 @@ export function App() {
   const { themeMode } = useContext(ThemeModeContext);
 
   return (
-    <ThemeProvider theme={{ mode: themeMode }}>
-      <BrowserRouter>
-        <Helmet
-          titleTemplate="Kevin Gonzalez — %s"
-          defaultTitle="Software Engineer"
-          htmlAttributes={{ lang: i18n.language }}
-        >
-          <meta
-            name="description"
-            content="The personal website of Kevin Gonzalez"
-          />
-        </Helmet>
+    <>
+      <ThemeProvider theme={{ mode: themeMode }}>
+        <BrowserRouter>
+          <Helmet
+            titleTemplate="Kevin Gonzalez — %s"
+            defaultTitle="Software Engineer"
+            htmlAttributes={{ lang: i18n.language }}
+          >
+            <meta
+              name="description"
+              content="The personal website of Kevin Gonzalez"
+            />
+          </Helmet>
 
-        <Switch>
-          <Route
-            exact
-            path={`/:section(${Object.values(RouterPath).join('|')})?`}
-            component={Sections}
-          />
-          <Redirect to={RouterPath.about} />
-        </Switch>
-        <GlobalStyle />
-      </BrowserRouter>
-    </ThemeProvider>
+          <Switch>
+            <Route
+              exact
+              path={`/:section(${Object.values(RouterPath).join('|')})?`}
+              component={Sections}
+            />
+            <Redirect to={RouterPath.about} />
+          </Switch>
+          <GlobalStyle />
+        </BrowserRouter>
+      </ThemeProvider>
+      <GlobalStyleProperties />
+    </>
   );
 }

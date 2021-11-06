@@ -3,7 +3,7 @@ import { palette } from './palette';
 export const gradients = {
   bg: `
     linear-gradient(
-      322deg,
+      145deg,
       var(--bg1),
       var(--bg2),
       var(--bg3),

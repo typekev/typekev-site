@@ -26,7 +26,7 @@ export const Section = memo(
     const history = useHistory();
     const ref = useRef<HTMLDivElement>(null);
     const { inViewport } = useInViewport(ref, {
-      rootMargin: '-30% 0px -60% 0px',
+      rootMargin: '-40% 0px -60% 0px',
     });
 
     useLayoutEffect(() => {

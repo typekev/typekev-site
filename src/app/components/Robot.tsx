@@ -53,27 +53,29 @@ const RobotBox = styled.div`
   position: relative;
   float: right;
   top: 1em;
+  margin-right: 1em;
   width: 5em;
   height: 5em;
   border-radius: 50%;
 
   ${css`
     ${media.small`
+      margin-right: 2em;
       width: 9em;
       height: 9em;
     `}
 
     ${media.medium`
+      margin-right: 4em;
       width: 12em;
       height: 12em;
-      margin-right: 0.5em;
     `}
 
     ${media.large`
+      margin-right: 6vw;
       width: 14em;
       height: 14em;
       margin-top: 1em;
-      margin-right: 2vw;
     `}
   `}
 

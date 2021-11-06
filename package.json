@@ -5,9 +5,11 @@
   "dependencies": {
     "@fontsource/averia-serif-libre": "4.5.0",
     "@fontsource/inter": "4.5.0",
-    "@material-ui/core": "4.12.3",
     "@mdi/js": "6.4.95",
     "@mdi/react": "1.5.0",
+    "@mui/material": "5.0.6",
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "@mui/styled-engine-sc": "latest",
     "@reduxjs/toolkit": "1.6.0",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
@@ -68,6 +70,9 @@
     "ts-node": "10.0.0",
     "typescript": "4.2.2",
     "web-vitals": "2.1.0"
+  },
+  "resolutions": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
   },
   "scripts": {
     "start": "react-scripts start",

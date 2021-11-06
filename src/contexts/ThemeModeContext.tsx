@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect, PropsWithChildren } from 'react';
 import { ThemeMode } from 'types';
 
+import { palette } from 'styles/palette';
+
 const THEME_MODE_LOCAL_KEY = 'themeMode';
 const PREF_DARK_MEDIA = '(prefers-color-scheme: dark)';
 const POSSIBLE_THEME_MODES = Object.values(ThemeMode);
@@ -31,6 +33,22 @@ export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
       setThemeMode(ThemeMode.dark);
     }
   }, []);
+
+  useEffect(() => {
+    if (themeMode === ThemeMode.light) {
+      document.body.style.setProperty('--bg1', palette.retroOffWhite[400]);
+      document.body.style.setProperty('--bg2', palette.retroOffWhite[300]);
+      document.body.style.setProperty('--bg3', palette.retroOffWhite[200]);
+      document.body.style.setProperty('--bg4', palette.retroOffWhite[100]);
+      document.body.style.setProperty('--fg', palette.retroOffBlack[400]);
+    } else {
+      document.body.style.setProperty('--bg1', palette.retroOffBlack[100]);
+      document.body.style.setProperty('--bg2', palette.retroOffBlack[200]);
+      document.body.style.setProperty('--bg3', palette.retroOffBlack[300]);
+      document.body.style.setProperty('--bg4', palette.retroOffBlack[400]);
+      document.body.style.setProperty('--fg', palette.retroOffWhite[100]);
+    }
+  }, [themeMode]);
 
   return (
     <ThemeModeContext.Provider value={{ themeMode, toggleThemeMode }}>

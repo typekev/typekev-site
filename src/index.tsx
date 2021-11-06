@@ -13,6 +13,8 @@ import smoothscroll from 'smoothscroll-polyfill';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
@@ -43,9 +45,11 @@ ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <StrictMode>
-        <ThemeModeProvider>
-          <App />
-        </ThemeModeProvider>
+        <ThemeProvider theme={createTheme()}>
+          <ThemeModeProvider>
+            <App />
+          </ThemeModeProvider>
+        </ThemeProvider>
       </StrictMode>
     </HelmetProvider>
   </Provider>,

@@ -4,10 +4,11 @@
  *
  */
 import { useContext, memo } from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import Icon from '@mdi/react';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 
@@ -27,15 +28,23 @@ export const ThemeModeToggle = memo(() => {
 
   return (
     <Tooltip title={tooltip} placement="right" arrow>
-      <IconButton onClick={toggleThemeMode} color="inherit">
-        <Toggle
-          color={isDarkMode ? palette.pastelBlue[100] : palette.pastelRed[200]}
-          path={isDarkMode ? mdiWeatherNight : mdiWeatherSunny}
-        />
-      </IconButton>
+      <ColorBox
+        color={isDarkMode ? palette.pastelBlue[100] : palette.pastelRed[200]}
+      >
+        <IconButton onClick={toggleThemeMode} color="inherit">
+          <Toggle
+            color="inherit"
+            path={isDarkMode ? mdiWeatherNight : mdiWeatherSunny}
+          />
+        </IconButton>
+      </ColorBox>
     </Tooltip>
   );
 });
+
+const ColorBox = styled(Box)`
+  transition: color 1500ms;
+`;
 
 const Toggle = styled(Icon)`
   width: 1em;
