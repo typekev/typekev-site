@@ -18,3 +18,61 @@ export const theme: Record<ThemeMode, FlattenSimpleInterpolation> = {
     --fg: ${palette.retroOffWhite[100]};
   `,
 };
+
+export const varProps: Record<ThemeMode, FlattenSimpleInterpolation> = {
+  light: css`
+    @property --bg1 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffWhite[400]};
+      inherits: false;
+    }
+    @property --bg2 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffWhite[300]};
+      inherits: false;
+    }
+    @property --bg3 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffWhite[200]};
+      inherits: false;
+    }
+    @property --bg4 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffWhite[100]};
+      inherits: false;
+    }
+    @property --fg {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffBlack[400]};
+      inherits: false;
+    }
+  `,
+
+  dark: css`
+    @property --bg1 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffBlack[100]};
+      inherits: false;
+    }
+    @property --bg2 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffBlack[200]};
+      inherits: false;
+    }
+    @property --bg3 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffBlack[300]};
+      inherits: false;
+    }
+    @property --bg4 {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffBlack[400]};
+      inherits: false;
+    }
+    @property --fg {
+      syntax: '<color>';
+      initial-value: ${palette.retroOffWhite[100]};
+      inherits: false;
+    }
+  `,
+};

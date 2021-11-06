@@ -16,7 +16,13 @@ export const ThemeModeContext = createContext({
 });
 
 export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
-  const [themeMode, setThemeMode] = useState<ThemeMode>(ThemeMode.light);
+  const localThemeMode = localStorage.getItem(THEME_MODE_LOCAL_KEY);
+  const initTheme =
+    (stringIsThemeMode(localThemeMode) ? localThemeMode : null) ??
+    (window.matchMedia(PREF_DARK_MEDIA).matches
+      ? ThemeMode.dark
+      : ThemeMode.light);
+  const [themeMode, setThemeMode] = useState<ThemeMode>(initTheme);
 
   const toggleThemeMode = () => {
     const nextThemeMode =
@@ -26,12 +32,12 @@ export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
   };
 
   useEffect(() => {
-    const localThemeMode = localStorage.getItem(THEME_MODE_LOCAL_KEY);
     if (stringIsThemeMode(localThemeMode)) {
       setThemeMode(localThemeMode);
     } else if (window.matchMedia(PREF_DARK_MEDIA).matches) {
       setThemeMode(ThemeMode.dark);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

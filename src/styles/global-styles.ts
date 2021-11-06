@@ -5,66 +5,18 @@ import { gradients } from './gradients';
 
 import { media } from './media';
 import { palette } from './palette';
-import { theme } from './theme';
+import { theme, varProps } from './theme';
 
 export const GlobalStyleProperties = createGlobalStyle`
   @media (prefers-color-scheme: light) {
     :root {
-      @property --bg1 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffWhite[400]};
-        inherits: false;
-      }
-      @property --bg2 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffWhite[300]};
-        inherits: false;
-      }
-      @property --bg3 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffWhite[200]};
-        inherits: false;
-      }
-      @property --bg4 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffWhite[100]};
-        inherits: false;
-      }
-      @property --fg {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffBlack[400]};
-        inherits: false;
-      }
+      ${varProps.light}
     }
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      @property --bg1 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffBlack[100]};
-        inherits: false;
-      }
-      @property --bg2 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffBlack[200]};
-        inherits: false;
-      }
-      @property --bg3 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffBlack[300]};
-        inherits: false;
-      }
-      @property --bg4 {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffBlack[400]};
-        inherits: false;
-      }
-      @property --fg {
-        syntax: '<color>';
-        initial-value: ${palette.retroOffWhite[100]};
-        inherits: false;
-      }
+      ${varProps.dark}
     }
   }
 `;
