@@ -3,7 +3,7 @@
  * Robot
  *
  */
-import { forwardRef, memo } from 'react';
+import { forwardRef, memo, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Icon } from '@mdi/react';
 import {
@@ -42,13 +42,16 @@ interface Props {
 }
 
 export const Robot = memo(
-  forwardRef<HTMLDivElement, Props>(({ emote = RobotEmotion.NEUTRAL }, ref) => {
-    return (
-      <RobotBox ref={ref}>
-        <RobotHead path={emotes[emote]} color="transparent" />
-      </RobotBox>
-    );
-  }),
+  forwardRef<HTMLDivElement, PropsWithChildren<Props>>(
+    ({ emote = RobotEmotion.NEUTRAL, children }, ref) => {
+      return (
+        <RobotBox ref={ref}>
+          {children}
+          <RobotHead id="robot-head" path={emotes[emote]} color="transparent" />
+        </RobotBox>
+      );
+    },
+  ),
 );
 
 const RobotBox = styled.div`
