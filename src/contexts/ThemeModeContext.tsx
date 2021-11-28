@@ -66,7 +66,6 @@ export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
       document.body.style.setProperty('--bg4', palette.retroOffBlack[400]);
       document.body.style.setProperty('--fg', palette.retroOffWhite[100]);
     }
-    console.log(initThemeMode);
     if (themeMode !== initThemeMode) {
       document.body.style.setProperty('--bg1-trans-duration', '300ms');
       document.body.style.setProperty('--bg2-trans-duration', '600ms');

@@ -18,11 +18,11 @@ export const frames = {
       left: 0;
     }
     25% {
-      transform: rotate(10deg);
+      transform: rotate(7deg);
       left: var(--sway-x);
     }
     75% {
-      transform: rotate(-10deg);
+      transform: rotate(-7deg);
       left: calc(var(--sway-x) * -1);
     }
     100% {
