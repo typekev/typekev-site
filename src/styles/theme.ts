@@ -1,5 +1,8 @@
+import { createTheme } from '@mui/material/styles';
 import { css, FlattenSimpleInterpolation } from 'styled-components/macro';
+
 import { ThemeMode } from 'types';
+
 import { palette } from './palette';
 
 export const theme: Record<ThemeMode, FlattenSimpleInterpolation> = {
@@ -19,60 +22,9 @@ export const theme: Record<ThemeMode, FlattenSimpleInterpolation> = {
   `,
 };
 
-export const varProps: Record<ThemeMode, FlattenSimpleInterpolation> = {
-  light: css`
-    @property --bg1 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffWhite[400]};
-      inherits: false;
-    }
-    @property --bg2 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffWhite[300]};
-      inherits: false;
-    }
-    @property --bg3 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffWhite[200]};
-      inherits: false;
-    }
-    @property --bg4 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffWhite[100]};
-      inherits: false;
-    }
-    @property --fg {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffBlack[400]};
-      inherits: false;
-    }
-  `,
-
-  dark: css`
-    @property --bg1 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffBlack[100]};
-      inherits: false;
-    }
-    @property --bg2 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffBlack[200]};
-      inherits: false;
-    }
-    @property --bg3 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffBlack[300]};
-      inherits: false;
-    }
-    @property --bg4 {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffBlack[400]};
-      inherits: false;
-    }
-    @property --fg {
-      syntax: '<color>';
-      initial-value: ${palette.retroOffWhite[100]};
-      inherits: false;
-    }
-  `,
-};
+export const getMuiTheme = (themeMode: ThemeMode) =>
+  createTheme({
+    palette: {
+      mode: themeMode,
+    },
+  });

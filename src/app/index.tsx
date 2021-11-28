@@ -6,25 +6,28 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Redirect, Route, BrowserRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/macro';
+import MuiThemeProvider from '@mui/material/styles/ThemeProvider';
 
 import { RouterPath } from 'types';
+import { ThemeModeContext } from 'contexts/ThemeModeContext';
 import { GlobalStyle, GlobalStyleProperties } from 'styles/global-styles';
+import { getMuiTheme } from 'styles/theme';
 
 import { Sections } from './Sections';
-import { ThemeModeContext } from 'contexts/ThemeModeContext';
 
 export function App() {
   const { i18n } = useTranslation();
   const { themeMode } = useContext(ThemeModeContext);
+  const muiTheme = useMemo(() => getMuiTheme(themeMode), [themeMode]);
 
   return (
-    <>
-      <ThemeProvider theme={{ mode: themeMode }}>
+    <ThemeProvider theme={{ mode: themeMode }}>
+      <MuiThemeProvider theme={muiTheme}>
         <BrowserRouter>
           <Helmet
             titleTemplate="Kevin Gonzalez — %s"
@@ -47,8 +50,8 @@ export function App() {
           </Switch>
           <GlobalStyle />
         </BrowserRouter>
-      </ThemeProvider>
+      </MuiThemeProvider>
       <GlobalStyleProperties />
-    </>
+    </ThemeProvider>
   );
 }

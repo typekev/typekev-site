@@ -5,19 +5,60 @@ import { gradients } from './gradients';
 
 import { media } from './media';
 import { palette } from './palette';
-import { theme, varProps } from './theme';
+import { theme } from './theme';
 
 export const GlobalStyleProperties = createGlobalStyle`
-  @media (prefers-color-scheme: light) {
-    :root {
-      ${varProps.light}
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      ${varProps.dark}
-    }
+  :root {
+    @property --bg1 {
+        syntax: '<color>';
+        initial-value: transparent;
+        inherits: false;
+      }
+      @property --bg2 {
+        syntax: '<color>';
+        initial-value: transparent;
+        inherits: false;
+      }
+      @property --bg3 {
+        syntax: '<color>';
+        initial-value: transparent;
+        inherits: false;
+      }
+      @property --bg4 {
+        syntax: '<color>';
+        initial-value: transparent;
+        inherits: false;
+      }
+      @property --fg {
+        syntax: '<color>';
+        initial-value: transparent;
+        inherits: false;
+      }
+      @property --bg1-trans-duration {
+        syntax: '<time>';
+        initial-value: 0ms;
+        inherits: false;
+      }
+      @property --bg2-trans-duration {
+        syntax: '<time>';
+        initial-value: 0ms;
+        inherits: false;
+      }
+      @property --bg3-trans-duration {
+        syntax: '<time>';
+        initial-value: 0ms;
+        inherits: false;
+      }
+      @property --bg4-trans-duration {
+        syntax: '<time>';
+        initial-value: 0ms;
+        inherits: false;
+      }
+      @property --fg-trans-duration {
+        syntax: '<time>';
+        initial-value: 0ms;
+        inherits: false;
+      }
   }
 `;
 
@@ -36,7 +77,11 @@ export const GlobalStyle = createGlobalStyle`
     background: ${gradients.bg};
     background-attachment: fixed;
     color: var(--fg);
-    transition: --bg1 300ms, --bg2 600ms, --bg3 900ms, --bg4 1200ms, --fg 1500ms;
+    transition: --bg1 var(--bg1-trans-duration), 
+                --bg2 var(--bg2-trans-duration), 
+                --bg3 var(--bg3-trans-duration), 
+                --bg4 var(--bg4-trans-duration), 
+                --fg var(--fg-trans-duration);
     ${({ theme: { mode } }: ThemeProps<Theme>) => theme[mode]}
   }
 

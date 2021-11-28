@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { ThemeMode } from 'types';
 
 import { ThemeModeToggle } from '../ThemeModeToggle';
 
@@ -16,12 +15,7 @@ jest.mock('react-i18next', () => ({
 
 describe('<ThemeModeToggle  />', () => {
   it('should match snapshot', () => {
-    const loadingIndicator = render(
-      <ThemeModeToggle
-        themeMode={ThemeMode.light}
-        toggleThemeMode={() => {}}
-      />,
-    );
+    const loadingIndicator = render(<ThemeModeToggle />);
     expect(loadingIndicator.container.firstChild).toMatchSnapshot();
   });
 });

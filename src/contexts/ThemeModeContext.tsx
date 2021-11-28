@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, PropsWithChildren } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  PropsWithChildren,
+  useMemo,
+} from 'react';
 import { ThemeMode } from 'types';
 
 import { palette } from 'styles/palette';
@@ -16,13 +22,20 @@ export const ThemeModeContext = createContext({
 });
 
 export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
-  const localThemeMode = localStorage.getItem(THEME_MODE_LOCAL_KEY);
-  const initTheme =
-    (stringIsThemeMode(localThemeMode) ? localThemeMode : null) ??
-    (window.matchMedia(PREF_DARK_MEDIA).matches
-      ? ThemeMode.dark
-      : ThemeMode.light);
-  const [themeMode, setThemeMode] = useState<ThemeMode>(initTheme);
+  const localThemeMode = useMemo(
+    () => localStorage.getItem(THEME_MODE_LOCAL_KEY),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  const initThemeMode = useMemo(
+    () =>
+      (stringIsThemeMode(localThemeMode) ? localThemeMode : null) ??
+      (window.matchMedia(PREF_DARK_MEDIA).matches
+        ? ThemeMode.dark
+        : ThemeMode.light),
+    [localThemeMode],
+  );
+  const [themeMode, setThemeMode] = useState<ThemeMode>(initThemeMode);
 
   const toggleThemeMode = () => {
     const nextThemeMode =
@@ -37,8 +50,7 @@ export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
     } else if (window.matchMedia(PREF_DARK_MEDIA).matches) {
       setThemeMode(ThemeMode.dark);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [localThemeMode]);
 
   useEffect(() => {
     if (themeMode === ThemeMode.light) {
@@ -54,7 +66,15 @@ export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
       document.body.style.setProperty('--bg4', palette.retroOffBlack[400]);
       document.body.style.setProperty('--fg', palette.retroOffWhite[100]);
     }
-  }, [themeMode]);
+    console.log(initThemeMode);
+    if (themeMode !== initThemeMode) {
+      document.body.style.setProperty('--bg1-trans-duration', '300ms');
+      document.body.style.setProperty('--bg2-trans-duration', '600ms');
+      document.body.style.setProperty('--bg3-trans-duration', '900ms');
+      document.body.style.setProperty('--bg4-trans-duration', '1200ms');
+      document.body.style.setProperty('--fg-trans-duration', '1500ms');
+    }
+  }, [initThemeMode, themeMode]);
 
   return (
     <ThemeModeContext.Provider value={{ themeMode, toggleThemeMode }}>
