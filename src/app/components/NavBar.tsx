@@ -27,11 +27,11 @@ import { translations } from 'locales/translations';
 import { ThemeModeToggle } from './themeModeToggle/Loadable';
 import { media } from 'styles/media';
 
-const NEXT_SECTION: Record<RouterPath, RouterPath> = {
+const NEXT_SECTION: Record<RouterPath, RouterPath | number> = {
   [RouterPath.about]: RouterPath.work,
   [RouterPath.work]: RouterPath.blog,
   [RouterPath.blog]: RouterPath.contact,
-  [RouterPath.contact]: RouterPath.about,
+  [RouterPath.contact]: 0,
 };
 
 export const NavBar = memo(() => {
@@ -53,17 +53,15 @@ export const NavBar = memo(() => {
       </Hidden>
       <Hidden mdDown>
         <Tooltip title={arrowTitle} placement="right" arrow>
-          <NavLink
-            to={NEXT_SECTION[section]}
+          <IconButton
+            color="inherit"
             onClick={() => scrollTo(NEXT_SECTION[section])}
           >
-            <IconButton color="inherit">
-              <Icon
-                path={mdiArrowDown}
-                rotate={hasReachedEnd ? 180 : undefined}
-              />
-            </IconButton>
-          </NavLink>
+            <Icon
+              path={mdiArrowDown}
+              rotate={hasReachedEnd ? 180 : undefined}
+            />
+          </IconButton>
         </Tooltip>
         <Tooltip
           title={t(translations['About me']) as string}
@@ -158,6 +156,6 @@ const Bar = styled.div<{ retract: boolean }>`
       color: inherit;
     }
 
-    transition: 250ms transform 250ms;
+    transition: 500ms transform 100ms;
   }
 `;
