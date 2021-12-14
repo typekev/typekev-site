@@ -1,4 +1,4 @@
-export const scrollTo = (to: string | number) =>
-  typeof to === 'string'
-    ? document.getElementById(to)?.scrollIntoView({ behavior: 'smooth' })
-    : window.scrollTo({ top: 0, behavior: 'smooth' });
+import { RouterPath } from 'types';
+
+export const scrollTo = (to: RouterPath) =>
+  document.getElementById(to)?.scrollIntoView({ behavior: 'smooth' });

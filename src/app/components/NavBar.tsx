@@ -4,7 +4,7 @@
  *
  */
 import { memo } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, Link, NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
@@ -27,11 +27,11 @@ import { translations } from 'locales/translations';
 import { ThemeModeToggle } from './themeModeToggle/Loadable';
 import { media } from 'styles/media';
 
-const NEXT_SECTION: Record<RouterPath, RouterPath | number> = {
+const NEXT_SECTION: Record<RouterPath, RouterPath> = {
   [RouterPath.about]: RouterPath.work,
   [RouterPath.work]: RouterPath.blog,
   [RouterPath.blog]: RouterPath.contact,
-  [RouterPath.contact]: 0,
+  [RouterPath.contact]: RouterPath.about,
 };
 
 export const NavBar = memo(() => {
@@ -53,15 +53,17 @@ export const NavBar = memo(() => {
       </Hidden>
       <Hidden mdDown>
         <Tooltip title={arrowTitle} placement="right" arrow>
-          <IconButton
-            color="inherit"
+          <Link
+            to={NEXT_SECTION[section]}
             onClick={() => scrollTo(NEXT_SECTION[section])}
           >
-            <Icon
-              path={mdiArrowDown}
-              rotate={hasReachedEnd ? 180 : undefined}
-            />
-          </IconButton>
+            <IconButton color="inherit">
+              <Icon
+                path={mdiArrowDown}
+                rotate={hasReachedEnd ? 180 : undefined}
+              />
+            </IconButton>
+          </Link>
         </Tooltip>
         <Tooltip
           title={t(translations['About me']) as string}
