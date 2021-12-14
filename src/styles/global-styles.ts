@@ -63,6 +63,10 @@ export const GlobalStyleProperties = createGlobalStyle`
 `;
 
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    ${({ theme: { mode } }: ThemeProps<Theme>) => theme[mode]}
+  }
+
   html,
   body {
     height: 100%;
@@ -82,24 +86,23 @@ export const GlobalStyle = createGlobalStyle`
                 --bg3 var(--bg3-trans-duration), 
                 --bg4 var(--bg4-trans-duration), 
                 --fg var(--fg-trans-duration);
-    ${({ theme: { mode } }: ThemeProps<Theme>) => theme[mode]}
   }
 
   #root {
     min-height: 100%;
     min-width: 100%;
-    padding: 0 6vw 36vh 6vw;
+    padding: 0 6vw 67vh 6vw;
 
     ${media.small`
-      padding: 0 6vw 33vh 6vw;
+      padding: 0 6vw 67vh 6vw;
     `}
 
     ${media.medium`
-      padding: 0 5vw 32vh 5vw;
+      padding: 0 5vw 67vh 5vw;
     `}
 
     ${media.large`
-      padding: 0 5vw 18vh 5vw;
+      padding: 0 5vw 47vh 5vw;
     `}
   }
 
