@@ -1,10 +1,11 @@
 import { useLayoutEffect, useMemo } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import {
   createHtmlPortalNode,
   InPortal,
   OutPortal,
 } from 'react-reverse-portal';
+import { debounce } from '@mui/material';
 import Slide from '@mui/material/Slide';
 
 import { RouterPath } from 'types';
@@ -20,13 +21,20 @@ import { Blog } from './sections/Blog';
 import { Contact } from './sections/Contact';
 
 export function Sections() {
+  const history = useHistory();
   const { section } = useParams<{ section?: RouterPath }>();
   const robotChatBubblePortalNode = useMemo(() => createHtmlPortalNode(), []);
+  const debouncedReplaceHistory = useMemo(
+    () => debounce(history.replace, 200),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   useLayoutEffect(() => {
     if (section && !window.pageYOffset && !document.documentElement.scrollTop) {
       scrollTo(section);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,7 +55,10 @@ export function Sections() {
       <InPortal node={robotChatBubblePortalNode}>
         <RobotChatBubble message="Click me!" />
       </InPortal>
-      <About id={RouterPath.about} />
+      <About
+        id={RouterPath.about}
+        onEnterViewport={() => debouncedReplaceHistory(RouterPath.about)}
+      />
       <Slide
         mountOnEnter
         unmountOnExit
@@ -62,7 +73,10 @@ export function Sections() {
           <OutPortal node={robotChatBubblePortalNode} />
         </Robot>
       </Slide>
-      <Work id={RouterPath.work} />
+      <Work
+        id={RouterPath.work}
+        onEnterViewport={() => debouncedReplaceHistory(RouterPath.work)}
+      />
       <Slide
         mountOnEnter
         unmountOnExit
@@ -77,7 +91,10 @@ export function Sections() {
           <OutPortal node={robotChatBubblePortalNode} />
         </Robot>
       </Slide>
-      <Blog id={RouterPath.blog} />
+      <Blog
+        id={RouterPath.blog}
+        onEnterViewport={() => debouncedReplaceHistory(RouterPath.blog)}
+      />
       <Slide
         mountOnEnter
         unmountOnExit
@@ -92,7 +109,12 @@ export function Sections() {
           <OutPortal node={robotChatBubblePortalNode} />
         </Robot>
       </Slide>
-      <Contact id={RouterPath.contact} />
+      <Contact
+        id={RouterPath.contact}
+        onEnterViewport={() => debouncedReplaceHistory(RouterPath.contact)}
+        onLeaveViewport={() => debouncedReplaceHistory(RouterPath.blog)}
+        rootMargin="-20% 0px -80% 0px"
+      />
     </>
   );
 }

@@ -6,38 +6,44 @@
 import {
   memo,
   useRef,
-  useLayoutEffect,
   PropsWithChildren,
   ReactNode,
   ComponentPropsWithoutRef,
 } from 'react';
 import { useInViewport } from 'react-in-viewport';
-import { useHistory } from 'react-router';
 import styled, { css } from 'styled-components/macro';
 
 import { media } from 'styles/media';
 
 interface Props extends Omit<ComponentPropsWithoutRef<'div'>, 'title'> {
   title?: ReactNode;
+  onEnterViewport: VoidFunction;
+  onLeaveViewport?: VoidFunction;
+  rootMargin?: string;
 }
 
 export const Section = memo(
-  ({ title, children, ...rest }: PropsWithChildren<Props>) => {
-    const history = useHistory();
+  ({
+    title,
+    id,
+    onEnterViewport,
+    onLeaveViewport,
+    rootMargin = '-10% 0px -90% 0px',
+    children,
+    ...rest
+  }: PropsWithChildren<Props>) => {
     const ref = useRef<HTMLDivElement>(null);
-    const { inViewport } = useInViewport(ref, {
-      rootMargin: '-40% 0px -60% 0px',
-    });
-
-    useLayoutEffect(() => {
-      if (inViewport && rest.id) {
-        history.replace(rest.id);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [inViewport, rest.id]);
+    useInViewport(
+      ref,
+      {
+        rootMargin,
+      },
+      undefined,
+      { onEnterViewport, onLeaveViewport },
+    );
 
     return (
-      <div ref={ref} {...rest}>
+      <div ref={ref} id={id} {...rest}>
         <SectionTitle>{title}</SectionTitle>
         <SectionContent>{children}</SectionContent>
       </div>
