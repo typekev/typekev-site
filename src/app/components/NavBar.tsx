@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Hidden from '@mui/material/Hidden';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Icon from '@mdi/react';
 import {
   mdiArrowDown,
@@ -23,9 +25,9 @@ import {
 import { RouterPath } from 'types';
 import { scrollTo } from 'utils/scrollTo';
 import { translations } from 'locales/translations';
+import { media } from 'styles/media';
 
 import { ThemeModeToggle } from './themeModeToggle/Loadable';
-import { media } from 'styles/media';
 
 const NEXT_SECTION: Record<RouterPath, RouterPath> = {
   [RouterPath.about]: RouterPath.work,
@@ -52,78 +54,93 @@ export const NavBar = memo(() => {
         </IconButton>
       </Hidden>
       <Hidden mdDown>
-        <Tooltip title={arrowTitle} placement="right" arrow>
-          <Link
+        <Tabs orientation="vertical" value={section}>
+          <Tab
+            component={Link}
+            icon={
+              <Tooltip title={arrowTitle} placement="right" arrow>
+                <Icon
+                  path={mdiArrowDown}
+                  rotate={hasReachedEnd ? 180 : undefined}
+                />
+              </Tooltip>
+            }
             to={NEXT_SECTION[section]}
             onClick={() => scrollTo(NEXT_SECTION[section])}
-          >
-            <IconButton color="inherit">
-              <Icon
-                path={mdiArrowDown}
-                rotate={hasReachedEnd ? 180 : undefined}
-              />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        <Tooltip
-          title={t(translations['About me']) as string}
-          placement="right"
-          arrow
-        >
-          <NavLink
+            aria-label={arrowTitle}
+          />
+          <Tab
+            value={RouterPath.about}
+            component={NavLink}
+            icon={
+              <Tooltip
+                title={t(translations['About me']) as string}
+                placement="right"
+                arrow
+              >
+                <Icon path={mdiHandWaveOutline} color="inherit" />
+              </Tooltip>
+            }
             to={RouterPath.about}
             onClick={() => scrollTo(RouterPath.about)}
-          >
-            <IconButton color="inherit">
-              <Icon path={mdiHandWaveOutline} color="inherit" />
-            </IconButton>
-          </NavLink>
-        </Tooltip>
-        <Tooltip title={t(translations.Work) as string} placement="right" arrow>
-          <NavLink
+            aria-label={arrowTitle}
+          />
+          <Tab
+            value={RouterPath.work}
+            component={NavLink}
+            icon={
+              <Tooltip
+                title={t(translations.Work) as string}
+                placement="right"
+                arrow
+              >
+                <Icon path={mdiAtom} color="inherit" />
+              </Tooltip>
+            }
             to={RouterPath.work}
             onClick={() => scrollTo(RouterPath.work)}
-          >
-            <IconButton color="inherit">
-              <Icon path={mdiAtom} color="inherit" />
-            </IconButton>
-          </NavLink>
-        </Tooltip>
-        <Tooltip
-          title={t(translations.Articles) as string}
-          placement="right"
-          arrow
-        >
-          <NavLink
+            aria-label={arrowTitle}
+          />
+          <Tab
+            value={RouterPath.blog}
+            component={NavLink}
+            icon={
+              <Tooltip
+                title={t(translations.Articles) as string}
+                placement="right"
+                arrow
+              >
+                <Icon path={mdiBookshelf} color="inherit" />
+              </Tooltip>
+            }
             to={RouterPath.blog}
             onClick={() => scrollTo(RouterPath.blog)}
-          >
-            <IconButton color="inherit">
-              <Icon path={mdiBookshelf} />
-            </IconButton>
-          </NavLink>
-        </Tooltip>
-        <Tooltip
-          title={t(translations.Contact) as string}
-          placement="right"
-          arrow
-        >
-          <NavLink
+            aria-label={arrowTitle}
+          />
+          <Tab
+            value={RouterPath.contact}
+            component={NavLink}
+            icon={
+              <Tooltip
+                title={t(translations.Contact) as string}
+                placement="right"
+                arrow
+              >
+                <Icon path={mdiAt} />
+              </Tooltip>
+            }
             to={RouterPath.contact}
             onClick={() => scrollTo(RouterPath.contact)}
-          >
-            <IconButton color="inherit">
-              <Icon path={mdiAt} />
-            </IconButton>
-          </NavLink>
-        </Tooltip>
-        <ThemeModeToggle />
+            aria-label={arrowTitle}
+          />
+          <ThemeModeToggle />
+        </Tabs>
       </Hidden>
     </Bar>
   );
 });
 
-const Bar = styled.div<{ retract: boolean }>`
+const Bar = styled.nav<{ retract: boolean }>`
   position: fixed;
   right: 0;
   transition: right 250ms;
@@ -131,45 +148,30 @@ const Bar = styled.div<{ retract: boolean }>`
   ${({ retract }) =>
     retract &&
     css`
-      right: -2em;
+      right: -1.75em;
     `}
 
   ${media.medium`
     display: flex;
     flex-direction: column;
-    top: 50%;
-    left: auto;
     right: 0;
-    transform: translateY(-50%);
+    bottom: 1em;
+
+    svg {
+      width: 4.25em;
+      padding: 0.75em;
+
+      ${media.large`
+        width: 5.25em;
+        padding: 0.875em;
+      `}
+      
+      transition: 500ms transform 100ms;
+      filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
+
+      :hover {
+        color: inherit;
+      }
+    }
   `}
-
-  ${media.large`
-    margin-left: 0.5vw;
-  `}
-
-  > a {
-    opacity: 0.5;
-
-    &:hover {
-      opacity: 0.9;
-    }
-
-    &.active {
-      border-right: solid;
-      opacity: 1;
-    }
-  }
-
-  svg {
-    width: 2em;
-    ${media.large`
-      width: 3vw;
-    `}
-    transition: 500ms transform 100ms;
-    filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
-
-    :hover {
-      color: inherit;
-    }
-  }
 `;

@@ -26,5 +26,30 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
   createTheme({
     palette: {
       mode: themeMode,
+      primary: {
+        main:
+          themeMode === ThemeMode.light
+            ? palette.retroOffBlack[100]
+            : palette.retroOffWhite[100],
+      },
+    },
+    components: {
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            borderRadius: '50%',
+            minWidth: 0,
+            padding: 0,
+          },
+        },
+      },
+      MuiTabs: {
+        styleOverrides: {
+          indicator: {
+            minWidth: '0.25em',
+            borderRadius: '0.5em',
+          },
+        },
+      },
     },
   });

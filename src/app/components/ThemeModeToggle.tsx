@@ -7,7 +7,7 @@ import { useContext, memo } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
+import Tab from '@mui/material/Tab';
 import Tooltip from '@mui/material/Tooltip';
 import Icon from '@mdi/react';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
@@ -27,21 +27,29 @@ export const ThemeModeToggle = memo(() => {
     : t(translations['Dark mode Off']);
 
   return (
-    <Tooltip title={tooltip} placement="right" arrow>
-      <ColorBox color={isDarkMode ? palette.moonGlow : palette.supernova}>
-        <IconButton onClick={toggleThemeMode} color="inherit">
-          <Toggle
-            color="inherit"
-            path={isDarkMode ? mdiWeatherNight : mdiWeatherSunny}
-          />
-        </IconButton>
-      </ColorBox>
-    </Tooltip>
+    <ColorBox color={isDarkMode ? palette.moonGlow : palette.supernova}>
+      <Tab
+        onClick={toggleThemeMode}
+        color="inherit"
+        icon={
+          <Tooltip title={tooltip} placement="right" arrow>
+            <Toggle
+              color="inherit"
+              path={isDarkMode ? mdiWeatherNight : mdiWeatherSunny}
+            />
+          </Tooltip>
+        }
+      />
+    </ColorBox>
   );
 });
 
 const ColorBox = styled(Box)`
   transition: color 1500ms;
+
+  > button {
+    opacity: 1;
+  }
 `;
 
 const Toggle = styled(Icon)`
