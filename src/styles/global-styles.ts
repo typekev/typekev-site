@@ -116,9 +116,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    text-decoration-thickness: 4px;
     color: inherit;
     font-weight: 300;
+
+    ${media.medium`
+      text-decoration-thickness: 4px;
+    `}
+
+    ${media.large`
+      text-decoration-thickness: 5px;
+    `}
 
     :hover {
       transition: 300ms;
