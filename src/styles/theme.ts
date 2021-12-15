@@ -29,8 +29,8 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
       primary: {
         main:
           themeMode === ThemeMode.light
-            ? palette.retroOffBlack[100]
-            : palette.retroOffWhite[100],
+            ? palette.retroOffBlack[200]
+            : palette.retroOffWhite[300],
       },
     },
     components: {
@@ -40,6 +40,9 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
             borderRadius: '50%',
             minWidth: 0,
             padding: 0,
+            '&:hover': {
+              color: 'inherit',
+            },
           },
         },
       },
