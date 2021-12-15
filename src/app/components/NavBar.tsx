@@ -147,17 +147,29 @@ const Bar = styled.div<{ retract: boolean }>`
     margin-left: 0.5vw;
   `}
 
+  > a {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &.active {
+      border-right: solid;
+      opacity: 1;
+    }
+  }
+
   svg {
     width: 2em;
-
     ${media.large`
       width: 3vw;
     `}
+    transition: 500ms transform 100ms;
+    filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
 
     :hover {
       color: inherit;
     }
-
-    transition: 500ms transform 100ms;
   }
 `;

@@ -5,8 +5,10 @@
  */
 import { memo, ComponentPropsWithoutRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components/macro';
 
 import { translations } from 'locales/translations';
+import { palette } from 'styles/palette';
 
 import { Section } from 'app/components/Section';
 
@@ -24,15 +26,21 @@ export const Contact = memo(
       <Section title={t(translations['Ways you can contact me'])} {...props}>
         <ul>
           <li>
-            <a href={links.linkedIn} target="_blank" rel="noreferrer">
+            <A href={links.linkedIn} target="_blank" rel="noreferrer">
               {t(translations.LinkedIn)}
-            </a>
+            </A>
           </li>
           <li>
-            <a href={links.email}>{t(translations.Email)}</a>
+            <A href={links.email}>{t(translations.Email)}</A>
           </li>
         </ul>
       </Section>
     );
   },
 );
+
+const A = styled.a`
+  :hover {
+    color: ${palette.dodgerBlue};
+  }
+`;

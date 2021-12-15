@@ -4,7 +4,6 @@ import { Theme } from 'types';
 import { gradients } from './gradients';
 
 import { media } from './media';
-import { palette } from './palette';
 import { theme } from './theme';
 
 export const GlobalStyleProperties = createGlobalStyle`
@@ -121,13 +120,8 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     font-weight: 300;
 
-    &.active {
-      color: ${palette.pastelPurple[200]};
-    }
-
     :hover {
       transition: 300ms;
-      color: ${palette.pastelPurple[100]};
     }
   }
 

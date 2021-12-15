@@ -41,7 +41,7 @@ const Text = styled.span<Props>`
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: ${animations.bgPosSway};
-            background-size: 400% 400%;
+            background-size: 400% 200%;
           }
         `
       : css`
@@ -50,6 +50,6 @@ const Text = styled.span<Props>`
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           animation: ${animations.bgPosSway};
-          background-size: 400% 400%;
+          background-size: 400% 200%;
         `}
 `;

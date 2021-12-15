@@ -11,9 +11,14 @@ export const palette = {
     300: '#040404',
     400: '#010101',
   },
-  pastelOrange: { 100: '#eca658' },
-  pastelPink: { 100: '#f391a6', 200: '#e188c3', 300: '#c8638c' },
-  pastelPurple: { 100: '#a58de3', 200: '#737eb7' },
-  pastelBlue: { 100: '#56abec' },
-  pastelRed: { 100: '#df6c51', 200: '#dd5d57' },
+  peachSchnapps: '#fed2ce',
+  cornflowerLilac: '#ffa9a4',
+  orchid: '#e681d8',
+  portage: '#8b9fe8',
+  pictonBlue: '#35c3f3',
+
+  supernova: '#ffc901',
+  moonGlow: '#fcfeda',
+
+  dodgerBlue: '#1f93fa',
 };

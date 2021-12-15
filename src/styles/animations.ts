@@ -4,15 +4,15 @@ import { frames } from './keyframes';
 
 export const animations = {
   bgPosSway: css`
-    ${frames.bgPosSway} ${'10s infinite ease both'}
+    ${frames.bgPosSway} ${'7500ms infinite ease'}
   `,
   axisSway: css`
-    ${frames.axisSway} ${'2250ms infinite linear'}
+    ${frames.axisSway} ${'2750ms infinite linear'}
   `,
   axisSwayFast: css`
     ${frames.axisSway} ${'1250ms infinite linear'}
   `,
   float: css`
-    ${frames.float} ${`4s infinite linear`}
+    ${frames.float} ${`4500ms infinite ease`}
   `,
 };

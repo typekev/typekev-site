@@ -28,9 +28,7 @@ export const ThemeModeToggle = memo(() => {
 
   return (
     <Tooltip title={tooltip} placement="right" arrow>
-      <ColorBox
-        color={isDarkMode ? palette.pastelBlue[100] : palette.pastelRed[100]}
-      >
+      <ColorBox color={isDarkMode ? palette.moonGlow : palette.supernova}>
         <IconButton onClick={toggleThemeMode} color="inherit">
           <Toggle
             color="inherit"

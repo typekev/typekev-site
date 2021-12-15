@@ -52,7 +52,7 @@ export const Robot = memo(({ emote = RobotEmotion.NEUTRAL }: Props) => {
   const node = useMemo(() => robotPortalNode, []);
   return (
     <InPortal node={node}>
-      <RobotChatBubble message={'Click me! '.repeat(30)} />
+      <RobotChatBubble message="Click me!" />
       <RobotHeadContainer>
         <RobotHead id="robot-head" path={emotes[emote]} color="transparent" />
       </RobotHeadContainer>
@@ -162,7 +162,7 @@ const RobotHead = styled(Icon)`
   position: absolute;
   width: inherit;
   background: ${gradients.bgFocused};
-  background-size: 1000% 1000%;
+  background-size: 550% 150%;
   animation: ${animations.bgPosSway}, ${animations.axisSway};
 
   ${({ path }) => css`
