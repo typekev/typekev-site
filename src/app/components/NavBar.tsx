@@ -166,7 +166,7 @@ const Bar = styled.nav<{ retract: boolean }>`
         padding: 0.875em;
       `}
       
-      transition: 500ms transform 100ms;
+      transition: 500ms transform 100ms, color 500ms;
       filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
 
       :hover {

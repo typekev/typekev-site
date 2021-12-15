@@ -25,28 +25,35 @@ export const RobotChatBubble = memo(({ message }: Props) => {
   const type = useCallback(({ type }) => type(500, message), [message]);
 
   return (
-    <BubbleContainer>
-      <Grow in={!!message} timeout={1000} style={{ transitionDelay: '500ms' }}>
-        <Bubble sx={{ boxShadow: 1, ...bubbleTheme[themeMode] }}>
+    <Grow in={!!message} timeout={1000} style={{ transitionDelay: '500ms' }}>
+      <BubbleContainer>
+        <Bubble
+          sx={{
+            boxShadow: 1,
+            ...bubbleTheme[themeMode],
+          }}
+        >
           {message && <Keyboard>{type}</Keyboard>}
         </Bubble>
-      </Grow>
-    </BubbleContainer>
+      </BubbleContainer>
+    </Grow>
   );
 });
 
 const bubbleTheme = {
   light: {
-    background: alpha(palette.retroOffWhite[100], 0.94),
+    backgroundColor: alpha(palette.retroOffWhite[100], 0.94),
     borderLeftColor: palette.retroOffWhite[100],
+    color: palette.retroOffBlack[100],
   },
   dark: {
-    background: alpha(palette.retroOffBlack[100], 0.94),
+    backgroundColor: alpha(palette.retroOffBlack[100], 0.94),
     borderLeftColor: palette.retroOffBlack[100],
+    color: palette.retroOffWhite[100],
   },
 };
 
-const BubbleContainer = styled.div`
+const BubbleContainer = styled(Box)`
   position: relative;
   z-index: 1;
 `;
@@ -55,9 +62,10 @@ const Bubble = styled(Box)`
   padding: 0.75em 0.5em;
   border-radius: 1em;
   text-align: center;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1em;
   animation: ${animations.float};
+  transition: color 750ms, background-color 750ms, border-left-color 750ms;
 
   ${css`
     ${media.small`

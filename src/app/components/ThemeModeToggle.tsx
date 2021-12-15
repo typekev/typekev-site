@@ -45,7 +45,7 @@ export const ThemeModeToggle = memo(() => {
 });
 
 const ColorBox = styled(Box)`
-  transition: color 1500ms;
+  transition: color 750ms;
 
   > button {
     opacity: 1;
