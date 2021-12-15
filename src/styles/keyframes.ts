@@ -30,4 +30,15 @@ export const frames = {
       left: 0;
     }
 `,
+  float: keyframes`
+    0% {
+      transform: translatey(0);
+    }
+    50% {
+      transform: translatey(0.25em);
+    }
+    100% {
+      transform: translatey(0);
+    }
+`,
 };

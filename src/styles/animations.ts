@@ -7,9 +7,12 @@ export const animations = {
     ${frames.bgPosSway} ${'10s infinite ease both'}
   `,
   axisSway: css`
-    ${frames.axisSway} ${'2s infinite linear'}
+    ${frames.axisSway} ${'2250ms infinite linear'}
   `,
   axisSwayFast: css`
-    ${frames.axisSway} ${'750ms infinite linear'}
+    ${frames.axisSway} ${'1250ms infinite linear'}
+  `,
+  float: css`
+    ${frames.float} ${`4s infinite linear`}
   `,
 };

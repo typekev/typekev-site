@@ -3,7 +3,7 @@ import { palette } from './palette';
 export const gradients = {
   bg: `
     linear-gradient(
-      145deg,
+      135deg,
       var(--bg1),
       var(--bg2),
       var(--bg3),
@@ -20,8 +20,8 @@ export const gradients = {
       ${palette.pastelBlue[100]} 49.48%,
       ${palette.pastelPurple[200]} 63.02%,
       ${palette.pastelPink[300]} 72.92%,
-      ${palette.pastelRed[100]} 84.38%,
-      ${palette.pastelRed[200]} 97.92%
+      ${palette.pastelRed[200]} 84.38%,
+      ${palette.pastelRed[100]} 97.92%
     )
   `,
 };

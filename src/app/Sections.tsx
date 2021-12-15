@@ -1,10 +1,5 @@
-import { useLayoutEffect, useMemo } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import {
-  createHtmlPortalNode,
-  InPortal,
-  OutPortal,
-} from 'react-reverse-portal';
 import { debounce } from '@mui/material';
 import Slide from '@mui/material/Slide';
 
@@ -12,8 +7,7 @@ import { RouterPath } from 'types';
 import { scrollTo } from 'utils/scrollTo';
 
 import { NavBar } from './components/navBar/Loadable';
-import { Robot } from './components/Robot';
-import { RobotChatBubble } from './components/robot/RobotChatBubble';
+import { Robot, RobotOutPortal } from './components/Robot';
 
 import { About } from './sections/About';
 import { Work } from './sections/Work';
@@ -23,7 +17,7 @@ import { Contact } from './sections/Contact';
 export function Sections() {
   const history = useHistory();
   const { section } = useParams<{ section?: RouterPath }>();
-  const robotChatBubblePortalNode = useMemo(() => createHtmlPortalNode(), []);
+  const [rendering, setRendering] = useState<RouterPath>();
   const debouncedReplaceHistory = useMemo(
     () => debounce(history.replace, 200),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,23 +32,31 @@ export function Sections() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onExited = () => setRendering(undefined);
+
   const botPosition = {
-    start: section === RouterPath.about,
-    middle: section === RouterPath.work,
-    end: section === RouterPath.blog || section === RouterPath.contact,
+    start:
+      (!rendering || rendering === RouterPath.about) &&
+      section === RouterPath.about,
+    middle:
+      (!rendering || rendering === RouterPath.work) &&
+      section === RouterPath.work,
+    end:
+      (!rendering ||
+        rendering === RouterPath.blog ||
+        rendering === RouterPath.contact) &&
+      (section === RouterPath.blog || section === RouterPath.contact),
   };
 
   const botDelay = {
-    enter: '250ms',
+    enter: '150ms',
     exit: '0ms',
   };
 
   return (
     <>
       <NavBar />
-      <InPortal node={robotChatBubblePortalNode}>
-        <RobotChatBubble message="Click me!" />
-      </InPortal>
+      <Robot />
       <About
         id={RouterPath.about}
         onEnterViewport={() => debouncedReplaceHistory(RouterPath.about)}
@@ -62,16 +64,15 @@ export function Sections() {
       <Slide
         mountOnEnter
         unmountOnExit
-        appear={false}
         direction="right"
         in={botPosition.start}
+        onEnter={() => setRendering(RouterPath.about)}
+        onExited={onExited}
         style={{
           transitionDelay: botPosition.start ? botDelay.enter : botDelay.exit,
         }}
       >
-        <Robot>
-          <OutPortal node={robotChatBubblePortalNode} />
-        </Robot>
+        <RobotOutPortal />
       </Slide>
       <Work
         id={RouterPath.work}
@@ -80,16 +81,15 @@ export function Sections() {
       <Slide
         mountOnEnter
         unmountOnExit
-        appear={false}
         direction="right"
         in={botPosition.middle}
+        onEnter={() => setRendering(RouterPath.work)}
+        onExited={onExited}
         style={{
           transitionDelay: botPosition.middle ? botDelay.enter : botDelay.exit,
         }}
       >
-        <Robot>
-          <OutPortal node={robotChatBubblePortalNode} />
-        </Robot>
+        <RobotOutPortal />
       </Slide>
       <Blog
         id={RouterPath.blog}
@@ -98,16 +98,15 @@ export function Sections() {
       <Slide
         mountOnEnter
         unmountOnExit
-        appear={false}
         direction="right"
         in={botPosition.end}
+        onEnter={() => setRendering(RouterPath.blog)}
+        onExited={onExited}
         style={{
           transitionDelay: botPosition.end ? botDelay.enter : botDelay.exit,
         }}
       >
-        <Robot>
-          <OutPortal node={robotChatBubblePortalNode} />
-        </Robot>
+        <RobotOutPortal />
       </Slide>
       <Contact
         id={RouterPath.contact}

@@ -3,7 +3,12 @@
  * Robot
  *
  */
-import { forwardRef, memo, PropsWithChildren } from 'react';
+import { forwardRef, memo, useMemo } from 'react';
+import {
+  createHtmlPortalNode,
+  InPortal,
+  OutPortal,
+} from 'react-reverse-portal';
 import styled, { css } from 'styled-components/macro';
 import { Icon } from '@mdi/react';
 import {
@@ -18,6 +23,8 @@ import {
 import { media } from 'styles/media';
 import { gradients } from 'styles/gradients';
 import { animations } from 'styles/animations';
+
+import { RobotChatBubble } from './robot/RobotChatBubble';
 
 enum RobotEmotion {
   NEUTRAL = 'neutral',
@@ -41,46 +48,91 @@ interface Props {
   emote?: RobotEmotion;
 }
 
-export const Robot = memo(
-  forwardRef<HTMLDivElement, PropsWithChildren<Props>>(
-    ({ emote = RobotEmotion.NEUTRAL, children }, ref) => {
-      return (
-        <RobotBox ref={ref}>
-          {children}
-          <RobotHead id="robot-head" path={emotes[emote]} color="transparent" />
-        </RobotBox>
-      );
-    },
-  ),
+export const Robot = memo(({ emote = RobotEmotion.NEUTRAL }: Props) => {
+  const node = useMemo(() => robotPortalNode, []);
+  return (
+    <InPortal node={node}>
+      <RobotChatBubble message={'Click me! '.repeat(30)} />
+      <RobotHeadContainer>
+        <RobotHead id="robot-head" path={emotes[emote]} color="transparent" />
+      </RobotHeadContainer>
+    </InPortal>
+  );
+});
+
+export const RobotOutPortal = memo(
+  forwardRef<HTMLDivElement, Props>((props, ref) => {
+    const node = useMemo(() => robotPortalNode, []);
+    return (
+      <OutPortalContainer ref={ref}>
+        <OutPortal node={node} {...props} />
+      </OutPortalContainer>
+    );
+  }),
 );
 
-const RobotBox = styled.div`
+const robotPortalNode = createHtmlPortalNode();
+
+const OutPortalContainer = styled.div`
+  position: relative;
+
+  > * {
+    position: absolute;
+    display: flex;
+    float: right;
+    align-items: center;
+    right: 0;
+    gap: 0.5em;
+
+    ${css`
+      ${media.small`
+        right: 2em;
+        gap: 1em;
+      `}
+
+      ${media.medium`
+        right: 3em;
+        gap: 1.5em;
+      `}
+
+      ${media.large`
+        right: 7em;
+        gap: 2em;
+      `}
+    `}
+  }
+`;
+
+const RobotHeadContainer = styled.div`
+  cursor: pointer;
   position: relative;
   float: right;
-  top: 1em;
-  margin-right: 1em;
+  min-width: 5em;
   width: 5em;
   height: 5em;
   border-radius: 50%;
+  margin-bottom: 1em;
 
   ${css`
     ${media.small`
-      margin-right: 2em;
+      min-width: 6em;
       width: 9em;
       height: 9em;
+      margin-bottom: 2em;
     `}
 
     ${media.medium`
-      margin-right: 4em;
+      min-width: 10em;
       width: 12em;
       height: 12em;
+      margin-bottom: 3em;
     `}
 
     ${media.large`
-      margin-right: 6vw;
+      min-width: 11em;
       width: 14em;
       height: 14em;
-      margin-top: 1em;
+      margin-bottom: 4em;
     `}
   `}
 
@@ -108,7 +160,6 @@ const RobotHead = styled(Icon)`
 
   pointer-events: none;
   position: absolute;
-  margin-top: -1em;
   width: inherit;
   background: ${gradients.bgFocused};
   background-size: 1000% 1000%;
