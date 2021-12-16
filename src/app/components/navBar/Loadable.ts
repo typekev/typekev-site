@@ -10,3 +10,8 @@ export const NavBar = lazyLoad(
   () => import('../NavBar'),
   module => module.NavBar,
 );
+
+export const NavDrawer = lazyLoad(
+  () => import('./NavDrawer'),
+  module => module.NavDrawer,
+);

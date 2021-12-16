@@ -90,10 +90,10 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     min-height: 100%;
     min-width: 100%;
-    padding: 0 6vw 67vh 6vw;
+    padding: 0 7vw 67vh 7vw;
 
     ${media.small`
-      padding: 0 6vw 67vh 6vw;
+      padding: 0 8vw 67vh 8vw;
     `}
 
     ${media.medium`
@@ -101,7 +101,7 @@ export const GlobalStyle = createGlobalStyle`
     `}
 
     ${media.large`
-      padding: 0 5vw 47vh 5vw;
+      padding: 0 4vw 47vh 4vw;
     `}
   }
 

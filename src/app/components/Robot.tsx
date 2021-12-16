@@ -81,7 +81,7 @@ const OutPortalContainer = styled.div`
     display: flex;
     float: right;
     align-items: center;
-    right: 0;
+    right: 1.25em;
     gap: 0.5em;
 
     ${css`

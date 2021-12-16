@@ -26,6 +26,12 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
   createTheme({
     palette: {
       mode: themeMode,
+      background: {
+        paper:
+          themeMode === ThemeMode.light
+            ? palette.retroOffWhite[100]
+            : palette.retroOffBlack[400],
+      },
       primary: {
         main:
           themeMode === ThemeMode.light
@@ -34,12 +40,23 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
       },
     },
     components: {
+      MuiDrawer: {
+        defaultProps: {
+          disableRestoreFocus: true,
+        },
+        styleOverrides: {
+          paper: {
+            minWidth: '16em',
+          },
+        },
+      },
       MuiTab: {
         styleOverrides: {
           root: {
             borderRadius: '50%',
             minWidth: 0,
             padding: 0,
+            fontSize: '1em',
             '&:hover': {
               color: 'inherit',
             },
