@@ -63,6 +63,7 @@ const BubbleContainer = styled(Box)`
 `;
 
 const Bubble = styled(Box)`
+  --float-x: 0.25em;
   padding: 0.5em;
   border-radius: 1em;
   text-align: center;

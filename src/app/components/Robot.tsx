@@ -15,8 +15,6 @@ import {
   mdiRobotAngryOutline,
   mdiRobotConfusedOutline,
   mdiRobotExcitedOutline,
-  mdiRobotHappyOutline,
-  mdiRobotLoveOutline,
   mdiRobotOutline,
 } from '@mdi/js';
 
@@ -28,20 +26,16 @@ import { RobotChatBubble } from './robot/RobotChatBubble';
 
 enum RobotEmotion {
   NEUTRAL = 'neutral',
-  HAPPY = 'happy',
-  EXCITED = 'excited',
-  LOVE = 'love',
+  POSITIVE = 'positive',
+  NEGATIVE = 'negative',
   CONFUSED = 'confused',
-  ANGRY = 'angry',
 }
 
 const emotes: Record<RobotEmotion, string> = {
   [RobotEmotion.NEUTRAL]: mdiRobotOutline,
-  [RobotEmotion.HAPPY]: mdiRobotHappyOutline,
-  [RobotEmotion.EXCITED]: mdiRobotExcitedOutline,
-  [RobotEmotion.LOVE]: mdiRobotLoveOutline,
+  [RobotEmotion.POSITIVE]: mdiRobotExcitedOutline,
+  [RobotEmotion.NEGATIVE]: mdiRobotAngryOutline,
   [RobotEmotion.CONFUSED]: mdiRobotConfusedOutline,
-  [RobotEmotion.ANGRY]: mdiRobotAngryOutline,
 };
 
 interface Props {
@@ -77,12 +71,25 @@ const OutPortalContainer = styled.div`
   position: relative;
 
   > * {
+    --float-x: 0em;
+
+    ${css`
+      ${media.small`
+        --float-x: 0.125em;
+      `}
+
+      ${media.medium`
+        --float-x: 0.5em;
+      `}
+    `}
+
     position: absolute;
     display: flex;
     float: right;
     align-items: center;
     right: 1.25em;
     gap: 0.5em;
+    animation: ${animations.float};
 
     ${css`
       ${media.small`
@@ -111,6 +118,7 @@ const RobotHeadContainer = styled.div`
   width: 5em;
   height: 5em;
   border-radius: 50%;
+  margin-top: 0.5em;
   margin-bottom: 1em;
 
   ${css`
@@ -125,6 +133,7 @@ const RobotHeadContainer = styled.div`
       min-width: 10em;
       width: 12em;
       height: 12em;
+      margin-top: 1em;
       margin-bottom: 3em;
     `}
 
@@ -132,6 +141,7 @@ const RobotHeadContainer = styled.div`
       min-width: 11em;
       width: 14em;
       height: 14em;
+      margin-top: 3em;
       margin-bottom: 4em;
     `}
   `}
@@ -144,7 +154,7 @@ const RobotHeadContainer = styled.div`
 `;
 
 const RobotHead = styled(Icon)`
-  --sway-x: 0;
+  --sway-x: 0em;
 
   ${css`
     ${media.small`

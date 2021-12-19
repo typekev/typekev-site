@@ -32,13 +32,13 @@ export const frames = {
 `,
   float: keyframes`
     0% {
-      transform: translatey(0);
+      transform: translateY(--float-x);
     }
     50% {
-      transform: translatey(0.25em);
+      transform: translateY(calc(var(--float-x) * -1));
     }
     100% {
-      transform: translatey(0);
+      transform: translateY(--float-x);
     }
 `,
 };
