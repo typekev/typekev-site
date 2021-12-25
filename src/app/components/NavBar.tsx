@@ -12,14 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Icon from '@mdi/react';
-import {
-  mdiArrowDown,
-  mdiAt,
-  mdiAtom,
-  mdiBookshelf,
-  mdiHandWaveOutline,
-  mdiMenu,
-} from '@mdi/js';
+import { mdiArrowDown, mdiAt, mdiAtom, mdiBookshelf, mdiMenu } from '@mdi/js';
 
 import { RouterPath } from 'types';
 import { scrollTo } from 'utils/scrollTo';
@@ -53,6 +46,7 @@ export const NavBar = memo(() => {
   return (
     <Bar retract={hasLeftStart}>
       <IconButton
+        name="Menu"
         color="inherit"
         onClick={onOpenDrawer}
         sx={{ display: { md: 'none' } }}
@@ -69,7 +63,12 @@ export const NavBar = memo(() => {
       <Tabs orientation="vertical" value={section}>
         <ThemeModeToggle />
         <Tab
-          sx={{ display: { xs: 'none', md: 'block' } }}
+          sx={{
+            display: { xs: 'none', md: 'block' },
+            fontFamily: 'Averia Serif Libre',
+            fontSize: '3em',
+            padding: '0.125em',
+          }}
           value={RouterPath.about}
           component={NavLink}
           icon={
@@ -78,12 +77,11 @@ export const NavBar = memo(() => {
               placement="right"
               arrow
             >
-              <Icon path={mdiHandWaveOutline} color="inherit" />
+              <span>K</span>
             </Tooltip>
           }
           to={RouterPath.about}
           onClick={() => scrollTo(RouterPath.about)}
-          aria-label={RouterPath.about}
         />
         <Tab
           sx={{ display: { xs: 'none', md: 'block' } }}
@@ -100,7 +98,6 @@ export const NavBar = memo(() => {
           }
           to={RouterPath.work}
           onClick={() => scrollTo(RouterPath.work)}
-          aria-label={RouterPath.work}
         />
         <Tab
           sx={{ display: { xs: 'none', md: 'block' } }}
@@ -117,7 +114,6 @@ export const NavBar = memo(() => {
           }
           to={RouterPath.blog}
           onClick={() => scrollTo(RouterPath.blog)}
-          aria-label={RouterPath.blog}
         />
         <Tab
           sx={{ display: { xs: 'none', md: 'block' } }}
@@ -134,7 +130,6 @@ export const NavBar = memo(() => {
           }
           to={RouterPath.contact}
           onClick={() => scrollTo(RouterPath.contact)}
-          aria-label={RouterPath.contact}
         />
         <Tab
           component={Link}
@@ -148,7 +143,6 @@ export const NavBar = memo(() => {
           }
           to={NEXT_SECTION[section]}
           onClick={() => scrollTo(NEXT_SECTION[section])}
-          aria-label={arrowTitle}
         />
       </Tabs>
     </Bar>

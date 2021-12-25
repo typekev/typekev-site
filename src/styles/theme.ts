@@ -3,7 +3,7 @@ import { css, FlattenSimpleInterpolation } from 'styled-components/macro';
 
 import { ThemeMode } from 'types';
 
-import { palette } from './palette';
+import { palette, THEME_MODE_PALETTE_MAP } from './palette';
 
 export const theme: Record<ThemeMode, FlattenSimpleInterpolation> = {
   light: css`
@@ -26,18 +26,21 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
   createTheme({
     palette: {
       mode: themeMode,
+      common: {
+        white: palette.retroOffWhite[100],
+        black: palette.retroOffBlack[100],
+      },
       background: {
-        paper:
-          themeMode === ThemeMode.light
-            ? palette.retroOffWhite[100]
-            : palette.retroOffBlack[400],
+        default: THEME_MODE_PALETTE_MAP[themeMode].background,
+        paper: THEME_MODE_PALETTE_MAP[themeMode].background,
       },
       primary: {
-        main:
-          themeMode === ThemeMode.light
-            ? palette.retroOffBlack[200]
-            : palette.retroOffWhite[300],
+        contrastText: THEME_MODE_PALETTE_MAP[themeMode].text,
+        main: THEME_MODE_PALETTE_MAP[themeMode].primary,
       },
+    },
+    typography: {
+      fontFamily: 'Inter',
     },
     components: {
       MuiDrawer: {
@@ -68,6 +71,15 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
           indicator: {
             minWidth: '0.25em',
             borderRadius: '0.5em',
+          },
+        },
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            borderRadius: '1.5em !important',
+            transition: 'all 1s',
+            backgroundColor: THEME_MODE_PALETTE_MAP[themeMode].background,
           },
         },
       },

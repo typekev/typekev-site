@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { debounce } from '@mui/material';
 import Slide from '@mui/material/Slide';
@@ -18,9 +18,9 @@ export function Sections() {
   const history = useHistory();
   const { section } = useParams<{ section?: RouterPath }>();
   const [rendering, setRendering] = useState<RouterPath>();
-  const debouncedReplaceHistory = useMemo(
-    () => debounce(history.replace, 200),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedReplaceHistory = useCallback(
+    debounce(history.replace, 200),
     [],
   );
 

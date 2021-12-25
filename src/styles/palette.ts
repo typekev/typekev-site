@@ -1,3 +1,5 @@
+import { ThemeMode } from 'types';
+
 export const palette = {
   retroOffWhite: {
     100: '#fdfbfb',
@@ -21,4 +23,19 @@ export const palette = {
   moonGlow: '#fcfeda',
 
   dodgerBlue: '#1f93fa',
+};
+
+export const THEME_MODE_PALETTE_MAP = {
+  [ThemeMode.light]: {
+    text: palette.retroOffBlack[100],
+    primary: palette.retroOffBlack[200],
+    background: palette.retroOffWhite[100],
+    accent: palette.peachSchnapps,
+  },
+  [ThemeMode.dark]: {
+    text: palette.retroOffWhite[100],
+    primary: palette.retroOffWhite[300],
+    background: palette.retroOffBlack[100],
+    accent: palette.retroOffBlack[100],
+  },
 };

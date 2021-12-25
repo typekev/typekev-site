@@ -3,7 +3,7 @@
  * RobotChatBubble
  *
  */
-import { memo, useCallback, useContext } from 'react';
+import { memo, useContext } from 'react';
 import Keyboard from 'react-mk';
 import styled, { css } from 'styled-components/macro';
 import Box from '@mui/material/Box';
@@ -11,51 +11,45 @@ import Grow from '@mui/material/Grow';
 
 import { ThemeModeContext } from 'contexts/ThemeModeContext';
 import { media } from 'styles/media';
-import { palette } from 'styles/palette';
+import { THEME_MODE_PALETTE_MAP } from 'styles/palette';
 import { alpha } from '@mui/material';
 import { animations } from 'styles/animations';
 
 interface Props {
-  message?: string;
+  message: string;
 }
 
 export const RobotChatBubble = memo(({ message }: Props) => {
   const { themeMode } = useContext(ThemeModeContext);
 
-  const type = useCallback(({ type }) => type(500, message), [message]);
+  const { background, accent, text } = THEME_MODE_PALETTE_MAP[themeMode];
+  const backgroundColor = alpha(background, 0.94);
+  const borderColor = alpha(accent, 0.94);
 
   return (
-    <Grow in={!!message} timeout={1000} style={{ transitionDelay: '500ms' }}>
+    <Grow
+      unmountOnExit
+      style={{ transformOrigin: 'center right' }}
+      in={!!message}
+    >
       <BubbleContainer>
         <Bubble
           sx={{
             boxShadow: 1,
-            ...bubbleTheme[themeMode],
+            backgroundColor,
+            borderColor,
+            borderLeftColor: borderColor,
+            color: text,
           }}
         >
           <span>
-            <Keyboard>{type}</Keyboard>
+            <Keyboard keyPressDelayRange={[50, 80]}>{message || ''}</Keyboard>
           </span>
         </Bubble>
       </BubbleContainer>
     </Grow>
   );
 });
-
-const bubbleTheme = {
-  light: {
-    backgroundColor: alpha(palette.retroOffWhite[100], 0.94),
-    borderColor: alpha(palette.peachSchnapps, 0.94),
-    borderLeftColor: alpha(palette.peachSchnapps, 0.94),
-    color: palette.retroOffBlack[100],
-  },
-  dark: {
-    backgroundColor: alpha(palette.retroOffBlack[100], 0.94),
-    borderColor: alpha(palette.retroOffBlack[100], 0.94),
-    borderLeftColor: alpha(palette.retroOffBlack[100], 0.94),
-    color: palette.retroOffWhite[100],
-  },
-};
 
 const BubbleContainer = styled(Box)`
   position: relative;
