@@ -1,6 +1,6 @@
-import { detect } from 'tinyld';
+import { detect } from "tinyld";
 
-import { RobotLanguage } from 'types/robot';
+import { RobotLanguage } from "types.d";
 
 const isLanguageSupported = (language: string): language is RobotLanguage =>
   language in RobotLanguage;

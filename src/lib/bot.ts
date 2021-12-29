@@ -1,5 +1,5 @@
-import { en } from './bot/en';
 import { detectLanguage } from './bot/detectLanguage';
+import { en } from './bot/en';
 
 const bots = {
   en,

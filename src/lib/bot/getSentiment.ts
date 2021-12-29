@@ -1,6 +1,6 @@
-import { SentimentAnalyzer, WordTokenizer } from 'natural';
+import { SentimentAnalyzer, WordTokenizer } from "natural";
 
-import { RobotSentiment } from 'types/robot';
+import { RobotSentiment } from "types.d";
 
 const wordTokenizer = new WordTokenizer();
 
@@ -10,12 +10,12 @@ interface GetSentiment {
 
 export function getSentiment(this: GetSentiment, text: string) {
   const sentimentValue = this.sentimentAnalyzer.getSentiment(
-    wordTokenizer.tokenize(text),
+    wordTokenizer.tokenize(text)
   );
 
-  if (sentimentValue > 0.66) {
+  if (sentimentValue > 0) {
     return RobotSentiment.POSITIVE;
-  } else if (sentimentValue <= -0.66) {
+  } else if (sentimentValue < 0) {
     return RobotSentiment.NEGATIVE;
   }
 

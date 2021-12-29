@@ -1,79 +1,47 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  PropsWithChildren,
-  useMemo,
-} from 'react';
-import { ThemeMode } from 'types';
+import { createContext, useState, useEffect, PropsWithChildren } from "react";
 
-import { palette } from 'styles/palette';
+import { ThemeMode } from "types.d";
 
-const THEME_MODE_LOCAL_KEY = 'themeMode';
-const PREF_DARK_MEDIA = '(prefers-color-scheme: dark)';
+const THEME_MODE_LOCAL_KEY = "themeMode";
+const PREF_DARK_MEDIA = "(prefers-color-scheme: dark)";
 const POSSIBLE_THEME_MODES = Object.values(ThemeMode);
 
 const stringIsThemeMode = (maybeTM: string | null): maybeTM is ThemeMode =>
   POSSIBLE_THEME_MODES.includes(maybeTM as ThemeMode);
 
-export const ThemeModeContext = createContext({
-  themeMode: ThemeMode.light,
+const THEME_MODE_SWITCH: Record<ThemeMode, ThemeMode> = {
+  [ThemeMode.light]: ThemeMode.dark,
+  [ThemeMode.dark]: ThemeMode.light,
+};
+
+interface Context {
+  themeMode?: ThemeMode;
+  toggleThemeMode: VoidFunction;
+}
+export const ThemeModeContext = createContext<Context>({
+  themeMode: undefined,
   toggleThemeMode: () => {},
 });
 
 export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
-  const localThemeMode = useMemo(
-    () => localStorage.getItem(THEME_MODE_LOCAL_KEY),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
-  const initThemeMode = useMemo(
-    () =>
-      (stringIsThemeMode(localThemeMode) ? localThemeMode : null) ??
-      (window.matchMedia(PREF_DARK_MEDIA).matches
-        ? ThemeMode.dark
-        : ThemeMode.light),
-    [localThemeMode],
-  );
-  const [themeMode, setThemeMode] = useState<ThemeMode>(initThemeMode);
+  const [themeMode, setThemeMode] = useState<ThemeMode>();
 
-  const toggleThemeMode = () => {
-    const nextThemeMode =
-      themeMode === ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-    localStorage.setItem(THEME_MODE_LOCAL_KEY, nextThemeMode);
-    setThemeMode(nextThemeMode);
-  };
+  const toggleThemeMode = () =>
+    themeMode && setThemeMode(THEME_MODE_SWITCH[themeMode]);
 
   useEffect(() => {
-    if (stringIsThemeMode(localThemeMode)) {
-      setThemeMode(localThemeMode);
-    } else if (window.matchMedia(PREF_DARK_MEDIA).matches) {
-      setThemeMode(ThemeMode.dark);
-    }
-  }, [localThemeMode]);
-
-  useEffect(() => {
-    if (themeMode === ThemeMode.light) {
-      document.body.style.setProperty('--bg1', palette.retroOffWhite[400]);
-      document.body.style.setProperty('--bg2', palette.retroOffWhite[300]);
-      document.body.style.setProperty('--bg3', palette.retroOffWhite[200]);
-      document.body.style.setProperty('--bg4', palette.retroOffWhite[100]);
-      document.body.style.setProperty('--fg', palette.retroOffBlack[400]);
+    if (themeMode) {
+      localStorage.setItem(THEME_MODE_LOCAL_KEY, themeMode);
     } else {
-      document.body.style.setProperty('--bg1', palette.retroOffBlack[100]);
-      document.body.style.setProperty('--bg2', palette.retroOffBlack[200]);
-      document.body.style.setProperty('--bg3', palette.retroOffBlack[300]);
-      document.body.style.setProperty('--bg4', palette.retroOffBlack[400]);
-      document.body.style.setProperty('--fg', palette.retroOffWhite[100]);
+      const localThemeMode = localStorage.getItem(THEME_MODE_LOCAL_KEY);
+      const defaultThemeMode =
+        (stringIsThemeMode(localThemeMode) ? localThemeMode : null) ??
+        (window.matchMedia(PREF_DARK_MEDIA).matches
+          ? ThemeMode.dark
+          : ThemeMode.light);
+      setThemeMode(defaultThemeMode);
     }
-    if (themeMode !== initThemeMode) {
-      document.body.style.setProperty('--bg1-trans-duration', '300ms');
-      document.body.style.setProperty('--bg2-trans-duration', '600ms');
-      document.body.style.setProperty('--bg3-trans-duration', '900ms');
-      document.body.style.setProperty('--bg4-trans-duration', '1200ms');
-      document.body.style.setProperty('--fg-trans-duration', '1500ms');
-    }
-  }, [initThemeMode, themeMode]);
+  }, [themeMode]);
 
   return (
     <ThemeModeContext.Provider value={{ themeMode, toggleThemeMode }}>

@@ -1,6 +1,6 @@
 import { BayesClassifier } from 'natural';
 
-import en from './en/responses.json';
+import type en from './en/responses.json';
 
 type Responses = typeof en;
 

@@ -1,9 +1,9 @@
-import { BayesClassifier, SentimentAnalyzer, PorterStemmer } from 'natural';
+import { BayesClassifier, SentimentAnalyzer, PorterStemmer } from "natural";
 
-import classifier from './en/classifier.json';
-import responses from './en/responses.json';
-import { getReply } from './getReply';
-import { getSentiment } from './getSentiment';
+import classifier from "./en/classifier.json";
+import responses from "./en/responses.json";
+import { getReply } from "./getReply";
+import { getSentiment } from "./getSentiment";
 
 export const en = {
   getReply: getReply.bind({
@@ -12,9 +12,9 @@ export const en = {
   }),
   getSentiment: getSentiment.bind({
     sentimentAnalyzer: new SentimentAnalyzer(
-      'English',
+      "English",
       PorterStemmer,
-      'pattern',
+      "pattern"
     ),
   }),
 };
