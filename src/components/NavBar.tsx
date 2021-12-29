@@ -20,6 +20,7 @@ import { getSectionFromPath } from "utils/getSectionFromPath";
 import { scrollToSection } from "utils/scrollToSection";
 
 import { ThemeModeToggle } from "./ThemeModeToggle";
+import { TranslationToggle } from "./TranslationToggle";
 import { NavDrawer } from "./navBar/NavDrawer";
 
 const NEXT_SECTION: Record<Section, Section> = {
@@ -69,18 +70,13 @@ export const NavBar = memo(() => {
         onChange={onChange}
       >
         <ThemeModeToggle />
+        <TranslationToggle />
         <Tab
-          sx={{
-            display: { xs: "none", md: "block" },
-            fontFamily: '"Averia Serif Libre", serif',
-            fontWeight: 300,
-            fontSize: "3em",
-            padding: "0.125em",
-          }}
+          sx={{ display: { xs: "none", md: "block" } }}
           value={Section.about}
           icon={
             <Tooltip title={t("About me")} placement="right" arrow>
-              <span>K</span>
+              <K>K</K>
             </Tooltip>
           }
           onClick={() => scrollToSection(Section.about)}
@@ -195,4 +191,11 @@ const Bar = styled("nav", { shouldForwardProp })<BarProps>`
     transition: ${({ theme }) => theme.transitions.create(["transform"])};
     filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
   }
+`;
+
+const K = styled("div")`
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 300;
+  font-size: 3em;
+  padding: 0.125em;
 `;

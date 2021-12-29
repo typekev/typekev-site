@@ -1,8 +1,12 @@
-import { detectLanguage } from './bot/detectLanguage';
-import { en } from './bot/en';
+import { Locale } from "types.d";
 
-const bots = {
+import { detectLanguage } from "./bot/detectLanguage";
+import { en } from "./bot/en";
+
+const bots: Record<Locale, typeof en> = {
   en,
+  fil: en,
+  fr: en,
 };
 
 export const bot = {

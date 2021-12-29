@@ -17,22 +17,18 @@ import { palette } from "theme";
 import { ThemeMode } from "types.d";
 
 export const ThemeModeToggle = memo(() => {
-  const { themeMode, toggleThemeMode } = useContext(ThemeModeContext);
   const { t } = useTranslation();
+  const { themeMode, toggleThemeMode } = useContext(ThemeModeContext);
+
   const isDarkMode = themeMode === ThemeMode.dark;
   const tooltip = t(isDarkMode ? "Dark mode On" : "Dark mode Off");
+  const color = isDarkMode ? palette.moonGlow : palette.supernova;
 
   return (
     <ThemeModeTab
+      value={false}
       onClick={toggleThemeMode}
-      color="inherit"
-      sx={{
-        color: isDarkMode ? palette.moonGlow : palette.supernova,
-        opacity: 1,
-        ":hover": {
-          color: isDarkMode ? palette.moonGlow : palette.supernova,
-        },
-      }}
+      sx={{ color, opacity: 1, ":hover": { color } }}
       icon={
         <Tooltip title={tooltip} placement="right" arrow>
           <Icon
@@ -48,9 +44,5 @@ export const ThemeModeToggle = memo(() => {
 ThemeModeToggle.displayName = ThemeModeToggle.name;
 
 const ThemeModeTab = styled(Tab)`
-  transition: color 750ms;
-
-  > button {
-    opacity: 1;
-  }
+  transition: color 1500ms;
 `;

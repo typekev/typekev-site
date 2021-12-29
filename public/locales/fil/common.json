@@ -20,8 +20,12 @@
   "Work": "Trabaho",
   "Articles": "Mga artikulo",
   "Contact": "Makipag-ugnayan sa akin",
-  "Dark mode Off": "Naka-off ang dark mode",
-  "Dark mode On": "Naka-on ang dark mode",
+  "Dark mode Off": "Dark mode: naka-off",
+  "Dark mode On": "Dark mode: naka-on",
+  "English": "Ingles",
+  "Filipino": "Filipino",
+  "French": "French",
+  "Language": "Wika: $t(Filipino)",
   "Have a question? Click me!": "May tanong? Click ako!",
   "Type something": "Mag type..."
 }

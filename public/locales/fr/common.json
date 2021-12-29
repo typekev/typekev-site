@@ -19,8 +19,12 @@
   "Work": "Travail",
   "Articles": "Écrits",
   "Contact": "Contactez-moi",
-  "Dark mode Off": "Mode sombre est désactivé",
-  "Dark mode On": "Mode sombre est activé",
+  "Dark mode Off": "Mode sombre : désactivé",
+  "Dark mode On": "Mode sombre : activé",
+  "English": "anglais",
+  "Filipino": "filipino",
+  "French": "français",
+  "Language": "Langue : $t(French)",
   "Have a question? Click me!": "Vous avez une question ? Cliquez sur moi !",
   "Type something": "Tapez..."
 }

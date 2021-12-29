@@ -20,8 +20,12 @@
   "Work": "Work",
   "Articles": "Articles",
   "Contact": "Contact",
-  "Dark mode Off": "Dark mode is off",
-  "Dark mode On": "Dark mode is on",
+  "Dark mode Off": "Dark mode: off",
+  "Dark mode On": "Dark mode: on",
+  "English": "English",
+  "Filipino": "Filipino",
+  "French": "French",
+  "Language": "Language: $t(English)",
   "Have a question? Click me!": "Have a question? Click me!",
   "Type something": "Type something..."
 }

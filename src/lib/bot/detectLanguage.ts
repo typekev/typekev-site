@@ -1,16 +1,16 @@
 import { detect } from "tinyld";
 
-import { RobotLanguage } from "types.d";
+import { Locale } from "types.d";
 
-const isLanguageSupported = (language: string): language is RobotLanguage =>
-  language in RobotLanguage;
+const isLanguageSupported = (language: string): language is Locale =>
+  language in Locale;
 
-export const detectLanguage = (text: string): RobotLanguage => {
+export const detectLanguage = (text: string): Locale => {
   const language = detect(text);
 
   if (isLanguageSupported(language)) {
     return language;
   }
 
-  return RobotLanguage.en;
+  return Locale.en;
 };
