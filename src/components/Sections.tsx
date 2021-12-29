@@ -3,22 +3,37 @@
  * Robot
  *
  */
-import React, { memo, useCallback, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { memo, useCallback, useEffect, useState } from "react";
 
 import { debounce } from "@mui/material/utils";
 
-import { NavBar } from "components/NavBar";
 import { useRouter } from "hooks/useRouter";
-import { Section } from "types.d";
+import { Section, SectionProps } from "types.d";
 import { getSectionFromPath } from "utils/getSectionFromPath";
 import { scrollToSection } from "utils/scrollToSection";
 
-import { Robot } from "./Robot";
-import { RobotPortal } from "./robot/RobotPortal";
-import { About } from "./sections/About";
-import { Blog } from "./sections/Blog";
-import { Contact } from "./sections/Contact";
-import { Work } from "./sections/Work";
+import type { SlideProps } from "@mui/material/Slide";
+
+const NavBar = dynamic<unknown>(
+  import("./NavBar").then(({ NavBar }) => NavBar)
+);
+const Robot = dynamic<unknown>(import("./Robot").then(({ Robot }) => Robot));
+const RobotPortal = dynamic<Omit<SlideProps, "children">>(
+  import("./robot/RobotPortal").then(({ RobotPortal }) => RobotPortal)
+);
+const About = dynamic<SectionProps>(
+  import("./sections/About").then(({ About }) => About)
+);
+const Blog = dynamic<SectionProps>(
+  import("./sections/Blog").then(({ Blog }) => Blog)
+);
+const Contact = dynamic<SectionProps>(
+  import("./sections/Contact").then(({ Contact }) => Contact)
+);
+const Work = dynamic<SectionProps>(
+  import("./sections/Work").then(({ Work }) => Work)
+);
 
 export const Sections = memo(() => {
   const router = useRouter();

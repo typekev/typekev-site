@@ -3,22 +3,12 @@
  * Section
  *
  */
-import {
-  useRef,
-  PropsWithChildren,
-  ReactNode,
-  ComponentPropsWithoutRef,
-} from "react";
+import { useRef } from "react";
 
 import { styled, css } from "@mui/material/styles";
 import { useInViewport } from "react-in-viewport";
 
-interface Props extends Omit<ComponentPropsWithoutRef<"div">, "title"> {
-  title?: ReactNode;
-  onEnterViewport: VoidFunction;
-  onLeaveViewport?: VoidFunction;
-  rootMargin?: string;
-}
+import { SectionProps } from "types.d";
 
 export const Section = ({
   title,
@@ -28,7 +18,7 @@ export const Section = ({
   rootMargin = "-10% 0px -90% 0px",
   children,
   ...rest
-}: PropsWithChildren<Props>) => {
+}: SectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
   useInViewport(
     ref,
