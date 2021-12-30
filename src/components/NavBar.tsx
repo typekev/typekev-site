@@ -145,6 +145,7 @@ const Bar = styled("nav", { shouldForwardProp })<BarProps>`
   right: 0;
   height: 100%;
   justify-content: space-between;
+  z-index: 1;
 
   ${({ theme }) => css`
     ${theme.breakpoints.up("md")} {

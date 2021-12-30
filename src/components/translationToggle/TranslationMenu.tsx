@@ -19,18 +19,20 @@ export const TranslationMenu = memo((props: MenuProps) => {
 
   return (
     <Menu
+      disablePortal
+      disableScrollLock
       PaperProps={{
         elevation: 0,
         sx: {
           overflow: "visible",
           filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-          mt: 1.5,
+          zIndex: 2000,
           "&:before": {
             content: '""',
             display: "block",
             position: "absolute",
-            top: 0,
-            right: 14,
+            bottom: 26,
+            right: -5,
             width: 10,
             height: 10,
             bgcolor: "background.paper",
@@ -39,8 +41,7 @@ export const TranslationMenu = memo((props: MenuProps) => {
           },
         },
       }}
-      transformOrigin={{ horizontal: "right", vertical: "top" }}
-      anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      transformOrigin={{ horizontal: "right", vertical: "bottom" }}
       {...props}
     >
       <Link href={asPath} locale={Locale.en} scroll={false} passHref>
