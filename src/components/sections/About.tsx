@@ -11,20 +11,18 @@ import { Trans } from "react-i18next";
 import { FocusedText } from "components/FocusedText";
 import { Section } from "components/Section";
 
-export const About = memo((props: ComponentPropsWithoutRef<typeof Section>) => {
-  return (
-    <Section {...props}>
-      <Trans
-        i18nKey="Hi, I'm Kevin"
-        components={{
-          name: <Name />,
-          bold: <strong />,
-          focused: <FocusedText active />,
-        }}
-      />
-    </Section>
-  );
-});
+export const About = memo((props: ComponentPropsWithoutRef<typeof Section>) => (
+  <Section {...props}>
+    <Trans
+      i18nKey="Hi, I'm Kevin"
+      components={{
+        name: <Name />,
+        bold: <strong />,
+        focused: <FocusedText active />,
+      }}
+    />
+  </Section>
+));
 
 About.displayName = About.name;
 

@@ -20,10 +20,10 @@ interface Context {
 }
 export const ThemeModeContext = createContext<Context>({
   themeMode: undefined,
-  toggleThemeMode: () => {},
+  toggleThemeMode: () => undefined,
 });
 
-export const ThemeModeProvider = ({ children }: PropsWithChildren<{}>) => {
+export const ThemeModeProvider = ({ children }: PropsWithChildren<unknown>) => {
   const [themeMode, setThemeMode] = useState<ThemeMode>();
 
   const toggleThemeMode = () =>

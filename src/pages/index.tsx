@@ -1,11 +1,14 @@
+import dynamic from "next/dynamic";
 import Head from "next/head";
+import type { NextPage } from "next/types";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { Sections } from "components/Sections";
 import { useTranslation } from "hooks/useTranslation";
 
-import type { NextPage } from "next";
+const Sections = dynamic<unknown>(
+  import("components/Sections").then(({ Sections }) => Sections)
+);
 
 const Home: NextPage = () => {
   const { t } = useTranslation();

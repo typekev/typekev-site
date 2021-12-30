@@ -1,18 +1,27 @@
 import type { AppProps } from "next/app";
-import { memo, PropsWithChildren, useContext, useMemo } from "react";
+import dynamic from "next/dynamic";
 
-import { CacheProvider } from "@emotion/react";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import { ThemeProvider } from "@mui/material/styles";
 import { appWithTranslation } from "next-i18next";
 
-import { ThemeModeContext, ThemeModeProvider } from "contexts/ThemeModeContext";
-import { getMuiTheme } from "theme";
-import { getGlobalStyles } from "theme/getGlobalStyles";
 import createEmotionCache from "utils/createEmotionCache";
 
+import type { EmotionCache } from "@emotion/cache";
+
 import nextI18NextConfig from "../../next-i18next.config";
+
+const CacheProvider = dynamic<{ value: EmotionCache }>(
+  import("@emotion/react").then(({ CacheProvider }) => CacheProvider)
+);
+
+const ThemeModeProvider = dynamic<unknown>(
+  import("contexts/ThemeModeContext").then(
+    ({ ThemeModeProvider }) => ThemeModeProvider
+  )
+);
+
+const ThemedApp = dynamic<unknown>(
+  import("components/ThemedApp").then(({ ThemedApp }) => ThemedApp)
+);
 
 const emotionCache = createEmotionCache();
 
@@ -27,19 +36,3 @@ export default appWithTranslation(({ Component, pageProps }: AppProps) => {
     </CacheProvider>
   );
 }, nextI18NextConfig);
-
-const ThemedApp = memo(({ children }: PropsWithChildren<unknown>) => {
-  const { themeMode } = useContext(ThemeModeContext);
-  const theme = useMemo(() => themeMode && getMuiTheme(themeMode), [themeMode]);
-
-  // Wait for user's preferred theme to load in order to avoid animation lag on first page load
-  return theme ? (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <GlobalStyles styles={(theme) => getGlobalStyles(theme)} />
-      {children}
-    </ThemeProvider>
-  ) : null;
-});
-
-ThemedApp.displayName = ThemedApp.name;

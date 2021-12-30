@@ -15,12 +15,12 @@ import {
   useState,
 } from "react";
 
+import { Fade } from "@mui/material";
 import Grow from "@mui/material/Grow";
 import { debounce } from "@mui/material/utils";
 
 import { useTranslation } from "hooks/useTranslation";
-import { bot } from "lib/bot";
-import { RobotSentiment } from "types.d";
+import { Bot, RobotSentiment } from "types.d";
 
 import { RobotChatBubble } from "./robot/RobotChatBubble";
 import { RobotChatInput } from "./robot/RobotChatInput";
@@ -47,6 +47,7 @@ const getSuggestion = (value: string) =>
 
 export const Robot = memo(() => {
   const { t } = useTranslation();
+  const [bot, setBot] = useState<Bot>();
   const [displayInput, setDisplayInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [inputSuggestion, setInputSuggestion] = useState<string>();
@@ -69,7 +70,8 @@ export const Robot = memo(() => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (canSubmit) {
+
+    if (bot && canSubmit) {
       setInputValue("");
       setBotMessage("");
       setTimeout(
@@ -99,10 +101,18 @@ export const Robot = memo(() => {
   };
 
   useEffect(() => {
-    if (sentimentInput) {
+    // Prevent double bot render on locale change by delaying mount
+    const botTimeout = setTimeout(() => {
+      import("lib/bot").then(({ bot }) => setBot(bot));
+    }, 500);
+    return () => clearTimeout(botTimeout);
+  }, []);
+
+  useEffect(() => {
+    if (bot && sentimentInput) {
       setSentiment(bot.getSentiment(sentimentInput));
     }
-  }, [sentimentInput]);
+  }, [bot, sentimentInput]);
 
   useEffect(() => {
     setCanSubmit(!!inputValue.trim());
@@ -115,54 +125,60 @@ export const Robot = memo(() => {
     }
   }, [setSentimentInputDebounced, inputValue]);
 
+  if (!bot) {
+    return null;
+  }
+
   return (
     <RobotInPortal>
       <RobotChatBubble message={botMessage} />
-      <RobotHeadButton
-        component="div"
-        onClick={() => !displayInput && setDisplayInput(true)}
-      >
-        <RobotHeadContainer
-          disableHover={displayInput}
-          onMouseEnter={() =>
-            !displayInput && !botMessage && setBotMessage(clickPrompt)
-          }
-          onMouseLeave={() =>
-            botMessage === clickPrompt &&
-            setTimeout(() => setBotMessage(""), 200)
-          }
+      <Fade appear mountOnEnter unmountOnExit in>
+        <RobotHeadButton
+          component="div"
+          onClick={() => !displayInput && setDisplayInput(true)}
         >
-          <RobotHead
-            id="robot-head"
-            path={SENTIMENT_EMOTE_MAP[sentiment]}
-            color="transparent"
-          />
-        </RobotHeadContainer>
-        <RobotChatInputForm onSubmit={onSubmit}>
-          <Grow in={displayInput}>
-            <TypeAheadInput
-              disabled
-              value={typeAheadInputValue}
-              InputProps={{
-                sx: {
-                  height: "100%",
-                },
-              }}
+          <RobotHeadContainer
+            disableHover={displayInput}
+            onMouseEnter={() =>
+              !displayInput && !botMessage && setBotMessage(clickPrompt)
+            }
+            onMouseLeave={() =>
+              botMessage === clickPrompt &&
+              setTimeout(() => setBotMessage(""), 200)
+            }
+          >
+            <RobotHead
+              id="robot-head"
+              path={SENTIMENT_EMOTE_MAP[sentiment]}
+              color="transparent"
             />
-          </Grow>
-          <Grow in={displayInput}>
-            <RobotChatInput
-              inputRef={inputRef}
-              value={inputValue}
-              canSubmit={canSubmit}
-              onChange={(e) => setInputValue(e.target.value)}
-              onClose={endChat}
-              onKeyDown={onKeyDown}
-              placeholder={t("Type something")}
-            />
-          </Grow>
-        </RobotChatInputForm>
-      </RobotHeadButton>
+          </RobotHeadContainer>
+          <RobotChatInputForm onSubmit={onSubmit}>
+            <Grow in={displayInput}>
+              <TypeAheadInput
+                disabled
+                value={typeAheadInputValue}
+                InputProps={{
+                  sx: {
+                    height: "100%",
+                  },
+                }}
+              />
+            </Grow>
+            <Grow in={displayInput}>
+              <RobotChatInput
+                inputRef={inputRef}
+                value={inputValue}
+                canSubmit={canSubmit}
+                onChange={(e) => setInputValue(e.target.value)}
+                onClose={endChat}
+                onKeyDown={onKeyDown}
+                placeholder={t("Type something")}
+              />
+            </Grow>
+          </RobotChatInputForm>
+        </RobotHeadButton>
+      </Fade>
     </RobotInPortal>
   );
 });

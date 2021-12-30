@@ -6,7 +6,7 @@
 import dynamic from "next/dynamic";
 import { ComponentPropsWithoutRef, memo } from "react";
 
-import MuiSlide, { SlideProps } from "@mui/material/Slide";
+import Slide, { SlideProps } from "@mui/material/Slide";
 import { styled, css } from "@mui/material/styles";
 
 import { frames } from "theme";
@@ -21,21 +21,15 @@ const RobotOutPortal = dynamic<unknown>(
 type Props = ComponentPropsWithoutRef<typeof Robot> &
   Omit<SlideProps, "children">;
 
-export const RobotPortal = memo((props: Props) => {
-  return (
-    <Slide mountOnEnter unmountOnExit direction="right" {...props}>
-      <OutPortalContainer>
-        <RobotOutPortal />
-      </OutPortalContainer>
-    </Slide>
-  );
-});
+export const RobotPortal = memo((props: Props) => (
+  <Slide mountOnEnter unmountOnExit direction="right" {...props}>
+    <OutPortalContainer>
+      <RobotOutPortal />
+    </OutPortalContainer>
+  </Slide>
+));
 
 RobotPortal.displayName = RobotPortal.name;
-
-const Slide = styled(MuiSlide)`
-  transition-delay: ${(props) => props.in && 150};
-`;
 
 const OutPortalContainer = styled("div")`
   position: relative;
