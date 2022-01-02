@@ -126,7 +126,9 @@ export const NavBar = memo(() => {
             </Tooltip>
           }
           onClick={() =>
-            section ? scrollToSection(NEXT_SECTION[section]) : router.back()
+            section
+              ? scrollToSection(NEXT_SECTION[section])
+              : router.push(`/${Section.blog}`)
           }
         />
       </Tabs>

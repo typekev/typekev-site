@@ -4,6 +4,7 @@
  *
  */
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { memo } from "react";
 
 import { SlideProps } from "@mui/material/Slide";
@@ -20,7 +21,21 @@ export const BlogPost = memo(({ content }: Post) => {
   return (
     <>
       <PostContainer>
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <ReactMarkdown
+          components={{
+            img: ({ src = "", placeholder: _, ...rest }) => (
+              <Image
+                src={src}
+                alt="blog image"
+                width={480}
+                height={360}
+                {...rest}
+              />
+            ),
+          }}
+        >
+          {content}
+        </ReactMarkdown>
       </PostContainer>
       <RobotPortal in />
     </>

@@ -11,6 +11,10 @@
       "error",
       { "max": 1, "maxEOF": 1, "maxBOF": 0 }
     ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "ignoreRestSiblings": true }
+    ],
     "import/first": "error",
     "import/no-duplicates": "error",
     "import/order": [
