@@ -23,6 +23,10 @@ const ThemedApp = dynamic<unknown>(
   import("components/ThemedApp").then(({ ThemedApp }) => ThemedApp)
 );
 
+const Layout = dynamic<unknown>(
+  import("components/Layout").then(({ Layout }) => Layout)
+);
+
 const emotionCache = createEmotionCache();
 
 export default appWithTranslation(({ Component, pageProps }: AppProps) => {
@@ -30,7 +34,9 @@ export default appWithTranslation(({ Component, pageProps }: AppProps) => {
     <CacheProvider value={emotionCache}>
       <ThemeModeProvider>
         <ThemedApp>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemedApp>
       </ThemeModeProvider>
     </CacheProvider>

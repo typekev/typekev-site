@@ -15,10 +15,6 @@ import { scrollToSection } from "utils/scrollToSection";
 
 import type { SlideProps } from "@mui/material/Slide";
 
-const NavBar = dynamic<unknown>(
-  import("./NavBar").then(({ NavBar }) => NavBar)
-);
-const Robot = dynamic<unknown>(import("./Robot").then(({ Robot }) => Robot));
 const RobotPortal = dynamic<Omit<SlideProps, "children">>(
   import("./robot/RobotPortal").then(({ RobotPortal }) => RobotPortal)
 );
@@ -66,8 +62,6 @@ export const Sections = memo(() => {
 
   return (
     <>
-      <NavBar />
-      <Robot />
       <About
         id={Section.about}
         onEnterViewport={() => debouncedReplaceRoute(Section.about)}

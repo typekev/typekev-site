@@ -35,16 +35,18 @@ export const NavBar = memo(() => {
   const router = useRouter();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const section = getSectionFromPath(router.asPath) || Section.about;
+  const section = getSectionFromPath(router.asPath);
 
   const hasLeftStart = section !== Section.about;
   const hasReachedEnd = section === Section.contact;
-  const arrowTitle = t(hasReachedEnd ? "Back to top" : "Continue");
+  const arrowTitle = t(
+    hasReachedEnd ? "Back to top" : section ? "Continue" : "Return"
+  );
 
   const onCloseDrawer = () => setDrawerOpen(false);
   const onOpenDrawer = () => setDrawerOpen(true);
-  const onChange = (_: SyntheticEvent, section: Section | false) =>
-    section && router.replace(section);
+  const onChange = (_: SyntheticEvent, to: Section | false) =>
+    to && (section ? router.replace : router.push)(`/${to}`);
 
   return (
     <Bar retract={hasLeftStart}>
@@ -118,12 +120,14 @@ export const NavBar = memo(() => {
               <span>
                 <Icon
                   path={mdiArrowDown}
-                  rotate={hasReachedEnd ? 180 : undefined}
+                  rotate={hasReachedEnd ? 180 : section ? undefined : 90}
                 />
               </span>
             </Tooltip>
           }
-          onClick={() => scrollToSection(NEXT_SECTION[section])}
+          onClick={() =>
+            section ? scrollToSection(NEXT_SECTION[section]) : router.back()
+          }
         />
       </Tabs>
     </Bar>

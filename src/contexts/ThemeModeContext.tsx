@@ -18,6 +18,7 @@ interface Context {
   themeMode?: ThemeMode;
   toggleThemeMode: VoidFunction;
 }
+
 export const ThemeModeContext = createContext<Context>({
   themeMode: undefined,
   toggleThemeMode: () => undefined,

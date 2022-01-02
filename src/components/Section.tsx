@@ -30,19 +30,16 @@ export const Section = ({
   );
 
   return (
-    <section ref={ref} id={id} {...rest}>
-      <SectionTitle>{title}</SectionTitle>
+    <SectionContainer ref={ref} {...rest}>
+      <SectionTitle id={id}>{title}</SectionTitle>
       <SectionContent>{children}</SectionContent>
-    </section>
+    </SectionContainer>
   );
 };
 
-const SectionTitle = styled("h2")`
-  font-size: 1.25em;
+const SectionContainer = styled("section")`
   padding-top: 5em;
-  margin-top: 0;
-  margin-bottom: 0.25em;
-  margin-left: 1px;
+  font-size: 1.25em;
 
   ${({ theme }) => css`
     ${theme.breakpoints.up("sm")} {
@@ -60,18 +57,14 @@ const SectionTitle = styled("h2")`
   `}
 `;
 
-const SectionContent = styled("div")`
-  font-size: 2em;
+const SectionTitle = styled("h2")`
+  margin-top: 0;
+  margin-bottom: 0.25em;
+  margin-left: 1px;
+  padding-top: 2em;
+  font-size: 1.125em;
+`;
 
-  ${({ theme }) => css`
-    ${theme.breakpoints.up("sm")} {
-      font-size: 3em;
-    }
-    ${theme.breakpoints.up("md")} {
-      font-size: 4em;
-    }
-    ${theme.breakpoints.up("lg")} {
-      font-size: 5em;
-    }
-  `}
+const SectionContent = styled("div")`
+  font-size: 1.875em;
 `;

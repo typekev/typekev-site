@@ -28,7 +28,7 @@ import { Section } from "types.d";
 import { scrollToSection } from "utils/scrollToSection";
 
 interface Props extends SwipeableDrawerProps {
-  selected: Section;
+  selected?: Section;
 }
 
 export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
@@ -50,7 +50,7 @@ export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
       </List>
       <Divider />
       <List>
-        <Link href={Section.about} passHref shallow>
+        <Link href={`/${Section.about}`} passHref shallow>
           <ListItemButton
             selected={selected === Section.about}
             onClick={onClick(Section.about)}
@@ -61,7 +61,7 @@ export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
             <ListItemText primary={t("About me")} />
           </ListItemButton>
         </Link>
-        <Link href={Section.work} passHref shallow>
+        <Link href={`/${Section.work}`} passHref shallow>
           <ListItemButton
             selected={selected === Section.work}
             onClick={onClick(Section.work)}
@@ -72,7 +72,7 @@ export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
             <ListItemText primary={t("Work")} />
           </ListItemButton>
         </Link>
-        <Link href={Section.blog} passHref shallow>
+        <Link href={`/${Section.blog}`} passHref shallow>
           <ListItemButton
             selected={selected === Section.blog}
             onClick={onClick(Section.blog)}
@@ -83,7 +83,7 @@ export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
             <ListItemText primary={t("Articles")} />
           </ListItemButton>
         </Link>
-        <Link href={Section.contact} passHref shallow>
+        <Link href={`/${Section.contact}`} passHref shallow>
           <ListItemButton
             selected={selected === Section.contact}
             onClick={onClick(Section.contact)}

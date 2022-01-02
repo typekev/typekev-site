@@ -5,7 +5,7 @@
  */
 import { memo, ComponentPropsWithoutRef } from "react";
 
-import { styled } from "@mui/material/styles";
+import { styled, css } from "@mui/material/styles";
 
 import { Section } from "components/Section";
 import { useTranslation } from "hooks/useTranslation";
@@ -41,7 +41,14 @@ export const Contact = memo(
 Contact.displayName = Contact.name;
 
 const A = styled("a")`
-  :hover {
-    color: ${palette.dodgerBlue};
-  }
+  color: ${palette.pictonBlue};
+
+  ${({ theme }) => css`
+    ${theme.breakpoints.up("md")} {
+      text-decoration-thickness: 4px;
+    }
+    ${theme.breakpoints.up("lg")} {
+      text-decoration-thickness: 5px;
+    }
+  `}
 `;

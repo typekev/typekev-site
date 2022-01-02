@@ -109,6 +109,10 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
     }
   }
 
+  h1 {
+    font-weight: 300;
+  }
+
   h2 {
     font-weight: 200;
   }
@@ -123,14 +127,8 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
     color: inherit;
     font-weight: 300;
 
-    ${theme.breakpoints.up("md")} {
-      text-decoration-thickness: 4px;
-    }
-    ${theme.breakpoints.up("lg")} {
-      text-decoration-thickness: 5px;
-    }
-
     :hover {
+      color: ${palette.dodgerBlue};
       transition: 300ms;
     }
   }
