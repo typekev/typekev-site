@@ -6,7 +6,7 @@
 import { memo, ComponentPropsWithoutRef } from "react";
 
 import { styled } from "@mui/material/styles";
-import { Trans } from "react-i18next";
+import { Trans } from "next-i18next";
 
 import { FocusedText } from "components/FocusedText";
 import { Section } from "components/Section";

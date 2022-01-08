@@ -4,3 +4,4 @@ export * from "types/post.d";
 export * from "types/robot.d";
 export * from "types/section.d";
 export * from "types/theme.d";
+export * from "types/work.d";

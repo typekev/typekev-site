@@ -36,11 +36,11 @@ export const NavBar = memo(() => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const section = getSectionFromPath(router.asPath);
-
   const hasLeftStart = section !== Section.about;
   const hasReachedEnd = section === Section.contact;
+  const isInPost = section === Section.blog && router.query?.id;
   const arrowTitle = t(
-    hasReachedEnd ? "Back to top" : section ? "Continue" : "Return"
+    hasReachedEnd ? "Back to top" : isInPost ? "Return" : "Continue"
   );
 
   const onCloseDrawer = () => setDrawerOpen(false);
@@ -49,7 +49,7 @@ export const NavBar = memo(() => {
     to && (section ? router.replace : router.push)(`/${to}`);
 
   return (
-    <Bar retract={hasLeftStart}>
+    <Bar retract={hasLeftStart && !isInPost}>
       <IconButton
         name="Menu"
         color="inherit"
@@ -120,15 +120,15 @@ export const NavBar = memo(() => {
               <span>
                 <Icon
                   path={mdiArrowDown}
-                  rotate={hasReachedEnd ? 180 : section ? undefined : 90}
+                  rotate={hasReachedEnd ? 180 : isInPost ? 90 : undefined}
                 />
               </span>
             </Tooltip>
           }
           onClick={() =>
-            section
-              ? scrollToSection(NEXT_SECTION[section])
-              : router.push(`/${Section.blog}`)
+            isInPost
+              ? router.push(`/${Section.blog}`)
+              : section && scrollToSection(NEXT_SECTION[section])
           }
         />
       </Tabs>
@@ -149,12 +149,14 @@ const Bar = styled("nav", { shouldForwardProp })<BarProps>`
   flex-direction: column;
   position: fixed;
   right: 0;
+  top: 0;
   height: 100%;
   justify-content: space-between;
   z-index: 1;
 
   ${({ theme }) => css`
     ${theme.breakpoints.up("md")} {
+      top: auto;
       bottom: 1em;
       height: auto;
     }

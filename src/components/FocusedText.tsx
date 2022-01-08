@@ -3,7 +3,12 @@
  * FocusedText
  *
  */
-import { memo, PropsWithChildren, ComponentPropsWithoutRef } from "react";
+import {
+  memo,
+  PropsWithChildren,
+  ComponentPropsWithoutRef,
+  forwardRef,
+} from "react";
 
 import { styled, css } from "@mui/material/styles";
 
@@ -14,13 +19,15 @@ interface Props extends ComponentPropsWithoutRef<"span"> {
 }
 
 export const FocusedText = memo(
-  ({ active, children, ...rest }: PropsWithChildren<Props>) => {
-    return (
-      <Text active={active} {...rest}>
-        {children}
-      </Text>
-    );
-  }
+  forwardRef<HTMLSpanElement, PropsWithChildren<Props>>(
+    ({ active, children, ...rest }, ref) => {
+      return (
+        <Text ref={ref} active={active} {...rest}>
+          {children}
+        </Text>
+      );
+    }
+  )
 );
 
 FocusedText.displayName = FocusedText.name;
@@ -38,7 +45,7 @@ const shouldForwardProp = (prop: PropertyKey) => prop !== "active";
 const Text = styled("span", { shouldForwardProp })<Props>`
   border-radius: 1em;
   margin: 0 -0.25em;
-  padding: 0.125em 0.25em;
+  padding: 0 0.25em;
   font-weight: 400;
 
   ${({ active }) => active && focused}

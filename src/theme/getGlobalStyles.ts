@@ -101,11 +101,11 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
     ${theme.breakpoints.up("sm")} {
       padding: 0 8vw 67vh 8vw;
     }
-    ${theme.breakpoints.up("md")} {
-      padding: 0 5vw 67vh 5vw;
-    }
     ${theme.breakpoints.up("lg")} {
-      padding: 0 4vw 47vh 4vw;
+      padding: 0 6vw 67vh 6vw;
+    }
+    ${theme.breakpoints.up("xl")} {
+      padding: 0 4vw 67vh 4vw;
     }
   }
 
@@ -113,14 +113,9 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
     font-weight: 300;
   }
 
-  h2 {
+  h2,
+  h3 {
     font-weight: 200;
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
 
   a {
@@ -137,14 +132,20 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
     font-weight: 400;
   }
 
+  svg {
+    fill: currentColor;
+  }
+
   input,
   select {
     font-family: inherit;
     font-size: inherit;
   }
 
-  svg {
-    fill: currentColor;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 `;
 

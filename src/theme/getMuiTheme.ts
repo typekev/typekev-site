@@ -25,6 +25,18 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
       fontFamily: "Inter",
     },
     components: {
+      MuiButton: {
+        styleOverrides: {
+          text: {
+            fontSize: "unset",
+            textAlign: "unset",
+            textTransform: "unset",
+            lineHeight: "unset",
+            paddingTop: "unset",
+            paddingBottom: "unset",
+          },
+        },
+      },
       MuiDrawer: {
         defaultProps: {
           disableRestoreFocus: true,
@@ -40,7 +52,6 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
           noSsr: true,
         },
       },
-
       MuiTab: {
         styleOverrides: {
           root: {
@@ -61,6 +72,14 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
             borderRadius: "0.5em",
           },
         },
+      },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            textAlign: 'center',
+            maxWidth: 'unset'
+          }
+        }
       },
       MuiInputBase: {
         styleOverrides: {

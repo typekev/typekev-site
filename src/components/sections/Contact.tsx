@@ -5,7 +5,8 @@
  */
 import { memo, ComponentPropsWithoutRef } from "react";
 
-import { styled, css } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 
 import { Section } from "components/Section";
 import { useTranslation } from "hooks/useTranslation";
@@ -22,33 +23,36 @@ export const Contact = memo(
     const { t } = useTranslation();
 
     return (
-      <Section title={t("Ways you can contact me")} {...props}>
+      <ContactSection title={t("Ways you can contact me")} {...props}>
         <ul>
           <li>
-            <A href={links.linkedIn} target="_blank" rel="noreferrer">
-              {t("LinkedIn")}
-            </A>
+            <A href={links.linkedIn}>{t("LinkedIn")}</A>
           </li>
           <li>
             <A href={links.email}>{t("Email")}</A>
           </li>
         </ul>
-      </Section>
+      </ContactSection>
     );
   }
 );
 
 Contact.displayName = Contact.name;
 
-const A = styled("a")`
-  color: ${palette.pictonBlue};
+const ContactSection = styled(Section)`
+  > div {
+    margin-left: -0.625rem;
+  }
+`;
 
-  ${({ theme }) => css`
-    ${theme.breakpoints.up("md")} {
-      text-decoration-thickness: 4px;
-    }
-    ${theme.breakpoints.up("lg")} {
-      text-decoration-thickness: 5px;
-    }
-  `}
+const A = styled(Button)`
+  color: ${palette.pictonBlue};
+  font-weight: 300;
+  text-decoration: underline;
+  text-decoration-thickness: 0.0625em;
+
+  :hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.0625em;
+  }
 `;

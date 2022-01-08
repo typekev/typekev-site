@@ -8,6 +8,7 @@ const { i18n } = require("./next-i18next.config");
 module.exports = {
   i18n,
   reactStrictMode: true,
+  trailingSlash: true,
   images: {
     domains: ["img.youtube.com"],
   },
@@ -25,19 +26,23 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/about",
+        source: "/about/",
         destination: "/",
       },
       {
-        source: "/work",
+        source: "/work/",
         destination: "/",
       },
       {
-        source: "/blog",
+        source: "/work/:place/",
         destination: "/",
       },
       {
-        source: "/contact",
+        source: "/blog/",
+        destination: "/",
+      },
+      {
+        source: "/contact/",
         destination: "/",
       },
     ];

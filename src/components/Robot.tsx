@@ -19,8 +19,9 @@ import { Fade } from "@mui/material";
 import Grow from "@mui/material/Grow";
 import { debounce } from "@mui/material/utils";
 
+import { useRouter } from "hooks/useRouter";
 import { useTranslation } from "hooks/useTranslation";
-import { Bot, RobotSentiment } from "types.d";
+import { Bot, RobotSentiment, Workplace } from "types.d";
 
 import { RobotChatBubble } from "./robot/RobotChatBubble";
 import { RobotChatInput } from "./robot/RobotChatInput";
@@ -30,6 +31,7 @@ import { RobotHeadButton } from "./robot/RobotHeadButton";
 import { RobotHeadContainer } from "./robot/RobotHeadContainer";
 import { TypeAheadInput } from "./robot/TypeAheadInput";
 import { SENTIMENT_EMOTE_MAP } from "./robot/emotes";
+import { workplaceIntents } from "./robot/workplaceIntents";
 
 const RobotInPortal = dynamic<PropsWithChildren<unknown>>(
   () =>
@@ -47,6 +49,9 @@ const getSuggestion = (value: string) =>
 
 export const Robot = memo(() => {
   const { t } = useTranslation();
+  const {
+    query: { place },
+  } = useRouter();
   const [bot, setBot] = useState<Bot>();
   const [displayInput, setDisplayInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -56,6 +61,7 @@ export const Robot = memo(() => {
   const [botMessage, setBotMessage] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
   const inputRef = useRef<HTMLInputElement>();
+  const botMessageDelay = botMessage ? 500 : 0;
 
   const clickPrompt = t("Have a question? Click me!");
   const typeAheadInputValue = inputSuggestion
@@ -75,8 +81,8 @@ export const Robot = memo(() => {
       setInputValue("");
       setBotMessage("");
       setTimeout(
-        () => setBotMessage(() => bot.getReply(inputValue)),
-        botMessage ? 500 : 0
+        () => setBotMessage(bot.getReply(inputValue)),
+        botMessageDelay
       );
     }
   };
@@ -124,6 +130,18 @@ export const Robot = memo(() => {
       setInputSuggestion(undefined);
     }
   }, [setSentimentInputDebounced, inputValue]);
+
+  useEffect(() => {
+    if (bot && typeof place === "string" && place in workplaceIntents) {
+      setBotMessage("");
+      setTimeout(
+        () => setBotMessage(bot.getReply(workplaceIntents[place as Workplace])),
+
+        botMessageDelay
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bot, place]);
 
   if (!bot) {
     return null;
