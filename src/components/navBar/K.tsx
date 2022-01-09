@@ -13,7 +13,7 @@ K.displayName = K.name;
 
 const Div = styled("strong")`
   font-family: "Averia Serif Libre", serif;
-  font-weight: 300;
+  font-weight: 700;
 
   ${({ theme }) => css`
     ${theme.breakpoints.between("xs", "md")} {
@@ -32,6 +32,5 @@ const Div = styled("strong")`
       display: block;
       font-size: 3em;
     }
-
   `}
 `;

@@ -28,5 +28,5 @@ About.displayName = About.name;
 
 const Name = styled("span")`
   font-family: "Averia Serif Libre", serif;
-  font-weight: 300;
+  font-weight: 400;
 `;
