@@ -53,6 +53,7 @@ export const Robot = memo(() => {
     query: { place },
   } = useRouter();
   const [bot, setBot] = useState<Bot>();
+  const [botNotifAudio, setBotNotifAudio] = useState<HTMLAudioElement>();
   const [displayInput, setDisplayInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [inputSuggestion, setInputSuggestion] = useState<string>();
@@ -107,10 +108,12 @@ export const Robot = memo(() => {
   };
 
   useEffect(() => {
+    setBotNotifAudio(new Audio("/audio/notification.wav"));
     // Prevent double bot render on locale change by delaying mount
     const botTimeout = setTimeout(() => {
       import("lib/bot").then(({ bot }) => setBot(bot));
     }, 500);
+
     return () => clearTimeout(botTimeout);
   }, []);
 
@@ -142,6 +145,12 @@ export const Robot = memo(() => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bot, place]);
+
+  useEffect(() => {
+    if (botMessage) {
+      botNotifAudio?.play();
+    }
+  }, [botMessage, botNotifAudio]);
 
   if (!bot) {
     return null;
