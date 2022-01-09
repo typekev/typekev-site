@@ -6,13 +6,7 @@
 import Link from "next/link";
 import { memo, SyntheticEvent } from "react";
 
-import {
-  mdiAt,
-  mdiAtom,
-  mdiBookshelf,
-  mdiChevronRight,
-  mdiHandWaveOutline,
-} from "@mdi/js";
+import { mdiAt, mdiAtom, mdiBookshelf, mdiChevronRight } from "@mdi/js";
 import Icon from "@mdi/react";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
@@ -26,6 +20,8 @@ import SwipeableDrawer, {
 import { useTranslation } from "hooks/useTranslation";
 import { Section } from "types.d";
 import { scrollToSection } from "utils/scrollToSection";
+
+import { K } from "./K";
 
 interface Props extends SwipeableDrawerProps {
   selected?: Section;
@@ -56,7 +52,7 @@ export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
             onClick={onClick(Section.about)}
           >
             <ListItemIcon>
-              <Icon path={mdiHandWaveOutline} size={1.125} />
+              <K />
             </ListItemIcon>
             <ListItemText primary={t("About me")} />
           </ListItemButton>

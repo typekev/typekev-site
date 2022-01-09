@@ -19,6 +19,7 @@ import { Section } from "types.d";
 import { getSectionFromPath } from "utils/getSectionFromPath";
 import { scrollToSection } from "utils/scrollToSection";
 
+import { K } from "./navBar/K";
 import { NavDrawer } from "./navBar/NavDrawer";
 import { ThemeModeToggle } from "./navBar/ThemeModeToggle";
 import { TranslationToggle } from "./navBar/TranslationToggle";
@@ -78,7 +79,7 @@ export const NavBar = memo(() => {
           value={Section.about}
           icon={
             <Tooltip title={t("About me")} placement="right" arrow>
-              <K>K</K>
+              <K />
             </Tooltip>
           }
           onClick={() => scrollToSection(Section.about)}
@@ -200,11 +201,4 @@ const Bar = styled("nav", { shouldForwardProp })<BarProps>`
     transition: ${({ theme }) => theme.transitions.create(["transform"])};
     filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
   }
-`;
-
-const K = styled("div")`
-  font-family: "Averia Serif Libre", serif;
-  font-weight: 300;
-  font-size: 3em;
-  padding: 0.125em;
 `;
