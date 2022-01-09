@@ -61,6 +61,7 @@ export const Robot = memo(() => {
   const [sentiment, setSentiment] = useState(RobotSentiment.NEUTRAL);
   const [botMessage, setBotMessage] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
+  const [chatPromptTimeout, setChatPromptTimeout] = useState<NodeJS.Timeout>();
   const inputRef = useRef<HTMLInputElement>();
   const botMessageDelay = botMessage ? 500 : 0;
 
@@ -106,6 +107,14 @@ export const Robot = memo(() => {
     setSentimentInput("");
     setBotMessage("");
   };
+
+  const promptChat = () =>
+    !displayInput &&
+    !botMessage &&
+    setChatPromptTimeout(setTimeout(() => setBotMessage(clickPrompt), 700));
+
+  const clearChatPrompt = () =>
+    chatPromptTimeout && clearTimeout(chatPromptTimeout);
 
   useEffect(() => {
     setBotNotifAudio(new Audio("/audio/notification.wav"));
@@ -166,13 +175,8 @@ export const Robot = memo(() => {
         >
           <RobotHeadContainer
             disableHover={displayInput}
-            onMouseEnter={() =>
-              !displayInput && !botMessage && setBotMessage(clickPrompt)
-            }
-            onMouseLeave={() =>
-              botMessage === clickPrompt &&
-              setTimeout(() => setBotMessage(""), 200)
-            }
+            onMouseEnter={promptChat}
+            onMouseLeave={clearChatPrompt}
           >
             <RobotHead
               id="robot-head"
