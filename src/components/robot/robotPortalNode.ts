@@ -1,3 +1,5 @@
-import { createHtmlPortalNode } from 'react-reverse-portal';
+import { createHtmlPortalNode } from "react-reverse-portal";
 
-export const robotPortalNode = createHtmlPortalNode();
+export const robotPortalNode = createHtmlPortalNode({
+  attributes: { id: "robot_portal" },
+});

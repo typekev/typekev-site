@@ -1,6 +1,6 @@
 import { css } from "@mui/material/styles";
 
-import { ThemeMode } from "types";
+import { ThemeMode } from "types.d";
 
 import type { SerializedStyles } from "@mui/styled-engine";
 
@@ -96,16 +96,24 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
   #__next {
     min-height: 100%;
     min-width: 100%;
-    padding: 0 7vw 67vh 7vw;
+    padding: 0 7vw 66vh 7vw;
 
     ${theme.breakpoints.up("sm")} {
-      padding: 0 8vw 67vh 8vw;
+      padding: 0 8vw 60vh 8vw;
     }
     ${theme.breakpoints.up("lg")} {
-      padding: 0 6vw 67vh 6vw;
+      padding: 0 6vw 40vh 6vw;
     }
     ${theme.breakpoints.up("xl")} {
-      padding: 0 4vw 67vh 4vw;
+      padding: 0 4vw 40vh 4vw;
+    }
+  }
+
+  #robot_portal {
+    pointer-events: none;
+
+    > * {
+      pointer-events: all;
     }
   }
 
@@ -124,7 +132,6 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
 
     :hover {
       color: ${palette.dodgerBlue};
-      transition: 300ms;
     }
   }
 
