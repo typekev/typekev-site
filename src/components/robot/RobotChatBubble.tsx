@@ -45,7 +45,7 @@ export const RobotChatBubble = memo(({ message }: Props) => {
           }}
         >
           <span>
-            <Keyboard keyPressDelayRange={[50, 80]}>{message || ""}</Keyboard>
+            <Keyboard keyPressDelayRange={[20, 25]}>{message || ""}</Keyboard>
           </span>
         </Bubble>
       </BubbleContainer>
