@@ -4,7 +4,7 @@
  *
  */
 import dynamic from "next/dynamic";
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 import { debounce } from "@mui/material/utils";
 
@@ -32,11 +32,17 @@ const Work = dynamic<SectionProps>(
 );
 
 export const Sections = memo(() => {
-  const router = useRouter();
+  const { asPath, replace } = useRouter();
   const [rendering, setRendering] = useState<Section>();
+  const section = getSectionFromPath(asPath);
+  const sectionRef = useRef<Section>();
+  sectionRef.current = section;
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedReplaceRoute = useCallback(debounce(router.replace, 250), []);
-  const section = getSectionFromPath(router.asPath);
+  const debouncedReplace = useCallback(
+    debounce((url) => sectionRef.current !== url && replace(url), 300),
+    []
+  );
 
   useEffect(() => {
     if (section && !window.pageYOffset && !document.documentElement.scrollTop) {
@@ -45,8 +51,8 @@ export const Sections = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onEnter = (section: Section) => () => setRendering(section);
-  const onExited = () => setRendering(undefined);
+  const handleEnter = (section: Section) => () => setRendering(section);
+  const handleExited = () => setRendering(undefined);
 
   const botPosition = {
     start:
@@ -64,35 +70,35 @@ export const Sections = memo(() => {
     <>
       <About
         id={Section.about}
-        onEnterViewport={() => debouncedReplaceRoute(Section.about)}
+        onEnterViewport={() => debouncedReplace(Section.about)}
       />
       <RobotPortal
         in={botPosition.start}
-        onEnter={onEnter(Section.about)}
-        onExited={onExited}
+        onEnter={handleEnter(Section.about)}
+        onExited={handleExited}
       />
       <Work
         id={Section.work}
-        onEnterViewport={() => debouncedReplaceRoute(Section.work)}
+        onEnterViewport={() => debouncedReplace(Section.work)}
       />
       <RobotPortal
         in={botPosition.middle}
-        onEnter={onEnter(Section.work)}
-        onExited={onExited}
+        onEnter={handleEnter(Section.work)}
+        onExited={handleExited}
       />
       <Blog
         id={Section.blog}
-        onEnterViewport={() => debouncedReplaceRoute(Section.blog)}
+        onEnterViewport={() => debouncedReplace(Section.blog)}
       />
       <RobotPortal
         in={botPosition.end}
-        onEnter={onEnter(Section.blog)}
-        onExited={onExited}
+        onEnter={handleEnter(Section.blog)}
+        onExited={handleExited}
       />
       <Contact
         id={Section.contact}
-        onEnterViewport={() => debouncedReplaceRoute(Section.contact)}
-        onLeaveViewport={() => debouncedReplaceRoute(Section.blog)}
+        onEnterViewport={() => debouncedReplace(Section.contact)}
+        onLeaveViewport={() => debouncedReplace(Section.blog)}
         rootMargin="-20% 0px -80% 0px"
       />
     </>
