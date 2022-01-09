@@ -21,6 +21,7 @@ export const TranslationMenu = memo((props: MenuProps) => {
     <Menu
       disablePortal
       disableScrollLock
+      MenuListProps={{ disablePadding: true }}
       PaperProps={{
         elevation: 0,
         sx: {
@@ -31,7 +32,7 @@ export const TranslationMenu = memo((props: MenuProps) => {
             content: '""',
             display: "block",
             position: "absolute",
-            bottom: 26,
+            bottom: 24,
             right: -5,
             width: 10,
             height: 10,

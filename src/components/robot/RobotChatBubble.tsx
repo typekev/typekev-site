@@ -62,11 +62,11 @@ const BubbleContainer = styled("div")`
 
 const Bubble = styled(Box)`
   --float-x: 0.25em;
-  padding: 0.5em;
+  padding: 0.375em 0.25em;
   border-radius: 1em;
   text-align: center;
   font-weight: 400;
-  font-size: 1em;
+  font-size: 0.875em;
   animation: ${frames.float} 4500ms infinite ease;
   transition: color 750ms, background-color 750ms, border-color 750ms;
   border-style: solid;
@@ -75,6 +75,7 @@ const Bubble = styled(Box)`
 
   ${({ theme }) => css`
     ${theme.breakpoints.up("sm")} {
+      padding: 0.5em;
       font-size: 1.5em;
     }
     ${theme.breakpoints.up("md")} {

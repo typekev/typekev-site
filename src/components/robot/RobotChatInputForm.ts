@@ -8,7 +8,7 @@ import { styled, css } from "@mui/material/styles";
 export const RobotChatInputForm = styled("form")`
   position: absolute;
   pointer-events: all;
-  bottom: -2em;
+  bottom: -2.5em;
   z-index: 1;
 
   ${({ theme }) => css`
