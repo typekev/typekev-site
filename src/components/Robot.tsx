@@ -21,7 +21,7 @@ import { debounce } from "@mui/material/utils";
 
 import { useRouter } from "hooks/useRouter";
 import { useTranslation } from "hooks/useTranslation";
-import { Bot, RobotSentiment, Workplace } from "types.d";
+import { Bot, ContactChannel, RobotSentiment, Workplace } from "types.d";
 
 import { RobotChatBubble } from "./robot/RobotChatBubble";
 import { RobotChatInput } from "./robot/RobotChatInput";
@@ -30,6 +30,7 @@ import { RobotHead } from "./robot/RobotHead";
 import { RobotHeadButton } from "./robot/RobotHeadButton";
 import { RobotHeadContainer } from "./robot/RobotHeadContainer";
 import { TypeAheadInput } from "./robot/TypeAheadInput";
+import { contactChannelIntents } from "./robot/contactChannelIntents";
 import { SENTIMENT_EMOTE_MAP } from "./robot/emotes";
 import { workplaceIntents } from "./robot/workplaceIntents";
 
@@ -42,7 +43,7 @@ const RobotInPortal = dynamic<PropsWithChildren<unknown>>(
 export const Robot = memo(() => {
   const { t } = useTranslation();
   const {
-    query: { place },
+    query: { channel, place },
   } = useRouter();
   const [bot, setBot] = useState<Bot>();
   const [botNotifAudio, setBotNotifAudio] = useState<HTMLAudioElement>();
@@ -136,26 +137,37 @@ export const Robot = memo(() => {
   }, [setSentimentInputDebounced, inputValue, bot]);
 
   useEffect(() => {
-    if (bot && typeof place === "string" && place in workplaceIntents) {
+    if (bot) {
       setBotMessage("");
-      setTimeout(
-        () => setBotMessage(bot.getReply(workplaceIntents[place as Workplace])),
+      if (typeof place === "string" && place in workplaceIntents) {
+        setTimeout(
+          () =>
+            setBotMessage(bot.getReply(workplaceIntents[place as Workplace])),
 
-        botMessageDelay
-      );
+          botMessageDelay
+        );
+      } else if (
+        typeof channel === "string" &&
+        channel in contactChannelIntents
+      ) {
+        setTimeout(
+          () =>
+            setBotMessage(
+              bot.getReply(contactChannelIntents[channel as ContactChannel])
+            ),
+
+          botMessageDelay
+        );
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bot, place]);
+  }, [bot, channel, place]);
 
   useEffect(() => {
     if (botMessage) {
       botNotifAudio?.play();
     }
   }, [botMessage, botNotifAudio]);
-
-  if (!bot) {
-    return null;
-  }
 
   return (
     <RobotInPortal>
