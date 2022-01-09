@@ -5,7 +5,7 @@
  */
 import { forwardRef, memo } from "react";
 
-import { mdiChevronDown, mdiSend } from "@mdi/js";
+import { mdiClose, mdiSend } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -31,7 +31,7 @@ export const RobotChatInput = memo(
             startAdornment: (
               <InputAdornment position="start" sx={{ ml: -1 }}>
                 <IconButton size="small" onClick={onClose ?? undefined}>
-                  <Icon path={mdiChevronDown} size={1} />
+                  <Icon path={mdiClose} size={1} />
                 </IconButton>
               </InputAdornment>
             ),
