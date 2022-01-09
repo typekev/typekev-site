@@ -1,3 +1,4 @@
+export * from "types/contact.d";
 export * from "types/locale.d";
 export * from "types/path.d";
 export * from "types/post.d";

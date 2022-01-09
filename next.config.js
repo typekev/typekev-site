@@ -45,6 +45,10 @@ module.exports = {
         source: "/contact/",
         destination: "/",
       },
+      {
+        source: "/contact/:channel/",
+        destination: "/",
+      },
     ];
   },
 };
