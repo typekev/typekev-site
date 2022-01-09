@@ -5,7 +5,13 @@
  */
 import { memo, SyntheticEvent, useState } from "react";
 
-import { mdiArrowDown, mdiAt, mdiAtom, mdiBookshelf, mdiMenu } from "@mdi/js";
+import {
+  mdiArrowDown,
+  mdiAt,
+  mdiCodeBracesBox,
+  mdiCommentTextOutline,
+  mdiMenu,
+} from "@mdi/js";
 import Icon from "@mdi/react";
 import IconButton from "@mui/material/IconButton";
 import Tab from "@mui/material/Tab";
@@ -79,7 +85,9 @@ export const NavBar = memo(() => {
           value={Section.about}
           icon={
             <Tooltip title={t("About me")} placement="right" arrow>
-              <K />
+              <div>
+                <K />
+              </div>
             </Tooltip>
           }
           onClick={() => scrollToSection(Section.about)}
@@ -89,7 +97,7 @@ export const NavBar = memo(() => {
           value={Section.work}
           icon={
             <Tooltip title={t("Work")} placement="right" arrow>
-              <Icon path={mdiAtom} />
+              <Icon path={mdiCodeBracesBox} />
             </Tooltip>
           }
           onClick={() => scrollToSection(Section.work)}
@@ -99,7 +107,7 @@ export const NavBar = memo(() => {
           value={Section.blog}
           icon={
             <Tooltip title={t("Articles")} placement="right" arrow>
-              <Icon path={mdiBookshelf} />
+              <Icon path={mdiCommentTextOutline} />
             </Tooltip>
           }
           onClick={() => scrollToSection(Section.blog)}
@@ -161,12 +169,19 @@ const Bar = styled("nav", { shouldForwardProp })<BarProps>`
       bottom: 1em;
       height: auto;
     }
-  `}
 
-  a,
-  button {
-    z-index: 1200;
-  }
+    a,
+    button {
+      z-index: 1200;
+
+      ${theme.breakpoints.up("md")} {
+        height: 4em;
+      }
+      ${theme.breakpoints.up("lg")} {
+        height: 4.5em;
+      }
+    }
+  `}
 
   > button:first-of-type {
     transform: translateX(0);

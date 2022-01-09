@@ -26,7 +26,12 @@ const Div = styled("strong")`
     ${theme.breakpoints.up("md")} {
       display: block;
       padding: 0.125em;
+      font-size: 2.75em;
+    }
+    ${theme.breakpoints.up("lg")} {
+      display: block;
       font-size: 3em;
     }
+
   `}
 `;

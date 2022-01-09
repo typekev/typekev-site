@@ -6,7 +6,12 @@
 import Link from "next/link";
 import { memo, SyntheticEvent } from "react";
 
-import { mdiAt, mdiAtom, mdiBookshelf, mdiChevronRight } from "@mdi/js";
+import {
+  mdiAt,
+  mdiCodeBracesBox,
+  mdiChevronRight,
+  mdiCommentTextOutline,
+} from "@mdi/js";
 import Icon from "@mdi/react";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
@@ -63,7 +68,7 @@ export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
             onClick={onClick(Section.work)}
           >
             <ListItemIcon>
-              <Icon path={mdiAtom} size={1.125} />
+              <Icon path={mdiCodeBracesBox} size={1.125} />
             </ListItemIcon>
             <ListItemText primary={t("Work")} />
           </ListItemButton>
@@ -74,7 +79,7 @@ export const NavDrawer = memo(({ selected, onClose, ...rest }: Props) => {
             onClick={onClick(Section.blog)}
           >
             <ListItemIcon>
-              <Icon path={mdiBookshelf} size={1.125} />
+              <Icon path={mdiCommentTextOutline} size={1.125} />
             </ListItemIcon>
             <ListItemText primary={t("Articles")} />
           </ListItemButton>
