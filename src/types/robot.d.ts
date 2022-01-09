@@ -9,6 +9,7 @@ export enum RobotSentiment {
 export interface Bot {
   getReply: (text: string) => string;
   getSentiment: (text: string) => RobotSentiment;
+  getSuggestion: (text: string) => string | undefined;
 }
 
 export type Responses = typeof en;

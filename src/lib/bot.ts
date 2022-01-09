@@ -12,4 +12,6 @@ const bots: Record<Locale, typeof en> = {
 export const bot: Bot = {
   getReply: (text: string) => bots[detectLanguage(text)].getReply(text),
   getSentiment: (text: string) => bots[detectLanguage(text)].getSentiment(text),
+  getSuggestion: (text: string) =>
+    bots[detectLanguage(text)].getSuggestion(text),
 };

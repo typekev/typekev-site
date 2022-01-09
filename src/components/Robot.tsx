@@ -39,14 +39,6 @@ const RobotInPortal = dynamic<PropsWithChildren<unknown>>(
   { ssr: false }
 );
 
-const suggestions = ["A suggestion"];
-const getSuggestion = (value: string) =>
-  suggestions.find(
-    (suggestion) =>
-      suggestion.toLowerCase().substring(0, value.length) ===
-      value.toLowerCase()
-  );
-
 export const Robot = memo(() => {
   const { t } = useTranslation();
   const {
@@ -135,13 +127,13 @@ export const Robot = memo(() => {
   useEffect(() => {
     setCanSubmit(!!inputValue.trim());
 
-    if (inputValue) {
-      setInputSuggestion(getSuggestion(inputValue));
+    if (inputValue && bot) {
+      setInputSuggestion(bot.getSuggestion(inputValue));
       setSentimentInputDebounced(inputValue);
     } else {
       setInputSuggestion(undefined);
     }
-  }, [setSentimentInputDebounced, inputValue]);
+  }, [setSentimentInputDebounced, inputValue, bot]);
 
   useEffect(() => {
     if (bot && typeof place === "string" && place in workplaceIntents) {
