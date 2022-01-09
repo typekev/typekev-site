@@ -79,6 +79,7 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
             textAlign: "center",
             fontSize: "0.875em",
             maxWidth: "unset",
+            padding: "0.625em 0.875em",
           },
         },
       },
