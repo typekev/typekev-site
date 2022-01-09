@@ -19,9 +19,9 @@ import { Section } from "types.d";
 import { getSectionFromPath } from "utils/getSectionFromPath";
 import { scrollToSection } from "utils/scrollToSection";
 
-import { ThemeModeToggle } from "./ThemeModeToggle";
-import { TranslationToggle } from "./TranslationToggle";
 import { NavDrawer } from "./navBar/NavDrawer";
+import { ThemeModeToggle } from "./navBar/ThemeModeToggle";
+import { TranslationToggle } from "./navBar/TranslationToggle";
 
 const NEXT_SECTION: Record<Section, Section> = {
   [Section.about]: Section.work,

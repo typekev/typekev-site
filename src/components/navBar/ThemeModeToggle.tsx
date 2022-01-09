@@ -3,7 +3,7 @@
  * ThemeModeToggle
  *
  */
-import { useContext, memo } from "react";
+import { useContext, memo, useEffect, useState } from "react";
 
 import { mdiWeatherNight, mdiWeatherSunny } from "@mdi/js";
 import Icon from "@mdi/react";
@@ -19,15 +19,25 @@ import { ThemeMode } from "types.d";
 export const ThemeModeToggle = memo(() => {
   const { t } = useTranslation();
   const { themeMode, toggleThemeMode } = useContext(ThemeModeContext);
+  const [switchAudio, setSwitchAudio] = useState<HTMLAudioElement>();
 
   const isDarkMode = themeMode === ThemeMode.dark;
   const tooltip = t(isDarkMode ? "Dark mode On" : "Dark mode Off");
   const color = isDarkMode ? palette.moonGlow : palette.supernova;
 
+  const handleClick = () => {
+    toggleThemeMode();
+    switchAudio?.play();
+  };
+
+  useEffect(() => {
+    setSwitchAudio(new Audio("/audio/lightswitch.wav"));
+  }, []);
+
   return (
     <ThemeModeTab
       value={false}
-      onClick={toggleThemeMode}
+      onClick={handleClick}
       sx={{ color, opacity: 1, ":hover": { color } }}
       icon={
         <Tooltip title={tooltip} placement="right" arrow>
