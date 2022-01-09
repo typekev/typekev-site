@@ -20,6 +20,7 @@ export const WorkplaceLink = memo(
   ({ workplace, active, children, ...rest }: Props) => (
     <Tooltip
       followCursor
+      disableTouchListener
       title={
         <>
           <h2>{TITLE[workplace]}</h2>
