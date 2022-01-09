@@ -50,7 +50,10 @@ export const Workplaces = memo(() => {
       </WPLink>
       <Button variant="text" onClick={() => scrollToSection(Section.contact)}>
         <Link href={`/${Section.contact}?highlight=LinkedIn`} passHref shallow>
-          <FocusedText>{`${t("and more")}.`}</FocusedText>
+          <FocusedText>
+            {`${t("and more")}`}
+            <span style={{ fontSize: "0.8125em" }}>↓</span>
+          </FocusedText>
         </Link>
       </Button>
     </>
