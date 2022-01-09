@@ -76,10 +76,11 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            textAlign: 'center',
-            maxWidth: 'unset'
-          }
-        }
+            textAlign: "center",
+            fontSize: "0.875em",
+            maxWidth: "unset",
+          },
+        },
       },
       MuiInputBase: {
         styleOverrides: {
