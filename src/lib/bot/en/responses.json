@@ -419,6 +419,9 @@
     "work.pwc": [
         "Kevin worked with an international team developing PwC's auditing software."
     ],
+    "contact.linkedin": [
+        "Learn more about Kevin on LinkedIn by clicking the link below."
+    ],
     "fallback": [
         "I'm sorry, I don't understand."
     ]
