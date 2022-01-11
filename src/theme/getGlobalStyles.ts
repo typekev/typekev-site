@@ -126,7 +126,7 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
     font-weight: 200;
   }
 
-  a {
+  a:not([type="button"]) {
     color: inherit;
     font-weight: 300;
 
