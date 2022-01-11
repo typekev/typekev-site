@@ -25,6 +25,7 @@ import { Section } from "types.d";
 import { getSectionFromPath } from "utils/getSectionFromPath";
 import { scrollToSection } from "utils/scrollToSection";
 
+import { AudioToggle } from "./navBar/AudioToggle";
 import { K } from "./navBar/K";
 import { NavDrawer } from "./navBar/NavDrawer";
 import { ThemeModeToggle } from "./navBar/ThemeModeToggle";
@@ -58,6 +59,7 @@ export const NavBar = memo(() => {
   return (
     <Bar retract={hasLeftStart && !isInPost}>
       <IconButton
+        aria-label="Menu"
         name="Menu"
         color="inherit"
         onClick={onOpenDrawer}
@@ -80,6 +82,7 @@ export const NavBar = memo(() => {
       >
         <ThemeModeToggle />
         <TranslationToggle />
+        <AudioToggle />
         <Tab
           sx={{ display: { xs: "none", md: "block" } }}
           value={Section.about}
@@ -126,12 +129,10 @@ export const NavBar = memo(() => {
           value={false}
           icon={
             <Tooltip title={arrowTitle} placement="right" arrow>
-              <span>
-                <Icon
-                  path={mdiArrowDown}
-                  rotate={hasReachedEnd ? 180 : isInPost ? 90 : undefined}
-                />
-              </span>
+              <Icon
+                path={mdiArrowDown}
+                rotate={hasReachedEnd ? 180 : isInPost ? 90 : undefined}
+              />
             </Tooltip>
           }
           onClick={() =>

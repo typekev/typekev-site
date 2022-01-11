@@ -23,6 +23,8 @@
   "Filipino": "filipino",
   "French": "français",
   "Language": "Langue : $t(French)",
+  "Sound On": "Son: activé",
+  "Sound Off": "Son: désactivé",
   "About me": "A propos de moi",
   "Work": "Travail",
   "Articles": "Écrits",

@@ -21,6 +21,9 @@ export const palette = {
 
   supernova: "#ffc901",
   moonGlow: "#fcfeda",
+  aquamarineBlue: "#81d8e6",
+  surf: "#bbd7c1",
+  geraldine: "#FB8989",
 
   dodgerBlue: "#1f93fa",
 };

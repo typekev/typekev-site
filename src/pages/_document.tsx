@@ -5,6 +5,10 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:"
+          />
           <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap"
             rel="stylesheet"

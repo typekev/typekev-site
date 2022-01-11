@@ -19,7 +19,7 @@ export const TranslationToggle = memo(() => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const color = palette.pictonBlue;
+  const color = palette.aquamarineBlue;
 
   const handleClick = (event: MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);

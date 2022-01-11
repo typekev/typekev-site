@@ -10,6 +10,7 @@ import {
   memo,
   PropsWithChildren,
   useCallback,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -19,6 +20,7 @@ import { Fade } from "@mui/material";
 import Grow from "@mui/material/Grow";
 import { debounce } from "@mui/material/utils";
 
+import { AudioContext } from "contexts/AudioContext";
 import { useRouter } from "hooks/useRouter";
 import { useTranslation } from "hooks/useTranslation";
 import { Bot, ContactChannel, RobotSentiment, Workplace } from "types.d";
@@ -46,7 +48,6 @@ export const Robot = memo(() => {
     query: { channel, place },
   } = useRouter();
   const [bot, setBot] = useState<Bot>();
-  const [botNotifAudio, setBotNotifAudio] = useState<HTMLAudioElement>();
   const [displayInput, setDisplayInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [inputSuggestion, setInputSuggestion] = useState<string>();
@@ -55,6 +56,7 @@ export const Robot = memo(() => {
   const [botMessage, setBotMessage] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
   const [chatPromptTimeout, setChatPromptTimeout] = useState<NodeJS.Timeout>();
+  const { botNotificationAudio } = useContext(AudioContext);
   const inputRef = useRef<HTMLInputElement>();
   const botMessageDelay = botMessage ? 500 : 0;
 
@@ -110,7 +112,6 @@ export const Robot = memo(() => {
     chatPromptTimeout && clearTimeout(chatPromptTimeout);
 
   useEffect(() => {
-    setBotNotifAudio(new Audio("/audio/notification.wav"));
     // Prevent double bot render on locale change by delaying mount
     const botTimeout = setTimeout(() => {
       import("lib/bot").then(({ bot }) => setBot(bot));
@@ -165,15 +166,17 @@ export const Robot = memo(() => {
 
   useEffect(() => {
     if (botMessage) {
-      botNotifAudio?.play();
+      botNotificationAudio?.play();
     }
-  }, [botMessage, botNotifAudio]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [botMessage]);
 
   return (
     <RobotInPortal>
       <RobotChatBubble message={botMessage} />
       <Fade appear mountOnEnter unmountOnExit in>
         <RobotHeadButton
+          aria-label="Robot Head"
           component="div"
           onClick={() => !displayInput && setDisplayInput(true)}
         >

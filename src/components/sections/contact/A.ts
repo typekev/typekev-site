@@ -30,7 +30,7 @@ export const A = styled(Button)<Props>`
       background: ${gradients.bgFocused};
       animation: ${frames.bgPosSway} 3500ms infinite ease;
       background-size: 700% 200%;
-      opacity: 0.8;
+      opacity: 0.9;
       box-shadow: ${theme.shadows[3]};
       transition: opacity 150ms, box-shadow 200ms;
 

@@ -38,7 +38,7 @@ export const Contact = memo(
           <li>
             <A
               href={ContactAddress.linkedin}
-              highlight={channel === ContactChannel.LinkedIn}
+              highlight={channel === ContactChannel.LinkedIn || undefined}
             >
               {t("LinkedIn")}
             </A>

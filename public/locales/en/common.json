@@ -24,6 +24,8 @@
   "Filipino": "Filipino",
   "French": "French",
   "Language": "Language: $t(English)",
+  "Sound On": "Sound: on",
+  "Sound Off": "Sound: off",
   "About me": "About me",
   "Work": "Work",
   "Articles": "Articles",

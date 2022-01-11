@@ -30,14 +30,23 @@ export const RobotChatInput = memo(
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" sx={{ ml: -1 }}>
-                <IconButton size="small" onClick={onClose ?? undefined}>
+                <IconButton
+                  aria-label="Close"
+                  size="small"
+                  onClick={onClose ?? undefined}
+                >
                   <Icon path={mdiClose} size={1} />
                 </IconButton>
               </InputAdornment>
             ),
             endAdornment: (
               <InputAdornment position="end" sx={{ mr: -1 }}>
-                <IconButton type="submit" size="small" disabled={!canSubmit}>
+                <IconButton
+                  aria-label="Submit"
+                  type="submit"
+                  size="small"
+                  disabled={!canSubmit}
+                >
                   <Icon path={mdiSend} size={1} />
                 </IconButton>
               </InputAdornment>
