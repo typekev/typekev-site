@@ -28,9 +28,9 @@ export const AudioProvider = ({ children }: PropsWithChildren<unknown>) => {
     useState<HTMLAudioElement>();
 
   useEffect(() => {
-    setUnmuteAudio(new Audio("/audio/unmute.wav"));
-    setThemeSwitchAudio(new Audio("/audio/lightswitch.wav"));
-    setBotNotificationAudio(new Audio("/audio/notification.wav"));
+    setUnmuteAudio(new Audio("/audio/unmute.mp3"));
+    setThemeSwitchAudio(new Audio("/audio/lightswitch.mp3"));
+    setBotNotificationAudio(new Audio("/audio/notification.mp3"));
   }, []);
 
   useEffect(() => {
