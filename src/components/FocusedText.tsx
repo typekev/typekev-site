@@ -35,8 +35,8 @@ FocusedText.displayName = FocusedText.name;
 const focused = css`
   background: ${gradients.bgFocused};
   background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  box-decoration-break: clone;
   animation: ${frames.bgPosSway} 7500ms infinite ease;
   background-size: 400% 200%;
 `;
