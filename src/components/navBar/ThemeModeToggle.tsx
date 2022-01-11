@@ -28,6 +28,7 @@ export const ThemeModeToggle = memo(() => {
 
   const handleClick = () => {
     toggleThemeMode();
+    themeSwitchAudio?.load();
     themeSwitchAudio?.play();
   };
 

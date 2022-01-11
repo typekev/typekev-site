@@ -166,6 +166,7 @@ export const Robot = memo(() => {
 
   useEffect(() => {
     if (botMessage) {
+      botNotificationAudio?.load();
       botNotificationAudio?.play();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

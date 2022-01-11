@@ -47,6 +47,7 @@ export const AudioProvider = ({ children }: PropsWithChildren<unknown>) => {
   const toggleMute = () => {
     setIsMute(!isMute);
     if (isMute) {
+      unmuteAudio?.load();
       unmuteAudio?.play();
     }
   };
