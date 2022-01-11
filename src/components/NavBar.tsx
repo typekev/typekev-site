@@ -44,7 +44,6 @@ export const NavBar = memo(() => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const section = getSectionFromPath(router.asPath);
-  const hasLeftStart = section !== Section.about;
   const hasReachedEnd = section === Section.contact;
   const isInPost = section === Section.blog && router.query?.id;
   const arrowTitle = t(
@@ -57,7 +56,7 @@ export const NavBar = memo(() => {
     to && (section ? router.replace : router.push)(`/${to}`);
 
   return (
-    <Bar retract={hasLeftStart && !isInPost}>
+    <Bar>
       <IconButton
         aria-label="Menu"
         name="Menu"
@@ -148,13 +147,7 @@ export const NavBar = memo(() => {
 
 NavBar.displayName = NavBar.name;
 
-const shouldForwardProp = (prop: PropertyKey) => prop !== "retract";
-
-interface BarProps {
-  retract: boolean;
-}
-
-const Bar = styled("nav", { shouldForwardProp })<BarProps>`
+const Bar = styled("nav")`
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -187,29 +180,34 @@ const Bar = styled("nav", { shouldForwardProp })<BarProps>`
   > button:first-of-type {
     transform: translateX(0);
     transition: transform 250ms;
+    margin-top: 0.125em;
+    padding: 0;
     > svg {
-      width: 2em;
+      width: 1.625em;
+      height: 1.625em;
       padding: 0;
     }
-
-    ${({ retract }) =>
-      retract &&
-      css`
-        transform: translateX(1em);
-      `}
   }
 
   svg {
-    width: 3.5em;
-    padding: 0.5em 0.25em;
+    width: 3em;
+    height: 3em;
+    padding: 0.25em 0.25em;
 
     ${({ theme }) => css`
+      ${theme.breakpoints.up("sm")} {
+        width: 3.5em;
+        height: 3.5em;
+        padding: 0.5em 0.25em;
+      }
       ${theme.breakpoints.up("md")} {
         width: 4em;
+        height: 4em;
         padding: 0.75em;
       }
       ${theme.breakpoints.up("lg")} {
         width: 4.5em;
+        height: 4.5em;
         padding: 0.75em;
       }
     `}
