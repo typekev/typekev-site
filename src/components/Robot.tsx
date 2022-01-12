@@ -112,7 +112,7 @@ export const Robot = memo(() => {
 
   const promptUnloadedChat = () => {
     setBotMessage(unloadedPrompt);
-    setTimeout(() => setBotMessage(""), 5000);
+    setTimeout(() => setBotMessage(""), 20000);
   };
 
   const clearChatPrompt = () =>
