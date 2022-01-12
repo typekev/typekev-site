@@ -28,13 +28,13 @@ export const WorkplaceLink = memo(
         </>
       }
     >
-      <Button variant="text">
-        <Link href={`/${Section.work}/${workplace}/`} passHref shallow>
+      <Link href={`/${Section.work}/${workplace}/`} passHref shallow>
+        <Button variant="text" type="button">
           <FocusedText active={active} {...rest}>
             {children}
           </FocusedText>
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </Tooltip>
   )
 );

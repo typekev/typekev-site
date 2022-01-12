@@ -96,7 +96,7 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
   #__next {
     min-height: 100%;
     min-width: 100%;
-    padding: 0 7vw 66vh 7vw;
+    padding: 0 9vw 66vh 9vw;
 
     ${theme.breakpoints.up("sm")} {
       padding: 0 8vw 60vh 8vw;
@@ -126,7 +126,7 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
     font-weight: 200;
   }
 
-  a {
+  a:not([type="button"]) {
     color: inherit;
     font-weight: 300;
 

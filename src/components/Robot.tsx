@@ -61,6 +61,7 @@ export const Robot = memo(() => {
   const botMessageDelay = botMessage ? 500 : 0;
 
   const clickPrompt = t("Have a question? Click me!");
+  const unloadedPrompt = t("Looks like I'm not loaded yet");
   const typeAheadInputValue = inputSuggestion
     ? `${inputValue}${inputSuggestion.substring(inputValue.length)}`
     : inputValue;
@@ -104,9 +105,15 @@ export const Robot = memo(() => {
   };
 
   const promptChat = () =>
+    bot &&
     !displayInput &&
     !botMessage &&
     setChatPromptTimeout(setTimeout(() => setBotMessage(clickPrompt), 700));
+
+  const promptUnloadedChat = () => {
+    setBotMessage(unloadedPrompt);
+    setTimeout(() => setBotMessage(""), 20000);
+  };
 
   const clearChatPrompt = () =>
     chatPromptTimeout && clearTimeout(chatPromptTimeout);
@@ -165,7 +172,8 @@ export const Robot = memo(() => {
   }, [bot, channel, place]);
 
   useEffect(() => {
-    if (botMessage) {
+    if (bot && botMessage) {
+      botNotificationAudio?.load();
       botNotificationAudio?.play();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -178,10 +186,12 @@ export const Robot = memo(() => {
         <RobotHeadButton
           aria-label="Robot Head"
           component="div"
-          onClick={() => !displayInput && setDisplayInput(true)}
+          onClick={() =>
+            bot ? !displayInput && setDisplayInput(true) : promptUnloadedChat()
+          }
         >
           <RobotHeadContainer
-            disableHover={displayInput}
+            disableHover={!bot || displayInput}
             onMouseEnter={promptChat}
             onMouseLeave={clearChatPrompt}
           >
@@ -191,30 +201,32 @@ export const Robot = memo(() => {
               color="transparent"
             />
           </RobotHeadContainer>
-          <RobotChatInputForm onSubmit={onSubmit}>
-            <Grow in={displayInput}>
-              <TypeAheadInput
-                disabled
-                value={typeAheadInputValue}
-                InputProps={{
-                  sx: {
-                    height: "100%",
-                  },
-                }}
-              />
-            </Grow>
-            <Grow in={displayInput}>
-              <RobotChatInput
-                inputRef={inputRef}
-                value={inputValue}
-                canSubmit={canSubmit}
-                onChange={(e) => setInputValue(e.target.value)}
-                onClose={endChat}
-                onKeyDown={onKeyDown}
-                placeholder={t("Type something")}
-              />
-            </Grow>
-          </RobotChatInputForm>
+          {!!bot && (
+            <RobotChatInputForm onSubmit={onSubmit}>
+              <Grow in={displayInput}>
+                <TypeAheadInput
+                  disabled
+                  value={typeAheadInputValue}
+                  InputProps={{
+                    sx: {
+                      height: "100%",
+                    },
+                  }}
+                />
+              </Grow>
+              <Grow in={displayInput}>
+                <RobotChatInput
+                  inputRef={inputRef}
+                  value={inputValue}
+                  canSubmit={canSubmit}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onClose={endChat}
+                  onKeyDown={onKeyDown}
+                  placeholder={t("Type something")}
+                />
+              </Grow>
+            </RobotChatInputForm>
+          )}
         </RobotHeadButton>
       </Fade>
     </RobotInPortal>

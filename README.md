@@ -7,7 +7,7 @@
 <br/>
 <a href="https://typekev.com">
   <div align="center">
-    Image coming soon.
+    <img src="./docs/static/images/typekev-site.png" />
   </div>
 </a>
 <br/>

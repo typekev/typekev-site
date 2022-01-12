@@ -3,11 +3,12 @@ import { styled, css } from "@mui/material/styles";
 
 import { frames, gradients, palette } from "theme";
 
+const shouldForwardProp = (prop: PropertyKey) => prop !== "highlight";
 interface Props {
   highlight?: boolean;
 }
 
-export const A = styled(Button)<Props>`
+export const A = styled(Button, { shouldForwardProp })<Props>`
   color: ${palette.pictonBlue};
   font-weight: 300;
   text-decoration: underline;
