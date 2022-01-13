@@ -10,8 +10,10 @@ import {
   mdiClipboardMultipleOutline,
 } from "@mdi/js";
 import Icon from "@mdi/react";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import { styled } from "@mui/material/styles";
+import { styled, css } from "@mui/material/styles";
 
 import { Section } from "components/Section";
 import { useRouter } from "hooks/useRouter";
@@ -36,17 +38,21 @@ export const Contact = memo(
       <ContactSection title={t("Ways you can contact me")} {...props}>
         <ul>
           <li>
-            <A
-              href={ContactAddress.linkedin}
-              highlight={channel === ContactChannel.LinkedIn}
-            >
-              {t("LinkedIn")}
-            </A>
+            <Button variant="text">
+              <A
+                href={ContactAddress.linkedin}
+                highlight={channel === ContactChannel.LinkedIn}
+              >
+                {t("LinkedIn")}
+              </A>
+            </Button>
           </li>
           <li>
+            <Button variant="text">
+              <A href={`mailto:${ContactAddress.email}`}>{t("Email")}</A>
+            </Button>
             <Tooltip title={t(copied ? "Copied" : "Copy")} followCursor>
-              <A onClick={copyEmail}>
-                {t("Email")}
+              <IconButton color="inherit" onClick={copyEmail}>
                 <Icon
                   path={
                     copied
@@ -54,7 +60,7 @@ export const Contact = memo(
                       : mdiClipboardMultipleOutline
                   }
                 />
-              </A>
+              </IconButton>
             </Tooltip>
           </li>
         </ul>
@@ -73,5 +79,25 @@ enum ContactAddress {
 const ContactSection = styled(Section)`
   > div {
     margin-left: -0.625rem;
+  }
+
+  svg {
+    width: 1.25em;
+    height: 1.25em;
+
+    ${({ theme }) => css`
+      ${theme.breakpoints.up("md")} {
+        width: 1.5em;
+        height: 1.5em;
+      }
+      ${theme.breakpoints.up("lg")} {
+        width: 1.75em;
+        height: 1.75em;
+      }
+      ${theme.breakpoints.up("xl")} {
+        width: 2em;
+        height: 2em;
+      }
+    `}
   }
 `;

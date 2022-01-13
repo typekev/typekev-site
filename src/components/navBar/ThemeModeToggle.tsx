@@ -52,5 +52,8 @@ export const ThemeModeToggle = memo(() => {
 ThemeModeToggle.displayName = ThemeModeToggle.name;
 
 const ThemeModeTab = styled(Tab)`
-  transition: color 1500ms;
+  transition: ${({ theme }) =>
+    theme.transitions.create("color", {
+      duration: theme.transitions.duration.complex,
+    })};
 `;

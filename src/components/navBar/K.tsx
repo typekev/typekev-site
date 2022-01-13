@@ -12,10 +12,9 @@ export const K = memo(() => <Div>K</Div>);
 K.displayName = K.name;
 
 const Div = styled("strong")`
-  font-family: "Averia Serif Libre", serif;
-  font-weight: 700;
-
   ${({ theme }) => css`
+    font-weight: ${theme.typography.fontWeightBold};
+
     ${theme.breakpoints.between("xs", "md")} {
       height: 27px;
       width: 27px;

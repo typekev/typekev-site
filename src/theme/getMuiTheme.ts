@@ -22,7 +22,12 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
       },
     },
     typography: {
-      fontFamily: "Inter",
+      fontFamily: "'Inter', sans-serif",
+      fontFamilyAlt: "'Averia Serif Libre', serif",
+      fontWeightBold: 700,
+      fontWeightMedium: 400,
+      fontWeightRegular: 300,
+      fontWeightLight: 200,
     },
     components: {
       MuiButton: {
@@ -44,6 +49,7 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
         styleOverrides: {
           paper: {
             minWidth: "16em",
+            backgroundColor: THEME_MODE_PALETTE_MAP[themeMode].drawer,
           },
         },
       },
@@ -87,7 +93,7 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
         styleOverrides: {
           root: {
             borderRadius: "1.5em !important",
-            transition: "all 1s",
+            transition: "all 375ms",
             backgroundColor: THEME_MODE_PALETTE_MAP[themeMode].background,
           },
         },

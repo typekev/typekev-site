@@ -6,6 +6,7 @@
 import Link from "next/link";
 import { LiHTMLAttributes, memo } from "react";
 
+import Button from "@mui/material/Button";
 import { styled, css } from "@mui/material/styles";
 
 import { useRouter } from "hooks/useRouter";
@@ -21,9 +22,11 @@ export const PostListItem = memo(({ id, title, timestamp, ...rest }: Props) => {
   return (
     <LI {...rest}>
       <Timestamp>{getFormattedPostDate(timestamp, locale)}</Timestamp>
-      <Link href={`${Section.blog}/${id}`} passHref shallow>
-        <a>{title}</a>
-      </Link>
+      <Button variant="text">
+        <Link href={`${Section.blog}/${id}`} passHref shallow>
+          <a>{title}</a>
+        </Link>
+      </Button>
     </LI>
   );
 });
@@ -40,6 +43,11 @@ const LI = styled("li")`
   }
 
   ${({ theme }) => css`
+    > button {
+      padding: 0;
+      font-weight: ${theme.typography.fontWeightLight};
+    }
+
     ${theme.breakpoints.up("sm")} {
       font-size: 0.5625em;
       margin-left: 0.125em;
@@ -53,14 +61,16 @@ const LI = styled("li")`
 
 const Timestamp = styled("div")`
   font-size: 0.875em;
-  margin-bottom: -0.25em;
+  margin-bottom: -0.125em;
 
   ${({ theme }) => css`
     ${theme.breakpoints.up("sm")} {
       font-size: 0.625em;
+      margin-bottom: -0.25em;
     }
     ${theme.breakpoints.up("md")} {
       font-size: 0.5em;
+      margin-bottom: -0.375em;
     }
   `}
 `;

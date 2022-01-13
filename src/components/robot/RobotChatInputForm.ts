@@ -13,9 +13,8 @@ export const RobotChatInputForm = styled("form")`
 
   ${({ theme }) => css`
     ${theme.breakpoints.only("xs")} {
-      left: 0;
-      margin-left: -51vw;
-      width: 74.5vw;
+      right: 0;
+      width: 78vw;
     }
     ${theme.breakpoints.up("sm")} {
       left: -0.5em;

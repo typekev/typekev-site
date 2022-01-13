@@ -46,7 +46,7 @@ const Text = styled("span", { shouldForwardProp })<Props>`
   border-radius: 1em;
   margin: 0 -0.25em;
   padding: 0 0.25em;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.typography.fontWeightMedium};
 
   ${({ active }) => active && focused}
 

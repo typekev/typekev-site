@@ -70,15 +70,15 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
 
   body {
     ${defaultCssVariables[theme.palette.mode]}
-    --bg1-trans-duration: 300ms;
-    --bg2-trans-duration: 600ms;
-    --bg3-trans-duration: 900ms;
-    --bg4-trans-duration: 1200ms;
-    --fg-trans-duration: 1500ms;
+    --bg1-trans-duration: ${theme.transitions.duration.shortest}ms;
+    --bg2-trans-duration: ${theme.transitions.duration.shorter}ms;
+    --bg3-trans-duration: ${theme.transitions.duration.short}ms;
+    --bg4-trans-duration: ${theme.transitions.duration.standard}ms;
+    --fg-trans-duration: ${theme.transitions.duration.complex}ms;
 
     overflow: hidden auto;
-    font-family: "Inter", sans-serif;
-    font-weight: 200;
+    font-family: ${theme.typography.fontFamily};
+    font-weight: ${theme.typography.fontWeightLight};
     line-height: 1.25;
     background: ${gradients.bg};
     background-attachment: fixed;
@@ -118,25 +118,25 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
   }
 
   h1 {
-    font-weight: 300;
+    font-weight: ${theme.typography.fontWeightRegular};
   }
 
   h2,
   h3 {
-    font-weight: 200;
+    font-weight: ${theme.typography.fontWeightLight};
   }
 
-  a:not([type="button"]) {
+  a {
     color: inherit;
-    font-weight: 300;
-
-    :hover {
-      color: ${palette.dodgerBlue};
-    }
   }
 
-  b {
-    font-weight: 400;
+  b,
+  strong {
+    font-weight: ${theme.typography.fontWeightMedium};
+  }
+
+  strong {
+    font-family: ${theme.typography.fontFamilyAlt};
   }
 
   svg {

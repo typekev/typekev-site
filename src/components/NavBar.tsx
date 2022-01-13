@@ -178,10 +178,9 @@ const Bar = styled("nav")`
   `}
 
   > button:first-of-type {
-    transform: translateX(0);
-    transition: transform 250ms;
     margin-top: 0.125em;
     padding: 0;
+
     > svg {
       width: 1.625em;
       height: 1.625em;
@@ -211,8 +210,5 @@ const Bar = styled("nav")`
         padding: 0.75em;
       }
     `}
-
-    transition: ${({ theme }) => theme.transitions.create(["transform"])};
-    filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
   }
 `;

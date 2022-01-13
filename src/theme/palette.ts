@@ -24,8 +24,6 @@ export const palette = {
   aquamarineBlue: "#81d8e6",
   surf: "#bbd7c1",
   geraldine: "#FB8989",
-
-  dodgerBlue: "#1f93fa",
 };
 
 export const THEME_MODE_PALETTE_MAP = {
@@ -33,12 +31,14 @@ export const THEME_MODE_PALETTE_MAP = {
     text: palette.retroOffBlack[100],
     primary: palette.retroOffBlack[200],
     background: palette.retroOffWhite[100],
+    drawer: palette.retroOffWhite[400],
     accent: palette.peachSchnapps,
   },
   [ThemeMode.dark]: {
     text: palette.retroOffWhite[100],
     primary: palette.retroOffWhite[300],
     background: palette.retroOffBlack[100],
+    drawer: palette.retroOffBlack[400],
     accent: palette.retroOffBlack[100],
   },
 };
