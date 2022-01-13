@@ -34,6 +34,9 @@
   "Back to top": "Back to top",
   "Return": "Return",
   "Have a question? Click me!": "Have a question? Click me!",
-  "Looks like I'm not loaded yet": "Looks like I'm not loaded yet... your device might not be able to interact with me.",
+  "Looks like I'm still loading": "Looks like I'm still loading... you might not be able to interact with me on this device.",
+  "Okay, I'm ready!": "Okay, I'm ready!",
+  "I think I know what you want to type": "I think I know what you want to type, swipe right on the text suggestion or click the right arrow key on your keyboard if I got it right.",
+  "Perfect! Now click the send button to talk to me": "Perfect! Now click the send button to talk to me.",
   "Type something": "Type something..."
 }

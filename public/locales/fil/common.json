@@ -34,6 +34,9 @@
   "Back to top": "bumalik sa simula",
   "Return": "balikan",
   "Have a question? Click me!": "May tanong? Click ako!",
-  "Looks like I'm not loaded yet": "Mukhang hindi pa ako na-load... baka hindi maka-interact sa akin ang iyong device.",
+  "Looks like I'm still loading": "Mukhang naglo-load pa ako... baka hindi mo ako ma-interact sa device na ito.",
+  "Okay, I'm ready!": "Okay, handa na ako!",
+  "I think I know what you want to type": "Sa tingin ko alam ko kung ano ang gusto mong i-type, kung tama ako, mag-swipe pakanan sa text suggestion o i-click ang kanang arrow key sa iyong keyboard.",
+  "Perfect! Now click the send button to talk to me": "Mahusay! Ngayon i-click ang send button para makipag-usap sa akin.",
   "Type something": "Mag type..."
 }

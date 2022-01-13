@@ -36,6 +36,7 @@
     "react-markdown": "^7.1.1",
     "react-mk": "^1.1.5",
     "react-reverse-portal": "^2.1.0",
+    "react-swipeable": "^6.2.0",
     "tinyld": "^1.1.5"
   },
   "devDependencies": {
