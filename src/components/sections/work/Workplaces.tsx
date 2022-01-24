@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 
 import { FocusedText } from "components/FocusedText";
+import { useRouter } from "hooks/useRouter";
 import { useTranslation } from "hooks/useTranslation";
 import { ContactChannel, Section, Workplace } from "types.d";
 import { scrollToSection } from "utils/scrollToSection";
@@ -19,6 +20,10 @@ import { WorkplaceLink } from "./WorkplaceLink";
 
 export const Workplaces = memo(() => {
   const { t } = useTranslation();
+  const {
+    query: { place },
+  } = useRouter();
+
   const abbreviate = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("md")
   );
@@ -38,16 +43,25 @@ export const Workplaces = memo(() => {
 
   return (
     <>
-      <WorkplaceLink active={!isHovering} workplace={Workplace.Emailtree}>
+      <WorkplaceLink
+        active={!isHovering && !place}
+        workplace={Workplace.Emailtree}
+      >
         {`${t("EmailTree")}, `}
       </WorkplaceLink>
-      <Link workplace={Workplace.Devoteam}>{`${t("Devoteam")}, `}</Link>
-      <Link workplace={Workplace.Microsoft}>{`${t("Microsoft")}, `}</Link>
-      <Link workplace={Workplace.Deloitte}>{`${t("Deloitte")}, `}</Link>
-      <Link workplace={Workplace.EIB}>
+      <Link currentWorkplace={place} workplace={Workplace.Devoteam}>{`${t(
+        "Devoteam"
+      )}, `}</Link>
+      <Link currentWorkplace={place} workplace={Workplace.Microsoft}>{`${t(
+        "Microsoft"
+      )}, `}</Link>
+      <Link currentWorkplace={place} workplace={Workplace.Deloitte}>{`${t(
+        "Deloitte"
+      )}, `}</Link>
+      <Link currentWorkplace={place} workplace={Workplace.EIB}>
         {`${t(abbreviate ? "EIB abbr" : "EIB")}, `}
       </Link>
-      <Link workplace={Workplace.PwC}>
+      <Link currentWorkplace={place} workplace={Workplace.PwC}>
         {`${t(abbreviate ? "PwC abbr" : "PwC")}, `}
       </Link>
       <NextLink
