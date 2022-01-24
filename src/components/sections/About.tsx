@@ -5,7 +5,6 @@
  */
 import { memo, ComponentPropsWithoutRef } from "react";
 
-import { styled } from "@mui/material/styles";
 import { Trans } from "next-i18next";
 
 import { FocusedText } from "components/FocusedText";
@@ -16,8 +15,7 @@ export const About = memo((props: ComponentPropsWithoutRef<typeof Section>) => (
     <Trans
       i18nKey="Hi, I'm Kevin"
       components={{
-        name: <Name />,
-        bold: <strong />,
+        name: <strong />,
         focused: <FocusedText active />,
       }}
     />
@@ -25,8 +23,3 @@ export const About = memo((props: ComponentPropsWithoutRef<typeof Section>) => (
 ));
 
 About.displayName = About.name;
-
-const Name = styled("span")`
-  font-family: "Averia Serif Libre", serif;
-  font-weight: 400;
-`;

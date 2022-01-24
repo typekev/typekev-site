@@ -1,0 +1,1 @@
+export const nullFunction = () => null;

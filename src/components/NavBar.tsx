@@ -43,7 +43,7 @@ export const NavBar = memo(() => {
   const router = useRouter();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const section = getSectionFromPath(router.asPath);
+  const section = getSectionFromPath(router.asPath) || Section.about;
   const hasReachedEnd = section === Section.contact;
   const isInPost = section === Section.blog && router.query?.id;
   const arrowTitle = t(
@@ -128,7 +128,7 @@ export const NavBar = memo(() => {
           value={false}
           icon={
             <Tooltip title={arrowTitle} placement="right" arrow>
-              <Icon
+              <ContinueArrow
                 path={mdiArrowDown}
                 rotate={hasReachedEnd ? 180 : isInPost ? 90 : undefined}
               />
@@ -178,10 +178,9 @@ const Bar = styled("nav")`
   `}
 
   > button:first-of-type {
-    transform: translateX(0);
-    transition: transform 250ms;
     margin-top: 0.125em;
     padding: 0;
+
     > svg {
       width: 1.625em;
       height: 1.625em;
@@ -211,8 +210,9 @@ const Bar = styled("nav")`
         padding: 0.75em;
       }
     `}
-
-    transition: ${({ theme }) => theme.transitions.create(["transform"])};
-    filter: drop-shadow(0.075em 0.025em 0.0625em rgba(0, 0, 0, 0.15));
   }
+`;
+
+const ContinueArrow = styled(Icon)`
+  transition: ${({ theme }) => theme.transitions.create("transform")};
 `;

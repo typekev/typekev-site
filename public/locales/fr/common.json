@@ -33,6 +33,9 @@
   "Back to top": "Retour au début",
   "Return": "Retourner",
   "Have a question? Click me!": "Vous avez une question ? Cliquez sur moi !",
-  "Looks like I'm not loaded yet": "On dirait que je ne suis pas encore actif... votre appareil pourrait ne pas être capable d'interagir avec moi.",
+  "Looks like I'm still loading": "On dirait que je ne suis pas encore prêt... vous ne pourrez peut-être pas interagir avec moi sur cet appareil.",
+  "Okay, I'm ready!": "Ok, je suis prêt !",
+  "I think I know what you want to type": "Je pense savoir ce que vous voulez taper, glisser vers la droite sur la suggestion de texte ou cliquer sur la flèche droite de votre clavier si j'ai bien compris.",
+  "Perfect! Now click the send button to talk to me": "Super ! Maintenant, cliquez sur le bouton d'envoi pour me parler.",
   "Type something": "Tapez..."
 }

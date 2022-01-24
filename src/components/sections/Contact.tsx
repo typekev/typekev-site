@@ -10,15 +10,17 @@ import {
   mdiClipboardMultipleOutline,
 } from "@mdi/js";
 import Icon from "@mdi/react";
+import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import { styled } from "@mui/material/styles";
+import { styled, css } from "@mui/material/styles";
+import { writeText } from "clipboard-polyfill/text";
 
 import { Section } from "components/Section";
 import { useRouter } from "hooks/useRouter";
 import { useTranslation } from "hooks/useTranslation";
 import { ContactChannel } from "types.d";
 
-import { A } from "./contact/A";
+import { ContactLink } from "./contact/ContactLink";
 
 export const Contact = memo(
   (props: ComponentPropsWithoutRef<typeof Section>) => {
@@ -28,25 +30,29 @@ export const Contact = memo(
     } = useRouter();
     const [copied, setCopied] = useState(false);
     const copyEmail = () =>
-      navigator.clipboard
-        .writeText(ContactAddress.email)
-        .then(() => setCopied(true));
+      writeText(ContactAddress.email).then(() => setCopied(true));
+
+    const isLinkedinFocused = channel === ContactChannel.LinkedIn;
 
     return (
       <ContactSection title={t("Ways you can contact me")} {...props}>
         <ul>
           <li>
-            <A
+            <ContactLink
+              variant="text"
+              color={isLinkedinFocused ? "secondary" : undefined}
+              highlight={isLinkedinFocused}
               href={ContactAddress.linkedin}
-              highlight={channel === ContactChannel.LinkedIn}
             >
               {t("LinkedIn")}
-            </A>
+            </ContactLink>
           </li>
           <li>
+            <ContactLink variant="text" href={`mailto:${ContactAddress.email}`}>
+              {t("Email")}
+            </ContactLink>
             <Tooltip title={t(copied ? "Copied" : "Copy")} followCursor>
-              <A onClick={copyEmail}>
-                {t("Email")}
+              <IconButton color="inherit" onClick={copyEmail}>
                 <Icon
                   path={
                     copied
@@ -54,7 +60,7 @@ export const Contact = memo(
                       : mdiClipboardMultipleOutline
                   }
                 />
-              </A>
+              </IconButton>
             </Tooltip>
           </li>
         </ul>
@@ -73,5 +79,25 @@ enum ContactAddress {
 const ContactSection = styled(Section)`
   > div {
     margin-left: -0.625rem;
+  }
+
+  svg {
+    width: 1.25em;
+    height: 1.25em;
+
+    ${({ theme }) => css`
+      ${theme.breakpoints.up("md")} {
+        width: 1.5em;
+        height: 1.5em;
+      }
+      ${theme.breakpoints.up("lg")} {
+        width: 1.75em;
+        height: 1.75em;
+      }
+      ${theme.breakpoints.up("xl")} {
+        width: 2em;
+        height: 2em;
+      }
+    `}
   }
 `;

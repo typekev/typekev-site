@@ -24,21 +24,25 @@ export const palette = {
   aquamarineBlue: "#81d8e6",
   surf: "#bbd7c1",
   geraldine: "#FB8989",
-
-  dodgerBlue: "#1f93fa",
 };
 
 export const THEME_MODE_PALETTE_MAP = {
   [ThemeMode.light]: {
     text: palette.retroOffBlack[100],
     primary: palette.retroOffBlack[200],
+    secondary: palette.pictonBlue,
     background: palette.retroOffWhite[100],
+    drawer: palette.retroOffWhite[400],
     accent: palette.peachSchnapps,
+    success: palette.surf,
   },
   [ThemeMode.dark]: {
     text: palette.retroOffWhite[100],
     primary: palette.retroOffWhite[300],
+    secondary: palette.orchid,
     background: palette.retroOffBlack[100],
+    drawer: palette.retroOffBlack[400],
     accent: palette.retroOffBlack[100],
+    success: palette.surf,
   },
 };

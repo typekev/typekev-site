@@ -13,11 +13,12 @@ import { FocusedText } from "components/FocusedText";
 import { Section, Workplace } from "types.d";
 
 interface Props extends ComponentPropsWithoutRef<typeof FocusedText> {
+  currentWorkplace?: string | string[];
   workplace: Workplace;
 }
 
 export const WorkplaceLink = memo(
-  ({ workplace, active, children, ...rest }: Props) => (
+  ({ currentWorkplace, workplace, children, ...rest }: Props) => (
     <Tooltip
       followCursor
       disableTouchListener
@@ -28,13 +29,15 @@ export const WorkplaceLink = memo(
         </>
       }
     >
-      <Link href={`/${Section.work}/${workplace}/`} passHref shallow>
-        <Button variant="text" type="button">
-          <FocusedText active={active} {...rest}>
-            {children}
-          </FocusedText>
-        </Button>
-      </Link>
+      <span>
+        <Link href={`/${Section.work}/${workplace}/`} passHref shallow>
+          <Button variant="text" type="button">
+            <FocusedText active={currentWorkplace === workplace} {...rest}>
+              {children}
+            </FocusedText>
+          </Button>
+        </Link>
+      </span>
     </Tooltip>
   )
 );

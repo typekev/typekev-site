@@ -70,15 +70,15 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
 
   body {
     ${defaultCssVariables[theme.palette.mode]}
-    --bg1-trans-duration: 300ms;
-    --bg2-trans-duration: 600ms;
-    --bg3-trans-duration: 900ms;
-    --bg4-trans-duration: 1200ms;
-    --fg-trans-duration: 1500ms;
+    --bg1-trans-duration: ${theme.transitions.duration.shortest}ms;
+    --bg2-trans-duration: ${theme.transitions.duration.shorter}ms;
+    --bg3-trans-duration: ${theme.transitions.duration.short}ms;
+    --bg4-trans-duration: ${theme.transitions.duration.standard}ms;
+    --fg-trans-duration: ${theme.transitions.duration.complex}ms;
 
     overflow: hidden auto;
-    font-family: "Inter", sans-serif;
-    font-weight: 200;
+    font-family: ${theme.typography.fontFamily};
+    font-weight: ${theme.typography.fontWeightLight};
     line-height: 1.25;
     background: ${gradients.bg};
     background-attachment: fixed;
@@ -96,21 +96,46 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
   #__next {
     min-height: 100%;
     min-width: 100%;
-    padding: 0 9vw 66vh 9vw;
+    padding-right: 3em;
+    padding-bottom: 64vh;
+    padding-left: 2em;
 
     ${theme.breakpoints.up("sm")} {
-      padding: 0 8vw 60vh 8vw;
+      padding-right: 3.5em;
+      padding-left: 3.5em;
+      @media (orientation: landscape) {
+        padding-bottom: 15vh;
+      }
+    }
+    ${theme.breakpoints.up("md")} {
+      padding-right: 4.5em;
+      padding-left: 4.5em;
+      @media (orientation: landscape) {
+        padding-bottom: 40vh;
+      }
     }
     ${theme.breakpoints.up("lg")} {
-      padding: 0 6vw 40vh 6vw;
+      padding-right: 5.5em;
+      padding-left: 5.5em;
+      @media (orientation: landscape) {
+        padding-bottom: 36vh;
+      }
     }
     ${theme.breakpoints.up("xl")} {
-      padding: 0 4vw 40vh 4vw;
+      padding-right: 5.5vw;
+      padding-left: 5.5vw;
     }
   }
 
   #robot_portal {
     pointer-events: none;
+    margin-top: 1.5em;
+    ${theme.breakpoints.only("sm")} {
+      margin-top: 0;
+    }
+    ${theme.breakpoints.up("md")} {
+      margin-top: 2em;
+    }
 
     > * {
       pointer-events: all;
@@ -118,25 +143,25 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
   }
 
   h1 {
-    font-weight: 300;
+    font-weight: ${theme.typography.fontWeightRegular};
   }
 
   h2,
   h3 {
-    font-weight: 200;
+    font-weight: ${theme.typography.fontWeightLight};
   }
 
-  a:not([type="button"]) {
+  a {
     color: inherit;
-    font-weight: 300;
-
-    :hover {
-      color: ${palette.dodgerBlue};
-    }
   }
 
-  b {
-    font-weight: 400;
+  b,
+  strong {
+    font-weight: ${theme.typography.fontWeightMedium};
+  }
+
+  strong {
+    font-family: ${theme.typography.fontFamilyAlt};
   }
 
   svg {

@@ -11,22 +11,30 @@ import { debounce } from "@mui/material/utils";
 import { useRouter } from "hooks/useRouter";
 import { Section, SectionProps } from "types.d";
 import { getSectionFromPath } from "utils/getSectionFromPath";
+import { isIE } from "utils/isIE";
+import { nullFunction } from "utils/nullFunction";
 import { scrollToSection } from "utils/scrollToSection";
 
 import type { SlideProps } from "@mui/material/Slide";
 
-const RobotPortal = dynamic<Omit<SlideProps, "children">>(
-  import("./robot/RobotPortal").then(({ RobotPortal }) => RobotPortal)
-);
+const RobotPortal = isIE
+  ? nullFunction
+  : dynamic<Omit<SlideProps, "children">>(
+      import("./robot/RobotPortal").then(({ RobotPortal }) => RobotPortal)
+    );
+
 const About = dynamic<SectionProps>(
   import("./sections/About").then(({ About }) => About)
 );
+
 const Blog = dynamic<SectionProps>(
   import("./sections/Blog").then(({ Blog }) => Blog)
 );
+
 const Contact = dynamic<SectionProps>(
   import("./sections/Contact").then(({ Contact }) => Contact)
 );
+
 const Work = dynamic<SectionProps>(
   import("./sections/Work").then(({ Work }) => Work)
 );

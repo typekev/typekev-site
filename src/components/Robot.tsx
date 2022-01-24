@@ -16,9 +16,12 @@ import {
   useState,
 } from "react";
 
-import { Fade } from "@mui/material";
+import { Theme } from "@mui/material";
+import Fade from "@mui/material/Fade";
 import Grow from "@mui/material/Grow";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { debounce } from "@mui/material/utils";
+import { useSwipeable } from "react-swipeable";
 
 import { AudioContext } from "contexts/AudioContext";
 import { useRouter } from "hooks/useRouter";
@@ -44,6 +47,9 @@ const RobotInPortal = dynamic<PropsWithChildren<unknown>>(
 
 export const Robot = memo(() => {
   const { t } = useTranslation();
+  const isScreenXS = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.only("xs")
+  );
   const {
     query: { channel, place },
   } = useRouter();
@@ -51,17 +57,22 @@ export const Robot = memo(() => {
   const [displayInput, setDisplayInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [inputSuggestion, setInputSuggestion] = useState<string>();
+  const [didExplainSuggestion, setDidExplainSuggestion] = useState(false);
   const [sentimentInput, setSentimentInput] = useState(inputValue);
   const [sentiment, setSentiment] = useState(RobotSentiment.NEUTRAL);
   const [botMessage, setBotMessage] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
   const [chatPromptTimeout, setChatPromptTimeout] = useState<NodeJS.Timeout>();
+  const [messageTimeout, setMessageTimeout] = useState<NodeJS.Timeout>();
   const { botNotificationAudio } = useContext(AudioContext);
   const inputRef = useRef<HTMLInputElement>();
   const botMessageDelay = botMessage ? 500 : 0;
 
   const clickPrompt = t("Have a question? Click me!");
-  const unloadedPrompt = t("Looks like I'm not loaded yet");
+  const unloadedPrompt = t("Looks like I'm still loading");
+  const loadedPrompt = t("Okay, I'm ready!");
+  const suggestionPrompt = t("I think I know what you want to type");
+  const submitPrompt = t("Perfect! Now click the send button to talk to me");
   const typeAheadInputValue = inputSuggestion
     ? `${inputValue}${inputSuggestion.substring(inputValue.length)}`
     : inputValue;
@@ -72,16 +83,36 @@ export const Robot = memo(() => {
     []
   );
 
+  const replaceBotMessage = (message: string, delay = botMessageDelay) => {
+    if (message !== "") {
+      setBotMessage("");
+    }
+
+    return setTimeout(() => setBotMessage(message), delay);
+  };
+
+  const acceptInputSuggestion = () => {
+    if (inputSuggestion) {
+      setInputValue(inputSuggestion);
+      if (botMessage === suggestionPrompt) {
+        replaceBotMessage(submitPrompt);
+      }
+    }
+  };
+
+  const swipeableHandlers = useSwipeable({
+    onSwipedRight: acceptInputSuggestion,
+  });
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     if (bot && canSubmit) {
+      if (isScreenXS) {
+        setDisplayInput(false);
+      }
       setInputValue("");
-      setBotMessage("");
-      setTimeout(
-        () => setBotMessage(bot.getReply(inputValue)),
-        botMessageDelay
-      );
+      replaceBotMessage(bot.getReply(inputValue));
     }
   };
 
@@ -89,11 +120,10 @@ export const Robot = memo(() => {
     if (!e.shiftKey && e.key === "Enter") {
       onSubmit(e);
     } else if (
-      inputSuggestion &&
       e.key === "ArrowRight" &&
       inputRef.current?.selectionStart === inputValue.length
     ) {
-      setInputValue(inputSuggestion);
+      acceptInputSuggestion();
     }
   };
 
@@ -101,37 +131,59 @@ export const Robot = memo(() => {
     setDisplayInput(false);
     setInputValue("");
     setSentimentInput("");
-    setBotMessage("");
   };
 
-  const promptChat = () =>
+  const promptToClick = () =>
     bot &&
     !displayInput &&
     !botMessage &&
-    setChatPromptTimeout(setTimeout(() => setBotMessage(clickPrompt), 700));
+    setChatPromptTimeout(replaceBotMessage(clickPrompt, 700));
 
-  const promptUnloadedChat = () => {
-    setBotMessage(unloadedPrompt);
-    setTimeout(() => setBotMessage(""), 20000);
-  };
-
-  const clearChatPrompt = () =>
+  const clearPromptToClickTimeout = () =>
     chatPromptTimeout && clearTimeout(chatPromptTimeout);
 
-  useEffect(() => {
-    // Prevent double bot render on locale change by delaying mount
-    const botTimeout = setTimeout(() => {
-      import("lib/bot").then(({ bot }) => setBot(bot));
-    }, 500);
+  const promptUnloadedChat = () => setBotMessage(unloadedPrompt);
 
-    return () => clearTimeout(botTimeout);
-  }, []);
+  const onBotClick = () => {
+    if (bot) {
+      if (!displayInput) {
+        clearPromptToClickTimeout();
+        setDisplayInput(true);
+      }
+    } else {
+      promptUnloadedChat();
+    }
+  };
+
+  useEffect(() => {
+    if (!bot) {
+      // Prevent double bot render on locale change by delaying mount
+      const botTimeout = setTimeout(() => {
+        import("lib/bot").then(({ bot }) => setBot(bot));
+      }, 500);
+
+      return () => clearTimeout(botTimeout);
+    } else if (botMessage === unloadedPrompt) {
+      replaceBotMessage(loadedPrompt);
+      setDisplayInput(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bot]);
+
+  useEffect(() => {
+    if (inputSuggestion && !didExplainSuggestion) {
+      setDidExplainSuggestion(true);
+      replaceBotMessage(suggestionPrompt);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputSuggestion]);
 
   useEffect(() => {
     if (bot && sentimentInput) {
       setSentiment(bot.getSentiment(sentimentInput));
     }
-  }, [bot, sentimentInput]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sentimentInput]);
 
   useEffect(() => {
     setCanSubmit(!!inputValue.trim());
@@ -142,40 +194,49 @@ export const Robot = memo(() => {
     } else {
       setInputSuggestion(undefined);
     }
-  }, [setSentimentInputDebounced, inputValue, bot]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setSentimentInputDebounced, inputValue]);
 
   useEffect(() => {
     if (bot) {
-      setBotMessage("");
       if (typeof place === "string" && place in workplaceIntents) {
-        setTimeout(
-          () =>
-            setBotMessage(bot.getReply(workplaceIntents[place as Workplace])),
-
-          botMessageDelay
-        );
+        replaceBotMessage(bot.getReply(workplaceIntents[place as Workplace]));
       } else if (
         typeof channel === "string" &&
         channel in contactChannelIntents
       ) {
-        setTimeout(
-          () =>
-            setBotMessage(
-              bot.getReply(contactChannelIntents[channel as ContactChannel])
-            ),
-
-          botMessageDelay
+        replaceBotMessage(
+          bot.getReply(contactChannelIntents[channel as ContactChannel])
         );
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bot, channel, place]);
+  }, [channel, place]);
 
   useEffect(() => {
     if (bot && botMessage) {
+      if (isScreenXS) {
+        setDisplayInput(false);
+      }
+
+      const replySentiment = bot.getSentiment(botMessage);
+      setSentiment(
+        replySentiment === RobotSentiment.NEGATIVE
+          ? RobotSentiment.NEUTRAL
+          : replySentiment
+      );
+
       botNotificationAudio?.load();
       botNotificationAudio?.play();
+
+      clearPromptToClickTimeout();
+      if (messageTimeout) {
+        clearTimeout(messageTimeout);
+      }
+      const delay = Math.max(botMessage.length * 250, 7000);
+      setMessageTimeout(replaceBotMessage("", delay));
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [botMessage]);
 
@@ -186,14 +247,12 @@ export const Robot = memo(() => {
         <RobotHeadButton
           aria-label="Robot Head"
           component="div"
-          onClick={() =>
-            bot ? !displayInput && setDisplayInput(true) : promptUnloadedChat()
-          }
+          onClick={onBotClick}
         >
           <RobotHeadContainer
             disableHover={!bot || displayInput}
-            onMouseEnter={promptChat}
-            onMouseLeave={clearChatPrompt}
+            onMouseEnter={promptToClick}
+            onMouseLeave={clearPromptToClickTimeout}
           >
             <RobotHead
               id="robot-head"
@@ -207,22 +266,20 @@ export const Robot = memo(() => {
                 <TypeAheadInput
                   disabled
                   value={typeAheadInputValue}
-                  InputProps={{
-                    sx: {
-                      height: "100%",
-                    },
-                  }}
+                  InputProps={{ sx: { height: "100%" } }}
                 />
               </Grow>
-              <Grow in={displayInput}>
+              <Grow mountOnEnter unmountOnExit in={displayInput}>
                 <RobotChatInput
+                  autoFocus
                   inputRef={inputRef}
                   value={inputValue}
+                  placeholder={t("Type something")}
                   canSubmit={canSubmit}
                   onChange={(e) => setInputValue(e.target.value)}
                   onClose={endChat}
                   onKeyDown={onKeyDown}
-                  placeholder={t("Type something")}
+                  {...swipeableHandlers}
                 />
               </Grow>
             </RobotChatInputForm>

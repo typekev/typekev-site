@@ -39,5 +39,8 @@ export const AudioToggle = memo(() => {
 AudioToggle.displayName = AudioToggle.name;
 
 const AudioTab = styled(Tab)`
-  transition: color 400ms;
+  transition: ${({ theme }) =>
+    theme.transitions.create("color", {
+      duration: theme.transitions.duration.short,
+    })};
 `;
