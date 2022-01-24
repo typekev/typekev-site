@@ -96,16 +96,34 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
   #__next {
     min-height: 100%;
     min-width: 100%;
-    padding: 0 9vw 66vh 9vw;
+    padding-right: 3em;
+    padding-bottom: 64vh;
+    padding-left: 2em;
 
     ${theme.breakpoints.up("sm")} {
-      padding: 0 8vw 60vh 8vw;
+      padding-right: 3.5em;
+      padding-left: 3.5em;
+      @media (orientation: landscape) {
+        padding-bottom: 15vh;
+      }
+    }
+    ${theme.breakpoints.up("md")} {
+      padding-right: 4.5em;
+      padding-left: 4.5em;
+      @media (orientation: landscape) {
+        padding-bottom: 40vh;
+      }
     }
     ${theme.breakpoints.up("lg")} {
-      padding: 0 6vw 40vh 6vw;
+      padding-right: 5.5em;
+      padding-left: 5.5em;
+      @media (orientation: landscape) {
+        padding-bottom: 36vh;
+      }
     }
     ${theme.breakpoints.up("xl")} {
-      padding: 0 4vw 40vh 4vw;
+      padding-right: 5.5vw;
+      padding-left: 5.5vw;
     }
   }
 

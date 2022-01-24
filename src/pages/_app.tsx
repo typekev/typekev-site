@@ -1,3 +1,5 @@
+import "polyfills";
+
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 

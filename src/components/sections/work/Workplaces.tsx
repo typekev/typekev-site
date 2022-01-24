@@ -50,18 +50,18 @@ export const Workplaces = memo(() => {
       <Link workplace={Workplace.PwC}>
         {`${t(abbreviate ? "PwC abbr" : "PwC")}, `}
       </Link>
-      <Button variant="text" onClick={() => scrollToSection(Section.contact)}>
-        <NextLink
-          href={`/${Section.contact}/${ContactChannel.LinkedIn}/`}
-          passHref
-          shallow
-        >
+      <NextLink
+        href={`/${Section.contact}/${ContactChannel.LinkedIn}/`}
+        passHref
+        shallow
+      >
+        <Button variant="text" onClick={() => scrollToSection(Section.contact)}>
           <FocusedText>
             {`${t("and more")}`}
             <ArrowDown>↓</ArrowDown>
           </FocusedText>
-        </NextLink>
-      </Button>
+        </Button>
+      </NextLink>
     </>
   );
 });

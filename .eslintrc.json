@@ -32,6 +32,7 @@
           "object"
         ],
         "pathGroups": [
+          { "pattern": "polyfills", "group": "builtin", "position": "before" },
           { "pattern": "react", "group": "builtin" },
           { "pattern": "next/**", "group": "builtin" }
         ],
@@ -42,6 +43,6 @@
       }
     ],
     "import/newline-after-import": "error",
-    "import/no-unassigned-import": "error"
+    "import/no-unassigned-import": ["error", { "allow": ["polyfills"] }]
   }
 }

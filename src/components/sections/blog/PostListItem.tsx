@@ -22,11 +22,11 @@ export const PostListItem = memo(({ id, title, timestamp, ...rest }: Props) => {
   return (
     <LI {...rest}>
       <Timestamp>{getFormattedPostDate(timestamp, locale)}</Timestamp>
-      <Button variant="text">
-        <Link href={`${Section.blog}/${id}`} passHref shallow>
+      <Link href={`${Section.blog}/${id}`} passHref>
+        <Button variant="text">
           <a>{title}</a>
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </LI>
   );
 });
@@ -38,23 +38,16 @@ const LI = styled("li")`
   margin-bottom: 0.375em;
   margin-left: 0.125em;
 
-  > a {
-    text-decoration-thickness: 0.0625em;
-  }
-
   ${({ theme }) => css`
-    > button {
+    a {
       padding: 0;
-      font-weight: ${theme.typography.fontWeightLight};
     }
 
     ${theme.breakpoints.up("sm")} {
       font-size: 0.5625em;
-      margin-left: 0.125em;
     }
     ${theme.breakpoints.up("md")} {
       font-size: 0.625em;
-      margin-left: 0.125em;
     }
   `}
 `;

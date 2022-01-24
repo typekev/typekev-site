@@ -55,7 +55,6 @@ export const Blog = memo((props: ComponentPropsWithoutRef<typeof Section>) => {
         hideNextButton
         hidePrevButton
         size="large"
-        color="primary"
         variant="outlined"
         shape="rounded"
         page={page}

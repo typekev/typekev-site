@@ -10,17 +10,17 @@ import {
   mdiClipboardMultipleOutline,
 } from "@mdi/js";
 import Icon from "@mdi/react";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { styled, css } from "@mui/material/styles";
+import { writeText } from "clipboard-polyfill/text";
 
 import { Section } from "components/Section";
 import { useRouter } from "hooks/useRouter";
 import { useTranslation } from "hooks/useTranslation";
 import { ContactChannel } from "types.d";
 
-import { A } from "./contact/A";
+import { ContactLink } from "./contact/ContactLink";
 
 export const Contact = memo(
   (props: ComponentPropsWithoutRef<typeof Section>) => {
@@ -30,27 +30,27 @@ export const Contact = memo(
     } = useRouter();
     const [copied, setCopied] = useState(false);
     const copyEmail = () =>
-      navigator.clipboard
-        .writeText(ContactAddress.email)
-        .then(() => setCopied(true));
+      writeText(ContactAddress.email).then(() => setCopied(true));
+
+    const isLinkedinFocused = channel === ContactChannel.LinkedIn;
 
     return (
       <ContactSection title={t("Ways you can contact me")} {...props}>
         <ul>
           <li>
-            <Button variant="text">
-              <A
-                href={ContactAddress.linkedin}
-                highlight={channel === ContactChannel.LinkedIn}
-              >
-                {t("LinkedIn")}
-              </A>
-            </Button>
+            <ContactLink
+              variant="text"
+              color={isLinkedinFocused ? "secondary" : undefined}
+              highlight={isLinkedinFocused}
+              href={ContactAddress.linkedin}
+            >
+              {t("LinkedIn")}
+            </ContactLink>
           </li>
           <li>
-            <Button variant="text">
-              <A href={`mailto:${ContactAddress.email}`}>{t("Email")}</A>
-            </Button>
+            <ContactLink variant="text" href={`mailto:${ContactAddress.email}`}>
+              {t("Email")}
+            </ContactLink>
             <Tooltip title={t(copied ? "Copied" : "Copy")} followCursor>
               <IconButton color="inherit" onClick={copyEmail}>
                 <Icon

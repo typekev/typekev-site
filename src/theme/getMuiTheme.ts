@@ -20,6 +20,12 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
         contrastText: THEME_MODE_PALETTE_MAP[themeMode].text,
         main: THEME_MODE_PALETTE_MAP[themeMode].primary,
       },
+      secondary: {
+        main: THEME_MODE_PALETTE_MAP[themeMode].secondary,
+      },
+      success: {
+        main: THEME_MODE_PALETTE_MAP[themeMode].success,
+      },
     },
     typography: {
       fontFamily: "'Inter', sans-serif",
@@ -33,12 +39,12 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
       MuiButton: {
         styleOverrides: {
           text: {
-            fontSize: "unset",
-            textAlign: "unset",
-            textTransform: "unset",
-            lineHeight: "unset",
-            paddingTop: "unset",
-            paddingBottom: "unset",
+            fontSize: "inherit",
+            textAlign: "inherit",
+            textTransform: "inherit",
+            lineHeight: "inherit",
+            paddingTop: 0,
+            paddingBottom: 0,
           },
         },
       },
@@ -53,9 +59,23 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
           },
         },
       },
-      MuiUseMediaQuery: {
-        defaultProps: {
-          noSsr: true,
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            borderRadius: "1.5em !important",
+            transition: "all 375ms",
+            backgroundColor: THEME_MODE_PALETTE_MAP[themeMode].background,
+          },
+        },
+      },
+      MuiPaginationItem: {
+        styleOverrides: {
+          root: {
+            fontWeight: 500,
+          },
+          outlined: {
+            borderWidth: 2,
+          },
         },
       },
       MuiTab: {
@@ -89,13 +109,9 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
           },
         },
       },
-      MuiInputBase: {
-        styleOverrides: {
-          root: {
-            borderRadius: "1.5em !important",
-            transition: "all 375ms",
-            backgroundColor: THEME_MODE_PALETTE_MAP[themeMode].background,
-          },
+      MuiUseMediaQuery: {
+        defaultProps: {
+          noSsr: true,
         },
       },
     },
