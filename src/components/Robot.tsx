@@ -16,8 +16,10 @@ import {
   useState,
 } from "react";
 
-import { Fade } from "@mui/material";
+import { Theme } from "@mui/material";
+import Fade from "@mui/material/Fade";
 import Grow from "@mui/material/Grow";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { debounce } from "@mui/material/utils";
 import { useSwipeable } from "react-swipeable";
 
@@ -45,6 +47,9 @@ const RobotInPortal = dynamic<PropsWithChildren<unknown>>(
 
 export const Robot = memo(() => {
   const { t } = useTranslation();
+  const isScreenXS = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.only("xs")
+  );
   const {
     query: { channel, place },
   } = useRouter();
@@ -103,6 +108,9 @@ export const Robot = memo(() => {
     e.preventDefault();
 
     if (bot && canSubmit) {
+      if (isScreenXS) {
+        setDisplayInput(false);
+      }
       setInputValue("");
       replaceBotMessage(bot.getReply(inputValue));
     }
@@ -135,6 +143,17 @@ export const Robot = memo(() => {
     chatPromptTimeout && clearTimeout(chatPromptTimeout);
 
   const promptUnloadedChat = () => setBotMessage(unloadedPrompt);
+
+  const onBotClick = () => {
+    if (bot) {
+      if (!displayInput) {
+        clearPromptToClickTimeout();
+        setDisplayInput(true);
+      }
+    } else {
+      promptUnloadedChat();
+    }
+  };
 
   useEffect(() => {
     if (!bot) {
@@ -196,9 +215,21 @@ export const Robot = memo(() => {
 
   useEffect(() => {
     if (bot && botMessage) {
+      if (isScreenXS) {
+        setDisplayInput(false);
+      }
+
+      const replySentiment = bot.getSentiment(botMessage);
+      setSentiment(
+        replySentiment === RobotSentiment.NEGATIVE
+          ? RobotSentiment.NEUTRAL
+          : replySentiment
+      );
+
       botNotificationAudio?.load();
       botNotificationAudio?.play();
 
+      clearPromptToClickTimeout();
       if (messageTimeout) {
         clearTimeout(messageTimeout);
       }
@@ -216,9 +247,7 @@ export const Robot = memo(() => {
         <RobotHeadButton
           aria-label="Robot Head"
           component="div"
-          onClick={() =>
-            bot ? !displayInput && setDisplayInput(true) : promptUnloadedChat()
-          }
+          onClick={onBotClick}
         >
           <RobotHeadContainer
             disableHover={!bot || displayInput}
@@ -240,8 +269,9 @@ export const Robot = memo(() => {
                   InputProps={{ sx: { height: "100%" } }}
                 />
               </Grow>
-              <Grow in={displayInput}>
+              <Grow mountOnEnter unmountOnExit in={displayInput}>
                 <RobotChatInput
+                  autoFocus
                   inputRef={inputRef}
                   value={inputValue}
                   placeholder={t("Type something")}

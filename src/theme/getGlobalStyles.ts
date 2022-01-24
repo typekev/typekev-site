@@ -129,6 +129,13 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
 
   #robot_portal {
     pointer-events: none;
+    margin-top: 1.5em;
+    ${theme.breakpoints.only("sm")} {
+      margin-top: 0;
+    }
+    ${theme.breakpoints.up("md")} {
+      margin-top: 2em;
+    }
 
     > * {
       pointer-events: all;
