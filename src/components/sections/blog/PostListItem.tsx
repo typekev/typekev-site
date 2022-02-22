@@ -23,9 +23,7 @@ export const PostListItem = memo(({ id, title, timestamp, ...rest }: Props) => {
     <LI {...rest}>
       <Timestamp>{getFormattedPostDate(timestamp, locale)}</Timestamp>
       <Link href={`${Section.blog}/${id}`} passHref>
-        <Button variant="text">
-          <a>{title}</a>
-        </Button>
+        <Button variant="text">{title}</Button>
       </Link>
     </LI>
   );
