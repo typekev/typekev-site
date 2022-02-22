@@ -64,7 +64,7 @@ export const getMuiTheme = (themeMode: ThemeMode) =>
           root: {
             borderRadius: "1.5em !important",
             transition: "all 375ms",
-            backgroundColor: THEME_MODE_PALETTE_MAP[themeMode].background,
+            backgroundColor: THEME_MODE_PALETTE_MAP[themeMode].input,
           },
         },
       },
