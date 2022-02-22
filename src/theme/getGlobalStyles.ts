@@ -183,10 +183,10 @@ export const getGlobalStyles = (theme: ReturnType<typeof getMuiTheme>) => css`
 
 const defaultCssVariables: Record<ThemeMode, SerializedStyles> = {
   light: css`
-    --bg1: ${palette.retroOffWhite[400]};
-    --bg2: ${palette.retroOffWhite[300]};
-    --bg3: ${palette.retroOffWhite[200]};
-    --bg4: ${palette.retroOffWhite[100]};
+    --bg1: ${palette.retroOffWhite[100]};
+    --bg2: ${palette.retroOffWhite[200]};
+    --bg3: ${palette.retroOffWhite[300]};
+    --bg4: ${palette.retroOffWhite[400]};
     --fg: ${palette.retroOffBlack[400]};
   `,
   dark: css`
