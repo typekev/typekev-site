@@ -32,16 +32,13 @@ export const Contact = memo(
     const copyEmail = () =>
       writeText(ContactAddress.email).then(() => setCopied(true));
 
-    const isLinkedinFocused = channel === ContactChannel.LinkedIn;
-
     return (
       <ContactSection title={t("Ways you can contact me")} {...props}>
         <ul>
           <li>
             <ContactLink
               variant="text"
-              color={isLinkedinFocused ? "secondary" : undefined}
-              highlight={isLinkedinFocused}
+              color={channel === ContactChannel.LinkedIn ? "info" : undefined}
               href={ContactAddress.linkedin}
             >
               {t("LinkedIn")}
