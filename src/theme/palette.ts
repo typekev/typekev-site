@@ -30,7 +30,7 @@ export const THEME_MODE_PALETTE_MAP = {
   [ThemeMode.light]: {
     text: palette.retroOffBlack[100],
     primary: palette.retroOffBlack[200],
-    secondary: palette.pictonBlue,
+    secondary: palette.cornflowerLilac,
     background: palette.retroOffWhite[100],
     drawer: palette.retroOffWhite[400],
     accent: palette.peachSchnapps,
@@ -39,7 +39,7 @@ export const THEME_MODE_PALETTE_MAP = {
   [ThemeMode.dark]: {
     text: palette.retroOffWhite[100],
     primary: palette.retroOffWhite[300],
-    secondary: palette.orchid,
+    secondary: palette.portage,
     background: palette.retroOffBlack[100],
     drawer: palette.retroOffBlack[400],
     accent: palette.retroOffBlack[100],
