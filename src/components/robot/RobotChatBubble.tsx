@@ -7,7 +7,7 @@ import { memo, useContext } from "react";
 
 import Box from "@mui/material/Box";
 import Grow from "@mui/material/Grow";
-import { alpha, styled, css } from "@mui/material/styles";
+import { styled, css } from "@mui/material/styles";
 import Keyboard from "react-mk";
 
 import { ThemeModeContext } from "contexts/ThemeModeContext";
@@ -24,9 +24,7 @@ export const RobotChatBubble = memo(({ message }: Props) => {
     return null;
   }
 
-  const { background, accent, text } = THEME_MODE_PALETTE_MAP[themeMode];
-  const backgroundColor = alpha(background, 0.94);
-  const borderColor = alpha(accent, 0.94);
+  const { input, accent, text } = THEME_MODE_PALETTE_MAP[themeMode];
 
   return (
     <Grow
@@ -38,9 +36,9 @@ export const RobotChatBubble = memo(({ message }: Props) => {
         <Bubble
           sx={{
             boxShadow: 1,
-            backgroundColor,
-            borderColor,
-            borderLeftColor: borderColor,
+            backgroundColor: input,
+            borderColor: accent,
+            borderLeftColor: accent,
             color: text,
           }}
         >
