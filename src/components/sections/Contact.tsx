@@ -70,7 +70,7 @@ Contact.displayName = Contact.name;
 
 enum ContactAddress {
   linkedin = "https://linkedin.com/in/typekev",
-  email = "kevin.gonzalez@emailtree.ai",
+  email = "kev@typekev.com",
 }
 
 const ContactSection = styled(Section)`
