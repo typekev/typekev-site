@@ -45,6 +45,7 @@ export const WorkplaceLink = memo(
 WorkplaceLink.displayName = WorkplaceLink.name;
 
 const TITLE: Record<Workplace, string> = {
+  [Workplace.SES]: "Innovation Team",
   [Workplace.Emailtree]: "AI Lead and Principal Software Engineer",
   [Workplace.Devoteam]: "AI Solution Leader and Lead Software Engineer",
   [Workplace.Microsoft]: "AI Solutions Consultant",
@@ -54,6 +55,7 @@ const TITLE: Record<Workplace, string> = {
 };
 
 const TECH: Record<Workplace, string> = {
+  [Workplace.SES]: "TypeScript, Python, Go, AWS, Azure, and more",
   [Workplace.Emailtree]: "TypeScript, Python, Go, Java, SQL, Azure",
   [Workplace.Devoteam]:
     "TypeScript, Python, Go, Java, C#, MongoDB, SQL, AWS, Azure",
