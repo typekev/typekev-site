@@ -1,15 +1,13 @@
-var React = require('react');
-var Nav = require('Nav');
+import React from "react";
+import Nav from "./Nav";
 
-var Main = (props) => (
-        <div>
-            <Nav/>
-            <div className="text-center">
-                <div>
-                    {props.children}
-                </div>
-            </div>
-        </div>
+const Main = (props) => (
+  <div>
+    <Nav />
+    <div className="text-center">
+      <div>{props.children}</div>
+    </div>
+  </div>
 );
 
-module.exports = Main;
+export default Main;

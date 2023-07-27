@@ -1,28 +1,26 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-var Main = require('Main');
-var Intro = require('Intro');
-var About = require('About');
-var Experience = require('Experience');
-var Company = require('Company');
-var Contact = require('Contact');
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import Main from "./components/Main";
+import Intro from "./components/Intro";
+import About from "./components/About";
+import Experience from "./components/Experience";
+import Company from "./components/Company";
+import Contact from "./components/Contact";
 
-require('style!css!foundation-sites/dist/css/foundation.min.css')
-$(document).foundation();
+import "./styles/app.css";
 
-require('style!css!sass!appStyles')
-
-ReactDOM.render(
-    <Router history={hashHistory}>
-        <Route path="/" component={Main}>
-            <Route path="About" component={About}/>
-            <Route path="Experience" component={Experience}/>
-            <Route path="Company" component={Company}/>
-            <Route path="LearnMore" component={Company}/>
-            <Route path="Contact" component={Contact}/>
-            <IndexRoute component={Intro}/>
-        </Route>
-    </Router>,
-    document.getElementById('app')
+createRoot(document.getElementById("app")).render(
+  <HashRouter>
+    <Main>
+      <Routes>
+        <Route path="/About" element={<About />} />
+        <Route path="/Experience" element={<Experience />} />
+        <Route path="/Company" element={<Company />} />
+        <Route path="/LearnMore" element={<Company />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route index element={<Intro />} />
+      </Routes>
+    </Main>
+  </HashRouter>
 );

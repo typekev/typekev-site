@@ -1,54 +1,43 @@
-var webpack = require('webpack');
+const path = require("path");
 
 module.exports = {
-    entry: [
-        'script!jquery/dist/jquery.min.js',
-        'script!foundation-sites/dist/js/foundation.min.js',
-        './app/app.jsx'
-        ],
-        externals: {
-            jquery: 'jQuery'
-        },
-        plugins: [
-            new webpack.ProvidePlugin({
-                '$': 'jquery',
-                'jQuery': 'jquery'
-            })
-        ],
-    output: {
-        path: __dirname,
-        filename: './public/bundle.js'
-    },
+  entry: ["./app/app.jsx"],
+  output: {
+    path: path.resolve(__dirname, "public"),
+    filename: "bundle.js",
+  },
   resolve: {
-        root: __dirname,
-        modulesDirectories: [
-            'node_modules',
-            './app/components',
-            './app/api'
-        ],
-        alias: {
-            appStyles: 'app/styles/app.scss'
+    modules: [
+      path.resolve(__dirname, "node_modules"),
+      path.resolve(__dirname, "app/components"),
+      path.resolve(__dirname, "app/api"),
+    ],
+    extensions: [".js", ".jsx"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-react", "@babel/preset-env"],
+          },
         },
-        extensions: ['', '.js', '.jsx']
-    },
-    module: {
-        loaders: [
-            {
-                loader: 'babel-loader',
-                query: {
-                presets: ['react', 'es2015', 'stage-0']
-                },
-            test: /\.jsx?$/,
-            exclude: /(node_modules|bower_components)/
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                loaders: [
-                'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-                ]
-            }
-           ]
-    },
-    devtool: 'eval-source-map'
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "images/[name][ext]",
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  devtool: "eval-source-map",
 };
