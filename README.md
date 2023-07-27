@@ -1,5 +1,3 @@
-# https://typekev.com
+# v2.typekev.com
 
-A site to showcase what I'm currently working on.
-
-Updated as regularly as possible.
+Version 2 of my personal website.
