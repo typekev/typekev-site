@@ -5,8 +5,8 @@ export const initialState = {};
 
 export const getPosts = async setPosts => setPosts((await getBlogPosts()) || initialState);
 
-export const getSinglePost = setPost => async location =>
-  setPost((location && (await getBlogPost(location))) || initialState);
+export const getSinglePost = setPost => async postId =>
+  setPost((postId && (await getBlogPost(postId))) || initialState);
 
 export default function useBlog(initialPost) {
   const [posts, setPosts] = useState(initialState);

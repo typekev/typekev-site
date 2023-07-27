@@ -26,7 +26,7 @@ export const getDelay = index => index * 250;
 const doType = ({ delay, title }) => ({ type }) => type(delay, title);
 
 export const renderPosts = (posts, setPostId) => () =>
-  posts.map(({ title, published, location }, index) => {
+  posts.map(({ title, published, id }, index) => {
     const delay = getDelay(index);
 
     return (
@@ -38,7 +38,7 @@ export const renderPosts = (posts, setPostId) => () =>
                 {published}
               </Button>
             </Hidden>
-            <Button onClick={() => setPostId(location)}>
+            <Button onClick={() => setPostId(id)}>
               <Keyboard keyPressDelayRange={[30, 50]}>{doType({ delay, title })}</Keyboard>
             </Button>
           </ButtonGroup>
