@@ -10,7 +10,7 @@ import {
   Badge,
   Tooltip,
 } from '@material-ui/core';
-import { Bell, Menu, Github, Copyright } from 'mdi-material-ui';
+import { Bell, Menu, GithubCircle, Copyright } from 'mdi-material-ui';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
 import logo from 'images/typekev-red-logo.svg';
@@ -87,7 +87,7 @@ function Layout({ children, openNotif, openMenu, menuItemsList }) {
               href="https://github.com/typekev"
               target="_blank"
             >
-              <Github />
+              <GithubCircle />
             </IconButton>
           </Tooltip>
           <IconButton
