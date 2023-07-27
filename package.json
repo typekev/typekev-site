@@ -63,8 +63,8 @@
     "prettier-eslint-cli": "^5.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coveralls": "npm test -- --coverage --watchAll=false && cat ./coverage/lcov.info | coveralls",
