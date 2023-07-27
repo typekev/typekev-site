@@ -45,10 +45,13 @@ export const Workplaces = memo(() => {
     <>
       <WorkplaceLink
         active={!isHovering && !place}
-        workplace={Workplace.Emailtree}
+        workplace={Workplace.SES}
       >
-        {`${t("EmailTree")}, `}
+        {`${t("SES")}, `}
       </WorkplaceLink>
+      <Link currentWorkplace={place} workplace={Workplace.Emailtree}>{`${t(
+        "EmailTree"
+      )}, `}</Link>
       <Link currentWorkplace={place} workplace={Workplace.Devoteam}>{`${t(
         "Devoteam"
       )}, `}</Link>

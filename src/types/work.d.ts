@@ -1,4 +1,5 @@
 export enum Workplace {
+  SES = "SES",
   Emailtree = "EmailTree",
   Devoteam = "Devoteam",
   Microsoft = "Microsoft",

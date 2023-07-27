@@ -401,8 +401,11 @@
         "Till next time.",
         "Okay. You know where to find me."
     ],
+    "work.ses": [
+        "At SES, Kevin provides organizational leadership in software development and technical and architectural expertise for all aspects of software development in the SES Innovation Team."
+    ],
     "work.emailtree": [
-        "At EmailTree AI, Kevin works across the organization to develop a powerful AI-powered end-to-end automation solution."
+        "At EmailTree AI, Kevin worked across the organization to develop a powerful AI-powered end-to-end automation solution."
     ],
     "work.devoteam": [
         "At Devoteam, Kevin consulted on many software projects and taught Software Engineering and AI at the Training Center."
