@@ -44,7 +44,7 @@ app.post("/", function (req, res) {
   });
 });
 
-app.use(express.static("public"));
+app.use(express.static("build"));
 
 const port = process.env.PORT || 3000;
 app.listen(port, function () {

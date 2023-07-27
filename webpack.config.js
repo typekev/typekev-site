@@ -1,9 +1,10 @@
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: ["./app/app.jsx"],
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
   },
   resolve: {
@@ -39,5 +40,15 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "public"),
+          to: path.resolve(__dirname, "build"),
+        },
+      ],
+    }),
+  ],
   devtool: "eval-source-map",
 };
