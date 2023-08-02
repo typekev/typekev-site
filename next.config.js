@@ -9,6 +9,7 @@ const { i18n } = require("./next-i18next.config");
 
 module.exports = withTM({
   i18n,
+  distDir: 'build',
   reactStrictMode: true,
   trailingSlash: true,
   images: {
