@@ -1,25 +1,26 @@
-/**
- *
- * About
- *
- */
-import { memo, ComponentPropsWithoutRef } from "react";
+import localFont from "next/font/local";
 
-import { Trans } from "next-i18next";
+import { useTranslations } from "next-intl";
 
-import { FocusedText } from "components/FocusedText";
-import { Section } from "components/Section";
+const nasaDings = localFont({ src: "./about/nasadings.ttf" });
 
-export const About = memo((props: ComponentPropsWithoutRef<typeof Section>) => (
-  <Section {...props}>
-    <Trans
-      i18nKey="Hi, I'm Kevin"
-      components={{
-        name: <strong />,
-        focused: <FocusedText active />,
-      }}
-    />
-  </Section>
-));
+export default function About() {
+  const t = useTranslations("About");
 
-About.displayName = About.name;
+  return (
+    <section>
+      <b className={`${nasaDings.className} logo`} data-text="K">
+        K
+      </b>
+      <span>
+        {t.rich("text", {
+          important: (chunks) => (
+            <b className="highlighted-text" data-text={chunks}>
+              {chunks}
+            </b>
+          ),
+        })}
+      </span>
+    </section>
+  );
+}

@@ -1,100 +1,22 @@
-/**
- *
- * Contact
- *
- */
-import { memo, ComponentPropsWithoutRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
-import {
-  mdiClipboardCheckMultipleOutline,
-  mdiClipboardMultipleOutline,
-} from "@mdi/js";
-import Icon from "@mdi/react";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import { styled, css } from "@mui/material/styles";
-import { writeText } from "clipboard-polyfill/text";
+export default function Contact() {
+  const t = useTranslations("Contact");
 
-import { Section } from "components/Section";
-import { useRouter } from "hooks/useRouter";
-import { useTranslation } from "hooks/useTranslation";
-import { ContactChannel } from "types.d";
-
-import { ContactLink } from "./contact/ContactLink";
-
-export const Contact = memo(
-  (props: ComponentPropsWithoutRef<typeof Section>) => {
-    const { t } = useTranslation();
-    const {
-      query: { channel },
-    } = useRouter();
-    const [copied, setCopied] = useState(false);
-    const copyEmail = () =>
-      writeText(ContactAddress.email).then(() => setCopied(true));
-
-    return (
-      <ContactSection title={t("Ways you can contact me")} {...props}>
-        <ul>
-          <li>
-            <ContactLink
-              variant="text"
-              color={channel === ContactChannel.LinkedIn ? "info" : undefined}
-              href={ContactAddress.linkedin}
-            >
-              {t("LinkedIn")}
-            </ContactLink>
-          </li>
-          <li>
-            <ContactLink variant="text" href={`mailto:${ContactAddress.email}`}>
-              {t("Email")}
-            </ContactLink>
-            <Tooltip title={t(copied ? "Copied" : "Copy")} followCursor>
-              <IconButton color="inherit" onClick={copyEmail}>
-                <Icon
-                  path={
-                    copied
-                      ? mdiClipboardCheckMultipleOutline
-                      : mdiClipboardMultipleOutline
-                  }
-                />
-              </IconButton>
-            </Tooltip>
-          </li>
-        </ul>
-      </ContactSection>
-    );
-  }
-);
-
-Contact.displayName = Contact.name;
-
-enum ContactAddress {
-  linkedin = "https://linkedin.com/in/typekev",
-  email = "kev@typekev.com",
+  return (
+    <section id="contact">
+      <a href="#contact" className="title">
+        {t("title")}
+      </a>
+      <a href="https://www.linkedin.com/in/typekev/">LinkedIn</a>
+      <span>
+        <a href={`mailto:${email}`}>Email</a>
+        <b onClick={copy}> &#10063;</b>
+      </span>
+    </section>
+  );
 }
 
-const ContactSection = styled(Section)`
-  > div {
-    margin-left: -0.625rem;
-  }
+const copy = () => navigator.clipboard.writeText(email);
 
-  svg {
-    width: 1.25em;
-    height: 1.25em;
-
-    ${({ theme }) => css`
-      ${theme.breakpoints.up("md")} {
-        width: 1.5em;
-        height: 1.5em;
-      }
-      ${theme.breakpoints.up("lg")} {
-        width: 1.75em;
-        height: 1.75em;
-      }
-      ${theme.breakpoints.up("xl")} {
-        width: 2em;
-        height: 2em;
-      }
-    `}
-  }
-`;
+const email = "kev@typekev.com" as const;

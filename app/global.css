@@ -1,0 +1,260 @@
+:root {
+  --white: #ffffff;
+  --transparent-white: #ffffff77;
+  --black: #000000;
+  --transparent-black: #00000077;
+  --light-cyan: #c8ffff;
+  --tropical-indigo: #a083ed;
+  --pale-pink: #ffc0cb;
+  --light-gold: #ffe34d;
+  --light-coral-orange: #ff9e9e;
+  --sky-blue: #87ceeb;
+  --light-lavender-purple: #dfc5fe;
+  --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-gold),
+    var(--light-coral-orange), var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
+}
+
+html {
+  background-color: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  text-shadow:
+    var(--transparent-black) 0 0 33px,
+    var(--white) 0 1px 4px,
+    var(--transparent-white) 0 0 15px,
+    var(--white) 0 0px 5px;
+  scroll-behavior: smooth;
+}
+
+main {
+  position: relative;
+  display: grid;
+  grid-auto-rows: calc(100vh - 3.5em) auto;
+  z-index: 1;
+}
+
+section {
+  pointer-events: none;
+  display: grid;
+  grid-auto-rows: min-content;
+  place-content: center start;
+}
+
+section > * {
+  pointer-events: all;
+  width: fit-content;
+}
+
+section > a {
+  margin-block-end: 0.25em;
+}
+
+section > .title {
+  margin-block-end: 1.5em;
+}
+
+section:first-of-type > span {
+  opacity: 0;
+  animation: fade-in 4s 0.25s ease forwards;
+}
+
+section:not(:first-of-type) {
+  opacity: 0;
+  animation: fade-in 5s 0.5s ease forwards;
+  padding-block-start: 1em;
+}
+
+a {
+  color: inherit;
+}
+
+.title {
+  font-size: 0.75em;
+  align-self: start;
+  text-decoration: none;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+.highlighted-text,
+.highlighted-text::before,
+.highlighted-text::after {
+  position: relative;
+  display: inline-block;
+  animation: rainbow 30s linear infinite reverse;
+  background: linear-gradient(90deg, var(--rainbow-colors));
+  background-size: 1000% 100%;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  align-items: baseline;
+}
+
+.highlighted-text::before,
+.highlighted-text::after {
+  position: absolute;
+  inset: 0;
+  content: attr(data-text);
+  filter: blur(15px);
+}
+
+.highlighted-text::after {
+  filter: blur(30px);
+  opacity: 0.2;
+}
+
+.logo {
+  position: relative;
+  display: block;
+  margin: 0;
+  margin-block-end: 1em;
+  font-size: 2em;
+  opacity: 0;
+  color: var(--pale-pink);
+  animation:
+    fade-in 3s ease forwards,
+    floating 5s ease-in-out infinite;
+}
+
+.logo::before,
+.logo::after {
+  position: absolute;
+  content: attr(data-text);
+  text-shadow: none;
+}
+
+.logo::before {
+  inset: 2px;
+  color: var(--light-cyan);
+}
+
+.logo::after {
+  inset: 1px;
+  color: var(--white);
+}
+
+.workplace {
+  text-decoration: none;
+}
+
+.workplace::before {
+  display: inline-block;
+  content: "► ";
+  width: 6em;
+  margin-inline-start: -6em;
+  opacity: 0;
+  transition:
+    width 0.25s ease-in-out,
+    margin-inline-start 0.25s ease-in-out,
+    opacity 0.25s ease-in-out;
+}
+
+.workplace:hover::before {
+  width: 1.5em;
+  margin-inline-start: 0;
+  opacity: 1;
+}
+
+.black-hole {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.black-hole-canvas {
+  opacity: 0;
+  animation: fade-in 7s 1s ease forwards;
+}
+
+#contact b {
+  cursor: pointer;
+}
+
+#contact::after {
+  margin: 100vh;
+}
+
+@media (max-width: 575.98px) {
+  main {
+    font-size: 24px;
+    margin-inline: 32px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  main {
+    font-size: 32px;
+    margin-inline: 56px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  main {
+    font-size: 40px;
+    margin-inline: 56px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  main {
+    font-size: 40px;
+    margin-inline: 64px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1599.98px) {
+  main {
+    font-size: 48px;
+    margin-inline: 96px;
+  }
+}
+
+@media (min-width: 1600px) {
+  main {
+    font-size: 52px;
+    margin-inline: 108px;
+  }
+}
+
+@media (hover: none), (hover: on-demand), (-moz-touch-enabled: 1), (pointer: coarse) {
+  .black-hole {
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@keyframes rainbow {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 1000% 50%;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

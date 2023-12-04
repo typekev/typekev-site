@@ -1,31 +1,21 @@
-/**
- *
- * Work
- *
- */
-import { memo, ComponentPropsWithoutRef } from "react";
+import { useTranslations } from "next-intl";
 
-import { styled } from "@mui/material/styles";
-
-import { Section } from "components/Section";
-import { useTranslation } from "hooks/useTranslation";
-
-import { Workplaces } from "./work/Workplaces";
-
-export const Work = memo((props: ComponentPropsWithoutRef<typeof Section>) => {
-  const { t } = useTranslation();
-
+export default function Work() {
+  const t = useTranslations("Work");
   return (
-    <WorkSection title={t("Companies I've worked for")} {...props}>
-      <Workplaces />
-    </WorkSection>
+    <section id="work">
+      <a href="#work" className="title">
+        {t("title")}
+      </a>
+      <a href="#work" className="workplace">
+        SES Satellites
+      </a>
+      <a href="#work" className="workplace" data-text="EmailTree AI">
+        EmailTree AI
+      </a>
+      <a href="#work" className="workplace">
+        Devoteam
+      </a>
+    </section>
   );
-});
-
-Work.displayName = Work.name;
-
-const WorkSection = styled(Section)`
-  & > div {
-    margin-left: -0.625rem;
-  }
-`;
+}
