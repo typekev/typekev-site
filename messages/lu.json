@@ -1,0 +1,15 @@
+{
+  "About": {
+    "text": "Hi, I'm <important>Kevin</important>, a software visionary and engineer advancing satellite yield systems and artificial intelligence in space."
+  },
+  "Work": {
+    "title": "Working history"
+  },
+  "Contact": {
+    "title": "Contact me"
+  },
+  "Bot": {
+    "prompt": "Have a question?",
+    "placeholder": "Type here..."
+  }
+}
