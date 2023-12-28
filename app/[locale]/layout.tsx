@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 import { PropsWithChildren } from "react";
 
+import { Analytics } from '@vercel/analytics/react';
 import { NextIntlClientProvider, useLocale } from "next-intl";
 
 import "@/global.css"; // eslint-disable-line import/no-unassigned-import
@@ -42,6 +43,7 @@ export default async function Layout({ children, params }: PropsWithChildren<Pro
           {children}
         </NextIntlClientProvider>
         <Scene />
+        <Analytics />
       </body>
     </html>
   );
