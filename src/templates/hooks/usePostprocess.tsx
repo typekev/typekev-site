@@ -13,24 +13,28 @@ export const useBloom = () => {
     camera,
   } = useThree();
 
-  const [bloomComposer, bloomPass] = useMemo(() => {
-    const bloomComposer = new EffectComposer(gl);
+  const [composer, bloomPasses] = useMemo(() => {
+    const composer = new EffectComposer(gl);
 
     const renderPass = new RenderPass(scene, camera);
-    bloomComposer.addPass(renderPass);
+    composer.addPass(renderPass);
 
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(size.width, size.height), 75, 1, 0.001);
-    bloomComposer.addPass(bloomPass);
+    const resolution = new THREE.Vector2(size.width, size.height);
+    const bloomPasses = [
+      new UnrealBloomPass(resolution, 100, 1, 0.005),
+      new UnrealBloomPass(resolution, 0.05, 1, 0),
+    ] as const;
 
-    return [bloomComposer, bloomPass];
+    bloomPasses.forEach((bloomPass) => composer.addPass(bloomPass));
+    return [composer, bloomPasses];
   }, [gl, camera, scene, size.height, size.width]);
 
   useEffect(() => {
-    bloomPass.setSize(size.width * dpr, size.height * dpr);
-  }, [bloomPass, dpr, size.height, size.width]);
+    bloomPasses.forEach((bloomPass) => bloomPass.setSize(size.width * dpr, size.height * dpr));
+  }, [bloomPasses, dpr, size.height, size.width]);
 
   useFrame((_, delta) => {
-    bloomComposer.render(delta);
+    composer.render(delta);
   }, 1);
 
   return null;
