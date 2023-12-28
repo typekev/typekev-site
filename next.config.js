@@ -14,7 +14,7 @@ const nextConfig = {
   experimental: {},
   images: {},
   eslint: {
-    dirs: ["app", "src"]
+    dirs: ["app", "src"],
   },
   webpack(config, { isServer }) {
     if (!isServer) {
@@ -51,34 +51,6 @@ const nextConfig = {
     config.resolve.alias.tinyld = "tinyld/light";
 
     return config;
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/about/",
-        destination: "/",
-      },
-      {
-        source: "/work/",
-        destination: "/",
-      },
-      {
-        source: "/work/:place/",
-        destination: "/",
-      },
-      {
-        source: "/blog/",
-        destination: "/",
-      },
-      {
-        source: "/contact/",
-        destination: "/",
-      },
-      {
-        source: "/contact/:channel/",
-        destination: "/",
-      },
-    ];
   },
 };
 
