@@ -9,7 +9,7 @@ import "@/global.css"; // eslint-disable-line import/no-unassigned-import
 
 const Scene = dynamic(() => import("@/components/canvas/Scene"), { ssr: false });
 
-const poppins = Poppins({ weight: ["400", "500", "700"], subsets: ["latin"] });
+const poppins = Poppins({ weight: ["600", "800"], subsets: ["latin"] });
 
 export const metadata = {
   title: "Kevin Gonzalez | Software Engineer",

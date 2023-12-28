@@ -16,7 +16,7 @@ export default function Page() {
       <main>
         <View orbit className="black-hole">
           <Suspense fallback={null}>
-            <BlackHole rotation={[-0.1, 0, 0]} />
+            <BlackHole />
             <Common />
           </Suspense>
         </View>
