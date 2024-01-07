@@ -1,6 +1,7 @@
-const title = "Kevin Gonzalez | Software Engineer";
+export const title = "Kevin Gonzalez | Software Visionary & Engineering Leader";
+export const description =
+  "Explore the portfolio of Kevin Gonzalez (typekev), a seasoned Software Visionary and Engineering Leader. Learn about Kevin's work and interests, and connect with him via LinkedIn or email for meaningful discussions and potential collaborations.";
 const url = "https://typekev.com/";
-const description = "The personal website of Kevin Gonzalez.";
 const author = "Kevin Gonzalez";
 const twitter = "@typekev";
 
@@ -20,7 +21,7 @@ export default function Head() {
       <meta name="description" content={description} />
       <meta
         name="keywords"
-        content="Software Engineer,Product Manager,Project Manager,Data Scientist,Computer Scientist"
+        content="Software Engineer,Product Manager,Project Manager,Data Scientist,Computer Scientist,Artificial Intelligence"
       />
       <meta name="robots" content="index,follow" />
       <meta name="distribution" content="web" />
