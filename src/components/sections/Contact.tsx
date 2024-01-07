@@ -18,7 +18,7 @@ export default function Contact() {
         {t("title")}
       </a>
       <a href={linkedIn}>LinkedIn</a>
-      <span className="email-link">
+      <span className="icon-button">
         <a href={`mailto:${email}`}>Email</a>
         {copied ? (
           <ClipboardCheckIcon size="0.875em" strokeWidth={2.5} onClick={onCopy} />

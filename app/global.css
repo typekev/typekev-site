@@ -1,13 +1,14 @@
 :root {
   --white: #fdf9f7;
   --transparent-white: #fdf9f777;
-  --transparent-accent-white: #fdf9f71f;
+  --transparent-white-faded: #fdf9f747;
+  --transparent-white-accent: #fdf9f710;
   --black: #060509;
   --transparent-black: #06050977;
   --light-cyan: #c8ffff;
   --transparent-light-cyan: #c8ffff77;
   --tropical-indigo: #a083ed;
-  --transparent-tropical-indigo: #a083ed1f;
+  --transparent-tropical-indigo: #a083ed2f;
   --pale-pink: #ffc0cb;
   --transparent-pale-pink: #ffc0cb77;
   --light-coral-orange: #ff9e9e;
@@ -36,7 +37,7 @@ html {
 main {
   position: relative;
   display: grid;
-  grid-auto-rows: calc(100vh - 3.5em) auto;
+  grid-auto-rows: calc(100vh - 3em) auto;
   z-index: 1;
 }
 
@@ -67,12 +68,19 @@ section > .title {
 section:first-of-type > span {
   opacity: 0;
   animation: fade-in 4s 0.25s ease forwards;
+  padding-bottom: 2em;
 }
 
 section:not(:first-of-type) {
   opacity: 0;
   animation: fade-in 5s 0.5s ease forwards;
   padding-block-start: 1em;
+}
+
+section:last-of-type {
+  opacity: 0;
+  animation: fade-in 6s 0.75s ease forwards;
+  padding-bottom: 2em;
 }
 
 a {
@@ -87,7 +95,10 @@ a {
 
 .highlighted-text,
 .highlighted-text::before,
-.highlighted-text::after {
+.highlighted-text::after,
+.list-item:target > span > span,
+.list-item:target > span > span::before,
+.list-item:target > span > span::after {
   position: relative;
   display: inline-block;
   animation: rainbow 75s linear infinite reverse;
@@ -100,14 +111,17 @@ a {
 }
 
 .highlighted-text::before,
-.highlighted-text::after {
+.highlighted-text::after,
+.list-item:target > span > span::before,
+.list-item:target > span > span::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
   filter: blur(15px);
 }
 
-.highlighted-text::after {
+.highlighted-text::after,
+.list-item:target > span > span::after {
   filter: blur(30px);
   opacity: 0.2;
 }
@@ -121,9 +135,10 @@ a {
   opacity: 0;
   overflow: visible;
   color: var(--pale-pink);
+  --float-y: 0.125em;
   animation:
     fade-in 3s ease forwards,
-    floating 5s ease-in-out infinite;
+    floating 22s 2s ease-in-out infinite;
   text-shadow: var(--transparent-pale-pink) -0.25em -0.25em 5em;
 }
 
@@ -138,13 +153,15 @@ a {
   inset: 4px;
   color: var(--light-cyan);
   text-shadow: var(--transparent-light-cyan) 0.25em 0.25em 5em;
-  animation: floating 10s ease-in-out infinite;
+  --float-y: 0.067em;
+  animation: floating 18s ease-in-out infinite;
 }
 
 .logo::after {
   inset: 2px;
   color: var(--white);
-  animation: floating 10s 1s ease-in-out infinite;
+  --float-y: 0.067em;
+  animation: floating 14s 1s ease-in-out infinite;
 }
 
 .list-item {
@@ -164,36 +181,77 @@ a {
     opacity 0.25s ease-in-out;
 }
 
-.list-item:hover::before {
+.list-item:target::before {
   width: 1.5em;
   margin-inline-start: 0;
   opacity: 1;
 }
 
 .list-item > span {
+  display: inline-flex;
   transition:
-    background-color 0.25s ease-out,
-    padding 0.25s ease-in-out,
-    text-shadow 0.25s ease-out;
+    padding 0.125s ease-in-out,
+    text-shadow 0.125s ease-out,
+    background 0.25s ease-in-out;
   padding: 0;
+  background-position: center;
+  border-radius: 0.125em;
 }
 
-.list-item:hover > span {
-  background-color: var(--transparent-accent-white);
+.list-item:hover > span,
+.list-item:focus > span,
+.list-item:target > span {
+  background-color: var(--transparent-white-accent);
   padding: 0 0.25em;
   text-shadow:
-    var(--white) 0 1px 0.125em,
+    var(--white) 0 1px 0.067em,
     var(--transparent-white) 0 0 0.5em;
+  backdrop-filter: blur(10px);
 }
 
-.email-link {
-  display: flex;
+.list-item:hover > span,
+.list-item:focus > span {
+  background: var(--transparent-white-accent)
+    radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/12000%;
+}
+
+.list-item:active > span {
+  background-color: var(--transparent-white-faded);
+  background-size: 100%;
+  transition: background 0s;
+  backdrop-filter: blur(10px);
+}
+
+.list-item svg {
+  opacity: 0;
+  transition: opacity 0.125s ease-in-out;
+}
+
+.list-item:hover svg,
+.list-item:focus svg {
+  opacity: 1;
+}
+
+#ses.list-item {
+  scroll-margin-top: calc(2.875em + 0.5px);
+}
+
+#emailtreeai.list-item {
+  scroll-margin-top: calc(4.625em + 0.5px);
+}
+
+#devoteam.list-item {
+  scroll-margin-top: calc(6.375em + 0.5px);
+}
+
+.icon-button {
+  display: inline-flex;
   align-items: center;
 }
 
-.email-link > svg {
+span > svg {
   cursor: pointer;
-  margin-inline-start: 0.187em;
+  margin-inline-start: 0.25em;
   filter: drop-shadow(0 1px 0.125em var(--white));
 }
 
@@ -292,14 +350,22 @@ a {
 
 @keyframes floating {
   0% {
-    transform: translate(-3px, 0);
+    transform: translate(0, 0);
+  }
+
+  12% {
+    transform: translate(-3px, var(--float-y));
   }
 
   50% {
-    transform: translate(1px, -8px);
+    transform: translate(1px, calc(var(--float-y) * -1));
+  }
+
+  88% {
+    transform: translate(-3px, var(--float-y));
   }
 
   100% {
-    transform: translate(-3px, 0);
+    transform: translate(0, 0);
   }
 }
