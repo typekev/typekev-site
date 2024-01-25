@@ -6,22 +6,28 @@ import { PrimitiveProps, useFrame } from "@react-three/fiber";
 
 import { useBloom } from "@/templates/hooks/usePostprocess";
 
+const isTouchScreen = "ontouchstart" in document.documentElement;
+const scrollHeight = document.documentElement.scrollHeight * 1.5;
+
 export function BlackHole(props: Omit<PrimitiveProps, "object">) {
   const { scene } = useGLTF("/black-hole.glb");
   useBloom();
   useEffect(() => {
-    scene.position.setX(0.75);
+    scene.position.setX(0.5);
     scene.scale.set(0.6, 0.6, 0.6);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useFrame((_, delta) => {
-    scene.rotation.y -= delta * 3;
-    const invScroll = Math.max(0.17 - window.scrollY / document.documentElement.scrollHeight / 1.5, -0.15);
-    const easedTilt = Math.min(easeInOutQuad(Math.abs(invScroll - scene.rotation.x)), 0.1);
-    if (scene.rotation.x > invScroll) scene.rotation.x -= easedTilt;
-    if (scene.rotation.x < invScroll) scene.rotation.x += easedTilt;
-    if (scene.position.y > invScroll * -1) scene.position.y -= easedTilt;
-    if (scene.position.y < invScroll * -1) scene.position.y += easedTilt;
+    scene.rotation.y -= delta * 4;
+    const invScroll = Math.max(0.17 - window.scrollY / scrollHeight, -0.22);
+    if (isTouchScreen) {
+      scene.rotation.x = invScroll;
+      scene.position.y = invScroll;
+    } else {
+      const easedTilt = Math.min(easeInOutQuad(Math.abs(invScroll - scene.rotation.x)), 0.1);
+      scene.rotation.x += scene.rotation.x > invScroll ? -easedTilt : easedTilt;
+      scene.position.y += scene.position.y > invScroll * -1 ? -easedTilt : easedTilt;
+    }
   });
 
   return <primitive object={scene} {...props} />;
