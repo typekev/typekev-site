@@ -4,11 +4,11 @@ export default function About() {
   const t = useTranslations("About");
 
   return (
-    <section>
+    <header id="about">
       <b className="logo" data-text="K">
         K
       </b>
-      <span>
+      <p>
         {t.rich("text", {
           important: (chunks) => (
             <b className="highlighted-text" data-text={chunks}>
@@ -16,7 +16,7 @@ export default function About() {
             </b>
           ),
         })}
-      </span>
-    </section>
+      </p>
+    </header>
   );
 }

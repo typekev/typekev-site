@@ -36,8 +36,6 @@ html {
 
 main {
   position: relative;
-  display: grid;
-  grid-auto-rows: calc(100vh - 3em) auto;
   z-index: 1;
 }
 
@@ -45,14 +43,17 @@ b {
   font-weight: 800;
 }
 
-section {
-  pointer-events: none;
+section,
+header,
+footer {
   display: grid;
   grid-auto-rows: min-content;
-  place-content: center start;
+  pointer-events: none;
 }
 
-section > * {
+section,
+header,
+footer > * {
   pointer-events: all;
   width: fit-content;
 }
@@ -63,28 +64,58 @@ section > a {
 
 section > .title {
   margin-block-end: 1.5em;
+  font-weight: 300;
 }
 
-section:first-of-type > span {
+header#about {
+  place-content: center start;
+  height: calc(100vh - 5em);
+  min-height: 10em;
+  max-height: 23em;
+  padding-block-start: 2em;
+}
+
+header#about > p {
   opacity: 0;
   animation: fade-in 4s 0.25s ease forwards;
-  padding-bottom: 2em;
+  padding-block-end: 2em;
 }
 
-section:not(:first-of-type) {
+section#work {
   opacity: 0;
   animation: fade-in 5s 0.5s ease forwards;
   padding-block-start: 1em;
+  padding-block-end: 5em;
 }
 
-section:last-of-type {
+section#contact {
   opacity: 0;
   animation: fade-in 6s 0.75s ease forwards;
-  padding-bottom: 2em;
+  padding-block-start: 1em;
+  padding-block-end: 5em;
+}
+
+section#endnote {
+  opacity: 0;
+  animation: fade-in 7s 1s ease forwards;
+  padding-block-end: 1em;
+}
+
+footer#endnote > p {
+  opacity: 0.9;
+  margin-block-start: 4em;
+  margin-inline-start: auto;
+  font-size: 0.375em;
+  font-weight: 100;
 }
 
 a {
   color: inherit;
+}
+
+a[href*="//"] span,
+a[href*="mailto"] span {
+  text-decoration: underline;
 }
 
 .title {
@@ -130,7 +161,6 @@ a {
   position: relative;
   display: block;
   margin: 0;
-  margin-block-end: 1em;
   font-size: 2em;
   opacity: 0;
   overflow: visible;
@@ -165,71 +195,36 @@ a {
 }
 
 .list-item {
-  text-decoration: none;
-}
-
-.list-item::before {
-  pointer-events: none;
-  display: inline-block;
-  content: "► ";
-  width: 6em;
-  margin-inline-start: -6em;
-  opacity: 0;
-  transition:
-    width 0.25s ease-in-out,
-    margin-inline-start 0.25s ease-in-out,
-    opacity 0.25s ease-in-out;
-}
-
-.list-item:target::before {
-  width: 1.5em;
-  margin-inline-start: 0;
-  opacity: 1;
+  width: fit-content;
 }
 
 .list-item > span {
   display: inline-flex;
-  transition:
-    padding 0.125s ease-in-out,
-    text-shadow 0.125s ease-out,
-    background 0.25s ease-in-out;
-  padding: 0;
+  transition: background 0.25s ease-in-out;
+  padding-inline: 0.25em;
+  background: transparent;
   background-position: center;
-  border-radius: 0.125em;
+  border-radius: 0.0625em;
 }
 
 .list-item:hover > span,
 .list-item:focus > span,
 .list-item:target > span {
   background-color: var(--transparent-white-accent);
-  padding: 0 0.25em;
-  text-shadow:
-    var(--white) 0 1px 0.067em,
-    var(--transparent-white) 0 0 0.5em;
   backdrop-filter: blur(10px);
 }
 
 .list-item:hover > span,
 .list-item:focus > span {
   background: var(--transparent-white-accent)
-    radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/12000%;
+    radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/14000%;
 }
 
 .list-item:active > span {
   background-color: var(--transparent-white-faded);
   background-size: 100%;
-  transition: background 0s;
+  transition: background 0.05s;
   backdrop-filter: blur(10px);
-}
-
-.list-item svg {
-  opacity: 0;
-  transition: opacity 0.125s ease-in-out;
-}
-
-.list-item:hover svg,
-.list-item:focus svg {
-  opacity: 1;
 }
 
 #ses.list-item {
@@ -244,15 +239,35 @@ a {
   scroll-margin-top: calc(6.375em + 0.5px);
 }
 
-.icon-button {
+.button-group {
   display: inline-flex;
   align-items: center;
 }
 
-span > svg {
+.button-group .icon-button {
+  margin-inline-start: 0.0625em;
+}
+
+.icon-button {
+  display: inline-flex;
   cursor: pointer;
-  margin-inline-start: 0.25em;
-  filter: drop-shadow(0 1px 0.125em var(--white));
+  filter: drop-shadow(0 1px 0.125em currentColor);
+}
+
+.icon-button span {
+  display: inline-flex;
+  vertical-align: middle;
+  padding: 0.0625em;
+}
+
+.endnote-link {
+  text-decoration: none;
+  font-weight: 200;
+}
+
+.social-links {
+  display: flex;
+  gap: 1em;
 }
 
 .black-hole {
@@ -281,8 +296,17 @@ span > svg {
 
 @media (max-width: 575.98px) {
   main {
-    font-size: 24px;
+    font-size: 30px;
     margin-inline: 32px;
+  }
+
+  .logo {
+    font-size: 3.5em;
+  }
+
+  .social-links {
+    justify-content: center;
+    gap: 3em;
   }
 }
 
@@ -291,12 +315,25 @@ span > svg {
     font-size: 32px;
     margin-inline: 56px;
   }
+
+  .logo {
+    font-size: 3em;
+  }
+
+  .social-links {
+    justify-content: center;
+    gap: 2em;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   main {
     font-size: 40px;
     margin-inline: 56px;
+  }
+
+  footer#endnote > p {
+    width: 66%;
   }
 }
 
@@ -305,6 +342,10 @@ span > svg {
     font-size: 40px;
     margin-inline: 64px;
   }
+
+  footer#endnote > p {
+    width: 50%;
+  }
 }
 
 @media (min-width: 1200px) and (max-width: 1599.98px) {
@@ -312,12 +353,20 @@ span > svg {
     font-size: 48px;
     margin-inline: 96px;
   }
+
+  footer#endnote > p {
+    width: 50%;
+  }
 }
 
 @media (min-width: 1600px) {
   main {
     font-size: 52px;
     margin-inline: 108px;
+  }
+
+  footer#endnote > p {
+    width: 33%;
   }
 }
 

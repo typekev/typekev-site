@@ -3,10 +3,14 @@
     "text": "Hi, I'm <important>Kevin</important>, a software visionary and engineering leader advancing satellite yield systems and artificial intelligence in space."
   },
   "Work": {
-    "title": "Working history"
+    "title": "Working history",
+    "more": "More"
   },
   "Contact": {
     "title": "Contact me"
+  },
+  "Endnote": {
+    "text": "I designed this website in <design>Figma</design> and developed it using <ts>TypeScript</ts>, <three>Three.js</three>, and the <next>Next.js</next> framework for <react>React</react>. All associated code is open source and available on <github>GitHub</github>. This website—and all it's <versions>prior versions</versions>—are continually deployed with <host>Vercel</host>."
   },
   "Bot": {
     "prompt": "Have a question?",

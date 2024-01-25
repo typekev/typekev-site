@@ -4,6 +4,9 @@ import { useState } from "react";
 import { ClipboardEditIcon, ClipboardCheckIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { ListItemLink } from "@/components/ListItemLink";
+import { email, linkedInUrl } from "@/helpers/links";
+
 export default function Contact() {
   const t = useTranslations("Contact");
   const [copied, setCopied] = useState(false);
@@ -17,20 +20,23 @@ export default function Contact() {
       <a href="#contact" className="title">
         {t("title")}
       </a>
-      <a href={linkedIn}>LinkedIn</a>
-      <span className="icon-button">
-        <a href={`mailto:${email}`}>Email</a>
-        {copied ? (
-          <ClipboardCheckIcon size="0.875em" strokeWidth={2.5} onClick={onCopy} />
-        ) : (
-          <ClipboardEditIcon size="0.875em" strokeWidth={2.5} onClick={onCopy} />
-        )}
+      <ListItemLink href={linkedInUrl}>LinkedIn</ListItemLink>
+      <span className="button-group">
+        <ListItemLink href={`mailto:${email}`}>Email</ListItemLink>
+        <span className="list-item icon-button">
+          <span>
+            <span>
+              {copied ? (
+                <ClipboardCheckIcon size="0.75em" strokeWidth={2.5} onClick={onCopy} />
+              ) : (
+                <ClipboardEditIcon size="0.75em" strokeWidth={2.5} onClick={onCopy} />
+              )}
+            </span>
+          </span>
+        </span>
       </span>
     </section>
   );
 }
 
 const copy = () => navigator.clipboard.writeText(email);
-
-const email = "kev@typekev.com" as const;
-const linkedIn = "https://www.linkedin.com/in/typekev/" as const;

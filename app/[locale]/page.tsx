@@ -4,6 +4,7 @@ import { Suspense } from "react";
 
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
+import Endnote from "@/components/sections/Endnote";
 import Work from "@/components/sections/Work";
 
 const BlackHole = dynamic(() => import("@/components/canvas/BlackHole").then((mod) => mod.BlackHole), { ssr: false });
@@ -23,6 +24,7 @@ export default function Page() {
         <About />
         <Work />
         <Contact />
+        <Endnote />
       </main>
     </>
   );
