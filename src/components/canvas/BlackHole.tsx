@@ -20,13 +20,15 @@ export function BlackHole(props: Omit<PrimitiveProps, "object">) {
   useFrame((_, delta) => {
     scene.rotation.y -= delta * 4;
     const invScroll = Math.max(0.17 - window.scrollY / scrollHeight, -0.22);
-    if (isTouchScreen) {
-      scene.rotation.x = invScroll;
-      scene.position.y = invScroll;
-    } else {
-      const easedTilt = Math.min(easeInOutQuad(Math.abs(invScroll - scene.rotation.x)), 0.1);
-      scene.rotation.x += scene.rotation.x > invScroll ? -easedTilt : easedTilt;
-      scene.position.y += scene.position.y > invScroll * -1 ? -easedTilt : easedTilt;
+    if (scene.rotation.x !== invScroll || scene.position.y !== invScroll * -1) {
+      if (isTouchScreen) {
+        scene.rotation.x = invScroll;
+        scene.position.y = invScroll;
+      } else {
+        const easedTilt = Math.min(easeInOutQuad(Math.abs(invScroll - scene.rotation.x)), 0.1);
+        scene.rotation.x += scene.rotation.x > invScroll ? -easedTilt : easedTilt;
+        scene.position.y += scene.position.y > invScroll * -1 ? -easedTilt : easedTilt;
+      }
     }
   });
 

@@ -24,10 +24,10 @@ html {
   font-family: "Poppins", sans-serif;
   text-shadow:
     var(--transparent-black) 0 0 3em,
-    var(--white) 0 1px 0.125em,
-    var(--transparent-white) 0 0 0.5em,
+    var(--white) 0 0 0.25em,
     var(--transparent-white) 0 0 1em,
-    var(--transparent-white) 0 0 1.5em;
+    var(--transparent-white-accent) 0 0 1.5em,
+    var(--transparent-white-faded) 0 0 2em;
   scroll-behavior: smooth;
   font-weight: 600;
   font-smooth: always;
@@ -51,15 +51,11 @@ footer {
   pointer-events: none;
 }
 
-section,
-header,
+section > *,
+header > *,
 footer > * {
   pointer-events: all;
   width: fit-content;
-}
-
-section > a {
-  margin-block-end: 0.25em;
 }
 
 section > .title {
@@ -72,50 +68,129 @@ header#about {
   height: calc(100vh - 5em);
   min-height: 10em;
   max-height: 23em;
-  padding-block-start: 2em;
+  padding-block-start: min(2em, 10vh);
+}
+
+header#about > * {
+  opacity: 0;
+  animation: fade-in 4s 0.25s ease forwards;
 }
 
 header#about > p {
+  padding-block-end: min(2em, 25vh);
+}
+
+header#about > .logo {
+  position: relative;
+  display: block;
+  max-height: 18vh;
+  margin: 0;
+  font-size: min(3em, 10vmax);
   opacity: 0;
-  animation: fade-in 4s 0.25s ease forwards;
-  padding-block-end: 2em;
+  overflow: visible;
+  color: var(--pale-pink);
+  --float-y: 0.125em;
+  animation:
+    fade-in 3s ease forwards,
+    floating 22s 2s ease-in-out infinite;
+  text-shadow: var(--transparent-pale-pink) -0.25em -0.25em 5em;
+}
+
+header#about > .logo::before,
+header#about > .logo::after {
+  position: absolute;
+  content: attr(data-text);
+  overflow: visible;
+}
+
+header#about > .logo::before {
+  inset: 4px;
+  color: var(--light-cyan);
+  text-shadow: var(--transparent-light-cyan) 0.25em 0.25em 5em;
+  --float-y: 0.067em;
+  animation: floating 18s ease-in-out infinite;
+}
+
+header#about > .logo::after {
+  inset: 2px;
+  color: var(--white);
+  --float-y: 0.067em;
+  animation: floating 14s 1s ease-in-out infinite;
 }
 
 section#work {
+  padding-block-start: 1em;
+  padding-block-end: min(5em, 25vh);
+}
+
+section#work > * {
   opacity: 0;
   animation: fade-in 5s 0.5s ease forwards;
-  padding-block-start: 1em;
-  padding-block-end: 5em;
 }
 
 section#contact {
+  padding-block-start: 1em;
+  padding-block-end: min(5em, 25vh);
+  margin-block-end: -8em;
+}
+
+section#contact > * {
   opacity: 0;
   animation: fade-in 6s 0.75s ease forwards;
-  padding-block-start: 1em;
-  padding-block-end: 5em;
 }
 
-section#endnote {
-  opacity: 0;
-  animation: fade-in 7s 1s ease forwards;
-  padding-block-end: 1em;
-}
-
-footer#endnote > p {
-  opacity: 0.9;
+footer#endnote > * {
   margin-block-start: 4em;
   margin-inline-start: auto;
   font-size: 0.375em;
   font-weight: 100;
+  opacity: 0;
+  animation: fade-in 7s 1s ease forwards;
 }
 
 a {
   color: inherit;
 }
 
-a[href*="//"] span,
-a[href*="mailto"] span {
-  text-decoration: underline;
+a:not([href*="//"], [href*="mailto"])
+{
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+button#bot {
+  cursor: pointer;
+  position: sticky;
+  inset-inline-start: 100%;
+  inset-block-end: min(2em, 12vh);
+  margin-block: 8em -1.5em;
+  padding-inline: 0.25em;
+  padding-block-end: 0.25em;
+  border-radius: 0.75em;
+}
+
+button#bot > svg {
+  width: min(2.75em, 9vmax);
+  height: min(2.75em, 9vmax);
+  filter: drop-shadow(0 0 0.25em var(--transparent-white));
+  opacity: 0;
+  --float-y: 0.25em;
+  --shake-rotation: 5deg;
+  animation:
+    fade-in 4s 1.5s ease forwards,
+    floating 10s ease-in-out infinite,
+    shake 5s ease-in-out infinite;
+}
+
+button#bot:hover > svg {
+  animation-play-state: running, paused, running;
+  animation-duration: 4s, 0s, 0.5s;
 }
 
 .title {
@@ -127,9 +202,9 @@ a[href*="mailto"] span {
 .highlighted-text,
 .highlighted-text::before,
 .highlighted-text::after,
-.list-item:target > span > span,
-.list-item:target > span > span::before,
-.list-item:target > span > span::after {
+.button:target > span,
+.button:target > span::before,
+.button:target > span::after {
   position: relative;
   display: inline-block;
   animation: rainbow 75s linear infinite reverse;
@@ -143,8 +218,8 @@ a[href*="mailto"] span {
 
 .highlighted-text::before,
 .highlighted-text::after,
-.list-item:target > span > span::before,
-.list-item:target > span > span::after {
+.button:target > span::before,
+.button:target > span::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
@@ -152,91 +227,72 @@ a[href*="mailto"] span {
 }
 
 .highlighted-text::after,
-.list-item:target > span > span::after {
+.button:target > span::after {
   filter: blur(30px);
   opacity: 0.2;
 }
 
-.logo {
-  position: relative;
-  display: block;
-  margin: 0;
-  font-size: 2em;
-  opacity: 0;
-  overflow: visible;
-  color: var(--pale-pink);
-  --float-y: 0.125em;
-  animation:
-    fade-in 3s ease forwards,
-    floating 22s 2s ease-in-out infinite;
-  text-shadow: var(--transparent-pale-pink) -0.25em -0.25em 5em;
-}
-
-.logo::before,
-.logo::after {
-  position: absolute;
-  content: attr(data-text);
-  overflow: visible;
-}
-
-.logo::before {
-  inset: 4px;
-  color: var(--light-cyan);
-  text-shadow: var(--transparent-light-cyan) 0.25em 0.25em 5em;
-  --float-y: 0.067em;
-  animation: floating 18s ease-in-out infinite;
-}
-
-.logo::after {
-  inset: 2px;
-  color: var(--white);
-  --float-y: 0.067em;
-  animation: floating 14s 1s ease-in-out infinite;
-}
-
-.list-item {
-  width: fit-content;
-}
-
-.list-item > span {
+.button {
   display: inline-flex;
-  transition: background 0.25s ease-in-out;
+  width: fit-content;
+  transition:
+    background 0.25s ease-in-out,
+    backdrop-filter 0.25s ease-in-out;
+  margin-block-end: 0.25em;
   padding-inline: 0.25em;
+  padding-block: 0.0625em;
   background: transparent;
   background-position: center;
-  border-radius: 0.0625em;
+  border-radius: 0.375em;
 }
 
-.list-item:hover > span,
-.list-item:focus > span,
-.list-item:target > span {
+.button[href*="//"],
+.button[href*="mailto"] {
+  padding-block: 0 0.125em;
+}
+
+.button:hover,
+.button:focus,
+.button:target {
   background-color: var(--transparent-white-accent);
-  backdrop-filter: blur(10px);
 }
 
-.list-item:hover > span,
-.list-item:focus > span {
+.button:hover,
+.button:focus {
   background: var(--transparent-white-accent)
     radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/14000%;
 }
 
-.list-item:active > span {
+.button:active {
   background-color: var(--transparent-white-faded);
   background-size: 100%;
   transition: background 0.05s;
-  backdrop-filter: blur(10px);
 }
 
-#ses.list-item {
-  scroll-margin-top: calc(2.875em + 0.5px);
+.button:hover,
+.button:focus,
+.button:target,
+.button:active {
+  backdrop-filter: blur(0.5em);
 }
 
-#emailtreeai.list-item {
-  scroll-margin-top: calc(4.625em + 0.5px);
+.button:target > span,
+.button:target > span::before,
+.button:target > span::after {
+  animation-duration: 40s;
+  background-size: 1100% 100%;
 }
 
-#devoteam.list-item {
-  scroll-margin-top: calc(6.375em + 0.5px);
+#ses.button {
+  scroll-margin-top: calc(2.875em - 0.5px);
+}
+
+#emailtreeai.button {
+  scroll-margin-top: calc(4.75em - 0.5px);
+}
+
+#devoteam.button {
+  scroll-margin-top: calc(6.625em - 0.5px);
 }
 
 .button-group {
@@ -251,13 +307,19 @@ a[href*="mailto"] span {
 .icon-button {
   display: inline-flex;
   cursor: pointer;
-  filter: drop-shadow(0 1px 0.125em currentColor);
+  color: inherit;
+  font-size: inherit;
+  padding: 0.125em;
+  border-radius: 0.375em;
 }
 
 .icon-button span {
   display: inline-flex;
   vertical-align: middle;
-  padding: 0.0625em;
+}
+
+.icon-button svg {
+  filter: drop-shadow(0 0 0.125em currentColor);
 }
 
 .endnote-link {
@@ -270,15 +332,29 @@ a[href*="mailto"] span {
   gap: 1em;
 }
 
+.social-links svg {
+  filter: drop-shadow(0 0 0.25em var(--transparent-white));
+}
+
+.social-links a {
+  opacity: 0.8;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.social-links a:hover,
+.social-links a:focus {
+  opacity: 1;
+}
+
 .black-hole {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--black) 100%);
   background-size: cover;
   position: fixed;
   inset: 0;
   margin: auto;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+  width: max(100%, 50vmax);
+  height: max(100%, 50vmax);
+  animation: fade-in 7s ease forwards;
 }
 
 .black-hole-canvas {
@@ -300,10 +376,6 @@ a[href*="mailto"] span {
     margin-inline: 32px;
   }
 
-  .logo {
-    font-size: 3.5em;
-  }
-
   .social-links {
     justify-content: center;
     gap: 3em;
@@ -314,10 +386,6 @@ a[href*="mailto"] span {
   main {
     font-size: 32px;
     margin-inline: 56px;
-  }
-
-  .logo {
-    font-size: 3em;
   }
 
   .social-links {
@@ -416,5 +484,20 @@ a[href*="mailto"] span {
 
   100% {
     transform: translate(0, 0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(var(--shake-rotation));
+  }
+
+  75% {
+    transform: rotate(calc(var(--shake-rotation) * -1));
   }
 }

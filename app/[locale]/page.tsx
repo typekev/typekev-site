@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
+import { Bot } from "@/components/Bot";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Endnote from "@/components/sections/Endnote";
@@ -24,6 +25,7 @@ export default function Page() {
         <About />
         <Work />
         <Contact />
+        <Bot />
         <Endnote />
       </main>
     </>

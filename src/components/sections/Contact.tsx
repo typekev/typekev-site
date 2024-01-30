@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ClipboardEditIcon, ClipboardCheckIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { ListItemLink } from "@/components/ListItemLink";
+import { AnchorButton } from "@/components/AnchorButton";
 import { email, linkedInUrl } from "@/helpers/links";
 
 export default function Contact() {
@@ -20,20 +20,18 @@ export default function Contact() {
       <a href="#contact" className="title">
         {t("title")}
       </a>
-      <ListItemLink href={linkedInUrl}>LinkedIn</ListItemLink>
+      <AnchorButton href={linkedInUrl}>LinkedIn</AnchorButton>
       <span className="button-group">
-        <ListItemLink href={`mailto:${email}`}>Email</ListItemLink>
-        <span className="list-item icon-button">
+        <AnchorButton href={`mailto:${email}`}>Email</AnchorButton>
+        <button className="button icon-button">
           <span>
-            <span>
-              {copied ? (
-                <ClipboardCheckIcon size="0.75em" strokeWidth={2.5} onClick={onCopy} />
-              ) : (
-                <ClipboardEditIcon size="0.75em" strokeWidth={2.5} onClick={onCopy} />
-              )}
-            </span>
+            {copied ? (
+              <ClipboardCheckIcon size="0.75em" strokeWidth={2.5} onClick={onCopy} />
+            ) : (
+              <ClipboardEditIcon size="0.75em" strokeWidth={2.5} onClick={onCopy} />
+            )}
           </span>
-        </span>
+        </button>
       </span>
     </section>
   );

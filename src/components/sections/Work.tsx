@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-import { ListItemLink } from "@/components/ListItemLink";
+import { AnchorButton } from "@/components/AnchorButton";
 import { linkedInExperienceUrl } from "@/helpers/links";
 
 export default function Work() {
@@ -11,16 +11,16 @@ export default function Work() {
       <a href="#work" className="title">
         {t("title")}
       </a>
-      <ListItemLink id="ses" href="#ses">
+      <AnchorButton id="ses" href="#ses">
         SES Satellites
-      </ListItemLink>
-      <ListItemLink id="emailtreeai" href="#emailtreeai">
+      </AnchorButton>
+      <AnchorButton id="emailtreeai" href="#emailtreeai">
         EmailTree AI
-      </ListItemLink>
-      <ListItemLink id="devoteam" href="#devoteam">
+      </AnchorButton>
+      <AnchorButton id="devoteam" href="#devoteam">
         Devoteam
-      </ListItemLink>
-      <ListItemLink href={linkedInExperienceUrl}>{t("more")}</ListItemLink>
+      </AnchorButton>
+      <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
     </section>
   );
 }
