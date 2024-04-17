@@ -11,7 +11,6 @@ const withNextIntl = require("next-intl/plugin")();
 const nextConfig = {
   distDir: "build",
   reactStrictMode: true,
-  experimental: {},
   images: {},
   eslint: {
     dirs: ["app", "src"],

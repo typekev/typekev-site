@@ -5,6 +5,8 @@ import { Canvas } from "@react-three/fiber";
 
 import { r3f } from "@/helpers/global";
 
+import * as THREE from "three";
+
 export default function Scene() {
   const { loaded } = useProgress();
 
@@ -20,6 +22,7 @@ export default function Scene() {
         pointerEvents: "none",
       }}
       eventPrefix="client"
+      onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
     >
       <r3f.Out />
       <Preload all />
