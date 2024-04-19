@@ -1,0 +1,16 @@
+import { BotIcon } from "lucide-react";
+
+interface Props {
+  active: boolean;
+  toggleChat: () => void;
+}
+
+export function Bot({ active, toggleChat }: Props) {
+  return (
+    <button className={`button icon-button ${active ? "active" : ""}`} onClick={toggleChat}>
+      <BotIcon strokeWidth={2.5} />
+    </button>
+  );
+}
+
+Bot.displayName = "Bot";

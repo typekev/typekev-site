@@ -1,8 +1,8 @@
 :root {
   --white: #fdf9f7;
   --transparent-white: #fdf9f777;
-  --transparent-white-faded: #fdf9f747;
-  --transparent-white-accent: #fdf9f710;
+  --transparent-white-faded: #fdf9f740;
+  --transparent-white-accent: #fdf9f720;
   --black: #060509;
   --transparent-black: #06050977;
   --light-cyan: #c8ffff;
@@ -59,7 +59,7 @@ footer > * {
 }
 
 section > .title {
-  margin-block-end: 1.5em;
+  margin-block-end: 0.5em;
   font-weight: 300;
 }
 
@@ -121,6 +121,7 @@ header#about > .logo::after {
 section#work {
   padding-block-start: 1em;
   padding-block-end: min(5em, 25vh);
+  gap: 0.25em;
 }
 
 section#work > * {
@@ -132,11 +133,16 @@ section#contact {
   padding-block-start: 1em;
   padding-block-end: min(5em, 25vh);
   margin-block-end: -8em;
+  gap: 0.25em;
 }
 
 section#contact > * {
   opacity: 0;
   animation: fade-in 6s 0.75s ease forwards;
+}
+
+section:target > .title::after {
+  width: 100%;
 }
 
 footer#endnote > * {
@@ -164,18 +170,24 @@ button {
   box-shadow: none;
 }
 
-button#bot {
-  cursor: pointer;
+#bot {
+  display: flex;
+  gap: 0.375em;
+  align-items: center;
+  justify-content: end;
   position: sticky;
-  inset-inline-start: 100%;
   inset-block-end: min(2em, 12vh);
   margin-block: 8em -1.5em;
   padding-inline: 0.25em;
   padding-block-end: 0.25em;
-  border-radius: 0.75em;
+  font-weight: 300;
 }
 
-button#bot > svg {
+#bot > button {
+  cursor: pointer;
+}
+
+#bot > button > svg {
   width: min(2.75em, 9vmax);
   height: min(2.75em, 9vmax);
   filter: drop-shadow(0 0 0.25em var(--transparent-white));
@@ -188,15 +200,74 @@ button#bot > svg {
     shake 5s ease-in-out infinite;
 }
 
-button#bot:hover > svg {
+#bot > button:hover > svg,
+#bot > button:focus > svg,
+#bot > button.active > svg {
   animation-play-state: running, paused, running;
   animation-duration: 4s, 0s, 0.5s;
+}
+
+#bot .chat-box {
+  display: grid;
+  gap: 0.5em;
+  font-size: 0.5em;
+  padding: 0.75em;
+  background-color: var(--transparent-white-accent);
+  backdrop-filter: blur(0.75em);
+  border-radius: 0.75em;
+  border: 0.125rem solid var(--transparent-white-faded);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+}
+
+#bot .chat-box.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#bot .chat-input {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--transparent-white-accent);
+  border-radius: 0.5em;
+}
+
+#bot .chat-input input {
+  font-size: 0.875em;
+  font-weight: 600;
+  width: 100%;
+  margin-inline: 0.5em;
+  background: transparent;
+  color: var(--white);
+  outline: none;
+  border: none;
 }
 
 .title {
   font-size: 0.625em;
   align-self: start;
   text-decoration: none;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0.125rem;
+  background-color: var(--white);
+  transition: width 0.3s ease;
+}
+
+.title:hover::after,
+.title:focus::after {
+  width: 100%;
 }
 
 .highlighted-text,
@@ -236,14 +307,12 @@ button#bot:hover > svg {
   display: inline-flex;
   width: fit-content;
   transition:
-    background 0.25s ease-in-out,
+    background 0.5s ease-out,
     backdrop-filter 0.25s ease-in-out;
-  margin-block-end: 0.25em;
-  padding-inline: 0.25em;
-  padding-block: 0.0625em;
+  padding-inline: 0.375em;
   background: transparent;
   background-position: center;
-  border-radius: 0.375em;
+  border-radius: 0.5em;
 }
 
 .button[href*="//"],
@@ -254,13 +323,7 @@ button#bot:hover > svg {
 .button:hover,
 .button:focus,
 .button:target {
-  background-color: var(--transparent-white-accent);
-}
-
-.button:hover,
-.button:focus {
-  background: var(--transparent-white-accent)
-    radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/14000%;
+  background: radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/20000%;
 }
 
 .button:active {
@@ -269,10 +332,15 @@ button#bot:hover > svg {
   transition: background 0.05s;
 }
 
+.button.active {
+  background-color: var(--transparent-white-faded);
+}
+
 .button:hover,
 .button:focus,
 .button:target,
-.button:active {
+.button:active,
+.button.active {
   backdrop-filter: blur(0.5em);
 }
 
@@ -284,15 +352,15 @@ button#bot:hover > svg {
 }
 
 #ses.button {
-  scroll-margin-top: calc(2.875em - 0.5px);
+  scroll-margin-top: 2.5em;
 }
 
 #emailtreeai.button {
-  scroll-margin-top: calc(4.75em - 0.5px);
+  scroll-margin-top: 4.25em;
 }
 
 #devoteam.button {
-  scroll-margin-top: calc(6.625em - 0.5px);
+  scroll-margin-top: 6em;
 }
 
 .button-group {
@@ -309,8 +377,8 @@ button#bot:hover > svg {
   cursor: pointer;
   color: inherit;
   font-size: inherit;
-  padding: 0.125em;
-  border-radius: 0.375em;
+  padding: 0.375em;
+  border-radius: 1em;
 }
 
 .icon-button span {
