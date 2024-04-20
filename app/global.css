@@ -181,23 +181,23 @@ button {
   padding-inline: 0.25em;
   padding-block-end: 0.25em;
   font-weight: 300;
+  --float-y: 0.125em;
+  animation: floating 10s ease-in-out infinite;
 }
 
 #bot > button {
   cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  animation: fade-in 10s 1.5s ease forwards;
 }
 
 #bot > button > svg {
   width: min(2.75em, 9vmax);
   height: min(2.75em, 9vmax);
   filter: drop-shadow(0 0 0.25em var(--transparent-white));
-  opacity: 0;
-  --float-y: 0.25em;
   --shake-rotation: 5deg;
-  animation:
-    fade-in 4s 1.5s ease forwards,
-    floating 10s ease-in-out infinite,
-    shake 5s ease-in-out infinite;
+  animation: shake 5s ease-in-out infinite;
 }
 
 #bot > button:hover > svg,
@@ -230,6 +230,7 @@ button {
 }
 
 #bot .chat-input {
+  position: relative;
   display: flex;
   justify-content: space-between;
   background-color: var(--transparent-white-accent);
@@ -245,6 +246,24 @@ button {
   color: var(--white);
   outline: none;
   border: none;
+  z-index: 1;
+}
+
+#bot .chat-input input::placeholder {
+  color: var(--transparent-white);
+}
+
+#bot .chat-input input.chat-typeahead {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  color: var(--transparent-white);
+  pointer-events: none;
+  z-index: 0;
+}
+
+[placeholder] {
+  text-overflow: ellipsis;
 }
 
 .title {
@@ -526,10 +545,12 @@ button {
 @keyframes fade-in {
   from {
     opacity: 0;
+    visibility: hidden;
   }
 
   to {
     opacity: 1;
+    visibility: visible;
   }
 }
 

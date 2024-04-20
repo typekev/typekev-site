@@ -19,6 +19,15 @@ const nextConfig = {
     if (!isServer) {
       // We're in the browser build, so we can safely exclude the sharp module
       config.externals.push("sharp");
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          dns: false,
+          fs: false,
+          net: false,
+          tls: false,
+        },
+      };
     }
     // audio support
     config.module.rules.push({
