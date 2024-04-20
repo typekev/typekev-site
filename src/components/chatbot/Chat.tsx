@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ForwardIcon } from "lucide-react";
 import { bots } from "libs/typekev-bot/src/bots";
 import { Bot } from "libs/typekev-bot/src/types";
@@ -10,8 +10,9 @@ interface Props {
 }
 
 export function Chat({ hidden }: Props) {
+  const t = useTranslations("Bot");
   const locale = useLocale() as Bot;
-  const [chatHeader, setChatHeader] = useState("Have a question?");
+  const [chatHeader, setChatHeader] = useState(t("prompt"));
   const [userInput, setUserInput] = useState("");
   const [typeahead, setTypeahead] = useState("");
   const [botReply, setBotReply] = useState("");
@@ -56,7 +57,7 @@ export function Chat({ hidden }: Props) {
         <input className="chat-typeahead" type="text" value={typeahead} disabled />
         <input
           type="text"
-          placeholder="Type here..."
+          placeholder={t("placeholder")}
           value={userInput}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}

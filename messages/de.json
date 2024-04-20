@@ -1,19 +1,19 @@
 {
   "About": {
-    "text": "Hi, I'm <important>Kevin</important>, a software visionary and engineering leader advancing satellite yield systems and artificial intelligence in space."
+    "text": "Hallo, ich bin <important>Kevin</important>, ein visionärer Softwareentwickler und Engineering-Leiter, der Satellitenertragssysteme und künstliche Intelligenz im Weltraum vorantreibt."
   },
   "Work": {
-    "title": "Working history",
-    "more": "More"
+    "title": "Arbeitsgeschichte",
+    "more": "Mehr"
   },
   "Contact": {
-    "title": "Contact me"
+    "title": "Kontaktiere mich"
   },
   "Endnote": {
-    "text": "I designed this website in <design>Figma</design> and developed it using <ts>TypeScript</ts>, <three>Three.js</three>, and the <next>Next.js</next> framework for <react>React</react>. All associated code is open source and available on <github>GitHub</github>. This website—and all it's <versions>prior versions</versions>—are continually deployed with <host>Vercel</host>."
+    "text": "Ich habe diese Website in <design>Figma</design> entworfen und mit <ts>TypeScript</ts>, <three>Three.js</three> und dem <next>Next.js</next>-Framework für <react>React</react> entwickelt. Der gesamte zugehörige Code ist Open Source und auf <github>GitHub</github> verfügbar. Diese Website—sowie alle ihre <versions>früheren Versionen</versions>—werden kontinuierlich mit <host>Vercel</host> bereitgestellt."
   },
   "Bot": {
-    "prompt": "Have a question?",
-    "placeholder": "Type here..."
+    "prompt": "Haben Sie eine Frage?",
+    "placeholder": "Hier tippen..."
   }
 }
