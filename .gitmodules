@@ -1,3 +1,4 @@
 [submodule "libs/typekev-bot"]
 	path = libs/typekev-bot
 	url = https://github.com/typekev/typekev-bot.git
+	branch = dist

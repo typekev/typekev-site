@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ForwardIcon } from "lucide-react";
-import { bots } from "libs/typekev-bot/src/bots";
-import { Bot } from "libs/typekev-bot/src/types";
+import { bots } from "libs/typekev-bot/bots";
+import type { Bot } from "libs/typekev-bot/bots/types";
 
 interface Props {
   hidden: boolean;
