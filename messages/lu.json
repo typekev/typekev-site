@@ -13,7 +13,7 @@
     "text": "Ech hunn dës Websäit an <design>Figma</design> entworf a se mat <ts>TypeScript</ts>, <three>Three.js</three> an dem <next>Next.js</next>-Framework fir <react>React</react> entwéckelt. De ganzen zugehéierende Code ass Open Source an op <github>GitHub</github> disponibel. Dës Websäit—an all hier <versions>virege Versiounen</versions>—ginn kontinuéierlech mat <host>Vercel</host> déplacéiert."
   },
   "Bot": {
-    "prompt": "Hutt Dir eng Fro?",
+    "prompt": "Hutt Dir eng Fro? Fro mech!",
     "placeholder": "Hei schreiwen..."
   }
 }
