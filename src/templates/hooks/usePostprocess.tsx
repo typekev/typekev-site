@@ -20,10 +20,7 @@ export const useBloom = () => {
     composer.addPass(renderPass);
 
     const resolution = new THREE.Vector2(size.width, size.height);
-    const bloomPasses = [
-      new UnrealBloomPass(resolution, 100, 1, 0.005),
-      new UnrealBloomPass(resolution, 0.05, 1, 0),
-    ] as const;
+    const bloomPasses = [new UnrealBloomPass(resolution, 100, 1, 0.005)] as const;
 
     bloomPasses.forEach((bloomPass) => composer.addPass(bloomPass));
     return [composer, bloomPasses];
