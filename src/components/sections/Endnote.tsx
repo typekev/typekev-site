@@ -1,3 +1,4 @@
+"use client";
 import { SiGithub, SiLinkedin, SiX } from "@icons-pack/react-simple-icons";
 import { useTranslations } from "next-intl";
 
@@ -13,12 +14,20 @@ import {
   vercelUrl,
   xUrl,
 } from "@/helpers/links";
+import { VersionsModal } from "./endnote/VersionsModal";
+import { useState } from "react";
 
 export default function Endnote() {
   const t = useTranslations("Endnote");
+  const [areVersionsHidden, setAreVersionsHidden] = useState(true);
+
+  const toggleVersionsModal = (hide?: boolean) => {
+    setAreVersionsHidden((areVersionsHidden) => hide ?? !areVersionsHidden);
+  };
 
   return (
     <footer id="endnote">
+      <VersionsModal hide={() => toggleVersionsModal(true)} hidden={areVersionsHidden} />
       <p>
         <span className="social-links">
           <a href={githubUrl}>
@@ -64,9 +73,9 @@ export default function Endnote() {
             </a>
           ),
           versions: (chunks) => (
-            <span className="endnote-link" data-text={chunks}>
+            <a href="#endnote" className="endnote-link" data-text={chunks} onClick={() => toggleVersionsModal()}>
               {chunks}
-            </span>
+            </a>
           ),
           host: (chunks) => (
             <a href={vercelUrl} className="endnote-link" data-text={chunks}>

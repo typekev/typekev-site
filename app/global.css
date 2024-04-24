@@ -5,6 +5,7 @@
   --transparent-white-accent: #fdf9f720;
   --black: #060509;
   --transparent-black: #06050977;
+  --transparent-black-faded: #06050940;
   --light-cyan: #c8ffff;
   --transparent-light-cyan: #c8ffff77;
   --tropical-indigo: #a083ed;
@@ -13,9 +14,14 @@
   --transparent-pale-pink: #ffc0cb77;
   --light-coral-orange: #ff9e9e;
   --sky-blue: #87ceeb;
+  --transparent-sky-blue: #87ceeb77;
   --light-lavender-purple: #dfc5fe;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
+}
+
+body#root:has(.modal-background:not(.hidden)) {
+  overflow: hidden;
 }
 
 html {
@@ -73,11 +79,7 @@ header#about {
 
 header#about > * {
   opacity: 0;
-  animation: fade-in 4s 0.25s ease forwards;
-}
-
-header#about > p {
-  padding-block-end: min(2em, 25vh);
+  visibility: hidden;
 }
 
 header#about > .logo {
@@ -118,15 +120,21 @@ header#about > .logo::after {
   animation: floating 14s 1s ease-in-out infinite;
 }
 
+header#about > p {
+  padding-block-end: min(2em, 25vh);
+  animation: fade-in 3s 0.25s ease forwards;
+}
+
 section#work {
   padding-block-start: 1em;
   padding-block-end: min(5em, 25vh);
   gap: 0.25em;
 }
 
-section#work > * {
+section#work > a {
   opacity: 0;
-  animation: fade-in 5s 0.5s ease forwards;
+  visibility: hidden;
+  animation: fade-in 3s 0.75s ease forwards;
 }
 
 section#contact {
@@ -138,20 +146,22 @@ section#contact {
 
 section#contact > * {
   opacity: 0;
-  animation: fade-in 6s 0.75s ease forwards;
+  visibility: hidden;
+  animation: fade-in 3s 1s ease forwards;
 }
 
 section:target > .title::after {
   width: 100%;
 }
 
-footer#endnote > * {
+footer#endnote > p {
   margin-block-start: 4em;
   margin-inline-start: auto;
   font-size: 0.375em;
   font-weight: 100;
   opacity: 0;
-  animation: fade-in 7s 1s ease forwards;
+  visibility: hidden;
+  animation: fade-in 3s 1.25s ease forwards;
 }
 
 a {
@@ -170,31 +180,89 @@ button {
   box-shadow: none;
 }
 
+dialog {
+  display: grid;
+  gap: 0.25em;
+  padding: 0.75em;
+  margin: 0;
+  background-color: var(--transparent-white-accent);
+  backdrop-filter: blur(0.75em);
+  border-radius: 0.75em;
+  border: 0.125rem solid var(--transparent-white-faded);
+  box-shadow: 0 0 20px var(--transparent-black);
+  color: var(--white);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+}
+
+dialog.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+dialog.versions-modal {
+  position: relative;
+  max-height: 70vh;
+  width: min(48em, 70vw);
+  overflow: auto;
+}
+
+aside.modal-background {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--transparent-black);
+  backdrop-filter: blur(0.25em);
+  position: fixed;
+  inset: 0;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+  z-index: 2;
+}
+
+aside.modal-background.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
 #bot {
+  position: sticky;
   display: flex;
   gap: 0.375em;
   align-items: center;
   justify-content: end;
-  position: sticky;
+  height: 3em;
   inset-block-end: min(2em, 12vh);
-  margin-block: 8em -1.5em;
+  margin-block: 6em -1.5em;
   padding-inline: 0.25em;
   padding-block-end: 0.25em;
   font-weight: 300;
   --float-y: 0.125em;
   animation: floating 10s ease-in-out infinite;
+  z-index: 3;
+}
+
+#bot dialog {
+  position: relative;
+  font-size: 0.375em;
 }
 
 #bot > button {
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  animation: fade-in 10s 1.5s ease forwards;
+  animation: fade-in 2s 0.75s ease forwards;
 }
 
 #bot > button > svg {
-  width: min(2.75em, 9vmax);
-  height: min(2.75em, 9vmax);
+  width: min(3em, 8vmax);
+  height: min(3em, 8vmax);
   filter: drop-shadow(0 0 0.25em var(--transparent-white));
   --shake-rotation: 5deg;
   animation: shake 5s ease-in-out infinite;
@@ -207,26 +275,18 @@ button {
   animation-duration: 4s, 0s, 0.5s;
 }
 
-#bot .chat-box {
-  display: grid;
-  gap: 0.5em;
-  font-size: 0.5em;
-  padding: 0.75em;
-  background-color: var(--transparent-white-accent);
-  backdrop-filter: blur(0.75em);
+#bot .chat-message {
+  background: var(--transparent-sky-blue);
   border-radius: 0.75em;
-  border: 0.125rem solid var(--transparent-white-faded);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  opacity: 1;
-  visibility: visible;
-  transition:
-    opacity 0.3s ease-in-out,
-    visibility 0.3s ease-in-out;
+  margin: 0;
+  padding: 0.25em 0.5em;
+  display: inline;
+  width: fit-content;
 }
 
-#bot .chat-box.hidden {
-  opacity: 0;
-  visibility: hidden;
+#bot .chat-message.user {
+  justify-self: end;
+  background: var(--transparent-white-faded);
 }
 
 #bot .chat-input {
@@ -237,10 +297,24 @@ button {
   border-radius: 0.5em;
 }
 
+#bot .chat-input label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#bot .chat-input label::after {
+  content: attr(data-value) "  ";
+  visibility: hidden;
+  white-space: pre-wrap;
+  height: 0;
+}
+
 #bot .chat-input input {
-  font-size: 0.875em;
+  font-size: 1em;
   font-weight: 600;
   width: 100%;
+  height: 100%;
   margin-inline: 0.5em;
   background: transparent;
   color: var(--white);
@@ -433,6 +507,51 @@ button {
   opacity: 1;
 }
 
+ul.version-links {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: 0.5em;
+  list-style-type: none;
+}
+
+ul.version-links > li {
+  position: relative;
+  aspect-ratio: 1.5;
+  border-radius: 0.5em;
+  overflow: hidden;
+  box-shadow: 0 0 20px var(--transparent-black);
+}
+
+ul.version-links > li > a {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background: var(--transparent-black);
+  border-radius: 0.5em;
+  transition:
+    background 0.5s ease-out,
+    backdrop-filter 0.25s ease-in-out;
+}
+
+ul.version-links > li:hover > a {
+  background: var(--transparent-black-faded);
+  backdrop-filter: blur(0.25em);
+}
+
+ul.version-links > li > iframe {
+  pointer-events: none;
+  position: absolute;
+  transform: scale(0.25);
+  transform-origin: 0 0;
+  aspect-ratio: 1.5;
+  width: 400%;
+  height: auto;
+  border: none;
+}
+
 .black-hole {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--black) 100%);
   background-size: cover;
@@ -441,12 +560,15 @@ button {
   margin: auto;
   width: max(100%, 50vmax);
   height: max(100%, 50vmax);
-  animation: fade-in 7s ease forwards;
+  opacity: 0;
+  visibility: hidden;
+  animation: fade-in 2s 1s ease forwards;
 }
 
 .black-hole-canvas {
   opacity: 0;
-  animation: fade-in 7s 2.5s ease forwards;
+  visibility: hidden;
+  animation: fade-in 2s 2.5s ease forwards;
 }
 
 #contact b {
@@ -490,6 +612,10 @@ button {
   footer#endnote > p {
     width: 66%;
   }
+
+  ul.version-links {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -500,6 +626,10 @@ button {
 
   footer#endnote > p {
     width: 50%;
+  }
+
+  ul.version-links {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -512,6 +642,10 @@ button {
   footer#endnote > p {
     width: 50%;
   }
+
+  ul.version-links {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (min-width: 1600px) {
@@ -522,6 +656,10 @@ button {
 
   footer#endnote > p {
     width: 33%;
+  }
+
+  ul.version-links {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

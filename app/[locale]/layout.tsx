@@ -37,7 +37,7 @@ export default async function Layout({ children, params }: PropsWithChildren<Pro
   return (
     <html lang={locale} className={poppins.className}>
       <head />
-      <body>
+      <body id="root">
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>

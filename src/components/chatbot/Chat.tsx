@@ -12,10 +12,10 @@ interface Props {
 export function Chat({ hidden }: Props) {
   const t = useTranslations("Bot");
   const locale = useLocale() as Bot;
-  const [chatHeader, setChatHeader] = useState(t("prompt"));
   const [userInput, setUserInput] = useState("");
   const [typeahead, setTypeahead] = useState("");
-  const [botReply, setBotReply] = useState("");
+  const [userMessage, setUserMessage] = useState("");
+  const [botReply, setBotReply] = useState(t("prompt"));
 
   const languageBot = bots[locale];
 
@@ -41,32 +41,34 @@ export function Chat({ hidden }: Props) {
   };
 
   return (
-    <form
-      className={`chat-box ${hidden ? "hidden" : ""}`}
-      onSubmit={(e) => {
-        e.preventDefault();
-        setChatHeader(userInput);
-        setUserInput("");
-        clearTypeahead();
-        setBotReply(languageBot.getBotReply(userInput) || "");
-      }}
-    >
-      <span>{chatHeader}</span>
-      <small>{botReply}</small>
-      <div className="chat-input">
+    <dialog className={hidden ? "hidden" : ""}>
+      {userMessage && <p className="chat-message user">{userMessage}</p>}
+      {botReply && <p className="chat-message">{botReply}</p>}
+      <form
+        className="chat-input"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setUserMessage(userInput);
+          setUserInput("");
+          clearTypeahead();
+          setBotReply(languageBot.getBotReply(userInput) || "");
+        }}
+      >
         <input className="chat-typeahead" type="text" value={typeahead} disabled />
-        <input
-          type="text"
-          placeholder={t("placeholder")}
-          value={userInput}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-        />
+        <label data-value={typeahead || userInput}>
+          <input
+            type="text"
+            placeholder={t("placeholder")}
+            value={userInput}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
+        </label>
         <button className="button icon-button" type="submit">
           <ForwardIcon strokeWidth={2.5} />
         </button>
-      </div>
-    </form>
+      </form>
+    </dialog>
   );
 }
 
