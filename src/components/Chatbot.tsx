@@ -6,13 +6,13 @@ import { Bot } from "./chatbot/Bot";
 export function Chatbot() {
   const [isChatHidden, setIsChatHidden] = useState(true);
 
-  const toggleChat = () => {
-    setIsChatHidden((isChatHidden) => !isChatHidden);
+  const toggleChat = (hide?: boolean) => {
+    setIsChatHidden((isChatHidden) => hide ?? !isChatHidden);
   };
 
   return (
     <div id="bot">
-      <Chat hidden={isChatHidden} />
+      <Chat hidden={isChatHidden} toggleChat={toggleChat} />
       <Bot active={!isChatHidden} toggleChat={toggleChat} />
     </div>
   );

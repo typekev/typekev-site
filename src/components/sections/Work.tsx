@@ -11,13 +11,13 @@ export default function Work() {
       <a href="#work" className="title">
         {t("title")}
       </a>
-      <AnchorButton id="ses" href="#ses">
+      <AnchorButton id="work-ses" href="#work-ses">
         SES Satellites
       </AnchorButton>
-      <AnchorButton id="emailtreeai" href="#emailtreeai">
+      <AnchorButton id="work-emailtree" href="#work-emailtree">
         EmailTree AI
       </AnchorButton>
-      <AnchorButton id="devoteam" href="#devoteam">
+      <AnchorButton id="work-devoteam" href="#work-devoteam">
         Devoteam
       </AnchorButton>
       <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>

@@ -17,10 +17,10 @@ export function VersionsModal({ hide, hidden }: Props) {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      removeEventListener("keydown", handleKeyDown);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
