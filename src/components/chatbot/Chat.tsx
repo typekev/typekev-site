@@ -24,9 +24,16 @@ export function Chat({ hidden }: Props) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
     if (e.target.value.length > 5) {
-      const typeahead = languageBot.getChatSuggestion(e.target.value);
-      setTypeahead(typeahead ? `${e.target.value}${typeahead.substring(e.target.value.length)}` : "");
-    } else if (typeahead) {
+      const suggestion = languageBot.getChatSuggestion(e.target.value);
+      if (suggestion) {
+        const suggestionIndex = suggestion.toLowerCase().indexOf(e.target.value.toLowerCase());
+        setTypeahead(
+          suggestionIndex !== -1
+            ? `${e.target.value }${suggestion.substring(suggestionIndex + e.target.value.length)}`
+            : "",
+        );
+      }
+    } else {
       clearTypeahead();
     }
   };
