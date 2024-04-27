@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import { ClipboardEditIcon, ClipboardCheckIcon } from "lucide-react";
+import { CopyIcon, CopyCheckIcon } from "lucide-react";
 
 import { email } from "@/helpers/links";
 
@@ -11,14 +11,12 @@ export function CopyButton() {
   const [copied, setCopied] = useState(false);
   const onCopy = () => copy().then(() => setCopied(true));
 
+  const Icon = copied ? CopyCheckIcon : CopyIcon;
+
   return (
     <button className="button icon-button" onClick={onCopy} aria-label="Copy email to clipboard">
       <span>
-        {copied ? (
-          <ClipboardCheckIcon size="1em" strokeWidth={2.5} />
-        ) : (
-          <ClipboardEditIcon size="1em" strokeWidth={2.5} />
-        )}
+        <Icon size="0.875em" strokeWidth={2.25} />
       </span>
     </button>
   );

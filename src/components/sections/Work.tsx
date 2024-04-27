@@ -1,7 +1,9 @@
 import { useTranslations } from "next-intl";
 
 import { AnchorButton } from "@/components/AnchorButton";
-import { linkedInExperienceUrl } from "@/helpers/links";
+import { devoteamUrl, emailtreeUrl, linkedInExperienceUrl, sesUrl } from "@/helpers/links";
+
+import { OpenButton } from "./work/OpenButton";
 
 export default function Work() {
   const t = useTranslations("Work");
@@ -11,15 +13,24 @@ export default function Work() {
       <a href="#work" className="title">
         {t("title")}
       </a>
-      <AnchorButton id="work-ses" href="#work-ses">
-        SES Satellites
-      </AnchorButton>
-      <AnchorButton id="work-emailtree" href="#work-emailtree">
-        EmailTree AI
-      </AnchorButton>
-      <AnchorButton id="work-devoteam" href="#work-devoteam">
-        Devoteam
-      </AnchorButton>
+      <span className="button-group">
+        <AnchorButton id="work-ses" href="#work-ses">
+          SES Satellites
+        </AnchorButton>
+        <OpenButton href={sesUrl} />
+      </span>
+      <span className="button-group">
+        <AnchorButton id="work-emailtree" href="#work-emailtree">
+          EmailTree AI
+        </AnchorButton>
+        <OpenButton href={emailtreeUrl} />
+      </span>
+      <span className="button-group">
+        <AnchorButton id="work-devoteam" href="#work-devoteam">
+          Devoteam
+        </AnchorButton>
+        <OpenButton href={devoteamUrl} />
+      </span>
       <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
     </section>
   );

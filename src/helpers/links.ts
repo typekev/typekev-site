@@ -1,3 +1,7 @@
+export const sesUrl = "https://ses.com" as const;
+export const emailtreeUrl = "https://emailtree.ai" as const;
+export const devoteamUrl = "https://devoteam.com" as const;
+
 export const email = "kev@typekev.com" as const;
 export const githubUrl = "https://github.com/typekev/" as const;
 export const githubTypekevSiteUrl = `${githubUrl}/typekev-site` as const;

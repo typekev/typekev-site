@@ -110,14 +110,14 @@ header#about > .logo::before {
   inset: 4px;
   color: var(--light-cyan);
   text-shadow: var(--transparent-light-cyan) 0.25em 0.25em 5em;
-  --float-y: 0.067em;
+  --float-y: 0.0625em;
   animation: floating 18s ease-in-out infinite;
 }
 
 header#about > .logo::after {
   inset: 2px;
   color: var(--white);
-  --float-y: 0.067em;
+  --float-y: 0.0625em;
   animation: floating 14s 1s ease-in-out infinite;
 }
 
@@ -132,10 +132,14 @@ section#work {
   gap: 0.25em;
 }
 
-section#work > a {
+section#work > * {
   opacity: 0;
   visibility: hidden;
   animation: fade-in 3s 0.75s ease forwards;
+}
+
+section#work .icon-button {
+  padding: 0.125em;
 }
 
 section#contact {
@@ -247,6 +251,7 @@ aside.modal-background.hidden {
   height: 3em;
   inset-block-end: min(3em, 12vh);
   margin-block: 6em -1.5em;
+  margin-inline-end: -1em;
   padding-inline: 0.25em;
   padding-block-end: 0.25em;
   font-weight: 300;
@@ -266,12 +271,14 @@ aside.modal-background.hidden {
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
+  padding: 0.5em;
   animation: fade-in 2s 0.75s ease forwards;
 }
 
 #bot > button > svg {
   width: min(3em, 8vmax);
   height: min(3em, 8vmax);
+  margin-block-end: 0.0625em;
   filter: drop-shadow(0 0 0.25em var(--transparent-white));
   --shake-rotation: 5deg;
   animation: shake 5s ease-in-out infinite;
@@ -420,8 +427,8 @@ aside.modal-background.hidden {
   border-radius: 0.5em;
 }
 
-.button[href*="//"],
-.button[href*="mailto"] {
+.button[href*="//"]:not(.icon-button),
+.button[href*="mailto"]:not(.icon-button) {
   padding-block: 0 0.125em;
 }
 
@@ -471,6 +478,7 @@ aside.modal-background.hidden {
 .button-group {
   display: inline-flex;
   align-items: center;
+  gap: 0.125em;
 }
 
 .icon-button {
