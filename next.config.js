@@ -55,9 +55,6 @@ const nextConfig = {
       use: ["raw-loader", "glslify-loader"],
     });
 
-    // TinyLD support
-    config.resolve.alias.tinyld = "tinyld/light";
-
     return config;
   },
 };
