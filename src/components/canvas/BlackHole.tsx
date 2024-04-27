@@ -6,11 +6,12 @@ import { PrimitiveProps, useFrame } from "@react-three/fiber";
 
 import { useBloom } from "@/templates/hooks/usePostprocess";
 
-const isTouchScreen = "ontouchstart" in document.documentElement;
-const scrollHeight = document.documentElement.scrollHeight * 1.5;
-
 export function BlackHole(props: Omit<PrimitiveProps, "object">) {
   const { scene } = useGLTF("/black-hole.glb");
+
+  const isTouchScreen = "ontouchstart" in document.documentElement;
+  const scrollHeight = document.documentElement.scrollHeight * 1.5;
+
   useBloom();
   useEffect(() => {
     scene.position.setX(0.5);

@@ -6,11 +6,11 @@ import { bots } from "libs/typekev-bot/bots";
 import type { Bot } from "libs/typekev-bot/bots/types";
 
 interface Props {
-  hidden: boolean;
-  toggleChat: (hide?: boolean) => void;
+  visible: boolean;
+  toggleChat: (visible?: boolean) => void;
 }
 
-export function Chat({ toggleChat, hidden }: Props) {
+export function Chat({ toggleChat, visible }: Props) {
   const t = useTranslations("Bot");
   const locale = useLocale() as Bot;
   const [userInput, setUserInput] = useState("");
@@ -51,7 +51,7 @@ export function Chat({ toggleChat, hidden }: Props) {
   useEffect(() => {
     const handleHashChange = () => {
       if (window.location.hash.startsWith("#work-")) {
-        if (hidden) toggleChat(false);
+        toggleChat(true);
         const workplace = window.location.hash.substring(6);
         const query = languageBot.getChatSuggestion(workplace) || workplace;
         setUserMessage(query);
@@ -62,7 +62,7 @@ export function Chat({ toggleChat, hidden }: Props) {
     addEventListener("hashchange", handleHashChange);
     if (window.location.hash.startsWith("#work-")) {
       document.getElementById(window.location.hash.substring(1))?.click();
-      setTimeout(() => handleHashChange(), 2000);
+      setTimeout(() => handleHashChange(), 1000);
     }
 
     return () => {
@@ -72,20 +72,24 @@ export function Chat({ toggleChat, hidden }: Props) {
   }, []);
 
   return (
-    <dialog className={hidden ? "hidden" : ""}>
+    <dialog className={visible ? "" : "hidden"}>
       {userMessage && <p className="chat-message user">{userMessage}</p>}
       {botReply && <p className="chat-message">{botReply}</p>}
       <form
         className="chat-input"
         onSubmit={(e) => {
           e.preventDefault();
-          setUserMessage(userInput);
-          setUserInput("");
-          clearTypeahead();
-          setBotReply(languageBot.getBotReply(userInput) || "");
+          if (userInput.trim()) {
+            setUserMessage(userInput);
+            setUserInput("");
+            clearTypeahead();
+            setBotReply(languageBot.getBotReply(userInput) || "");
+          }
         }}
       >
-        <input className="chat-typeahead" type="text" value={typeahead} disabled />
+        <label aria-disabled className="chat-typeahead">
+          <input type="text" value={typeahead} disabled aria-label="Disabled typeahead input" />
+        </label>
         <label data-value={typeahead || userInput}>
           <input
             type="text"
@@ -93,9 +97,15 @@ export function Chat({ toggleChat, hidden }: Props) {
             value={userInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            aria-label="Your message"
           />
         </label>
-        <button className="button icon-button" type="submit">
+        <button
+          className="button icon-button"
+          type="submit"
+          disabled={!userInput.trim()}
+          aria-label="Send message to chatbot"
+        >
           <ForwardIcon strokeWidth={2.5} />
         </button>
       </form>

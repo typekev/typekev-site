@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
@@ -16,10 +15,8 @@ export default function Page() {
     <>
       <main>
         <View orbit className="black-hole">
-          <Suspense fallback={null}>
-            <BlackHole />
-            <Common />
-          </Suspense>
+          <BlackHole />
+          <Common />
         </View>
         <About />
         <Work />

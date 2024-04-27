@@ -1,19 +1,21 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { Chat } from "./chatbot/Chat";
-import { Bot } from "./chatbot/Bot";
+
+const Chat = dynamic(() => import("./chatbot/Chat").then((mod) => mod.Chat), { ssr: false });
+const Bot = dynamic(() => import("./chatbot/Bot").then((mod) => mod.Bot), { ssr: false });
 
 export function Chatbot() {
-  const [isChatHidden, setIsChatHidden] = useState(true);
+  const [isChatVisible, setIsChatVisible] = useState(false);
 
-  const toggleChat = (hide?: boolean) => {
-    setIsChatHidden((isChatHidden) => hide ?? !isChatHidden);
+  const toggleChat = (visible?: boolean) => {
+    setIsChatVisible((isChatVisible) => visible ?? !isChatVisible);
   };
 
   return (
     <div id="bot">
-      <Chat hidden={isChatHidden} toggleChat={toggleChat} />
-      <Bot active={!isChatHidden} toggleChat={toggleChat} />
+      <Chat visible={isChatVisible} toggleChat={toggleChat} />
+      <Bot active={isChatVisible} toggleChat={toggleChat} />
     </div>
   );
 }

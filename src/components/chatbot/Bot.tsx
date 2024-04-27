@@ -7,7 +7,11 @@ interface Props {
 
 export function Bot({ active, toggleChat }: Props) {
   return (
-    <button className={`button icon-button ${active ? "active" : ""}`} onClick={() => toggleChat()}>
+    <button
+      className={`button icon-button ${active ? "active" : ""}`}
+      onClick={() => toggleChat()}
+      aria-label={`${active ? "Hide" : "Show"} chat box`}
+    >
       <BotIcon strokeWidth={2.5} />
     </button>
   );
