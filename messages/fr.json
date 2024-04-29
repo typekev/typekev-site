@@ -10,7 +10,7 @@
     "title": "Contactez-moi"
   },
   "Endnote": {
-    "text": "J'ai conçu ce site web dans <design>Figma</design> et l'ai développé en utilisant <ts>TypeScript</ts>, <three>Three.js</three>, et le framework <next>Next.js</next> pour <react>React</react>. Tout le code associé est open source et disponible sur <github>GitHub</github>. Ce site web—ainsi que toutes ses <versions>versions antérieures</versions>—sont continuellement déployés avec <host>Vercel</host>."
+    "text": "J'ai conçu ce site web dans <design>Figma</design> et l'ai développé en utilisant <ts>TypeScript</ts>, <three>Three.js</three>, et le framework <next>Next.js</next> pour <react>React</react>. Tout le code associé est open source et disponible sur <github>GitHub</github>. Ce site web—ainsi que toutes ses <versions>versions antérieures</versions>—sont déployé en continu avec <host>Vercel</host>."
   },
   "Bot": {
     "prompt": "Vous avez une question ? Posez-la-moi !",
