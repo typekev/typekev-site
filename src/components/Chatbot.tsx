@@ -13,10 +13,10 @@ export function Chatbot() {
   };
 
   return (
-    <div id="bot">
+    <article id="bot">
       <Chat visible={isChatVisible} toggleChat={toggleChat} />
       <Bot active={isChatVisible} toggleChat={toggleChat} />
-    </div>
+    </article>
   );
 }
 

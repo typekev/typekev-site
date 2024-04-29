@@ -10,28 +10,32 @@ export default function Work() {
 
   return (
     <section id="work">
-      <a href="#work" className="title">
-        {t("title")}
-      </a>
-      <span className="button-group">
-        <AnchorButton id="work-ses" href="#work-ses">
-          SES Satellites
-        </AnchorButton>
-        <OpenButton href={sesUrl} />
-      </span>
-      <span className="button-group">
-        <AnchorButton id="work-emailtree" href="#work-emailtree">
-          EmailTree AI
-        </AnchorButton>
-        <OpenButton href={emailtreeUrl} />
-      </span>
-      <span className="button-group">
-        <AnchorButton id="work-devoteam" href="#work-devoteam">
-          Devoteam
-        </AnchorButton>
-        <OpenButton href={devoteamUrl} />
-      </span>
-      <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
+      <h2 className="title">
+        <a href="#work">{t("title")}</a>
+      </h2>
+      <ul>
+        <li className="button-group">
+          <AnchorButton id="work-ses" href="#work-ses">
+            SES Satellites
+          </AnchorButton>
+          <OpenButton href={sesUrl} />
+        </li>
+        <li className="button-group">
+          <AnchorButton id="work-emailtree" href="#work-emailtree">
+            EmailTree AI
+          </AnchorButton>
+          <OpenButton href={emailtreeUrl} />
+        </li>
+        <li className="button-group">
+          <AnchorButton id="work-devoteam" href="#work-devoteam">
+            Devoteam
+          </AnchorButton>
+          <OpenButton href={devoteamUrl} />
+        </li>
+        <li>
+          <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
+        </li>
+      </ul>
     </section>
   );
 }

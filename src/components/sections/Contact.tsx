@@ -10,15 +10,19 @@ export default function Contact() {
   const t = useTranslations("Contact");
 
   return (
-    <section id="contact">
-      <a href="#contact" className="title">
-        {t("title")}
-      </a>
-      <AnchorButton href={linkedInUrl}>LinkedIn</AnchorButton>
-      <span className="button-group">
-        <AnchorButton href={`mailto:${email}`}>Email</AnchorButton>
-        <CopyButton />
-      </span>
-    </section>
+    <address id="contact">
+      <h2 className="title">
+        <a href="#contact">{t("title")}</a>
+      </h2>
+      <ul>
+        <li>
+          <AnchorButton href={linkedInUrl}>LinkedIn</AnchorButton>
+        </li>
+        <li className="button-group">
+          <AnchorButton href={`mailto:${email}`}>Email</AnchorButton>
+          <CopyButton />
+        </li>
+      </ul>
+    </address>
   );
 }

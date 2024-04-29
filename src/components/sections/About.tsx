@@ -5,15 +5,15 @@ export default function About() {
 
   return (
     <header id="about">
-      <b className="logo" data-text="K">
+      <h1 className="logo" data-text="K">
         K
-      </b>
+      </h1>
       <p>
         {t.rich("text", {
           important: (chunks) => (
-            <b className="highlighted-text" data-text={chunks}>
+            <strong className="highlighted-text" data-text={chunks}>
               {chunks}
-            </b>
+            </strong>
           ),
         })}
       </p>

@@ -15,9 +15,7 @@ export function CopyButton() {
 
   return (
     <button className="button icon-button" onClick={onCopy} aria-label="Copy email to clipboard">
-      <span>
-        <Icon size="0.875em" strokeWidth={2.25} />
-      </span>
+      <Icon size="0.875em" strokeWidth={2.25} />
     </button>
   );
 }
