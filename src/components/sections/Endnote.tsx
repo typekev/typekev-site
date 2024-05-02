@@ -9,17 +9,17 @@ export default function Endnote() {
   return (
     <footer id="endnote">
       <menu className="social-links">
-        <li>
+        <li className="button">
           <a href={githubUrl}>
             <SiGithub />
           </a>
         </li>
-        <li>
+        <li className="button">
           <a href={linkedInUrl}>
             <SiLinkedin />
           </a>
         </li>
-        <li>
+        <li className="button">
           <a href={xUrl}>
             <SiX />
           </a>

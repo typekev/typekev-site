@@ -12,18 +12,16 @@ const Chatbot = dynamic(() => import("@/components/Chatbot").then((mod) => mod.C
 
 export default function Page() {
   return (
-    <>
-      <main>
-        <View orbit className="black-hole">
-          <BlackHole />
-          <Common />
-        </View>
-        <About />
-        <Work />
-        <Contact />
-        <Chatbot />
-        <Endnote />
-      </main>
-    </>
+    <main>
+      <View orbit className="black-hole">
+        <BlackHole />
+        <Common />
+      </View>
+      <About />
+      <Work />
+      <Contact />
+      <Chatbot />
+      <Endnote />
+    </main>
   );
 }

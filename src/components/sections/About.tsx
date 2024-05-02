@@ -10,7 +10,8 @@ export default function About() {
       </h1>
       <p>
         {t.rich("text", {
-          important: (chunks) => (
+          regular: (chunks) => <span>{chunks}</span>,
+          highlighted: (chunks) => (
             <strong className="highlighted-text" data-text={chunks}>
               {chunks}
             </strong>
