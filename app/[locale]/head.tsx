@@ -35,20 +35,25 @@ export default function Head() {
       <meta property="og:site_name" content={title} />
       <meta property="og:description" content={description} />
 
-      <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-      <link rel="apple-touch-icon" sizes="16x16" href="/icons/favicon-16x16.png" />
-      <link rel="apple-touch-icon" sizes="32x32" href="/icons/favicon-32x32.png" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-      <link rel="manifest" href="/manifest.json" />
-      <link rel="mask-icon" color="#000000" href="/icons/safari-pinned-tab.svg" />
-      <link rel="apple-touch-startup-image" href="/startup.png" />
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-touch-fullscreen" content="yes" />
+      <meta name="apple-mobile-web-app-title" content="Kevin Gonzalez" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <script src="https://unpkg.com/ios-pwa-splash@1.0.0/cdn.min.js" />
+      <script>iosPWASplash('/apple-touch-icon.png', '#060509');</script>
+      <link rel="manifest" href="/site.webmanifest" />
 
       {/* Meta Tags for HTML pages on Mobile */}
       {/* <meta name="format-detection" content="telephone=yes"/>
         <meta name="HandheldFriendly" content="true"/>  */}
       <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1.0" />
-      <meta name="theme-color" content="#000" />
-      <link rel="shortcut icon" href="/icons/apple-touch-icon.png" />
+      <meta name="theme-color" content="#060509" />
+      <link rel="shortcut icon" href="/apple-touch-icon.png" />
 
       {/* 
       Twitter Summary card
