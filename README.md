@@ -1,8 +1,8 @@
-# [v5.typekev.com](https://v5.typekev.com/)
+# [typekev.com](https://typekev.com/)
 
 > The fifth iteration of my personal website built with Next.js and Three.js.
 
-## See it live on [v5.typekev.com](https://v5.typekev.com/)
+## See it live on [typekev.com](https://typekev.com/)
 
 <br/>
 <a href="https://typekev.com">

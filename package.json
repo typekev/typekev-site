@@ -27,8 +27,8 @@
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.6",
     "@icons-pack/react-simple-icons": "^9.4.1",
-    "@react-three/drei": "^9.105.4",
-    "@react-three/fiber": "^8.16.2",
+    "@react-three/drei": "^9.105.5",
+    "@react-three/fiber": "^8.16.3",
     "@vercel/analytics": "^1.2.2",
     "glsl-random": "^0.0.5",
     "lucide-react": "^0.376.0",
@@ -37,7 +37,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.164.1",
-    "three-stdlib": "^2.29.7",
+    "three-stdlib": "^2.29.10",
     "tunnel-rat": "^0.1.2"
   },
   "peerDependencies": {
@@ -46,12 +46,12 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^14.2.3",
     "@types/negotiator": "^0.6.3",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.8",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@types/three": "^0.164.0",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "eslint": "^9.1.1",
     "eslint-config-next": "^14.2.3",
     "eslint-config-prettier": "^9.1.0",
