@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
+import { VersionsMenu } from "./versionsModal/VersionsMenu";
 
 interface Props {
   hide: () => void;
@@ -30,34 +31,7 @@ export function VersionsModal({ hide, hidden }: Props) {
   return ReactDOM.createPortal(
     <aside className={`modal-background ${hidden ? "hidden" : ""}`} onClick={hide}>
       <dialog className={`versions-modal ${hidden ? "hidden" : ""}`} onClick={(e) => e.stopPropagation()}>
-        <nav>
-          <menu className="version-links">
-            <li>
-              <iframe src="https://v4.typekev.com/about/" />
-              <a href="https://v4.typekev.com/about/" target="_blank">
-                Version 4
-              </a>
-            </li>
-            <li>
-              <iframe src="https://v3.typekev.com" />
-              <a href="https://v3.typekev.com" target="_blank">
-                Version 3
-              </a>
-            </li>
-            <li>
-              <iframe src="https://v2.typekev.com" />
-              <a href="https://v2.typekev.com" target="_blank">
-                Version 2
-              </a>
-            </li>
-            <li>
-              <iframe src="https://v1.typekev.com" />
-              <a href="https://v1.typekev.com" target="_blank">
-                Version 1
-              </a>
-            </li>
-          </menu>
-        </nav>
+        <VersionsMenu />
       </dialog>
     </aside>,
     modalRoot,

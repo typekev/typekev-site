@@ -562,7 +562,6 @@ menu.version-links {
 
 menu.version-links > li {
   position: relative;
-  aspect-ratio: 1.5;
   border-radius: 0.5em;
   overflow: hidden;
   box-shadow: 0 0 20px var(--transparent-black);
@@ -586,15 +585,10 @@ menu.version-links > li:hover > a {
   backdrop-filter: blur(0.25em);
 }
 
-menu.version-links > li > iframe {
-  pointer-events: none;
-  position: absolute;
-  transform: scale(0.25);
-  transform-origin: 0 0;
-  aspect-ratio: 1.5;
-  width: 400%;
+menu.version-links > li > img {
+  display: block;
+  width: 100%;
   height: auto;
-  border: none;
 }
 
 .black-hole {
