@@ -521,7 +521,7 @@ aside.modal-background.hidden {
   font-weight: 200;
 }
 
-ul.social-links {
+menu.social-links {
   display: flex;
   margin-inline-start: -1em;
   margin-block-end: 0;
@@ -529,30 +529,30 @@ ul.social-links {
   list-style-type: none;
 }
 
-ul.social-links li {
+menu.social-links li {
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.25s ease-in-out;
 }
 
-ul.social-links li:hover,
-ul.social-links li:focus {
+menu.social-links li:hover,
+menu.social-links li:focus {
   opacity: 1;
 }
 
-ul.social-links a {
+menu.social-links a {
   display: grid;
   align-items: center;
   height: 100%;
   width: 100%;
 }
 
-ul.social-links svg {
+menu.social-links svg {
   padding: 1em;
   filter: drop-shadow(0 0 0.25em var(--transparent-white));
 }
 
-ul.version-links {
+menu.version-links {
   display: grid;
   margin: 0;
   padding: 0;
@@ -560,7 +560,7 @@ ul.version-links {
   list-style-type: none;
 }
 
-ul.version-links > li {
+menu.version-links > li {
   position: relative;
   aspect-ratio: 1.5;
   border-radius: 0.5em;
@@ -568,7 +568,7 @@ ul.version-links > li {
   box-shadow: 0 0 20px var(--transparent-black);
 }
 
-ul.version-links > li > a {
+menu.version-links > li > a {
   position: absolute;
   inset: 0;
   display: grid;
@@ -581,12 +581,12 @@ ul.version-links > li > a {
     backdrop-filter 0.25s ease-in-out;
 }
 
-ul.version-links > li:hover > a {
+menu.version-links > li:hover > a {
   background: var(--transparent-black-faded);
   backdrop-filter: blur(0.25em);
 }
 
-ul.version-links > li > iframe {
+menu.version-links > li > iframe {
   pointer-events: none;
   position: absolute;
   transform: scale(0.25);
@@ -630,7 +630,7 @@ ul.version-links > li > iframe {
     margin-block-start: 7em;
   }
 
-  ul.social-links {
+  menu.social-links {
     justify-self: center;
     gap: 2em;
     margin: 0;
@@ -662,7 +662,7 @@ ul.version-links > li > iframe {
     width: 66%;
   }
 
-  ul.version-links {
+  menu.version-links {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -677,7 +677,7 @@ ul.version-links > li > iframe {
     width: 50%;
   }
 
-  ul.version-links {
+  menu.version-links {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -692,7 +692,7 @@ ul.version-links > li > iframe {
     width: 50%;
   }
 
-  ul.version-links {
+  menu.version-links {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -707,7 +707,7 @@ ul.version-links > li > iframe {
     width: 33%;
   }
 
-  ul.version-links {
+  menu.version-links {
     grid-template-columns: 1fr 1fr;
   }
 }

@@ -8,7 +8,7 @@ const Note = dynamic(() => import("./endnote/Note").then((mod) => mod.Note), { s
 export default function Endnote() {
   return (
     <footer id="endnote">
-      <ul className="social-links">
+      <menu className="social-links">
         <li>
           <a href={githubUrl}>
             <SiGithub />
@@ -24,7 +24,7 @@ export default function Endnote() {
             <SiX />
           </a>
         </li>
-      </ul>
+      </menu>
       <Note />
       <small className="endnote-link">typekev © {new Date().getFullYear()}</small>
     </footer>
