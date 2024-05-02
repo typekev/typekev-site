@@ -238,7 +238,7 @@ button:disabled {
 dialog {
   display: grid;
   gap: 0.25em;
-  padding: 0.75em;
+  padding: 1.5em;
   margin: 0;
   background-color: var(--transparent-white-accent);
   backdrop-filter: blur(0.75em);
@@ -269,8 +269,13 @@ aside.modal-background {
   display: grid;
   justify-content: center;
   align-items: center;
-  background-color: var(--transparent-black);
-  backdrop-filter: blur(0.25em);
+  background: radial-gradient(
+    circle at 65%,
+    var(--transparent-tropical-indigo) 0%,
+    var(--transparent-black-faded) 50%,
+    var(--transparent-black) 100%
+  );
+  backdrop-filter: blur(0.375em);
   position: fixed;
   inset: 0;
   opacity: 1;
@@ -284,6 +289,12 @@ aside.modal-background {
 aside.modal-background.hidden {
   opacity: 0;
   visibility: hidden;
+}
+
+aside.modal-background > .modal-close-button {
+  position: absolute;
+  inset-block-start: 4vh;
+  inset-inline-end: 3vw;
 }
 
 #bot {
@@ -309,6 +320,7 @@ aside.modal-background.hidden {
   pointer-events: all;
   position: relative;
   font-size: 0.375em;
+  padding: 0.75em;
 }
 
 #bot > button {
@@ -556,7 +568,7 @@ menu.version-links {
   display: grid;
   margin: 0;
   padding: 0;
-  gap: 0.5em;
+  gap: 1em;
   list-style-type: none;
 }
 
@@ -628,6 +640,14 @@ menu.version-links > li > img {
     justify-self: center;
     gap: 2em;
     margin: 0;
+  }
+
+  dialog {
+    padding: 1em;
+  }
+
+  menu.version-links {
+    gap: 0.75em;
   }
 }
 

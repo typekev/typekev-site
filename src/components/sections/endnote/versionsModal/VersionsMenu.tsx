@@ -16,7 +16,7 @@ export function VersionsMenu() {
         </li>
         <li>
           <Image src={v3Img} alt="Version 3 of typekev.com" />
-          <a href="https://v3.typekev.com" target="_blank">
+          <a href="https://v3.typekev.com/explore/" target="_blank">
             Version 3
           </a>
         </li>
