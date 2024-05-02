@@ -1,25 +1,22 @@
-/**
- *
- * About
- *
- */
-import { memo, ComponentPropsWithoutRef } from "react";
+import { useTranslations } from "next-intl";
 
-import { Trans } from "next-i18next";
+export default function About() {
+  const t = useTranslations("About");
 
-import { FocusedText } from "components/FocusedText";
-import { Section } from "components/Section";
-
-export const About = memo((props: ComponentPropsWithoutRef<typeof Section>) => (
-  <Section {...props}>
-    <Trans
-      i18nKey="Hi, I'm Kevin"
-      components={{
-        name: <strong />,
-        focused: <FocusedText active />,
-      }}
-    />
-  </Section>
-));
-
-About.displayName = About.name;
+  return (
+    <header id="about">
+      <h1 className="logo" data-text="K">
+        K
+      </h1>
+      <p>
+        {t.rich("text", {
+          important: (chunks) => (
+            <strong className="highlighted-text" data-text={chunks}>
+              {chunks}
+            </strong>
+          ),
+        })}
+      </p>
+    </header>
+  );
+}

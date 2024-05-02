@@ -1,0 +1,19 @@
+{
+  "About": {
+    "text": "Hallo, ech sinn <important>Kévin</important>, een Visionär an enger Ingenieur-Liddere mat Software, deen Satelliten-Ertragssystemer a künstlech Intelligenz am Weltall virunbréngt."
+  },
+  "Work": {
+    "title": "Aarbechtseschicht",
+    "more": "Resuméieren"
+  },
+  "Contact": {
+    "title": "Kontaktéiert mech"
+  },
+  "Endnote": {
+    "text": "Ech hunn dës Websäit an <design>Figma</design> entworf a se mat <ts>TypeScript</ts>, <three>Three.js</three> an dem <next>Next.js</next>-Framework fir <react>React</react> entwéckelt. De ganzen zugehéierende Code ass Open Source an op <github>GitHub</github> disponibel. Dës Websäit—an all hier <versions>virege Versiounen</versions>—ginn kontinuéierlech mat <host>Vercel</host> déplacéiert."
+  },
+  "Bot": {
+    "prompt": "Hutt Dir eng Fro? Fro mech!",
+    "placeholder": "Hei schreiwen..."
+  }
+}

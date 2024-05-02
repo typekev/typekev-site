@@ -1,31 +1,41 @@
-/**
- *
- * Work
- *
- */
-import { memo, ComponentPropsWithoutRef } from "react";
+import { useTranslations } from "next-intl";
 
-import { styled } from "@mui/material/styles";
+import { AnchorButton } from "@/components/AnchorButton";
+import { devoteamUrl, emailtreeUrl, linkedInExperienceUrl, sesUrl } from "@/helpers/links";
 
-import { Section } from "components/Section";
-import { useTranslation } from "hooks/useTranslation";
+import { OpenButton } from "./work/OpenButton";
 
-import { Workplaces } from "./work/Workplaces";
-
-export const Work = memo((props: ComponentPropsWithoutRef<typeof Section>) => {
-  const { t } = useTranslation();
+export default function Work() {
+  const t = useTranslations("Work");
 
   return (
-    <WorkSection title={t("Companies I've worked for")} {...props}>
-      <Workplaces />
-    </WorkSection>
+    <section id="work">
+      <h2 className="title">
+        <a href="#work">{t("title")}</a>
+      </h2>
+      <ul>
+        <li className="button-group">
+          <AnchorButton id="work-ses" href="#work-ses">
+            SES Satellites
+          </AnchorButton>
+          <OpenButton href={sesUrl} />
+        </li>
+        <li className="button-group">
+          <AnchorButton id="work-emailtree" href="#work-emailtree">
+            EmailTree AI
+          </AnchorButton>
+          <OpenButton href={emailtreeUrl} />
+        </li>
+        <li className="button-group">
+          <AnchorButton id="work-devoteam" href="#work-devoteam">
+            Devoteam
+          </AnchorButton>
+          <OpenButton href={devoteamUrl} />
+        </li>
+        <li>
+          <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
+        </li>
+      </ul>
+    </section>
   );
-});
-
-Work.displayName = Work.name;
-
-const WorkSection = styled(Section)`
-  & > div {
-    margin-left: -0.625rem;
-  }
-`;
+}
