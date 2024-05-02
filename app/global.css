@@ -28,16 +28,18 @@ html {
   background: var(--black);
   color: white;
   font-family: "Poppins", sans-serif;
-  text-shadow:
-    var(--transparent-black) 0 0 3em,
-    var(--white) 0 0 0.25em,
-    var(--transparent-white) 0 0 1em,
-    var(--transparent-white-accent) 0 0 1.5em,
-    var(--transparent-white-faded) 0 0 2em;
   scroll-behavior: smooth;
   font-weight: 600;
-  font-smooth: always;
-  text-rendering: optimizeLegibility;
+}
+
+h2,
+header p > span,
+section p,
+footer p,
+footer small,
+.button svg,
+.button span {
+  filter: drop-shadow(0 0 0.0625em currentColor);
 }
 
 main {
@@ -126,7 +128,7 @@ header#about > .logo {
   animation:
     fade-in 3s ease forwards,
     floating 22s 2s ease-in-out infinite;
-  text-shadow: var(--transparent-pale-pink) -0.25em -0.25em 5em;
+  filter: drop-shadow(-0.25em -0.25em 0.5em var(--transparent-pale-pink));
 }
 
 header#about > .logo::before,
@@ -139,7 +141,7 @@ header#about > .logo::after {
 header#about > .logo::before {
   inset: 4px;
   color: var(--light-cyan);
-  text-shadow: var(--transparent-light-cyan) 0.25em 0.25em 5em;
+  filter: drop-shadow(0.25em 0.25em 0.5em var(--transparent-light-cyan));
   --float-y: 0.0625em;
   animation: floating 18s ease-in-out infinite;
 }
@@ -336,7 +338,6 @@ aside.modal-background > .modal-close-button {
   width: min(3em, 8vmax);
   height: min(3em, 8vmax);
   margin-block-end: 0.0625em;
-  filter: drop-shadow(0 0 0.25em var(--transparent-white));
   --shake-rotation: 5deg;
   animation: shake 5s ease-in-out infinite;
 }
@@ -429,7 +430,7 @@ aside.modal-background > .modal-close-button {
   background-size: 1000% 100%;
   background-clip: text;
   color: transparent;
-  text-shadow: none;
+  filter: none;
   align-items: baseline;
 }
 
@@ -524,10 +525,6 @@ aside.modal-background > .modal-close-button {
   border-radius: 1em;
 }
 
-.icon-button svg {
-  filter: drop-shadow(0 0 0.125em currentColor);
-}
-
 .endnote-link {
   text-decoration: none;
   font-weight: 200;
@@ -541,14 +538,15 @@ menu.social-links {
   list-style-type: none;
 }
 
-menu.social-links li {
+menu.social-links li.button {
   cursor: pointer;
+  background: none;
   opacity: 0.8;
   transition: opacity 0.25s ease-in-out;
 }
 
-menu.social-links li:hover,
-menu.social-links li:focus {
+menu.social-links li.button:hover,
+menu.social-links li.button:focus {
   opacity: 1;
 }
 
@@ -560,8 +558,7 @@ menu.social-links a {
 }
 
 menu.social-links svg {
-  padding: 1em;
-  filter: drop-shadow(0 0 0.25em var(--transparent-white));
+  padding: 1em 0.75em;
 }
 
 menu.version-links {
@@ -576,7 +573,7 @@ menu.version-links > li {
   position: relative;
   border-radius: 0.5em;
   overflow: hidden;
-  box-shadow: 0 0 20px var(--transparent-black);
+  box-shadow: 0 0 2em var(--transparent-black);
 }
 
 menu.version-links > li > a {

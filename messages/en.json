@@ -1,6 +1,6 @@
 {
   "About": {
-    "text": "Hi, I'm <important>Kevin</important>, a software visionary and engineering leader advancing satellite yield systems and artificial intelligence in space."
+    "text": "<regular>Hi, I'm</regular> <highlighted>Kevin</highlighted><regular>, a software visionary and engineering leader advancing satellite yield systems and artificial intelligence in space.</regular>"
   },
   "Work": {
     "title": "Working history",

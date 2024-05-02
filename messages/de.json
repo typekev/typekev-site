@@ -1,6 +1,6 @@
 {
   "About": {
-    "text": "Hallo, ich bin <important>Kevin</important>, ein visionärer Softwareentwickler und Engineering-Leiter, der Satellitenertragssysteme und künstliche Intelligenz im Weltraum vorantreibt."
+    "text": "<regular>Hallo, ich bin</regular> <highlighted>Kevin</highlighted><regular>, ein visionärer Softwareentwickler und Engineering-Leiter, der Satellitenertragssysteme und künstliche Intelligenz im Weltraum vorantreibt.</regular>"
   },
   "Work": {
     "title": "Arbeitsgeschichte",
