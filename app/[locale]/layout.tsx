@@ -12,7 +12,7 @@ import { title, description } from "./head";
 
 const Scene = dynamic(() => import("@/components/canvas/Scene"), { ssr: false });
 
-const poppins = Poppins({ weight: ["100", "200", "300", "600", "800"], subsets: ["latin"] });
+const poppins = Poppins({ weight: ["100", "200", "300", "500", "600", "800"], subsets: ["latin"] });
 
 export const metadata = { title, description };
 

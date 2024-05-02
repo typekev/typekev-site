@@ -32,6 +32,10 @@ html {
   font-weight: 600;
 }
 
+input {
+  font-family: inherit;
+}
+
 h2,
 header p > span,
 section p,
@@ -246,7 +250,7 @@ dialog {
   backdrop-filter: blur(0.75em);
   border-radius: 0.75em;
   border: 0.125rem solid var(--transparent-white-faded);
-  box-shadow: 0 0 20px var(--transparent-black);
+  box-shadow: 0 0 1em var(--transparent-black);
   color: var(--white);
   opacity: 1;
   visibility: visible;
@@ -312,7 +316,7 @@ aside.modal-background > .modal-close-button {
   margin-inline-end: -1em;
   padding-inline: 0.25em;
   padding-block-end: 0.25em;
-  font-weight: 300;
+  font-weight: 500;
   --float-y: 0.125em;
   animation: floating 10s ease-in-out infinite;
   z-index: 3;
@@ -359,6 +363,7 @@ aside.modal-background > .modal-close-button {
 }
 
 #bot .chat-message.user {
+  font-weight: 600;
   justify-self: end;
   background: var(--transparent-white-faded);
 }
@@ -367,7 +372,7 @@ aside.modal-background > .modal-close-button {
   position: relative;
   display: flex;
   justify-content: space-between;
-  background-color: var(--transparent-white-accent);
+  background-color: var(--transparent-black-faded);
   border-radius: 0.5em;
 }
 
@@ -375,6 +380,7 @@ aside.modal-background > .modal-close-button {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-inline: 0.5em;
 }
 
 #bot .chat-input label::after {
@@ -382,16 +388,18 @@ aside.modal-background > .modal-close-button {
   visibility: hidden;
   white-space: pre-wrap;
   height: 0;
+  margin-inline: 0.5em;
 }
 
 #bot .chat-input input {
   font-size: 1em;
-  font-weight: 600;
   width: 100%;
   height: 100%;
-  margin-inline: 0.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background: transparent;
   color: var(--white);
+  filter: drop-shadow(0 0 0.125em var(--transparent-white));
   outline: none;
   border: none;
   z-index: 1;
@@ -403,8 +411,9 @@ aside.modal-background > .modal-close-button {
 
 #bot .chat-input label.chat-typeahead {
   position: absolute;
-  inset: 0;
   width: auto;
+  inset: 0;
+  margin-inline-end: 3.5em;
   pointer-events: none;
   z-index: 0;
 }
