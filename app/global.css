@@ -32,7 +32,8 @@ html {
   font-weight: 600;
 }
 
-input {
+input,
+button {
   font-family: inherit;
 }
 
@@ -206,6 +207,15 @@ address#contact ul {
   padding: 0;
 }
 
+address#contact button.copy-button {
+  position: relative;
+}
+
+address#contact button.copy-button:not(:hover) > dialog.tooltip {
+  opacity: 0;
+  visibility: hidden;
+}
+
 footer#endnote {
   justify-self: end;
   margin-block: 4em 3em;
@@ -269,6 +279,16 @@ dialog.versions-modal {
   max-height: 70vh;
   width: min(48em, 70vw);
   overflow: auto;
+}
+
+dialog.tooltip {
+  font-size: 0.375em;
+  justify-self: center;
+  inset-block-start: 100%;
+  width: max-content;
+  margin-block-start: 0.125em;
+  padding: 0.125em 0.375em;
+  filter: drop-shadow(0 0 0.125em var(--white));
 }
 
 aside.modal-background {

@@ -7,7 +7,9 @@
     "more": "Resuméieren"
   },
   "Contact": {
-    "title": "Kontaktéiert mech"
+    "title": "Kontaktéiert mech",
+    "copied": "Kopéiert!",
+    "copy": "Email an d'Zwiescheklapp kopéieren"
   },
   "Endnote": {
     "text": "Ech hunn dës Websäit an <design>Figma</design> entworf a se mat <ts>TypeScript</ts>, <three>Three.js</three> an dem <next>Next.js</next>-Framework fir <react>React</react> entwéckelt. De ganzen zugehéierende Code ass Open Source an op <github>GitHub</github> disponibel. Dës Websäit—an all hier <versions>virege Versiounen</versions>—ginn kontinuéierlech mat <host>Vercel</host> déplacéiert."
