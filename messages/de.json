@@ -1,13 +1,15 @@
 {
   "About": {
-    "text": "<regular>Hallo, ich bin</regular> <highlighted>Kevin</highlighted><regular>, ein visionärer Softwareentwickler und Engineering-Leiter, der Satellitenertragssysteme und künstliche Intelligenz im Weltraum vorantreibt.</regular>"
+    "text": "<regular>Hallo, ich bin </regular><highlighted>Kevin</highlighted><regular>, ein visionärer Softwareentwickler und Engineering-Leiter, der Satellitenertragssysteme und künstliche Intelligenz im Weltraum vorantreibt.</regular>"
   },
   "Work": {
     "title": "Arbeitsgeschichte",
     "more": "Lebenslauf"
   },
   "Contact": {
-    "title": "Kontaktiere mich"
+    "title": "Kontaktiere mich",
+    "copied": "Kopiert!",
+    "copy": "Email in die Zwischenablage kopieren"
   },
   "Endnote": {
     "text": "Ich habe diese Website in <design>Figma</design> entworfen und mit <ts>TypeScript</ts>, <three>Three.js</three> und dem <next>Next.js</next>-Framework für <react>React</react> entwickelt. Der gesamte zugehörige Code ist Open Source und auf <github>GitHub</github> verfügbar. Diese Website—sowie alle ihre <versions>früheren Versionen</versions>—werden kontinuierlich mit <host>Vercel</host> bereitgestellt."

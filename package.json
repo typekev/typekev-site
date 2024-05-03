@@ -27,17 +27,17 @@
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.6",
     "@icons-pack/react-simple-icons": "^9.4.1",
-    "@react-three/drei": "^9.105.5",
+    "@react-three/drei": "^9.105.6",
     "@react-three/fiber": "^8.16.3",
     "@vercel/analytics": "^1.2.2",
     "glsl-random": "^0.0.5",
-    "lucide-react": "^0.376.0",
+    "lucide-react": "^0.377.0",
     "next": "^14.2.3",
-    "next-intl": "^3.12.0",
+    "next-intl": "^3.12.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.164.1",
-    "three-stdlib": "^2.29.10",
+    "three-stdlib": "^2.29.11",
     "tunnel-rat": "^0.1.2"
   },
   "peerDependencies": {

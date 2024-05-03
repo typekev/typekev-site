@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ForwardIcon } from "lucide-react";
 import { bots } from "libs/typekev-bot/bots";
@@ -20,7 +20,15 @@ export function Chat({ toggleChat, visible }: Props) {
 
   const languageBot = bots[locale];
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const clearTypeahead = () => setTypeahead("");
+  const acceptTypeahead = () => {
+    if (typeahead) {
+      setUserInput(languageBot.getChatSuggestion(typeahead) || typeahead);
+      clearTypeahead();
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -43,8 +51,7 @@ export function Chat({ toggleChat, visible }: Props) {
     if (typeahead && e.key === "Tab") {
       e.preventDefault();
       e.stopPropagation();
-      setUserInput(languageBot.getChatSuggestion(typeahead) || typeahead);
-      clearTypeahead();
+      acceptTypeahead();
     }
   };
 
@@ -56,6 +63,7 @@ export function Chat({ toggleChat, visible }: Props) {
         const query = languageBot.getChatSuggestion(workplace) || workplace;
         setUserMessage(query);
         setBotReply(languageBot.getBotReply(query) || workplace);
+        inputRef.current?.focus();
       }
     };
 
@@ -70,6 +78,11 @@ export function Chat({ toggleChat, visible }: Props) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (visible) inputRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
   return (
     <dialog className={visible ? "" : "hidden"}>
@@ -92,12 +105,16 @@ export function Chat({ toggleChat, visible }: Props) {
         </label>
         <label data-value={typeahead || userInput}>
           <input
+            ref={inputRef}
             type="text"
             placeholder={t("placeholder")}
+            data-typeahead={typeahead ? "true" : "false"}
             value={userInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            onClick={acceptTypeahead}
             aria-label="Your message"
+            autoFocus
           />
         </label>
         <button

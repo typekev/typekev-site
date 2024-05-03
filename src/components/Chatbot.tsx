@@ -9,6 +9,8 @@ export function Chatbot() {
   const [isChatVisible, setIsChatVisible] = useState(false);
 
   const toggleChat = (visible?: boolean) => {
+    if (window.location.hash.startsWith("#work-") && !visible) window.location.hash = "#work";
+
     setIsChatVisible((isChatVisible) => visible ?? !isChatVisible);
   };
 

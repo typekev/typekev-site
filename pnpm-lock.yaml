@@ -12,8 +12,8 @@ dependencies:
     specifier: ^9.4.1
     version: 9.4.1(react@18.3.1)
   '@react-three/drei':
-    specifier: ^9.105.5
-    version: 9.105.5(@react-three/fiber@8.16.3)(@types/react@18.3.1)(@types/three@0.164.0)(react-dom@18.3.1)(react@18.3.1)(three@0.164.1)
+    specifier: ^9.105.6
+    version: 9.105.6(@react-three/fiber@8.16.3)(@types/react@18.3.1)(@types/three@0.164.0)(react-dom@18.3.1)(react@18.3.1)(three@0.164.1)
   '@react-three/fiber':
     specifier: ^8.16.3
     version: 8.16.3(react-dom@18.3.1)(react@18.3.1)(three@0.164.1)
@@ -24,8 +24,8 @@ dependencies:
     specifier: ^0.0.5
     version: 0.0.5
   lucide-react:
-    specifier: ^0.376.0
-    version: 0.376.0(react@18.3.1)
+    specifier: ^0.377.0
+    version: 0.377.0(react@18.3.1)
   natural:
     specifier: ^7.0.5
     version: 7.0.5
@@ -33,8 +33,8 @@ dependencies:
     specifier: ^14.2.3
     version: 14.2.3(@babel/core@7.23.9)(react-dom@18.3.1)(react@18.3.1)
   next-intl:
-    specifier: ^3.12.0
-    version: 3.12.0(next@14.2.3)(react@18.3.1)
+    specifier: ^3.12.1
+    version: 3.12.1(next@14.2.3)(react@18.3.1)
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^0.164.1
     version: 0.164.1
   three-stdlib:
-    specifier: ^2.29.10
-    version: 2.29.10(three@0.164.1)
+    specifier: ^2.29.11
+    version: 2.29.11(three@0.164.1)
   tunnel-rat:
     specifier: ^0.1.2
     version: 0.1.2(@types/react@18.3.1)(react@18.3.1)
@@ -1377,13 +1377,6 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     dev: true
 
-  /@formatjs/ecma402-abstract@1.11.4:
-    resolution: {integrity: sha512-EBikYFp2JCdIfGEb5G9dyCkTGDmC57KSHhRQOC3aYxoPWVZvfWCDjZwkGYHN7Lis/fmuWl906bnNTJifDQ3sXw==}
-    dependencies:
-      '@formatjs/intl-localematcher': 0.2.25
-      tslib: 2.6.2
-    dev: false
-
   /@formatjs/ecma402-abstract@1.18.2:
     resolution: {integrity: sha512-+QoPW4csYALsQIl8GbN14igZzDbuwzcpWrku9nyMXlaqAlwRBgl5V+p0vWMGFqHOw37czNXaP/lEk4wbLgcmtA==}
     dependencies:
@@ -1391,30 +1384,24 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@formatjs/fast-memoize@1.2.1:
-    resolution: {integrity: sha512-Rg0e76nomkz3vF9IPlKeV+Qynok0r7YZjL6syLz4/urSg0IbjPZCB/iYUMNsYA643gh4mgrX3T7KEIFIxJBQeg==}
+  /@formatjs/fast-memoize@2.2.0:
+    resolution: {integrity: sha512-hnk/nY8FyrL5YxwP9e4r9dqeM6cAbo8PeU9UjyXojZMNvVad2Z06FAVHyR3Ecw6fza+0GH7vdJgiKIVXTMbSBA==}
     dependencies:
       tslib: 2.6.2
     dev: false
 
-  /@formatjs/icu-messageformat-parser@2.1.0:
-    resolution: {integrity: sha512-Qxv/lmCN6hKpBSss2uQ8IROVnta2r9jd3ymUEIjm2UyIkUCHVcbUVRGL/KS/wv7876edvsPe+hjHVJ4z8YuVaw==}
+  /@formatjs/icu-messageformat-parser@2.7.6:
+    resolution: {integrity: sha512-etVau26po9+eewJKYoiBKP6743I1br0/Ie00Pb/S/PtmYfmjTcOn2YCh2yNkSZI12h6Rg+BOgQYborXk46BvkA==}
     dependencies:
-      '@formatjs/ecma402-abstract': 1.11.4
-      '@formatjs/icu-skeleton-parser': 1.3.6
+      '@formatjs/ecma402-abstract': 1.18.2
+      '@formatjs/icu-skeleton-parser': 1.8.0
       tslib: 2.6.2
     dev: false
 
-  /@formatjs/icu-skeleton-parser@1.3.6:
-    resolution: {integrity: sha512-I96mOxvml/YLrwU2Txnd4klA7V8fRhb6JG/4hm3VMNmeJo1F03IpV2L3wWt7EweqNLES59SZ4d6hVOPCSf80Bg==}
+  /@formatjs/icu-skeleton-parser@1.8.0:
+    resolution: {integrity: sha512-QWLAYvM0n8hv7Nq5BEs4LKIjevpVpbGLAJgOaYzg9wABEoX1j0JO1q2/jVkO6CVlq0dbsxZCngS5aXbysYueqA==}
     dependencies:
-      '@formatjs/ecma402-abstract': 1.11.4
-      tslib: 2.6.2
-    dev: false
-
-  /@formatjs/intl-localematcher@0.2.25:
-    resolution: {integrity: sha512-YmLcX70BxoSopLFdLr1Ds99NdlTI2oWoLbaUW2M406lxOIPzE1KQhRz2fPUkq34xVZQaihCoU29h0KK7An3bhA==}
-    dependencies:
+      '@formatjs/ecma402-abstract': 1.18.2
       tslib: 2.6.2
     dev: false
 
@@ -1710,8 +1697,8 @@ packages:
     resolution: {integrity: sha512-POu8Mk0hIU3lRXB3bGIGe4VHIwwDsQyoD1F394OK7STTiX9w4dG3cTLljjYswkQN+hDSHRrj4O36kuVa7KPU8Q==}
     dev: false
 
-  /@react-three/drei@9.105.5(@react-three/fiber@8.16.3)(@types/react@18.3.1)(@types/three@0.164.0)(react-dom@18.3.1)(react@18.3.1)(three@0.164.1):
-    resolution: {integrity: sha512-qo5ys8y1tNJ9cUloBXJHvtMLVY7mrH8XAgLzFxo6Wr6IzJM3lAOcOucbZehpl/6iZFmWaqbhLXg/YTQpHUJpEQ==}
+  /@react-three/drei@9.105.6(@react-three/fiber@8.16.3)(@types/react@18.3.1)(@types/three@0.164.0)(react-dom@18.3.1)(react@18.3.1)(three@0.164.1):
+    resolution: {integrity: sha512-JBgYeV36N9N9f1c3o1ZfLYW4rXZA7UQTq32Y8s3DEF6lwj1/y+RP/yq2VG5I8OzUPl7gsmWdy8fpWZgrlAqUpQ==}
     peerDependencies:
       '@react-three/fiber': '>=8.0'
       react: '>=18.0'
@@ -1742,7 +1729,7 @@ packages:
       suspend-react: 0.1.3(react@18.3.1)
       three: 0.164.1
       three-mesh-bvh: 0.7.1(three@0.164.1)
-      three-stdlib: 2.29.10(three@0.164.1)
+      three-stdlib: 2.29.11(three@0.164.1)
       troika-three-text: 0.49.1(three@0.164.1)
       tunnel-rat: 0.1.2(@types/react@18.3.1)(react@18.3.1)
       utility-types: 3.11.0
@@ -4002,12 +3989,12 @@ packages:
       hasown: 2.0.0
       side-channel: 1.0.4
 
-  /intl-messageformat@9.13.0:
-    resolution: {integrity: sha512-7sGC7QnSQGa5LZP7bXLDhVDtQOeKGeBFGHF2Y8LVBwYZoQZCgWeKoPGTa5GMG8g/TzDgeXuYJQis7Ggiw2xTOw==}
+  /intl-messageformat@10.5.11:
+    resolution: {integrity: sha512-eYq5fkFBVxc7GIFDzpFQkDOZgNayNTQn4Oufe8jw6YY6OHVw70/4pA3FyCsQ0Gb2DnvEJEMmN2tOaXUGByM+kg==}
     dependencies:
-      '@formatjs/ecma402-abstract': 1.11.4
-      '@formatjs/fast-memoize': 1.2.1
-      '@formatjs/icu-messageformat-parser': 2.1.0
+      '@formatjs/ecma402-abstract': 1.18.2
+      '@formatjs/fast-memoize': 2.2.0
+      '@formatjs/icu-messageformat-parser': 2.7.6
       tslib: 2.6.2
     dev: false
 
@@ -4457,8 +4444,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-react@0.376.0(react@18.3.1):
-    resolution: {integrity: sha512-g91IX3ERD6yUR1TL2dsL4BkcGygpZz/EsqjAeL/kcRQV0EApIOr/9eBfKhYOVyQIcGGuotFGjF3xKLHMEz+b7g==}
+  /lucide-react@0.377.0(react@18.3.1):
+    resolution: {integrity: sha512-o0weTZC4j8YiSi5VIE6RTwPt5uOA+YtuXejvkOxbLghLwIloNkI20INgWigrhBthvgdDcuULp0XRTr0wokqKMw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -4704,8 +4691,8 @@ packages:
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  /next-intl@3.12.0(next@14.2.3)(react@18.3.1):
-    resolution: {integrity: sha512-N3DHT6ce6K4VHVA3y2p3U7wfBx4c31qEgQSTFCFJuNnE7XYzy49O576ewEz7/k2YaB/U5bfxaWWaMMkskofwoQ==}
+  /next-intl@3.12.1(next@14.2.3)(react@18.3.1):
+    resolution: {integrity: sha512-VoEOhSOKKdNz7oU0aiYkJOEmdGI0aR1gDelajPmYnekQZyL96xXlMEKgZPPupCR8CKZgENaKfTYRW6o4ahZ/PA==}
     peerDependencies:
       next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -4714,7 +4701,7 @@ packages:
       negotiator: 0.6.3
       next: 14.2.3(@babel/core@7.23.9)(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
-      use-intl: 3.12.0(react@18.3.1)
+      use-intl: 3.12.1(react@18.3.1)
     dev: false
 
   /next@14.2.3(@babel/core@7.23.9)(react-dom@18.3.1)(react@18.3.1):
@@ -5740,8 +5727,8 @@ packages:
       three: 0.164.1
     dev: false
 
-  /three-stdlib@2.29.10(three@0.164.1):
-    resolution: {integrity: sha512-zFPNF6oALvlyKmoKwxcfC8PyIS7z55DVgMs0CoKZGcTuFnKIW5nR50t/ozaoLaf9qt+Q7DfpfqsYLMbJeHzuaA==}
+  /three-stdlib@2.29.11(three@0.164.1):
+    resolution: {integrity: sha512-vSyUavKCwOJQd2ch9IHhyJVx6eNG3y+z3/LulqHM7OLMy81OqnmIrvc2b4phKr/c1aVjHRNG2X7JOklfrDDcmQ==}
     peerDependencies:
       three: '>=0.128.0'
     dependencies:
@@ -6000,13 +5987,13 @@ packages:
       webpack: 5.90.1
     dev: true
 
-  /use-intl@3.12.0(react@18.3.1):
-    resolution: {integrity: sha512-tTJBSaxpVF1ZHqJ5+1JOaBsPmvBPscXHR0soMNQFWIURZspOueLaMXx1XHNdBv9KZGwepBju5aWXkJ0PM6ztXg==}
+  /use-intl@3.12.1(react@18.3.1):
+    resolution: {integrity: sha512-rVwlWhitnRbMzbB553JsE0u9u+a18y7TDq+5ujmF0Jg+5gwp5vnrLsTHV/HcraP2PmxG/KhUDPYo1oTjJm5SHQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@formatjs/ecma402-abstract': 1.18.2
-      intl-messageformat: 9.13.0
+      intl-messageformat: 10.5.11
       react: 18.3.1
     dev: false
 
