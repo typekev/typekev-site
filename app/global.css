@@ -283,8 +283,9 @@ dialog.versions-modal {
 
 dialog.tooltip {
   font-size: 0.375em;
+  transform: translateX(-50%);
+  inset-inline-start: 50%;
   inset-block-start: 100%;
-  inset-inline-start: -100%;
   width: max-content;
   height: auto;
   margin-block-start: 0.125em;
@@ -497,7 +498,7 @@ aside.modal-background > .modal-close-button {
 }
 
 .button {
-  display: inline-flex;
+  display: grid;
   width: fit-content;
   transition:
     background 0.5s ease-out,
@@ -556,7 +557,7 @@ aside.modal-background > .modal-close-button {
 }
 
 .icon-button {
-  display: inline-flex;
+  display: grid;
   cursor: pointer;
   color: inherit;
   font-size: inherit;
