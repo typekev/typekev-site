@@ -283,9 +283,10 @@ dialog.versions-modal {
 
 dialog.tooltip {
   font-size: 0.375em;
-  justify-self: center;
   inset-block-start: 100%;
+  inset-inline-start: -100%;
   width: max-content;
+  height: auto;
   margin-block-start: 0.125em;
   padding: 0.125em 0.375em;
   filter: drop-shadow(0 0 0.125em var(--white));
