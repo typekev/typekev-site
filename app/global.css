@@ -20,8 +20,15 @@
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
 }
 
-html:has(.modal-background:not(.hidden)) {
+html:has(.modal-background:not(.hidden)),
+body:has(.modal-background:not(.hidden)) {
   overflow: hidden;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
 html {
@@ -29,8 +36,6 @@ html {
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  scroll-behavior: smooth;
-  overscroll-behavior: contain;
 }
 
 input,
@@ -268,6 +273,7 @@ dialog {
   transition:
     opacity 0.3s ease-in-out,
     visibility 0.3s ease-in-out;
+  overscroll-behavior: contain;
 }
 
 dialog.hidden {
