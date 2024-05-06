@@ -672,10 +672,6 @@ menu.version-links > li > img {
     margin-inline: 32px;
   }
 
-  header#about {
-    padding-block-start: 0;
-  }
-
   #bot {
     inset-block-end: min(4em, 16vh);
   }
