@@ -20,7 +20,7 @@
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
 }
 
-body#root:has(.modal-background:not(.hidden)) {
+html:has(.modal-background:not(.hidden)) {
   overflow: hidden;
 }
 
@@ -28,8 +28,9 @@ html {
   background: var(--black);
   color: white;
   font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
   font-weight: 600;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 input,
@@ -646,8 +647,8 @@ menu.version-links > li > img {
   position: fixed;
   inset: 0;
   margin: auto;
-  width: max(100%, 50vmax);
-  height: max(100%, 50vmax);
+  width: 100vw;
+  height: max(100vh, 50vmax);
   opacity: 0;
   visibility: hidden;
   animation: fade-in 2s 1s ease forwards;
@@ -663,6 +664,10 @@ menu.version-links > li > img {
   main {
     font-size: 30px;
     margin-inline: 32px;
+  }
+
+  header#about {
+    padding-block-start: 0;
   }
 
   #bot {
