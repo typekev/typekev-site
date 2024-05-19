@@ -665,6 +665,12 @@ menu.version-links > li > img {
   animation: fade-in 2s 2.5s ease forwards;
 }
 
+.black-hole-canvas canvas {
+  position: fixed;
+  width: 100dvw !important;
+  height: 100lvh !important;
+}
+
 @media (max-width: 575.98px) {
   main {
     font-size: 30px;
