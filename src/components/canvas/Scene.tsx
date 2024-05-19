@@ -13,7 +13,7 @@ export default function Scene() {
   return (
     <Canvas
       className={loaded ? "black-hole-canvas" : undefined}
-      style={{ position: "fixed", inset: 0, width: "100dvw", height: "100svh" }}
+      style={{ position: "fixed", inset: 0, width: "100dvw", height: "100lvh" }}
       eventPrefix="client"
       onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
     >
