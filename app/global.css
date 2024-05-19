@@ -665,13 +665,12 @@ menu.version-links > li > img {
   animation: fade-in 2s 2.5s ease forwards;
 }
 
-.black-hole-canvas canvas {
-  position: fixed;
-  width: 100dvw !important;
-  height: 100lvh !important;
-}
-
 @media (max-width: 575.98px) {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   main {
     font-size: 30px;
     margin-inline: 32px;
@@ -701,6 +700,11 @@ menu.version-links > li > img {
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   main {
     font-size: 32px;
     margin-inline: 56px;
