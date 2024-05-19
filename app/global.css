@@ -28,7 +28,6 @@ body:has(.modal-background:not(.hidden)) {
 html,
 body {
   scroll-behavior: smooth;
-  overscroll-behavior: none;
 }
 
 html {
@@ -115,10 +114,10 @@ h2.title:focus::after {
 
 header#about {
   place-content: center start;
-  height: calc(100lvh - 5em);
+  height: calc(100svh - 5em);
   min-height: 10em;
   max-height: 23em;
-  padding-block-start: min(2em, 10lvh);
+  padding-block-start: min(2em, 10svh);
 }
 
 header#about > * {
@@ -129,7 +128,7 @@ header#about > * {
 header#about > .logo {
   position: relative;
   display: block;
-  max-height: 18lvh;
+  max-height: 18svh;
   margin: 0;
   font-size: min(3em, 10vmax);
   opacity: 0;
@@ -165,13 +164,13 @@ header#about > .logo::after {
 }
 
 header#about > p {
-  padding-block-end: min(2em, 25lvh);
+  padding-block-end: min(2em, 25svh);
   animation: fade-in 3s 0.25s ease forwards;
 }
 
 section#work {
   padding-block-start: 1em;
-  padding-block-end: min(5em, 25lvh);
+  padding-block-end: min(5em, 25svh);
 }
 
 section#work > * {
@@ -194,7 +193,7 @@ section#work ul {
 
 address#contact {
   padding-block-start: 1em;
-  padding-block-end: min(5em, 25lvh);
+  padding-block-end: min(5em, 25svh);
   margin-block-end: -8em;
   font-style: normal;
 }
@@ -283,8 +282,8 @@ dialog.hidden {
 
 dialog.versions-modal {
   position: relative;
-  max-height: 70lvh;
-  width: min(48em, 70lvw);
+  max-height: 70svh;
+  width: min(48em, 70dvw);
   overflow: auto;
 }
 
@@ -328,8 +327,8 @@ aside.modal-background.hidden {
 
 aside.modal-background > .modal-close-button {
   position: absolute;
-  inset-block-start: 4lvh;
-  inset-inline-end: 3lvw;
+  inset-block-start: 4svh;
+  inset-inline-end: 3dvw;
 }
 
 #bot {
@@ -340,7 +339,7 @@ aside.modal-background > .modal-close-button {
   align-items: center;
   justify-content: end;
   height: 3em;
-  inset-block-end: min(3em, 12lvh);
+  inset-block-end: min(3em, 12svh);
   margin-block: 6em -1.5em;
   margin-inline-end: -1em;
   padding-inline: 0.25em;
@@ -653,8 +652,8 @@ menu.version-links > li > img {
   position: fixed;
   inset: 0;
   margin: auto;
-  width: 100lvw;
-  height: 100lvh;
+  width: 100dvw;
+  height: 100svh;
   opacity: 0;
   visibility: hidden;
   animation: fade-in 2s 1s ease forwards;
@@ -673,7 +672,7 @@ menu.version-links > li > img {
   }
 
   #bot {
-    inset-block-end: min(4em, 16lvh);
+    inset-block-end: min(4em, 16svh);
   }
 
   footer#endnote {
@@ -702,7 +701,7 @@ menu.version-links > li > img {
   }
 
   #bot {
-    inset-block-end: min(3.5em, 14lvh);
+    inset-block-end: min(3.5em, 14svh);
   }
 
   footer#endnote {
