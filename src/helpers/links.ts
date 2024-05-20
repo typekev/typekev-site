@@ -1,4 +1,4 @@
-export const sesUrl = "https://ses.com" as const;
+export const sesUrl = "https://www.ses.com" as const;
 export const emailtreeUrl = "https://emailtree.ai" as const;
 export const devoteamUrl = "https://devoteam.com" as const;
 

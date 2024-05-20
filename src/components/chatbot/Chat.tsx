@@ -114,7 +114,7 @@ export function Chat({ toggleChat, visible }: Props) {
             onKeyDown={handleKeyDown}
             onClick={acceptTypeahead}
             aria-label="Your message"
-            autoFocus
+            autoFocus={visible}
           />
         </label>
         <button

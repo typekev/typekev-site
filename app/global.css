@@ -20,21 +20,28 @@
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
 }
 
-body#root:has(.modal-background:not(.hidden)) {
+html:has(.modal-background:not(.hidden)),
+body:has(.modal-background:not(.hidden)) {
   overflow: hidden;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
 }
 
 html {
   background: var(--black);
   color: white;
   font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
   font-weight: 600;
 }
 
 input,
-button {
+button,
+select {
   font-family: inherit;
+  font-weight: inherit;
 }
 
 h2,
@@ -94,8 +101,8 @@ h2.title {
 h2.title::after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: 0;
+  inset-inline-start: 0;
+  inset-block-end: 0;
   width: 0;
   height: 0.125rem;
   background-color: var(--white);
@@ -109,10 +116,10 @@ h2.title:focus::after {
 
 header#about {
   place-content: center start;
-  height: calc(100vh - 5em);
+  height: calc(100lvh - 5em);
   min-height: 10em;
   max-height: 23em;
-  padding-block-start: min(2em, 10vh);
+  padding-block-start: min(2em, 10lvh);
 }
 
 header#about > * {
@@ -123,7 +130,7 @@ header#about > * {
 header#about > .logo {
   position: relative;
   display: block;
-  max-height: 18vh;
+  max-height: 18lvh;
   margin: 0;
   font-size: min(3em, 10vmax);
   opacity: 0;
@@ -159,13 +166,13 @@ header#about > .logo::after {
 }
 
 header#about > p {
-  padding-block-end: min(2em, 25vh);
+  padding-block-end: min(2em, 25lvh);
   animation: fade-in 3s 0.25s ease forwards;
 }
 
 section#work {
   padding-block-start: 1em;
-  padding-block-end: min(5em, 25vh);
+  padding-block-end: min(5em, 25lvh);
 }
 
 section#work > * {
@@ -186,9 +193,40 @@ section#work ul {
   padding: 0;
 }
 
+section#work ul > li {
+  position: relative;
+  width: fit-content;
+  padding-block-start: 0.125em;
+  padding-block-end: 0;
+  transition: padding 0.15s ease-in-out;
+}
+
+section#work ul > li:hover {
+  padding-block-start: 0;
+  padding-block-end: 0.125em;
+}
+
+section#work ul > li p.work-year {
+  position: absolute;
+  inset-block-start: 0;
+  font-size: 0.3125em;
+  margin-block-start: 0.125em;
+  margin-block-end: 0;
+  opacity: 1;
+  transition: opacity 0.15s ease-in-out;
+}
+
+section#work ul > li:hover p.work-year,
+section#work ul > li a.button:hover + p.work-year,
+section#work ul > li a.button:focus + p.work-year,
+section#work ul > li a.button:target + p.work-year,
+section#work ul > li a.button:active + p.work-year {
+  opacity: 0;
+}
+
 address#contact {
   padding-block-start: 1em;
-  padding-block-end: min(5em, 25vh);
+  padding-block-end: min(5em, 25lvh);
   margin-block-end: -8em;
   font-style: normal;
 }
@@ -230,6 +268,31 @@ footer#endnote > p {
   margin-block-end: 1.5em;
 }
 
+footer#endnote > small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+footer#endnote > small > label {
+  display: flex;
+  align-items: center;
+  gap: 0.625em;
+}
+
+footer#endnote > small > label > svg {
+  filter: drop-shadow(0 0 0.0625em currentColor);
+}
+
+footer#endnote > small > label > select {
+  background: var(--transparent-white-accent);
+  border: 0.125rem solid var(--transparent-white-faded);
+  box-shadow: 0 0 0.25em var(--transparent-black);
+  border-radius: 0.5em;
+  color: var(--white);
+}
+
 a {
   color: inherit;
 }
@@ -267,6 +330,7 @@ dialog {
   transition:
     opacity 0.3s ease-in-out,
     visibility 0.3s ease-in-out;
+  overscroll-behavior: contain;
 }
 
 dialog.hidden {
@@ -276,8 +340,8 @@ dialog.hidden {
 
 dialog.versions-modal {
   position: relative;
-  max-height: 70vh;
-  width: min(48em, 70vw);
+  max-height: 70lvh;
+  width: min(48em, 70dvw);
   overflow: auto;
 }
 
@@ -321,8 +385,8 @@ aside.modal-background.hidden {
 
 aside.modal-background > .modal-close-button {
   position: absolute;
-  inset-block-start: 4vh;
-  inset-inline-end: 3vw;
+  inset-block-start: 4lvh;
+  inset-inline-end: 3dvw;
 }
 
 #bot {
@@ -333,7 +397,7 @@ aside.modal-background > .modal-close-button {
   align-items: center;
   justify-content: end;
   height: 3em;
-  inset-block-end: min(3em, 12vh);
+  inset-block-end: min(3em, 12lvh);
   margin-block: 6em -1.5em;
   margin-inline-end: -1em;
   padding-inline: 0.25em;
@@ -539,15 +603,15 @@ aside.modal-background > .modal-close-button {
 }
 
 #work-ses.button {
-  scroll-margin-top: 2.25em;
+  scroll-margin-block-start: 2.25em;
 }
 
 #work-emailtree.button {
-  scroll-margin-top: 4em;
+  scroll-margin-block-start: 4.125em;
 }
 
 #work-devoteam.button {
-  scroll-margin-top: 5.75em;
+  scroll-margin-block-start: 6em;
 }
 
 .button-group {
@@ -646,8 +710,8 @@ menu.version-links > li > img {
   position: fixed;
   inset: 0;
   margin: auto;
-  width: max(100%, 50vmax);
-  height: max(100%, 50vmax);
+  width: 100dvw;
+  height: 100lvh;
   opacity: 0;
   visibility: hidden;
   animation: fade-in 2s 1s ease forwards;
@@ -660,13 +724,18 @@ menu.version-links > li > img {
 }
 
 @media (max-width: 575.98px) {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   main {
     font-size: 30px;
     margin-inline: 32px;
   }
 
   #bot {
-    inset-block-end: min(4em, 16vh);
+    inset-block-end: min(4em, 16lvh);
   }
 
   footer#endnote {
@@ -689,13 +758,18 @@ menu.version-links > li > img {
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   main {
     font-size: 32px;
     margin-inline: 56px;
   }
 
   #bot {
-    inset-block-end: min(3.5em, 14vh);
+    inset-block-end: min(3.5em, 14lvh);
   }
 
   footer#endnote {

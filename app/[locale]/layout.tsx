@@ -1,10 +1,10 @@
 import dynamic from "next/dynamic";
 import { Poppins } from "next/font/google";
-import { notFound } from "next/navigation";
 import { PropsWithChildren } from "react";
 
 import { Analytics } from "@vercel/analytics/react";
-import { NextIntlClientProvider, useLocale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 
 import "@/global.css"; // eslint-disable-line import/no-unassigned-import
 
@@ -20,27 +20,14 @@ interface Props {
   params: { locale: string };
 }
 
-export default async function Layout({ children, params }: PropsWithChildren<Props>) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${params.locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
-
-  const locale = useLocale();
-
-  if (params.locale !== locale) {
-    notFound();
-  }
+export default async function Layout({ children, params: { locale } }: PropsWithChildren<Props>) {
+  const messages = await getMessages();
 
   return (
     <html lang={locale} className={poppins.className}>
       <head />
       <body id="root">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         <Scene />
         <Analytics />
       </body>
