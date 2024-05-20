@@ -3,19 +3,25 @@
     "text": "<regular>Hallo, ech sinn </regular><highlighted>Kévin</highlighted><regular>, een Visionär an enger Ingenieur-Liddere mat Software, deen Satelliten-Ertragssystemer a künstlech Intelligenz am Weltall virunbréngt.</regular>"
   },
   "Work": {
-    "title": "Aarbechtseschicht",
-    "more": "Resuméieren"
+    "title": "Aarbechtsgeschicht",
+    "more": "Resumé"
   },
   "Contact": {
     "title": "Kontaktéiert mech",
     "copied": "Kopéiert!",
-    "copy": "Email an d'Zwiescheklapp kopéieren"
+    "copy": "Email an d'Zwëschenablage kopéieren"
   },
   "Endnote": {
-    "text": "Ech hunn dës Websäit an <design>Figma</design> entworf a se mat <ts>TypeScript</ts>, <three>Three.js</three> an dem <next>Next.js</next>-Framework fir <react>React</react> entwéckelt. De ganzen zugehéierende Code ass Open Source an op <github>GitHub</github> disponibel. Dës Websäit—an all hier <versions>virege Versiounen</versions>—ginn kontinuéierlech mat <host>Vercel</host> déplacéiert."
+    "text": "Ech hunn dës Websäit an <design>Figma</design> entworf a se mat <ts>TypeScript</ts>, <three>Three.js</three> an dem <next>Next.js</next>-Framework fir <react>React</react> entwéckelt. De ganzen zougehéierende Code ass Open Source an op <github>GitHub</github> disponibel. Dës Websäit—an all hier <versions>virege Versiounen</versions>—ginn kontinuéierlech mat <host>Vercel</host> deployéiert."
   },
   "Bot": {
     "prompt": "Hutt Dir eng Fro? Fro mech!",
     "placeholder": "Hei schreiwen..."
+  },
+  "Locale": {
+    "en": "Englesch (English)",
+    "de": "Däitsch (Deutsch)",
+    "fr": "Franséisch (Français)",
+    "lu": "Lëtzebuergesch"
   }
 }

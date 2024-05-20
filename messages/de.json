@@ -17,5 +17,11 @@
   "Bot": {
     "prompt": "Haben Sie eine Frage? Fragen Sie mich!",
     "placeholder": "Hier tippen..."
+  },
+  "Locale": {
+    "en": "Englisch (English)",
+    "de": "Deutsch",
+    "fr": "Französisch (Français)",
+    "lu": "Luxemburgisch (Lëtzebuergesch)"
   }
 }

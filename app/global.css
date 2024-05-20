@@ -38,8 +38,10 @@ html {
 }
 
 input,
-button {
+button,
+select {
   font-family: inherit;
+  font-weight: inherit;
 }
 
 h2,
@@ -264,6 +266,31 @@ footer#endnote {
 
 footer#endnote > p {
   margin-block-end: 1.5em;
+}
+
+footer#endnote > small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+footer#endnote > small > label {
+  display: flex;
+  align-items: center;
+  gap: 0.625em;
+}
+
+footer#endnote > small > label > svg {
+  filter: drop-shadow(0 0 0.0625em currentColor);
+}
+
+footer#endnote > small > label > select {
+  background: var(--transparent-white-accent);
+  border: 0.125rem solid var(--transparent-white-faded);
+  box-shadow: 0 0 0.25em var(--transparent-black);
+  border-radius: 0.5em;
+  color: var(--white);
 }
 
 a {

@@ -1,5 +1,4 @@
 "use client";
-
 import { PropsWithChildren } from "react";
 
 import { r3f } from "@/helpers/global";
