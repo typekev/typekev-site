@@ -37,7 +37,7 @@ export default function Work() {
         </li>
         <li>
           <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
-          <p className="work-year">2013 &mdash; 2017</p>
+          <p className="work-year">&nbsp;&mdash; 2017</p>
         </li>
       </ul>
     </section>
