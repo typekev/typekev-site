@@ -27,5 +27,3 @@ export function LanguageSelect() {
     </label>
   );
 }
-
-LanguageSelect.displayName = "LanguageSelect";

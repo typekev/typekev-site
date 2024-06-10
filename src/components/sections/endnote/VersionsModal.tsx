@@ -47,5 +47,3 @@ export function VersionsModal({ hide, hidden }: Props) {
     modalRoot,
   );
 }
-
-VersionsModal.displayName = "VersionsModal";

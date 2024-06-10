@@ -36,5 +36,3 @@ export function VersionsMenu() {
     </nav>
   );
 }
-
-VersionsMenu.displayName = "VersionsMenu";

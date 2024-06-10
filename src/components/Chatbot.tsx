@@ -21,5 +21,3 @@ export function Chatbot() {
     </article>
   );
 }
-
-Chatbot.displayName = "Chatbot";

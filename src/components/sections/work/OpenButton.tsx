@@ -11,5 +11,3 @@ export function OpenButton({ href }: Props) {
     </a>
   );
 }
-
-OpenButton.displayName = "OpenButton";
