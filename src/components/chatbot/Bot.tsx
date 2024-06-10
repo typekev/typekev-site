@@ -16,5 +16,3 @@ export function Bot({ active, toggleChat }: Props) {
     </button>
   );
 }
-
-Bot.displayName = "Bot";

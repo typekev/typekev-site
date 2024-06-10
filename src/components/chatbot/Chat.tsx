@@ -129,5 +129,3 @@ export function Chat({ toggleChat, visible }: Props) {
     </dialog>
   );
 }
-
-Chat.displayName = "Chat";

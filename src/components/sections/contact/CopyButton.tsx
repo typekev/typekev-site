@@ -22,5 +22,3 @@ export function CopyButton() {
     </button>
   );
 }
-
-CopyButton.displayName = "CopyButton";
