@@ -16,5 +16,5 @@ export const nextJsUrl = "https://nextjs.org" as const;
 export const reactUrl = "https://react.dev" as const;
 export const vercelUrl = "https://vercel.com/home" as const;
 
-export const reactMKUrl = "https://codesandbox.io/embed/react-mk-u6851" as const;
+export const reactMKUrl = "https://www.npmjs.com/package/react-mk" as const;
 export const blobGameUrl = "https://blob-game.vercel.app/" as const;
