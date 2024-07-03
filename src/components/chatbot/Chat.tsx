@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Keyboard from "react-mk";
+import Keyboard, { Cursor } from "react-mk";
 import { useLocale, useTranslations } from "next-intl";
 import { ForwardIcon } from "lucide-react";
 import { bots } from "libs/typekev-bot/bots";
@@ -87,18 +87,25 @@ export function Chat({ toggleChat, visible }: Props) {
 
   const keyboard = useMemo(
     () => (
-      <Keyboard key={botReply} sentenceDelayPerCharRange={[0, 0]} keyPressDelayRange={[0, 15]}>
-        {({ type }) => type(botReply)}
-      </Keyboard>
+      <>
+        <Keyboard key={`${userMessage}${botReply}-keyboard`} keyPressDelayRange={[0, 15]}>
+          {({ type }) => type(botReply)}
+        </Keyboard>
+        <Cursor key={`${userMessage}${botReply}-cursor`} id="cursor">
+          <span className="block" style={{ animationDelay: `${botReply.length * 20}ms` }}>
+            █
+          </span>
+        </Cursor>
+      </>
     ),
-    [botReply],
+    [botReply, userMessage],
   );
 
   return (
     <dialog className={visible ? "" : "hidden"}>
       {userMessage && <p className="chat-message user">{userMessage}</p>}
       {botReply && (
-        <p className="chat-message">
+        <p className="chat-message bot">
           <span className="chat-message-text">{keyboard}</span>
           <span className="chat-message-spacer">{botReply}</span>
         </p>

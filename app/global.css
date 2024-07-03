@@ -33,7 +33,7 @@ body {
 html {
   background: var(--black);
   color: white;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-poppins);
   font-weight: 600;
 }
 
@@ -445,7 +445,6 @@ aside.modal-background > .modal-close-button {
 
 #bot .chat-message {
   position: relative;
-  background: var(--transparent-sky-blue);
   border-radius: 0.75em;
   margin: 0;
   padding: 0.25em 0.5em;
@@ -454,11 +453,32 @@ aside.modal-background > .modal-close-button {
 }
 
 #bot .chat-message-text {
+  padding-inline-end: inherit;
   position: absolute;
+}
+
+#bot .chat-message-text > #cursor {
+  display: inline-block;
+  font-size: 0.675em;
+  width: 1.375ch;
+  margin-inline-start: -1.375ch;
+  transform: translateY(-1px);
+}
+
+#bot .chat-message-text > #cursor > .block {
+  opacity: 1;
+  visibility: visible;
+  animation: fade-in 0.5s ease-in-out 1s reverse forwards;
 }
 
 #bot .chat-message-spacer {
   visibility: hidden;
+}
+
+#bot .chat-message.bot {
+  font-family: var(--font-inconsolata);
+  font-weight: 400;
+  background: var(--transparent-white);
 }
 
 #bot .chat-message.user {
