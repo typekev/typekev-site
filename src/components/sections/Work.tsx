@@ -37,12 +37,12 @@ export default function Work() {
           <OpenButton href={devoteamUrl} />
         </li>
         <li>
-          <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
-          <p className="work-year">&nbsp;&mdash; 2017</p>
+          <AnchorButton href={linkedInExperienceUrl}>{t("resume")}</AnchorButton>
+          <p className="work-year">{t("more")}</p>
         </li>
         <li className="button-group">
           <AnchorButton href={githubTypekevSiteUrl}>Projects</AnchorButton>
-          <p className="work-year">Open-source</p>
+          <p className="work-year">...Github</p>
           <a href="#" className="button icon-button" aria-label="Navigate to a react library I made">
             <KeyboardIcon size="0.875em" strokeWidth={1.5} />
           </a>
