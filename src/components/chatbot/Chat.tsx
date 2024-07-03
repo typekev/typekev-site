@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Keyboard from "react-mk";
 import { useLocale, useTranslations } from "next-intl";
 import { ForwardIcon } from "lucide-react";
 import { bots } from "libs/typekev-bot/bots";
@@ -84,10 +85,24 @@ export function Chat({ toggleChat, visible }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
+  const keyboard = useMemo(
+    () => (
+      <Keyboard key={botReply} sentenceDelayPerCharRange={[0, 0]} keyPressDelayRange={[0, 15]}>
+        {({ type }) => type(botReply)}
+      </Keyboard>
+    ),
+    [botReply],
+  );
+
   return (
     <dialog className={visible ? "" : "hidden"}>
       {userMessage && <p className="chat-message user">{userMessage}</p>}
-      {botReply && <p className="chat-message">{botReply}</p>}
+      {botReply && (
+        <p className="chat-message">
+          <span className="chat-message-text">{keyboard}</span>
+          <span className="chat-message-spacer">{botReply}</span>
+        </p>
+      )}
       <form
         className="chat-input"
         onSubmit={(e) => {
