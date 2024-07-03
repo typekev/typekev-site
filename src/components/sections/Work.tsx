@@ -5,7 +5,7 @@ import {
   blobGameUrl,
   devoteamUrl,
   emailtreeUrl,
-  githubTypekevSiteUrl,
+  githubUrl,
   linkedInExperienceUrl,
   reactMKUrl,
   sesUrl,
@@ -49,7 +49,7 @@ export default function Work() {
           <p className="work-year">{t("more")}</p>
         </li>
         <li className="button-group">
-          <AnchorButton href={githubTypekevSiteUrl}>Projects</AnchorButton>
+          <AnchorButton href={githubUrl}>Projects</AnchorButton>
           <p className="work-year">...Github</p>
           <a href={reactMKUrl} target="_blank" className="button icon-button" aria-label="Navigate to my NPM library">
             <KeyboardIcon size="0.875em" strokeWidth={1.5} />
