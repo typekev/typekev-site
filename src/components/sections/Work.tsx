@@ -1,9 +1,18 @@
 import { useTranslations } from "next-intl";
 
 import { AnchorButton } from "@/components/AnchorButton";
-import { devoteamUrl, emailtreeUrl, linkedInExperienceUrl, sesUrl } from "@/helpers/links";
+import {
+  blobGameUrl,
+  devoteamUrl,
+  emailtreeUrl,
+  githubUrl,
+  linkedInExperienceUrl,
+  reactMKUrl,
+  sesUrl,
+} from "@/helpers/links";
 
 import { OpenButton } from "./work/OpenButton";
+import { Gamepad2Icon, KeyboardIcon } from "lucide-react";
 
 export default function Work() {
   const t = useTranslations("Work");
@@ -36,8 +45,20 @@ export default function Work() {
           <OpenButton href={devoteamUrl} />
         </li>
         <li>
-          <AnchorButton href={linkedInExperienceUrl}>{t("more")}</AnchorButton>
-          <p className="work-year">&nbsp;&mdash; 2017</p>
+          <AnchorButton href={linkedInExperienceUrl}>{t("resume")}</AnchorButton>
+          <p className="work-year">{t("more")}</p>
+        </li>
+        <li className="button-group">
+          <AnchorButton href={githubUrl}>Projects</AnchorButton>
+          <p className="work-year">...Github</p>
+          <a href={reactMKUrl} target="_blank" className="button icon-button" aria-label="Navigate to my NPM library">
+            <KeyboardIcon size="0.875em" strokeWidth={1.5} />
+            <dialog className="tooltip">React Mechanical Keyboard &mdash; NPM Library</dialog>
+          </a>
+          <a href={blobGameUrl} target="_blank" className="button icon-button" aria-label="Navigate to my NextJS game">
+            <Gamepad2Icon size="0.875em" strokeWidth={1.5} />
+            <dialog className="tooltip">Blob &mdash; Web-Based Retro Game</dialog>
+          </a>
         </li>
       </ul>
     </section>

@@ -15,3 +15,6 @@ export const threeJsUrl = "https://threejs.org" as const;
 export const nextJsUrl = "https://nextjs.org" as const;
 export const reactUrl = "https://react.dev" as const;
 export const vercelUrl = "https://vercel.com/home" as const;
+
+export const reactMKUrl = "https://www.npmjs.com/package/react-mk" as const;
+export const blobGameUrl = "https://blob-game.vercel.app/" as const;

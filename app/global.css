@@ -31,9 +31,9 @@ body {
 }
 
 html {
+  font-family: var(--font-poppins);
   background: var(--black);
   color: white;
-  font-family: "Poppins", sans-serif;
   font-weight: 600;
 }
 
@@ -208,20 +208,17 @@ section#work ul > li:hover {
 
 section#work ul > li p.work-year {
   position: absolute;
-  inset-block-start: 0;
+  font-family: var(--font-inconsolata);
   font-size: 0.3125em;
+  inset-block-start: 0;
   margin-block-start: 0.125em;
   margin-block-end: 0;
-  opacity: 1;
-  transition: opacity 0.15s ease-in-out;
+  transition: margin 0.15s ease-in-out;
 }
 
 section#work ul > li:hover p.work-year,
-section#work ul > li a.button:hover + p.work-year,
-section#work ul > li a.button:focus + p.work-year,
-section#work ul > li a.button:target + p.work-year,
-section#work ul > li a.button:active + p.work-year {
-  opacity: 0;
+section#work ul > li a.button:hover + p.work-year {
+  margin-block-start: -0.125em;
 }
 
 address#contact {
@@ -247,11 +244,6 @@ address#contact ul {
 
 address#contact button.copy-button {
   position: relative;
-}
-
-address#contact button.copy-button:not(:hover) > dialog.tooltip {
-  opacity: 0;
-  visibility: hidden;
 }
 
 footer#endnote {
@@ -444,12 +436,41 @@ aside.modal-background > .modal-close-button {
 }
 
 #bot .chat-message {
-  background: var(--transparent-sky-blue);
+  position: relative;
   border-radius: 0.75em;
   margin: 0;
   padding: 0.25em 0.5em;
   display: inline;
   width: fit-content;
+}
+
+#bot .chat-message-text {
+  padding-inline-end: inherit;
+  position: absolute;
+}
+
+#bot .chat-message-text > #cursor {
+  display: inline-block;
+  font-size: 0.675em;
+  width: 1.375ch;
+  margin-inline-start: -1.375ch;
+  transform: translateY(-1px);
+}
+
+#bot .chat-message-text > #cursor > .block {
+  opacity: 1;
+  visibility: visible;
+  animation: fade-in 0.5s ease-in-out 1s reverse forwards;
+}
+
+#bot .chat-message-spacer {
+  visibility: hidden;
+}
+
+#bot .chat-message.bot {
+  font-family: var(--font-inconsolata);
+  font-weight: 400;
+  background: var(--transparent-white);
 }
 
 #bot .chat-message.user {
@@ -702,6 +723,11 @@ menu.version-links > li > img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.button:not(:hover) > dialog.tooltip {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .black-hole {
