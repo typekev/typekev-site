@@ -334,6 +334,7 @@ dialog.versions-modal {
 }
 
 dialog.tooltip {
+  font-weight: 300;
   font-size: 0.375em;
   transform: translateX(-50%);
   inset-inline-start: 50%;
