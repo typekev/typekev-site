@@ -89,7 +89,7 @@ export function Chat({ toggleChat, visible }: Props) {
     () => (
       <>
         <Keyboard key={`${userMessage}${botReply}-keyboard`} keyPressDelayRange={[0, 15]}>
-          {({ type }) => type(botReply)}
+          {botReply}
         </Keyboard>
         <Cursor key={`${userMessage}${botReply}-cursor`} id="cursor">
           <span className="block" style={{ animationDelay: `${botReply.length * 20}ms` }}>
