@@ -204,7 +204,7 @@ section#work ul > li:hover {
 
 section#work ul > li p.work-year {
   position: absolute;
-  font-family: var(--font-inconsolata);
+  font-weight: 400;
   font-size: 0.3125em;
   inset-block-start: 0;
   margin-block-start: 0.125em;
@@ -465,7 +465,7 @@ aside.modal-background > .modal-close-button {
 }
 
 #bot .chat-message.bot {
-  font-family: var(--font-inconsolata);
+  font-family: var(--font-fragment-mono);
   font-weight: 400;
   background: var(--transparent-white);
 }
