@@ -38,7 +38,7 @@ export function VersionsModal({ hide, hidden }: Props) {
           hide();
         }}
       >
-        <XIcon size="2em" strokeWidth={1.25} />
+        <XIcon size="2.5em" strokeWidth={2} />
       </button>
       <dialog className={`versions-modal ${hidden ? "hidden" : ""}`} onClick={(e) => e.stopPropagation()}>
         <VersionsMenu />

@@ -145,7 +145,7 @@ export function Chat({ toggleChat, visible }: Props) {
           disabled={!userInput.trim()}
           aria-label="Send message to chatbot"
         >
-          <ForwardIcon strokeWidth={2.25} />
+          <ForwardIcon strokeWidth={2} />
         </button>
       </form>
     </dialog>

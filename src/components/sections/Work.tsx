@@ -52,11 +52,11 @@ export default function Work() {
           <AnchorButton href={githubUrl}>Projects</AnchorButton>
           <p className="work-year">...Github</p>
           <a href={reactMKUrl} target="_blank" className="button icon-button" aria-label="Navigate to my NPM library">
-            <KeyboardIcon size="0.875em" strokeWidth={1.5} />
+            <KeyboardIcon size="0.875em" strokeWidth={1.75} />
             <dialog className="tooltip">React Mechanical Keyboard &mdash; NPM Library</dialog>
           </a>
           <a href={blobGameUrl} target="_blank" className="button icon-button" aria-label="Navigate to my NextJS game">
-            <Gamepad2Icon size="0.875em" strokeWidth={1.5} />
+            <Gamepad2Icon size="0.875em" strokeWidth={1.75} />
             <dialog className="tooltip">Blob &mdash; Web-Based Retro Game</dialog>
           </a>
         </li>
