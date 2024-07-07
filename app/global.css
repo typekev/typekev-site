@@ -181,10 +181,6 @@ section#work > * {
   animation: fade-in 3s 0.75s ease forwards;
 }
 
-section#work .icon-button {
-  padding: 0.125em;
-}
-
 section#work ul {
   display: grid;
   gap: 0.25em;
@@ -417,13 +413,14 @@ aside.modal-background > .modal-close-button {
   opacity: 0;
   visibility: hidden;
   padding: 0.5em;
+  border-radius: 1em;
   animation: fade-in 2s 0.75s ease forwards;
 }
 
 #bot > button > svg {
   width: min(3em, 8vmax);
   height: min(3em, 8vmax);
-  margin-block-end: 0.0625em;
+  margin-block-start: -0.25em;
   --shake-rotation: 5deg;
   animation: shake 5s ease-in-out infinite;
 }
@@ -538,6 +535,10 @@ aside.modal-background > .modal-close-button {
   color: var(--transparent-white);
 }
 
+#bot .chat-input .icon-button svg {
+  margin-block-end: 0.125em;
+}
+
 [placeholder] {
   text-overflow: ellipsis;
 }
@@ -646,8 +647,7 @@ aside.modal-background > .modal-close-button {
   cursor: pointer;
   color: inherit;
   font-size: inherit;
-  padding: 0.375em;
-  border-radius: 1em;
+  padding: 0.25em;
 }
 
 .endnote-link {

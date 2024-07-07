@@ -12,7 +12,7 @@ export function Bot({ active, toggleChat }: Props) {
       onClick={() => toggleChat()}
       aria-label={`${active ? "Hide" : "Show"} chat box`}
     >
-      <BotIcon strokeWidth={2.25} />
+      <BotIcon strokeWidth={2} />
     </button>
   );
 }
