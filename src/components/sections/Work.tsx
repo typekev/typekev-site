@@ -6,7 +6,7 @@ import {
   devoteamUrl,
   emailtreeUrl,
   githubUrl,
-  linkedInExperienceUrl,
+  resumeUrl,
   reactMKUrl,
   sesUrl,
 } from "@/helpers/links";
@@ -45,7 +45,7 @@ export default function Work() {
           <OpenButton href={devoteamUrl} />
         </li>
         <li>
-          <AnchorButton href={linkedInExperienceUrl}>{t("resume")}</AnchorButton>
+          <AnchorButton href={resumeUrl}>{t("resume")}</AnchorButton>
           <p className="work-year">{t("more")}</p>
         </li>
         <li className="button-group">
