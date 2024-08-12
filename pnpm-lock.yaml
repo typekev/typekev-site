@@ -30,8 +30,8 @@ importers:
         specifier: ^0.427.0
         version: 0.427.0(react@18.3.1)
       natural:
-        specifier: ^7.0.5
-        version: 7.0.7
+        specifier: ^8.0.1
+        version: 8.0.1
       next:
         specifier: ^14.2.5
         version: 14.2.5(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2686,8 +2686,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  natural@7.0.7:
-    resolution: {integrity: sha512-1L7J4/0nIQAJMy1n3i02DbmaJMrY0t1gf9P1oF6eb1HDZda368Evhe6MA4oFY8voQxqQhovZCiLVZ0pLAkjLpw==}
+  natural@8.0.1:
+    resolution: {integrity: sha512-VVw8O5KrfvwqAFeNZEgBbdgA+AQaBlHcXEootWU7TWDaFWFI0VLfzyKMsRjnfdS3cVCpWmI04xLJonCvEv11VQ==}
     engines: {node: '>=0.4.10'}
 
   negotiator@0.6.3:
@@ -6781,7 +6781,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  natural@7.0.7:
+  natural@8.0.1:
     dependencies:
       afinn-165: 1.0.4
       afinn-165-financialmarketnews: 3.0.0

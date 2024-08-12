@@ -42,7 +42,7 @@
     "tunnel-rat": "^0.1.2"
   },
   "peerDependencies": {
-    "natural": "^7.0.5"
+    "natural": "^8.0.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.2.5",
