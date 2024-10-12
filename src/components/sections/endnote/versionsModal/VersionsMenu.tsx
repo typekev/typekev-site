@@ -11,25 +11,25 @@ export function VersionsMenu() {
         <li>
           <Image src={v4Img} alt="Version 4 of typekev.com" />
           <a href="https://v4.typekev.com/about/" target="_blank">
-            Version 4
+            <span className="button active">Version 4</span>
           </a>
         </li>
         <li>
           <Image src={v3Img} alt="Version 3 of typekev.com" />
           <a href="https://v3.typekev.com/explore/" target="_blank">
-            Version 3
+            <span className="button active">Version 3</span>
           </a>
         </li>
         <li>
           <Image src={v2Img} alt="Version 2 of typekev.com" />
           <a href="https://v2.typekev.com" target="_blank">
-            Version 2
+            <span className="button active">Version 2</span>
           </a>
         </li>
         <li>
           <Image src={v1Img} alt="Version 1 of typekev.com" />
           <a href="https://v1.typekev.com" target="_blank">
-            Version 1
+            <span className="button active">Version 1</span>
           </a>
         </li>
       </menu>

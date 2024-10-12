@@ -696,9 +696,12 @@ menu.version-links {
 
 menu.version-links > li {
   position: relative;
-  border-radius: 0.5em;
+  border-radius: 0.75em;
   overflow: hidden;
-  box-shadow: 0 0 2em var(--transparent-black);
+  box-shadow: 0 0 1.25em var(--black);
+  animation: rainbow 25s linear infinite reverse;
+  background: linear-gradient(-60deg, var(--rainbow-colors));
+  background-size: 1000% 100%;
 }
 
 menu.version-links > li > a {
@@ -707,22 +710,31 @@ menu.version-links > li > a {
   display: grid;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: 200;
   background: var(--transparent-black);
-  border-radius: 0.5em;
-  transition:
-    background 0.5s ease-out,
-    backdrop-filter 0.25s ease-in-out;
+  transition: background 0.125s ease-out;
 }
 
 menu.version-links > li:hover > a {
-  background: var(--transparent-black-faded);
-  backdrop-filter: blur(0.25em);
+  background: transparent;
 }
 
 menu.version-links > li > img {
   display: block;
   width: 100%;
   height: auto;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.125s ease-in-out, transform 0.125s ease-in-out;
+  border-radius: 0.75em;
+}
+
+menu.version-links > li:hover > img {
+  border-radius: 0.65em;
+  opacity: 0.8;
+  transform: scale(0.99, 0.979);
 }
 
 .button:not(:hover) > dialog.tooltip {
