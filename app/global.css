@@ -32,9 +32,13 @@ body {
 
 html {
   font-family: var(--font-poppins);
-  background: var(--black);
   color: white;
   font-weight: 600;
+  animation: rainbow 75s linear infinite reverse;
+  animation-delay: -0.75s;
+  background-color: var(--black);
+  background: linear-gradient(-60deg, var(--rainbow-colors));
+  background-size: 1000% 100%;
 }
 
 input,
