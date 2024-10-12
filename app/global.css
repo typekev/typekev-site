@@ -730,7 +730,8 @@ menu.version-links > li:hover > img {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black-faded) 100%);
   background-size: cover;
   position: fixed;
-  inset: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
   margin: auto;
   width: 100%;
   opacity: 0;
@@ -907,7 +908,7 @@ menu.version-links > li:hover > img {
     margin-block: 0 5em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 384px;
   }
 }
@@ -934,7 +935,7 @@ menu.version-links > li:hover > img {
     margin-block: 0.5em 6em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 480px;
   }
 }
@@ -961,7 +962,7 @@ menu.version-links > li:hover > img {
     margin-block: 2em 7em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 576px;
   }
 }
@@ -989,7 +990,7 @@ menu.version-links > li:hover > img {
     margin-block: 3em 8em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 768px;
   }
 }
@@ -1011,7 +1012,7 @@ menu.version-links > li:hover > img {
     margin-block: 4em 9em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 992px;
   }
 }
@@ -1033,7 +1034,7 @@ menu.version-links > li:hover > img {
     margin-block: 5em 10em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 1200px;
   }
 }
@@ -1055,7 +1056,7 @@ menu.version-links > li:hover > img {
     margin-block: 5em 11em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 1600px;
   }
 }
@@ -1077,7 +1078,7 @@ menu.version-links > li:hover > img {
     margin-block: 6em 12em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 2000px;
   }
 }
@@ -1099,7 +1100,7 @@ menu.version-links > li:hover > img {
     margin-block: 6em 13em;
   }
 
-  .black-hole, .black-hole-canvas {
+  aside.overlay, .black-hole, .black-hole-canvas {
     height: 100%;
   }
 }
