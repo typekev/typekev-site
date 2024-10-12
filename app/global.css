@@ -45,7 +45,7 @@ body {
 
 aside.overlay {
   position: fixed;
-  inset-block-start: 0;
+  inset-block-start: -60px;
   inset-inline-start: 0;
   width: 100%;
   background: linear-gradient(-60deg, var(--rainbow-colors));
@@ -730,7 +730,7 @@ menu.version-links > li:hover > img {
 .black-hole {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black-faded) 100%);
   position: fixed;
-  inset-block-start: 0;
+  inset-block-start: -60px;
   inset-inline-start: 0;
   margin: auto;
   width: 100%;
@@ -740,6 +740,8 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole-canvas {
+  inset-block-start: -60px;
+  inset-inline-start: 0;
   opacity: 0;
   visibility: hidden;
   --to: 0.84;
@@ -909,7 +911,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 384px;
+    height: 504px;
   }
 }
 
@@ -936,7 +938,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 480px;
+    height: 600px;
   }
 }
 
@@ -963,7 +965,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 576px;
+    height: 696px;
   }
 }
 
@@ -991,7 +993,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 768px;
+    height: 888px;
   }
 }
 
@@ -1013,7 +1015,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 992px;
+    height: 1112px;
   }
 }
 
@@ -1035,7 +1037,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 1200px;
+    height: 1320px;
   }
 }
 
@@ -1057,7 +1059,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 1600px;
+    height: 1720px;
   }
 }
 
@@ -1079,7 +1081,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 2000px;
+    height: 2120px;
   }
 }
 
@@ -1101,7 +1103,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 100%;
+    height: calc(100% + 120px); 
   }
 }
 
