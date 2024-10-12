@@ -37,15 +37,20 @@ html {
   background: var(--black);
 }
 
+body {
+  opacity: 0;
+  visibility: hidden;
+  animation: fade-in 1s linear 0.2s 1 forwards;
+}
+
 aside.overlay {
   position: fixed;
   inset: 0;
   margin: 0;
   background: linear-gradient(-60deg, var(--rainbow-colors));
   background-size: 1000% 100%;
-  animation: rainbow 75s linear infinite reverse;
-  animation-delay: -0.5s;
-  opacity: 0.88;
+  animation: rainbow 65s linear 0.1s infinite reverse;
+  opacity: 0.82;
 }
 
 input,
@@ -137,8 +142,7 @@ header#about > .logo {
   overflow: visible;
   color: var(--pale-pink);
   --float-y: 0.125em;
-  animation: floating 22s 2s ease-in-out infinite;
-  filter: drop-shadow(-0.25em -0.25em 0.5em var(--transparent-pale-pink));
+  animation: floating 22s 4s ease-in-out infinite;
 }
 
 header#about > .logo::before,
@@ -151,16 +155,15 @@ header#about > .logo::after {
 header#about > .logo::before {
   inset: 4px;
   color: var(--light-cyan);
-  filter: drop-shadow(0.25em 0.25em 0.5em var(--transparent-light-cyan));
   --float-y: 0.0625em;
-  animation: floating 18s ease-in-out infinite;
+  animation: floating 18s 2s ease-in-out infinite;
 }
 
 header#about > .logo::after {
   inset: 2px;
   color: var(--white);
   --float-y: 0.0625em;
-  animation: floating 14s 1s ease-in-out infinite;
+  animation: floating 14s 3s ease-in-out infinite;
 }
 
 section#work {
@@ -531,7 +534,7 @@ aside.modal-background > .modal-close-button {
 .highlighted-button:target > span::after {
   position: relative;
   display: inline-block;
-  animation: rainbow 75s linear infinite reverse;
+  animation: rainbow 75s 2s linear infinite reverse;
   background: linear-gradient(90deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   background-clip: text;
@@ -631,6 +634,7 @@ aside.modal-background > .modal-close-button {
 }
 
 .endnote-link {
+  cursor: pointer;
   text-decoration: none;
   font-weight: 200;
 }
@@ -679,7 +683,7 @@ menu.version-links > li {
   border-radius: 0.75em;
   overflow: hidden;
   box-shadow: 0 0 1.25em var(--black);
-  animation: rainbow 25s linear infinite reverse;
+  animation: rainbow 25s 2s linear infinite reverse;
   background: linear-gradient(-60deg, var(--rainbow-colors));
   background-size: 1000% 100%;
 }
@@ -723,7 +727,7 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole {
-  background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black) 100%);
+  background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black-faded) 100%);
   background-size: cover;
   position: fixed;
   inset: 0;
@@ -731,15 +735,14 @@ menu.version-links > li:hover > img {
   width: 100%;
   opacity: 0;
   visibility: hidden;
-  --in: 0.88;
-  animation: fade-in 2s 2s ease forwards;
+  animation: fade-in 2s 3s ease forwards;
 }
 
 .black-hole-canvas {
   opacity: 0;
   visibility: hidden;
-  --in: 0.88;
-  animation: fade-in 2s 2s ease forwards;
+  --to: 0.84;
+  animation: fade-in 2s 3s ease forwards;
 }
 
 @media (max-width: 575.98px) {
@@ -1134,7 +1137,7 @@ menu.version-links > li:hover > img {
   }
 
   to {
-    opacity: var(--in, 1);
+    opacity: var(--to, 1);
     visibility: visible;
   }
 }
