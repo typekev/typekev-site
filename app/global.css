@@ -34,11 +34,18 @@ html {
   font-family: var(--font-poppins);
   color: white;
   font-weight: 600;
-  animation: rainbow 75s linear infinite reverse;
-  animation-delay: -0.75s;
-  background-color: var(--black);
+  background: var(--black);
+}
+
+aside.overlay {
+  position: fixed;
+  inset: 0;
+  margin: 0;
   background: linear-gradient(-60deg, var(--rainbow-colors));
   background-size: 1000% 100%;
+  animation: rainbow 75s linear infinite reverse;
+  animation-delay: -0.5s;
+  opacity: 0.88;
 }
 
 input,
@@ -123,22 +130,14 @@ header#about {
   padding-block-start: 2em;
 }
 
-header#about > * {
-  opacity: 0;
-  visibility: hidden;
-}
-
 header#about > .logo {
   position: relative;
   display: block;
   margin: 0;
-  opacity: 0;
   overflow: visible;
   color: var(--pale-pink);
   --float-y: 0.125em;
-  animation:
-    fade-in 3s ease forwards,
-    floating 22s 2s ease-in-out infinite;
+  animation: floating 22s 2s ease-in-out infinite;
   filter: drop-shadow(-0.25em -0.25em 0.5em var(--transparent-pale-pink));
 }
 
@@ -164,18 +163,8 @@ header#about > .logo::after {
   animation: floating 14s 1s ease-in-out infinite;
 }
 
-header#about > p {
-  animation: fade-in 3s 0.25s ease forwards;
-}
-
 section#work {
   padding-block-start: 1em;
-}
-
-section#work > * {
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 3s 0.75s ease forwards;
 }
 
 section#work ul {
@@ -220,12 +209,6 @@ address#contact {
   font-style: normal;
 }
 
-address#contact > * {
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 3s 1s ease forwards;
-}
-
 address#contact ul {
   display: grid;
   gap: 0.25em;
@@ -242,9 +225,6 @@ footer#endnote {
   justify-self: end;
   font-size: 0.3125em;
   font-weight: 100;
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 3s 1.25s ease forwards;
 }
 
 footer#endnote > p {
@@ -412,11 +392,8 @@ aside.modal-background > .modal-close-button {
 #bot > button {
   pointer-events: all;
   cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
   padding: 0.5em;
   border-radius: 1em;
-  animation: fade-in 2s 0.75s ease forwards;
 }
 
 #bot > button > svg {
@@ -746,7 +723,7 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole {
-  background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--black) 100%);
+  background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black) 100%);
   background-size: cover;
   position: fixed;
   inset: 0;
@@ -754,13 +731,15 @@ menu.version-links > li:hover > img {
   width: 100%;
   opacity: 0;
   visibility: hidden;
-  animation: fade-in 2s 1s ease forwards;
+  --in: 0.88;
+  animation: fade-in 2s 2s ease forwards;
 }
 
 .black-hole-canvas {
   opacity: 0;
   visibility: hidden;
-  animation: fade-in 2s 2.5s ease forwards;
+  --in: 0.88;
+  animation: fade-in 2s 2s ease forwards;
 }
 
 @media (max-width: 575.98px) {
@@ -1155,7 +1134,7 @@ menu.version-links > li:hover > img {
   }
 
   to {
-    opacity: 1;
+    opacity: var(--in, 1);
     visibility: visible;
   }
 }
