@@ -49,8 +49,8 @@ export default function Work() {
           <p className="work-year">{t("more")}</p>
         </li>
         <li className="button-group">
-          <AnchorButton href={githubUrl}>Projects</AnchorButton>
-          <p className="work-year">...Github</p>
+          <AnchorButton href={githubUrl}>GitHub</AnchorButton>
+          <p className="work-year">{t("portfolio")}</p>
           <a href={reactMKUrl} target="_blank" className="button icon-button" aria-label="Navigate to my NPM library">
             <KeyboardIcon size="0.875em" strokeWidth={1.75} />
             <dialog className="tooltip">React Mechanical Keyboard &mdash; NPM Library</dialog>

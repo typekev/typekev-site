@@ -15,7 +15,7 @@ export function Chatbot() {
   };
 
   return (
-    <article id="bot">
+    <article id="bot" className={isChatVisible ? "active" : ""}>
       <Chat visible={isChatVisible} toggleChat={toggleChat} />
       <Bot active={isChatVisible} toggleChat={toggleChat} />
     </article>
