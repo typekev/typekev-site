@@ -116,10 +116,7 @@ h2.title:focus::after {
 
 header#about {
   place-content: center start;
-  height: calc(100lvh - 5em);
-  min-height: 10em;
-  max-height: 23em;
-  padding-block-start: min(2em, 10lvh);
+  padding-block-start: 2em;
 }
 
 header#about > * {
@@ -130,9 +127,7 @@ header#about > * {
 header#about > .logo {
   position: relative;
   display: block;
-  max-height: 18lvh;
   margin: 0;
-  font-size: min(3em, 10vmax);
   opacity: 0;
   overflow: visible;
   color: var(--pale-pink);
@@ -166,13 +161,11 @@ header#about > .logo::after {
 }
 
 header#about > p {
-  padding-block-end: min(2em, 25lvh);
   animation: fade-in 3s 0.25s ease forwards;
 }
 
 section#work {
   padding-block-start: 1em;
-  padding-block-end: min(5em, 25lvh);
 }
 
 section#work > * {
@@ -218,9 +211,8 @@ section#work ul > li a.button:hover + p.work-year {
 }
 
 address#contact {
-  padding-block-start: 1em;
-  padding-block-end: min(5em, 25lvh);
-  margin-block-end: -8em;
+  padding-block-start: 2em;
+  margin-block-end: -6em;
   font-style: normal;
 }
 
@@ -244,7 +236,6 @@ address#contact button.copy-button {
 
 footer#endnote {
   justify-self: end;
-  margin-block: 4em 3em;
   font-size: 0.3125em;
   font-weight: 100;
   opacity: 0;
@@ -385,22 +376,29 @@ aside.modal-background > .modal-close-button {
   gap: 0.375em;
   align-items: center;
   justify-content: end;
-  height: 3em;
-  inset-block-end: min(3em, 12lvh);
+  width: 100%;
+  height: fit-content;
+  max-height: 3em;
   margin-block: 6em -1.5em;
   margin-inline-end: -1em;
   padding-inline: 0.25em;
   padding-block-end: 0.25em;
   font-weight: 500;
   --float-y: 0.125em;
+  transition: width ease-in-out 0.25s, max-height ease-in-out 0.25s;
   animation: floating 10s ease-in-out infinite;
   z-index: 3;
+}
+
+#bot.active {
+  width: calc(100% + 24px);
+  max-height: max(3em, 300px);
 }
 
 #bot > dialog {
   pointer-events: all;
   position: relative;
-  font-size: 0.375em;
+  font-size: 0.4375em;
   padding: 0.75em;
 }
 
@@ -445,6 +443,7 @@ aside.modal-background > .modal-close-button {
 #bot .chat-message-text {
   padding-inline-end: inherit;
   position: absolute;
+  pointer-events: none;
 }
 
 #bot .chat-message-text > #cursor {
@@ -462,7 +461,7 @@ aside.modal-background > .modal-close-button {
 }
 
 #bot .chat-message-spacer {
-  visibility: hidden;
+  color: transparent;
 }
 
 #bot .chat-message.bot {
@@ -735,10 +734,9 @@ menu.version-links > li > img {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--black) 100%);
   background-size: cover;
   position: fixed;
-  inset: 0;
+  inset-block-start: 0;
   margin: auto;
-  width: 100dvw;
-  height: 100lvh;
+  width: 100%;
   opacity: 0;
   visibility: hidden;
   animation: fade-in 2s 1s ease forwards;
@@ -757,12 +755,12 @@ menu.version-links > li > img {
   }
 
   main {
-    font-size: 30px;
+    font-size: 28px;
     margin-inline: 32px;
   }
 
-  #bot {
-    inset-block-end: min(4em, 16lvh);
+  #bot > dialog {
+    margin-inline-start: -24px;
   }
 
   footer#endnote {
@@ -795,8 +793,8 @@ menu.version-links > li > img {
     margin-inline: 56px;
   }
 
-  #bot {
-    inset-block-end: min(3.5em, 14lvh);
+  #bot > dialog {
+    margin-inline-start: -32px;
   }
 
   footer#endnote {
@@ -808,6 +806,10 @@ menu.version-links > li > img {
   main {
     font-size: 40px;
     margin-inline: 56px;
+  }
+
+  #bot > dialog {
+    margin-inline-start: 56px;
   }
 
   footer#endnote {
@@ -822,7 +824,11 @@ menu.version-links > li > img {
 @media (min-width: 992px) and (max-width: 1199.98px) {
   main {
     font-size: 40px;
-    margin-inline: 64px;
+    margin-inline: 128px;
+  }
+
+  #bot > dialog {
+    margin-inline-start: 128px;
   }
 
   footer#endnote {
@@ -837,7 +843,11 @@ menu.version-links > li > img {
 @media (min-width: 1200px) and (max-width: 1599.98px) {
   main {
     font-size: 48px;
-    margin-inline: 96px;
+    margin-inline: 192px;
+  }
+
+  #bot > dialog {
+    margin-inline-start: 192px;
   }
 
   footer#endnote {
@@ -849,18 +859,260 @@ menu.version-links > li > img {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1600px) and (max-width: 1999.98px)  {
   main {
     font-size: 52px;
-    margin-inline: 108px;
+    margin-inline: 256px;
+  }
+
+  #bot > dialog {
+    margin-inline-start: 192px;
   }
 
   footer#endnote {
-    width: 33%;
+    width: 50%;
   }
 
   menu.version-links {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 2000px) {
+  main {
+    font-size: 52px;
+    margin-inline: 336px;
+  }
+
+  #bot > dialog {
+    margin-inline-start: 256px;
+  }
+
+  footer#endnote {
+    width: 40%;
+  }
+
+  menu.version-links {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-height: 383.98px) {
+  header#about {
+    padding-block-start: 0;
+  }
+
+  header#about > .logo {
+    height: 0.75em;
+    font-size: 1.75em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 0;
+  }
+
+  #bot {
+    inset-block-end: 0;
+  }
+
+  footer#endnote {
+    margin-block: 0 5em;
+  }
+
+  .black-hole {
+    height: 384px;
+  }
+}
+
+@media (min-height: 384px) and (max-height: 479.98px) {
+  header#about {
+    padding-block-start: 0;
+  }
+
+  header#about > .logo {
+    height: 1em;
+    font-size: 2em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 0.25em;
+  }
+
+  #bot {
+    inset-block-end: 0.25em;
+  }
+
+  footer#endnote {
+    margin-block: 0.5em 6em;
+  }
+
+  .black-hole {
+    height: 480px;
+  }
+}
+
+@media (min-height: 480px) and (max-height: 575.98px) {
+  header#about {
+    padding-block-start: 0.5em;
+  }
+
+  header#about > .logo {
+    height: 1.25em;
+    font-size: 2em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 0.5em;
+  }
+
+  #bot {
+    inset-block-end: 0.5em;
+  }
+
+  footer#endnote {
+    margin-block: 2em 7em;
+  }
+
+  .black-hole {
+    height: 576px;
+  }
+}
+
+
+@media (min-height: 576px) and (max-height: 767.98px) {
+  header#about {
+    padding-block-start: 0.75em;
+  }
+  
+  header#about > .logo {
+    height: 1.5em;
+    font-size: 2em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 0.75em;
+  }
+
+  #bot {
+    inset-block-end: 0.75em;
+  }
+
+  footer#endnote {
+    margin-block: 3em 8em;
+  }
+
+  .black-hole {
+    height: 768px;
+  }
+}
+
+@media (min-height: 768px) and (max-height: 991.98px) {
+  header#about > .logo {
+    font-size: 2em;
+  }
+ 
+  header#about > p, section#work, address#contact {
+    padding-block-end: 1em;
+  } 
+
+  #bot {
+    inset-block-end: 1em;
+  }
+
+  footer#endnote {
+    margin-block: 4em 9em;
+  }
+
+  .black-hole {
+    height: 992px;
+  }
+}
+
+@media (min-height: 992px) and (max-height: 1199.98px) {
+  header#about > .logo {
+    font-size: 2.25em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 1.5em;
+  }   
+
+  #bot {
+    inset-block-end: 1.5em;
+  }
+
+  footer#endnote {
+    margin-block: 5em 10em;
+  }
+
+  .black-hole {
+    height: 1200px;
+  }
+}
+
+@media (min-height: 1200px) and (max-height: 1599.98px) {
+  header#about > .logo {
+    font-size: 3em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 2em;
+  }
+
+  #bot {
+    inset-block-end: 2em;
+  } 
+
+  footer#endnote {
+    margin-block: 5em 11em;
+  }
+
+  .black-hole {
+    height: 1600px;
+  }
+}
+
+@media (min-height: 1600px) and (max-height: 1999.98px) {
+  header#about > .logo {
+    font-size: 3.5em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 3em;
+  }
+
+  #bot {
+    inset-block-end: 3em;
+  } 
+
+  footer#endnote {
+    margin-block: 6em 12em;
+  }
+
+  .black-hole {
+    height: 2000px;
+  }
+}
+
+@media (min-height: 2000px) {
+  header#about > .logo {
+    font-size: 4em;
+  }
+
+  header#about > p, section#work, address#contact {
+    padding-block-end: 4em;
+  }   
+
+  #bot {
+    inset-block-end: 4em;
+  }
+
+  footer#endnote {
+    margin-block: 6em 13em;
+  }
+
+  .black-hole {
+    height: 100%;
   }
 }
 
