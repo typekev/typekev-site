@@ -45,8 +45,9 @@ body {
 
 aside.overlay {
   position: fixed;
-  inset: 0;
-  margin: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 100%;
   background: linear-gradient(-60deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   animation: rainbow 65s linear 0.15s infinite reverse;
@@ -117,8 +118,8 @@ h2.title {
 h2.title::after {
   content: "";
   position: absolute;
-  inset-inline-start: 0;
   inset-block-end: 0;
+  inset-inline-start: 0;
   width: 0;
   height: 0.125rem;
   background-color: var(--white);
@@ -314,8 +315,8 @@ dialog.tooltip {
   font-weight: 300;
   font-size: 0.375em;
   transform: translateX(-50%);
-  inset-inline-start: 50%;
   inset-block-start: 100%;
+  inset-inline-start: 50%;
   width: max-content;
   height: auto;
   margin-block-start: 0.125em;
@@ -728,7 +729,6 @@ menu.version-links > li:hover > img {
 
 .black-hole {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black-faded) 100%);
-  background-size: cover;
   position: fixed;
   inset-block-start: 0;
   inset-inline-start: 0;
