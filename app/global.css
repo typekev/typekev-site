@@ -296,7 +296,6 @@ button:disabled {
 dialog {
   display: grid;
   gap: 0.25em;
-  padding: 1.5em;
   margin: 0;
   background-color: var(--transparent-white-accent);
   backdrop-filter: blur(0.75em);
