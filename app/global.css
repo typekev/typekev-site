@@ -745,7 +745,7 @@ menu.version-links > li:hover > img {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--black) 100%);
   background-size: cover;
   position: fixed;
-  inset-block-start: 0;
+  inset: 0;
   margin: auto;
   width: 100%;
   opacity: 0;
