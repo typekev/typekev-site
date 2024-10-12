@@ -20,7 +20,10 @@ export function BlackHole(props: Omit<PrimitiveProps, "object">) {
   const ease = (scroll: number) => Math.min(easeInOutQuad(Math.abs(scroll - scene.rotation.x)), 0.1);
 
   const getRotationX = useCallback((x: number, scroll: number) => x + (x > scroll ? -ease(scroll) : ease(scroll)), []);
-  const getPositionY = useCallback((y: number, scroll: number) => y + (y > -scroll ? -ease(scroll) : ease(scroll)), []);
+  const getPositionY = useCallback(
+    (y: number, scroll: number) => y + (y > -scroll + scrollMax ? -ease(scroll) : ease(scroll)),
+    [],
+  );
 
   useBloom();
 
