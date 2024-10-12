@@ -45,7 +45,7 @@ body {
 
 aside.overlay {
   position: fixed;
-  inset-block-start: -60px;
+  inset-block-start: -10px;
   inset-inline-start: 0;
   width: 100%;
   background: linear-gradient(-60deg, var(--rainbow-colors));
@@ -730,7 +730,7 @@ menu.version-links > li:hover > img {
 .black-hole {
   background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black-faded) 100%);
   position: fixed;
-  inset-block-start: -60px;
+  inset-block-start: -10px;
   inset-inline-start: 0;
   margin: auto;
   width: 100%;
@@ -740,7 +740,7 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole-canvas {
-  inset-block-start: -60px;
+  inset-block-start: -10px;
   inset-inline-start: 0;
   opacity: 0;
   visibility: hidden;
@@ -938,7 +938,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 600px;
+    height: 500px;
   }
 }
 
@@ -965,7 +965,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 696px;
+    height: 596px;
   }
 }
 
@@ -993,7 +993,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 888px;
+    height: 788px;
   }
 }
 
@@ -1015,7 +1015,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 1112px;
+    height: 1012px;
   }
 }
 
@@ -1037,7 +1037,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 1320px;
+    height: 1220px;
   }
 }
 
@@ -1059,7 +1059,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 1720px;
+    height: 1620px;
   }
 }
 
@@ -1081,7 +1081,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: 2120px;
+    height: 2020px;
   }
 }
 
@@ -1103,7 +1103,7 @@ menu.version-links > li:hover > img {
   }
 
   aside.overlay, .black-hole, .black-hole-canvas {
-    height: calc(100% + 120px); 
+    height: calc(100% + 20px); 
   }
 }
 
