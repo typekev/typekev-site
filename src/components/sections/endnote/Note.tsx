@@ -59,7 +59,14 @@ export function Note() {
             </a>
           ),
           versions: (chunks) => (
-            <a href="#endnote" className="endnote-link" data-text={chunks} onClick={() => toggleVersionsModal()}>
+            <a
+              className="endnote-link"
+              role="button"
+              data-toggle="modal"
+              aria-hidden="true"
+              onClick={() => toggleVersionsModal()}
+              data-text={chunks}
+            >
               {chunks}
             </a>
           ),
