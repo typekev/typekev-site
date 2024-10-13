@@ -13,7 +13,7 @@ const Common = dynamic(() => import("@/components/canvas/View").then((mod) => mo
 export default function Page() {
   return (
     <>
-      <aside className="overlay" />
+      <aside className="background-overlay" />
       <main>
         <View orbit className="black-hole">
           <BlackHole />

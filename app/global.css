@@ -16,6 +16,7 @@
   --sky-blue: #87ceeb;
   --transparent-sky-blue: #87ceeb77;
   --light-lavender-purple: #dfc5fe;
+  --dark-lavender-purple: #0b0a0f;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
 }
@@ -27,31 +28,38 @@ body:has(.modal-background:not(.hidden)) {
 
 html,
 body {
+  position: relative;
   scroll-behavior: smooth;
+  margin: 0;
 }
 
 html {
   font-family: var(--font-poppins);
   color: white;
   font-weight: 600;
-  background: var(--black);
+  background: var(--dark-lavender-purple);
 }
 
 body {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(-80deg, var(--rainbow-colors));
+  background-size: 1000% 100%;
   opacity: 0;
   visibility: hidden;
-  animation: fade-in 1s linear 0.25s 1 forwards;
+  animation: 
+    rainbow 65s linear -1s infinite reverse, 
+    fade-in 1.5s linear 0.25s 1 forwards;
 }
 
-aside.overlay {
-  position: fixed;
-  inset-block-start: -10px;
-  inset-inline-start: 0;
+aside.background-overlay {
+  position: absolute;
+  height: 100%;
   width: 100%;
-  background: linear-gradient(-60deg, var(--rainbow-colors));
-  background-size: 1000% 100%;
-  animation: rainbow 65s linear 0.15s infinite reverse;
-  opacity: 0.82;
+  background: linear-gradient(to bottom, var(--dark-lavender-purple), transparent 3em, transparent calc(100% - 3em), var(--dark-lavender-purple));
+  opacity: 0;
+  visibility: hidden;
+  animation: fade-in 5s 5s ease forwards;
 }
 
 input,
@@ -685,7 +693,7 @@ menu.version-links > li {
   overflow: hidden;
   box-shadow: 0 0 1.25em var(--black);
   animation: rainbow 25s 2s linear infinite reverse;
-  background: linear-gradient(-60deg, var(--rainbow-colors));
+  background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
 }
 
@@ -728,15 +736,14 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole {
-  background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--transparent-black-faded) 100%);
+  background: radial-gradient(ellipse 130% 50% at 70% 45%, var(--transparent-tropical-indigo) 0%, var(--black));
   position: fixed;
   inset-block-start: -10px;
   inset-inline-start: 0;
-  margin: auto;
   width: 100%;
   opacity: 0;
   visibility: hidden;
-  animation: fade-in 2s 3s ease forwards;
+  animation: fade-in 4s 4s ease forwards;
 }
 
 .black-hole-canvas {
@@ -910,7 +917,7 @@ menu.version-links > li:hover > img {
     margin-block: 0 5em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 504px;
   }
 }
@@ -937,7 +944,7 @@ menu.version-links > li:hover > img {
     margin-block: 0.5em 6em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 500px;
   }
 }
@@ -964,7 +971,7 @@ menu.version-links > li:hover > img {
     margin-block: 2em 7em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 596px;
   }
 }
@@ -992,7 +999,7 @@ menu.version-links > li:hover > img {
     margin-block: 3em 8em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 788px;
   }
 }
@@ -1014,7 +1021,7 @@ menu.version-links > li:hover > img {
     margin-block: 4em 9em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 1012px;
   }
 }
@@ -1036,7 +1043,7 @@ menu.version-links > li:hover > img {
     margin-block: 5em 10em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 1220px;
   }
 }
@@ -1058,7 +1065,7 @@ menu.version-links > li:hover > img {
     margin-block: 5em 11em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 1620px;
   }
 }
@@ -1080,7 +1087,7 @@ menu.version-links > li:hover > img {
     margin-block: 6em 12em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: 2020px;
   }
 }
@@ -1102,7 +1109,7 @@ menu.version-links > li:hover > img {
     margin-block: 6em 13em;
   }
 
-  aside.overlay, .black-hole, .black-hole-canvas {
+  .black-hole, .black-hole-canvas {
     height: calc(100% + 20px); 
   }
 }
