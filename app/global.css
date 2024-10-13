@@ -16,7 +16,7 @@
   --sky-blue: #87ceeb;
   --transparent-sky-blue: #87ceeb77;
   --light-lavender-purple: #dfc5fe;
-  --dark-lavender-purple: #0b0a0f;
+  --dark-lavender-purple: #574171;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
 }
@@ -45,21 +45,16 @@ body {
   width: 100%;
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
+  box-shadow: 
+    inset 0 0 0 0 transparent,
+    inset 0 0 0 0 transparent;
+  border-radius: 0;
   opacity: 0;
   visibility: hidden;
   animation: 
     rainbow 65s linear -1s infinite reverse, 
-    fade-in 1.5s linear 0.25s 1 forwards;
-}
-
-aside.background-overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to bottom, var(--dark-lavender-purple), transparent 3em, transparent calc(100% - 3em), var(--dark-lavender-purple));
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 5s 5s ease forwards;
+    fade-in 1.5s linear 0.25s 1 forwards,
+    fade-in-shadow 4s 4s ease forwards;
 }
 
 input,
@@ -736,7 +731,7 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole {
-  background: radial-gradient(ellipse 130% 50% at 70% 45%, var(--transparent-tropical-indigo) 0%, var(--black));
+  background: radial-gradient(ellipse 130% 50% at 70% 45%, var(--transparent-tropical-indigo) 0%, transparent);
   position: fixed;
   inset-block-start: -10px;
   inset-inline-start: 0;
@@ -751,7 +746,7 @@ menu.version-links > li:hover > img {
   inset-inline-start: 0;
   opacity: 0;
   visibility: hidden;
-  --to: 0.84;
+  --to: 0.86;
   animation: fade-in 2s 3s ease forwards;
 }
 
@@ -1182,5 +1177,19 @@ menu.version-links > li:hover > img {
 
   75% {
     transform: rotate(calc(var(--shake-rotation) * -1));
+  }
+}
+
+@keyframes fade-in-shadow {
+  from {
+    box-shadow: 
+      inset 0 0 0 0 transparent,
+      inset 0 0 0 0 transparent;
+  }
+
+  to {
+    box-shadow: 
+      inset 0 14em 14em -7em var(--dark-lavender-purple),
+      inset 0 -14em 14em -7em var(--dark-lavender-purple);
   }
 }

@@ -12,19 +12,16 @@ const Common = dynamic(() => import("@/components/canvas/View").then((mod) => mo
 
 export default function Page() {
   return (
-    <>
-      <aside className="background-overlay" />
-      <main>
-        <View orbit className="black-hole">
-          <BlackHole />
-          <Common />
-        </View>
-        <About />
-        <Work />
-        <Contact />
-        <Chatbot />
-        <Endnote />
-      </main>
-    </>
+    <main>
+      <View orbit className="black-hole">
+        <BlackHole />
+        <Common />
+      </View>
+      <About />
+      <Work />
+      <Contact />
+      <Chatbot />
+      <Endnote />
+    </main>
   );
 }
