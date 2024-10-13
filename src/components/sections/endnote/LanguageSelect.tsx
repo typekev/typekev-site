@@ -17,7 +17,12 @@ export function LanguageSelect() {
   return (
     <label>
       <GlobeIcon size="1.5em" strokeWidth={1} />
-      <select style={{ width: `${t(locale).length + 3}ch` }} value={locale} onChange={handleChange}>
+      <select
+        style={{ width: `${t(locale).length + 3}ch` }}
+        value={locale}
+        onChange={handleChange}
+        aria-label="Translations menu"
+      >
         {locales.map((l) => (
           <option key={l} value={l}>
             {t(l)}

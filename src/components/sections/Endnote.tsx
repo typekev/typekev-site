@@ -13,17 +13,17 @@ export default function Endnote() {
     <footer id="endnote">
       <menu className="social-links">
         <li className="button">
-          <a href={githubUrl}>
+          <a href={githubUrl} aria-label="View my GitHub profile">
             <SiGithub />
           </a>
         </li>
         <li className="button">
-          <a href={linkedInUrl}>
+          <a href={linkedInUrl} aria-label="View my LinkedIn profile">
             <SiLinkedin />
           </a>
         </li>
         <li className="button">
-          <a href={xUrl}>
+          <a href={xUrl} aria-label="View my X (formerly known as Twitter) profile">
             <SiX />
           </a>
         </li>
