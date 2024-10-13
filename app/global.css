@@ -16,6 +16,7 @@
   --sky-blue: #87ceeb;
   --transparent-sky-blue: #87ceeb77;
   --light-lavender-purple: #dfc5fe;
+  --dark-lavender-purple: #574171;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
 }
@@ -27,18 +28,33 @@ body:has(.modal-background:not(.hidden)) {
 
 html,
 body {
+  position: relative;
   scroll-behavior: smooth;
+  margin: 0;
 }
 
 html {
   font-family: var(--font-poppins);
   color: white;
   font-weight: 600;
-  animation: rainbow 75s linear infinite reverse;
-  animation-delay: -0.75s;
-  background-color: var(--black);
-  background: linear-gradient(-60deg, var(--rainbow-colors));
+  background: var(--dark-lavender-purple);
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
+  box-shadow: 
+    inset 0 0 0 0 transparent,
+    inset 0 0 0 0 transparent;
+  border-radius: 0;
+  opacity: 0;
+  visibility: hidden;
+  animation: 
+    rainbow 65s linear -1s infinite reverse, 
+    fade-in 1.5s linear 0.25s 1 forwards,
+    fade-in-shadow 4s 4s ease forwards;
 }
 
 input,
@@ -105,8 +121,8 @@ h2.title {
 h2.title::after {
   content: "";
   position: absolute;
-  inset-inline-start: 0;
   inset-block-end: 0;
+  inset-inline-start: 0;
   width: 0;
   height: 0.125rem;
   background-color: var(--white);
@@ -123,23 +139,14 @@ header#about {
   padding-block-start: 2em;
 }
 
-header#about > * {
-  opacity: 0;
-  visibility: hidden;
-}
-
 header#about > .logo {
   position: relative;
   display: block;
   margin: 0;
-  opacity: 0;
   overflow: visible;
   color: var(--pale-pink);
   --float-y: 0.125em;
-  animation:
-    fade-in 3s ease forwards,
-    floating 22s 2s ease-in-out infinite;
-  filter: drop-shadow(-0.25em -0.25em 0.5em var(--transparent-pale-pink));
+  animation: floating 22s 4s ease-in-out infinite;
 }
 
 header#about > .logo::before,
@@ -152,30 +159,19 @@ header#about > .logo::after {
 header#about > .logo::before {
   inset: 4px;
   color: var(--light-cyan);
-  filter: drop-shadow(0.25em 0.25em 0.5em var(--transparent-light-cyan));
   --float-y: 0.0625em;
-  animation: floating 18s ease-in-out infinite;
+  animation: floating 18s 2s ease-in-out infinite;
 }
 
 header#about > .logo::after {
   inset: 2px;
   color: var(--white);
   --float-y: 0.0625em;
-  animation: floating 14s 1s ease-in-out infinite;
-}
-
-header#about > p {
-  animation: fade-in 3s 0.25s ease forwards;
+  animation: floating 14s 3s ease-in-out infinite;
 }
 
 section#work {
   padding-block-start: 1em;
-}
-
-section#work > * {
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 3s 0.75s ease forwards;
 }
 
 section#work ul {
@@ -220,12 +216,6 @@ address#contact {
   font-style: normal;
 }
 
-address#contact > * {
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 3s 1s ease forwards;
-}
-
 address#contact ul {
   display: grid;
   gap: 0.25em;
@@ -242,9 +232,6 @@ footer#endnote {
   justify-self: end;
   font-size: 0.3125em;
   font-weight: 100;
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 3s 1.25s ease forwards;
 }
 
 footer#endnote > p {
@@ -331,8 +318,8 @@ dialog.tooltip {
   font-weight: 300;
   font-size: 0.375em;
   transform: translateX(-50%);
-  inset-inline-start: 50%;
   inset-block-start: 100%;
+  inset-inline-start: 50%;
   width: max-content;
   height: auto;
   margin-block-start: 0.125em;
@@ -412,11 +399,8 @@ aside.modal-background > .modal-close-button {
 #bot > button {
   pointer-events: all;
   cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
   padding: 0.5em;
   border-radius: 1em;
-  animation: fade-in 2s 0.75s ease forwards;
 }
 
 #bot > button > svg {
@@ -554,7 +538,7 @@ aside.modal-background > .modal-close-button {
 .highlighted-button:target > span::after {
   position: relative;
   display: inline-block;
-  animation: rainbow 75s linear infinite reverse;
+  animation: rainbow 75s 2s linear infinite reverse;
   background: linear-gradient(90deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   background-clip: text;
@@ -654,6 +638,7 @@ aside.modal-background > .modal-close-button {
 }
 
 .endnote-link {
+  cursor: pointer;
   text-decoration: none;
   font-weight: 200;
 }
@@ -702,8 +687,8 @@ menu.version-links > li {
   border-radius: 0.75em;
   overflow: hidden;
   box-shadow: 0 0 1.25em var(--black);
-  animation: rainbow 25s linear infinite reverse;
-  background: linear-gradient(-60deg, var(--rainbow-colors));
+  animation: rainbow 25s 2s linear infinite reverse;
+  background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
 }
 
@@ -746,29 +731,26 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole {
-  background: radial-gradient(circle at 75%, var(--transparent-tropical-indigo) 0%, var(--black) 100%);
-  background-size: cover;
+  background: radial-gradient(ellipse 130% 50% at 70% 45%, var(--transparent-tropical-indigo) 0%, transparent);
   position: fixed;
-  inset: 0;
-  margin: auto;
+  inset-block-start: -10px;
+  inset-inline-start: 0;
   width: 100%;
   opacity: 0;
   visibility: hidden;
-  animation: fade-in 2s 1s ease forwards;
+  animation: fade-in 4s 4s ease forwards;
 }
 
 .black-hole-canvas {
+  inset-block-start: -10px;
+  inset-inline-start: 0;
   opacity: 0;
   visibility: hidden;
-  animation: fade-in 2s 2.5s ease forwards;
+  --to: 0.86;
+  animation: fade-in 2s 3s ease forwards;
 }
 
 @media (max-width: 575.98px) {
-  html,
-  body {
-    overscroll-behavior: none;
-  }
-
   main {
     font-size: 28px;
     margin-inline: 32px;
@@ -798,10 +780,6 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-  html,
-  body {
-    overscroll-behavior: none;
-  }
 
   main {
     font-size: 32px;
@@ -934,8 +912,8 @@ menu.version-links > li:hover > img {
     margin-block: 0 5em;
   }
 
-  .black-hole {
-    height: 384px;
+  .black-hole, .black-hole-canvas {
+    height: 504px;
   }
 }
 
@@ -961,8 +939,8 @@ menu.version-links > li:hover > img {
     margin-block: 0.5em 6em;
   }
 
-  .black-hole {
-    height: 480px;
+  .black-hole, .black-hole-canvas {
+    height: 500px;
   }
 }
 
@@ -988,8 +966,8 @@ menu.version-links > li:hover > img {
     margin-block: 2em 7em;
   }
 
-  .black-hole {
-    height: 576px;
+  .black-hole, .black-hole-canvas {
+    height: 596px;
   }
 }
 
@@ -1016,8 +994,8 @@ menu.version-links > li:hover > img {
     margin-block: 3em 8em;
   }
 
-  .black-hole {
-    height: 768px;
+  .black-hole, .black-hole-canvas {
+    height: 788px;
   }
 }
 
@@ -1038,8 +1016,8 @@ menu.version-links > li:hover > img {
     margin-block: 4em 9em;
   }
 
-  .black-hole {
-    height: 992px;
+  .black-hole, .black-hole-canvas {
+    height: 1012px;
   }
 }
 
@@ -1060,8 +1038,8 @@ menu.version-links > li:hover > img {
     margin-block: 5em 10em;
   }
 
-  .black-hole {
-    height: 1200px;
+  .black-hole, .black-hole-canvas {
+    height: 1220px;
   }
 }
 
@@ -1082,8 +1060,8 @@ menu.version-links > li:hover > img {
     margin-block: 5em 11em;
   }
 
-  .black-hole {
-    height: 1600px;
+  .black-hole, .black-hole-canvas {
+    height: 1620px;
   }
 }
 
@@ -1104,8 +1082,8 @@ menu.version-links > li:hover > img {
     margin-block: 6em 12em;
   }
 
-  .black-hole {
-    height: 2000px;
+  .black-hole, .black-hole-canvas {
+    height: 2020px;
   }
 }
 
@@ -1126,12 +1104,17 @@ menu.version-links > li:hover > img {
     margin-block: 6em 13em;
   }
 
-  .black-hole {
-    height: 100%;
+  .black-hole, .black-hole-canvas {
+    height: calc(100% + 20px); 
   }
 }
 
 @media (hover: none), (hover: on-demand), (-moz-touch-enabled: 1), (pointer: coarse) {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   .black-hole {
     pointer-events: none;
     z-index: -1;
@@ -1155,7 +1138,7 @@ menu.version-links > li:hover > img {
   }
 
   to {
-    opacity: 1;
+    opacity: var(--to, 1);
     visibility: visible;
   }
 }
@@ -1194,5 +1177,19 @@ menu.version-links > li:hover > img {
 
   75% {
     transform: rotate(calc(var(--shake-rotation) * -1));
+  }
+}
+
+@keyframes fade-in-shadow {
+  from {
+    box-shadow: 
+      inset 0 0 0 0 transparent,
+      inset 0 0 0 0 transparent;
+  }
+
+  to {
+    box-shadow: 
+      inset 0 14em 14em -7em var(--dark-lavender-purple),
+      inset 0 -14em 14em -7em var(--dark-lavender-purple);
   }
 }
