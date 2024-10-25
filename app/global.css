@@ -18,6 +18,8 @@
   --light-lavender-purple: #dfc5fe;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
+  --name-transition-opacity: 1;
+  --name-play-state: paused;
 }
 
 html:has(.modal-background:not(.hidden)),
@@ -39,6 +41,8 @@ html {
   color: white;
   font-weight: 600;
   background: var(--black);
+  animation: fade-in 0.325s ease-in forwards;
+  will-change: opacity;
 }
 
 body > aside.background-gradient {
@@ -46,7 +50,8 @@ body > aside.background-gradient {
   inset: 0;
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
-  animation: rainbow 65s linear -1s infinite reverse;
+  animation: rainbow 55s 0.05s linear infinite reverse;
+  will-change: background-position;
 }
 
 input,
@@ -58,6 +63,7 @@ select {
 
 h2,
 header p > span,
+header p > strong.name-transition,
 section p,
 footer p,
 footer small,
@@ -160,6 +166,22 @@ header#about > .logo::after {
   color: var(--white);
   --float-y: 0.0625em;
   animation: floating 14s 3s ease-in-out infinite;
+}
+
+header#about p > strong.name-transition {
+  position: absolute;
+  opacity: var(--name-transition-opacity);
+  transition: opacity 2s 3s ease;
+  z-index: 1;
+}
+
+header#about p > strong.highlighted-text,
+header#about p > strong.highlighted-text::before,
+header#about p > strong.highlighted-text::after {
+  opacity: calc(1 - var(--name-transition-opacity));
+  animation-delay: 3s;
+  animation-play-state: var(--name-play-state);
+  transition: opacity 0.5s 3s ease;
 }
 
 section#work {
@@ -537,6 +559,7 @@ aside.modal-background > .modal-close-button {
   color: transparent;
   filter: none;
   align-items: baseline;
+  will-change: background-position;
 }
 
 .highlighted-text::before,
@@ -682,6 +705,7 @@ menu.version-links > li {
   animation: rainbow 25s 2s linear infinite reverse;
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
+  will-change: background-position;
 }
 
 menu.version-links > li > a {
