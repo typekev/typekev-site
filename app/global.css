@@ -272,7 +272,7 @@ footer#endnote > small > label > svg {
 footer#endnote > small > label > select {
   background: var(--transparent-white-accent);
   border: 0.125rem solid var(--transparent-white-faded);
-  box-shadow: 0 0 0.25em var(--transparent-black);
+  box-shadow: 0 0 0.25em var(--transparent-white);
   border-radius: 0.5em;
   color: var(--white);
 }

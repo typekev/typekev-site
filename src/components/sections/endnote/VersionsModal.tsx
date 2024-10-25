@@ -1,10 +1,13 @@
 "use client";
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { VersionsMenu } from "./versionsModal/VersionsMenu";
 import { XIcon } from "lucide-react";
 
-export function VersionsModal({ children }: PropsWithChildren) {
+interface Props {
+  menu: ReactNode;
+}
+
+export function VersionsModal({ menu, children }: PropsWithChildren<Props>) {
   const modalRoot = document.getElementById("root");
   const [hidden, setHidden] = useState(true);
 
@@ -49,7 +52,7 @@ export function VersionsModal({ children }: PropsWithChildren) {
             <XIcon size="2.5em" strokeWidth={2} />
           </button>
           <dialog className={`versions-modal ${hidden ? "hidden" : ""}`} onClick={(e) => e.stopPropagation()}>
-            <VersionsMenu />
+            {menu}
           </dialog>
         </aside>,
         modalRoot,

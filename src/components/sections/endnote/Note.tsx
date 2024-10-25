@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 
 import {
@@ -11,7 +10,8 @@ import {
   vercelUrl,
 } from "@/helpers/links";
 
-const VersionsModal = dynamic(() => import("./VersionsModal").then((mod) => mod.VersionsModal), { ssr: false });
+import { VersionsModal } from "./VersionsModal";
+import { VersionsMenu } from "./versionsModal/VersionsMenu";
 
 export function Note() {
   const t = useTranslations("Endnote");
@@ -49,7 +49,7 @@ export function Note() {
             {chunks}
           </a>
         ),
-        versions: (chunks) => <VersionsModal>{chunks}</VersionsModal>,
+        versions: (chunks) => <VersionsModal menu={<VersionsMenu />}>{chunks}</VersionsModal>,
         host: (chunks) => (
           <a href={vercelUrl} className="endnote-link" data-text={chunks}>
             {chunks}
