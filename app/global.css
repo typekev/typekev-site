@@ -6,8 +6,8 @@
   --black: #060509;
   --transparent-black: #06050977;
   --transparent-black-faded: #06050940;
-  --light-cyan: #c8ffff;
-  --transparent-light-cyan: #c8ffff77;
+  --light-cyan: #b4e5e5;
+  --transparent-light-cyan: #b4e5e577;
   --tropical-indigo: #a083ed;
   --transparent-tropical-indigo: #a083ed2f;
   --pale-pink: #ffc0cb;
@@ -16,9 +16,10 @@
   --sky-blue: #87ceeb;
   --transparent-sky-blue: #87ceeb77;
   --light-lavender-purple: #dfc5fe;
-  --dark-lavender-purple: #574171;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
+  --name-transition-opacity: 1;
+  --name-play-state: paused;
 }
 
 html:has(.modal-background:not(.hidden)),
@@ -29,6 +30,8 @@ body:has(.modal-background:not(.hidden)) {
 html,
 body {
   position: relative;
+  height: 100%;
+  width: 100%;
   scroll-behavior: smooth;
   margin: 0;
 }
@@ -37,24 +40,18 @@ html {
   font-family: var(--font-poppins);
   color: white;
   font-weight: 600;
-  background: var(--dark-lavender-purple);
+  background: var(--black);
+  animation: fade-in 0.325s ease-in forwards;
+  will-change: opacity;
 }
 
-body {
-  height: 100%;
-  width: 100%;
+body > aside.background-gradient {
+  position: fixed;
+  inset: 0;
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
-  box-shadow: 
-    inset 0 0 0 0 transparent,
-    inset 0 0 0 0 transparent;
-  border-radius: 0;
-  opacity: 0;
-  visibility: hidden;
-  animation: 
-    rainbow 65s linear -1s infinite reverse, 
-    fade-in 1.5s linear 0.25s 1 forwards,
-    fade-in-shadow 4s 4s ease forwards;
+  animation: rainbow 55s 0.05s linear infinite reverse;
+  will-change: background-position;
 }
 
 input,
@@ -66,6 +63,7 @@ select {
 
 h2,
 header p > span,
+header p > strong.name-transition,
 section p,
 footer p,
 footer small,
@@ -170,6 +168,22 @@ header#about > .logo::after {
   animation: floating 14s 3s ease-in-out infinite;
 }
 
+header#about p > strong.name-transition {
+  position: absolute;
+  opacity: var(--name-transition-opacity);
+  transition: opacity 2s 3s ease;
+  z-index: 1;
+}
+
+header#about p > strong.highlighted-text,
+header#about p > strong.highlighted-text::before,
+header#about p > strong.highlighted-text::after {
+  opacity: calc(1 - var(--name-transition-opacity));
+  animation-delay: 3s;
+  animation-play-state: var(--name-play-state);
+  transition: opacity 0.5s 3s ease;
+}
+
 section#work {
   padding-block-start: 1em;
 }
@@ -258,7 +272,7 @@ footer#endnote > small > label > svg {
 footer#endnote > small > label > select {
   background: var(--transparent-white-accent);
   border: 0.125rem solid var(--transparent-white-faded);
-  box-shadow: 0 0 0.25em var(--transparent-black);
+  box-shadow: 0 0 0.25em var(--transparent-white);
   border-radius: 0.5em;
   color: var(--white);
 }
@@ -545,6 +559,7 @@ aside.modal-background > .modal-close-button {
   color: transparent;
   filter: none;
   align-items: baseline;
+  will-change: background-position;
 }
 
 .highlighted-text::before,
@@ -690,6 +705,7 @@ menu.version-links > li {
   animation: rainbow 25s 2s linear infinite reverse;
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
+  will-change: background-position;
 }
 
 menu.version-links > li > a {
@@ -783,7 +799,7 @@ menu.version-links > li:hover > img {
 
   main {
     font-size: 32px;
-    margin-inline: 56px;
+    padding-inline: 56px;
   }
 
   #bot > dialog {
@@ -798,7 +814,7 @@ menu.version-links > li:hover > img {
 @media (min-width: 768px) and (max-width: 991.98px) {
   main {
     font-size: 40px;
-    margin-inline: 56px;
+    padding-inline: 56px;
   }
 
   #bot > dialog {
@@ -817,7 +833,7 @@ menu.version-links > li:hover > img {
 @media (min-width: 992px) and (max-width: 1199.98px) {
   main {
     font-size: 40px;
-    margin-inline: 128px;
+    padding-inline: 128px;
   }
 
   #bot > dialog {
@@ -836,7 +852,7 @@ menu.version-links > li:hover > img {
 @media (min-width: 1200px) and (max-width: 1599.98px) {
   main {
     font-size: 48px;
-    margin-inline: 192px;
+    padding-inline: 192px;
   }
 
   #bot > dialog {
@@ -855,7 +871,7 @@ menu.version-links > li:hover > img {
 @media (min-width: 1600px) and (max-width: 1999.98px)  {
   main {
     font-size: 52px;
-    margin-inline: 256px;
+    padding-inline: 256px;
   }
 
   #bot > dialog {
@@ -874,7 +890,7 @@ menu.version-links > li:hover > img {
 @media (min-width: 2000px) {
   main {
     font-size: 52px;
-    margin-inline: 336px;
+    padding-inline: 336px;
   }
 
   #bot > dialog {
@@ -1177,19 +1193,5 @@ menu.version-links > li:hover > img {
 
   75% {
     transform: rotate(calc(var(--shake-rotation) * -1));
-  }
-}
-
-@keyframes fade-in-shadow {
-  from {
-    box-shadow: 
-      inset 0 0 0 0 transparent,
-      inset 0 0 0 0 transparent;
-  }
-
-  to {
-    box-shadow: 
-      inset 0 14em 14em -7em var(--dark-lavender-purple),
-      inset 0 -14em 14em -7em var(--dark-lavender-purple);
   }
 }

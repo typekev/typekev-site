@@ -1,12 +1,9 @@
-import dynamic from "next/dynamic";
 import { SiGithub, SiLinkedin, SiX } from "@icons-pack/react-simple-icons";
 
 import { githubUrl, linkedInUrl, xUrl } from "@/helpers/links";
-import { Note } from "./endnote/Note";
 
-const LanguageSelect = dynamic(() => import("./endnote/LanguageSelect").then((mod) => mod.LanguageSelect), {
-  ssr: false,
-});
+import { Note } from "./endnote/Note";
+import { LanguageSelect } from "./endnote/LanguageSelect";
 
 export default function Endnote() {
   return (

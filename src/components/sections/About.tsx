@@ -12,9 +12,14 @@ export default function About() {
         {t.rich("text", {
           regular: (chunks) => <span>{chunks}</span>,
           highlighted: (chunks) => (
-            <strong className="highlighted-text" data-text={chunks}>
-              {chunks}
-            </strong>
+            <>
+              <strong className="name-transition" data-text={chunks}>
+                {chunks}
+              </strong>
+              <strong className="highlighted-text" data-text={chunks}>
+                {chunks}
+              </strong>
+            </>
           ),
         })}
       </p>
