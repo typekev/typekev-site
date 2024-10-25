@@ -36,6 +36,7 @@ export default async function Layout({ children, params: { locale } }: PropsWith
     <html lang={locale} className={`${fragmentMono.variable} ${poppins.variable}`}>
       <head />
       <body id="root">
+        <aside className="background-gradient" />
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         <Scene />
         <Analytics />
