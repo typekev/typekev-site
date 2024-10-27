@@ -41,7 +41,7 @@ html {
   color: white;
   font-weight: 600;
   background: var(--black);
-  animation: fade-in 0.325s ease-in forwards;
+  animation: fade-in 1s ease-in forwards;
   will-change: opacity;
 }
 
@@ -50,7 +50,7 @@ body > aside.background-gradient {
   inset: 0;
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
-  animation: rainbow 55s 0.05s linear infinite reverse;
+  animation: rainbow 55s 0.5s linear infinite reverse;
   will-change: background-position;
 }
 
