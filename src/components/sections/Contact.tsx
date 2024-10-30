@@ -1,10 +1,9 @@
 import { useTranslations } from "next-intl";
-import dynamic from "next/dynamic";
 
 import { AnchorButton } from "@/components/AnchorButton";
 import { email, linkedInUrl } from "@/helpers/links";
 
-const CopyButton = dynamic(() => import("./contact/CopyButton").then((mod) => mod.CopyButton), { ssr: false });
+import { CopyButton } from "./contact/CopyButton";
 
 export default function Contact() {
   const t = useTranslations("Contact");

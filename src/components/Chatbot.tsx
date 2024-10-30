@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+
 import { Bot } from "./chatbot/Bot";
 
 const Chat = dynamic(() => import("./chatbot/Chat").then((mod) => mod.Chat), { ssr: false });

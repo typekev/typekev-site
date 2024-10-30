@@ -44,7 +44,8 @@ export default function Head() {
       <meta name="apple-mobile-web-app-title" content="Kevin Gonzalez" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      <script src="https://unpkg.com/ios-pwa-splash@1.0.0/cdn.min.js" />
+      <script src="https://unpkg.com/ios-pwa-splash@1.0.0/cdn.min.js" async />
+      {/* eslint-disable-next-line react/no-unescaped-entities */}
       <script>iosPWASplash('/apple-touch-icon.png', '#060509');</script>
       <link rel="manifest" href="/site.webmanifest" />
 

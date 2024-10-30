@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { Fragment_Mono, Poppins } from "next/font/google";
 import { PropsWithChildren } from "react";
 
@@ -6,11 +5,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
+import Scene from "@/components/canvas/Scene";
 import "@/global.css"; // eslint-disable-line import/no-unassigned-import
 
 import { title, description } from "./head";
-
-const Scene = dynamic(() => import("@/components/canvas/Scene"), { ssr: false });
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "800"],
@@ -26,10 +24,11 @@ const fragmentMono = Fragment_Mono({
 export const metadata = { title, description };
 
 interface Props {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default async function Layout({ children, params: { locale } }: PropsWithChildren<Props>) {
+export default async function Layout({ children, params }: PropsWithChildren<Props>) {
+  const { locale } = await params;
   const messages = await getMessages();
 
   return (

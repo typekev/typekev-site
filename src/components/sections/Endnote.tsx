@@ -2,8 +2,8 @@ import { SiGithub, SiLinkedin, SiX } from "@icons-pack/react-simple-icons";
 
 import { githubUrl, linkedInUrl, xUrl } from "@/helpers/links";
 
-import { Note } from "./endnote/Note";
 import { LanguageSelect } from "./endnote/LanguageSelect";
+import { Note } from "./endnote/Note";
 
 export default function Endnote() {
   return (

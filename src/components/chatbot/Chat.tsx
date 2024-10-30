@@ -1,9 +1,12 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Keyboard, { Cursor } from "react-mk";
-import { useLocale, useTranslations } from "next-intl";
+
 import { ForwardIcon } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import Keyboard, { Cursor } from "react-mk";
+
 import { bots } from "libs/typekev-bot/bots";
+
 import type { Bot } from "libs/typekev-bot/bots/types";
 
 interface Props {
