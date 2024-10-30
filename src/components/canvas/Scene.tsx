@@ -11,8 +11,8 @@ export default function Scene() {
   const { loaded } = useProgress();
 
   useEffect(() => {
-    document.body.style.setProperty("--name-transition-opacity", "0");
-    document.body.style.setProperty("--name-play-state", "running");
+    document.body.style.setProperty("--opening-transition-opacity", "0");
+    document.body.style.setProperty("--opening-play-state", "running");
   }, [loaded]);
 
   return (

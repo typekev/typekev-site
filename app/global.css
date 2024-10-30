@@ -18,8 +18,8 @@
   --light-lavender-purple: #dfc5fe;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
-  --name-transition-opacity: 1;
-  --name-play-state: paused;
+  --opening-transition-opacity: 1;
+  --opening-play-state: paused;
 }
 
 html:has(.modal-background:not(.hidden)),
@@ -50,10 +50,13 @@ html {
 body > aside.background-gradient {
   position: fixed;
   inset: 0;
+  opacity: max(var(--opening-transition-opacity), 0.14);
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   animation: rainbow 55s 0.5s linear infinite reverse;
+  transition: opacity 2s 3s ease;
   will-change: background-position;
+  z-index: 1;
 }
 
 input,
@@ -172,7 +175,7 @@ header#about > .logo::after {
 
 header#about p > strong.name-transition {
   position: absolute;
-  opacity: var(--name-transition-opacity);
+  opacity: var(--opening-transition-opacity);
   transition: opacity 2s 3s ease;
   z-index: 1;
 }
@@ -180,9 +183,9 @@ header#about p > strong.name-transition {
 header#about p > strong.highlighted-text,
 header#about p > strong.highlighted-text::before,
 header#about p > strong.highlighted-text::after {
-  opacity: calc(1 - var(--name-transition-opacity));
+  opacity: calc(1 - var(--opening-transition-opacity));
   animation-delay: 3s;
-  animation-play-state: var(--name-play-state);
+  animation-play-state: var(--opening-play-state);
   transition: opacity 0.5s 3s ease;
 }
 
@@ -764,7 +767,6 @@ menu.version-links > li:hover > img {
   inset-inline-start: 0;
   opacity: 0;
   visibility: hidden;
-  --to: 0.86;
   animation: fade-in 2s 3s ease forwards;
 }
 
@@ -1156,7 +1158,7 @@ menu.version-links > li:hover > img {
   }
 
   to {
-    opacity: var(--to, 1);
+    opacity: 1;
     visibility: visible;
   }
 }
