@@ -68,13 +68,26 @@ select {
 
 h2,
 header p > span,
-header p > strong.name-transition,
 section p,
 footer p,
 footer small,
 .button svg,
-.button span {
+.button span,
+.opening-highlight-transition {
   filter: drop-shadow(0 0 0.0625em currentColor);
+}
+
+.opening-highlight-transition {
+  position: absolute;
+  padding: inherit;
+  opacity: var(--opening-transition-opacity);
+  transition: opacity 2s 3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.button:not(:target) > .opening-highlight-transition {
+  visibility: hidden;
 }
 
 main {
@@ -171,13 +184,6 @@ header#about > .logo::after {
   color: var(--white);
   --float-y: 0.0625em;
   animation: floating 14s 3s ease-in-out infinite;
-}
-
-header#about p > strong.name-transition {
-  position: absolute;
-  opacity: var(--opening-transition-opacity);
-  transition: opacity 2s 3s ease;
-  z-index: 1;
 }
 
 header#about p > strong.highlighted-text,
@@ -552,12 +558,12 @@ aside.modal-background > .modal-close-button {
 .highlighted-text,
 .highlighted-text::before,
 .highlighted-text::after,
-.highlighted-button:target > span,
-.highlighted-button:target > span::before,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text,
+.button:target > .highlighted-button-text::before,
+.button:target > .highlighted-button-text::after {
   position: relative;
   display: inline-block;
-  animation: rainbow 75s 2s linear infinite reverse;
+  animation: rainbow 75s -1s linear infinite reverse;
   background: linear-gradient(90deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   background-clip: text;
@@ -569,8 +575,8 @@ aside.modal-background > .modal-close-button {
 
 .highlighted-text::before,
 .highlighted-text::after,
-.highlighted-button:target > span::before,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text::before,
+.button:target > .highlighted-button-text::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
@@ -578,14 +584,14 @@ aside.modal-background > .modal-close-button {
 }
 
 .highlighted-text::after,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text::after {
   filter: blur(30px);
   opacity: 0.2;
 }
 
-.highlighted-button:target > span,
-.highlighted-button:target > span::before,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text,
+.button:target > .highlighted-button-text::before,
+.button:target > .highlighted-button-text::after {
   animation-duration: 40s;
   background-size: 1100% 100%;
 }
