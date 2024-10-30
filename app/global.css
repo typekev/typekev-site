@@ -79,12 +79,15 @@ footer small,
 
 .opening-highlight-transition {
   position: absolute;
-  padding: inherit;
   opacity: var(--opening-transition-opacity);
   transition: opacity 2s 3s ease;
   z-index: 1;
   user-select: none;
   pointer-events: none;
+}
+
+.button:target > .opening-highlight-transition {
+  padding: inherit;
 }
 
 .button:not(:target) > .opening-highlight-transition {
