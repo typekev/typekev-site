@@ -13,7 +13,7 @@ export default function About() {
           regular: (chunks) => <span>{chunks}</span>,
           highlighted: (chunks) => (
             <>
-              <strong className="opening-highlight-transition" data-text={chunks}>
+              <strong className="opening-highlight-transition" data-text={chunks} aria-hidden="true">
                 {chunks}
               </strong>
               <strong className="highlighted-text" data-text={chunks}>
