@@ -83,6 +83,7 @@ footer small,
   opacity: var(--opening-transition-opacity);
   transition: opacity 2s 3s ease;
   z-index: 1;
+  user-select: none;
   pointer-events: none;
 }
 
