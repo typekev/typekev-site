@@ -194,9 +194,14 @@ header#about .logo::after {
   animation: floating 14s 3s ease-in-out infinite;
 }
 
-header#about p > strong.highlighted-text,
-header#about p > strong.highlighted-text::before,
-header#about p > strong.highlighted-text::after {
+header#about p > strong {
+  position: relative;
+  display: inline-block;
+}
+
+header#about p > strong > .highlighted-text,
+header#about p > strong > .highlighted-text::before,
+header#about p > strong > .highlighted-text::after {
   opacity: calc(1 - var(--opening-transition-opacity));
   animation-delay: 3s;
   animation-play-state: var(--opening-play-state);
