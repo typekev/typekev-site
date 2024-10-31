@@ -48,7 +48,7 @@ const View = forwardRef(({ children, orbit, ...props }: PropsWithChildren<Props>
             <OrbitControls
               ref={orbitControlRef}
               enableDamping
-              dampingFactor={0.02}
+              dampingFactor={0.05}
               enablePan={false}
               enableZoom={false}
               onChange={reset}

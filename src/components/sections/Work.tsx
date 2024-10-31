@@ -1,3 +1,4 @@
+import { Gamepad2Icon, KeyboardIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { AnchorButton } from "@/components/AnchorButton";
@@ -12,7 +13,6 @@ import {
 } from "@/helpers/links";
 
 import { OpenButton } from "./work/OpenButton";
-import { Gamepad2Icon, KeyboardIcon } from "lucide-react";
 
 export default function Work() {
   const t = useTranslations("Work");

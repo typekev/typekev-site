@@ -1,10 +1,10 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { GlobeIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { config } from "middleware";
 
-const { locales } = config;
+import { routing, useRouter } from "i18n/routing";
+
+const { locales } = routing;
 
 export function LanguageSelect() {
   const t = useTranslations("Locale");
@@ -12,7 +12,7 @@ export function LanguageSelect() {
   const locale = useLocale();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    router.replace(`${e.target.value}${window.location.hash}`);
+    router.replace(`/${window.location.hash}`, { locale: e.target.value });
 
   return (
     <label>

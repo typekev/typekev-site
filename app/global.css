@@ -6,6 +6,7 @@
   --black: #060509;
   --transparent-black: #06050977;
   --transparent-black-faded: #06050940;
+  --transparent-black-accent: #06050930;
   --light-cyan: #b4e5e5;
   --transparent-light-cyan: #b4e5e577;
   --tropical-indigo: #a083ed;
@@ -18,8 +19,8 @@
   --light-lavender-purple: #dfc5fe;
   --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
     var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
-  --name-transition-opacity: 1;
-  --name-play-state: paused;
+  --opening-transition-opacity: 1;
+  --opening-play-state: paused;
 }
 
 html:has(.modal-background:not(.hidden)),
@@ -50,10 +51,13 @@ html {
 body > aside.background-gradient {
   position: fixed;
   inset: 0;
+  opacity: max(var(--opening-transition-opacity), 0.14);
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   animation: rainbow 55s 0.5s linear infinite reverse;
+  transition: opacity 2s 3s ease;
   will-change: background-position;
+  z-index: 1;
 }
 
 input,
@@ -65,13 +69,32 @@ select {
 
 h2,
 header p > span,
-header p > strong.name-transition,
 section p,
 footer p,
 footer small,
 .button svg,
-.button span {
-  filter: drop-shadow(0 0 0.0625em currentColor);
+.button span,
+.opening-highlight-transition {
+  filter: 
+    drop-shadow(0 0 0.25em var(--transparent-black-accent))
+    drop-shadow(0 0 0.0625em currentColor);
+}
+
+.opening-highlight-transition {
+  position: absolute;
+  opacity: var(--opening-transition-opacity);
+  transition: opacity 2s 3s ease;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.button:target > .opening-highlight-transition {
+  padding: inherit;
+}
+
+.button:not(:target) > .opening-highlight-transition {
+  visibility: hidden;
 }
 
 main {
@@ -139,7 +162,7 @@ header#about {
   padding-block-start: 2em;
 }
 
-header#about > .logo {
+header#about .logo {
   position: relative;
   display: block;
   margin: 0;
@@ -147,42 +170,41 @@ header#about > .logo {
   color: var(--pale-pink);
   --float-y: 0.125em;
   animation: floating 22s 4s ease-in-out infinite;
+  user-select: none;
 }
 
-header#about > .logo::before,
-header#about > .logo::after {
+header#about .logo::before,
+header#about .logo::after {
   position: absolute;
   content: attr(data-text);
   overflow: visible;
 }
 
-header#about > .logo::before {
+header#about .logo::before {
   inset: 4px;
   color: var(--light-cyan);
   --float-y: 0.0625em;
   animation: floating 18s 2s ease-in-out infinite;
 }
 
-header#about > .logo::after {
+header#about .logo::after {
   inset: 2px;
   color: var(--white);
   --float-y: 0.0625em;
   animation: floating 14s 3s ease-in-out infinite;
 }
 
-header#about p > strong.name-transition {
-  position: absolute;
-  opacity: var(--name-transition-opacity);
-  transition: opacity 2s 3s ease;
-  z-index: 1;
+header#about p > strong {
+  position: relative;
+  display: inline-block;
 }
 
-header#about p > strong.highlighted-text,
-header#about p > strong.highlighted-text::before,
-header#about p > strong.highlighted-text::after {
-  opacity: calc(1 - var(--name-transition-opacity));
+header#about p > strong > .highlighted-text,
+header#about p > strong > .highlighted-text::before,
+header#about p > strong > .highlighted-text::after {
+  opacity: calc(1 - var(--opening-transition-opacity));
   animation-delay: 3s;
-  animation-play-state: var(--name-play-state);
+  animation-play-state: var(--opening-play-state);
   transition: opacity 0.5s 3s ease;
 }
 
@@ -274,7 +296,7 @@ footer#endnote > small > label > svg {
 footer#endnote > small > label > select {
   background: var(--transparent-white-accent);
   border: 0.125rem solid var(--transparent-white-faded);
-  box-shadow: 0 0 0.25em var(--transparent-white);
+  box-shadow: 0 0 0.25em var(--transparent-white-accent);
   border-radius: 0.5em;
   color: var(--white);
 }
@@ -308,7 +330,7 @@ dialog {
   backdrop-filter: blur(0.75em);
   border-radius: 0.75em;
   border: 0.125rem solid var(--transparent-white-faded);
-  box-shadow: 0 0 1em var(--transparent-black);
+  box-shadow: 0 0 1em var(--transparent-white-accent);
   color: var(--white);
   opacity: 1;
   visibility: visible;
@@ -549,12 +571,12 @@ aside.modal-background > .modal-close-button {
 .highlighted-text,
 .highlighted-text::before,
 .highlighted-text::after,
-.highlighted-button:target > span,
-.highlighted-button:target > span::before,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text,
+.button:target > .highlighted-button-text::before,
+.button:target > .highlighted-button-text::after {
   position: relative;
   display: inline-block;
-  animation: rainbow 75s 2s linear infinite reverse;
+  animation: rainbow 75s -1s linear infinite reverse;
   background: linear-gradient(90deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   background-clip: text;
@@ -566,8 +588,8 @@ aside.modal-background > .modal-close-button {
 
 .highlighted-text::before,
 .highlighted-text::after,
-.highlighted-button:target > span::before,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text::before,
+.button:target > .highlighted-button-text::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
@@ -575,14 +597,14 @@ aside.modal-background > .modal-close-button {
 }
 
 .highlighted-text::after,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text::after {
   filter: blur(30px);
   opacity: 0.2;
 }
 
-.highlighted-button:target > span,
-.highlighted-button:target > span::before,
-.highlighted-button:target > span::after {
+.button:target > .highlighted-button-text,
+.button:target > .highlighted-button-text::before,
+.button:target > .highlighted-button-text::after {
   animation-duration: 40s;
   background-size: 1100% 100%;
 }
@@ -764,7 +786,6 @@ menu.version-links > li:hover > img {
   inset-inline-start: 0;
   opacity: 0;
   visibility: hidden;
-  --to: 0.86;
   animation: fade-in 2s 3s ease forwards;
 }
 
@@ -913,7 +934,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0;
   }
 
-  header#about > .logo {
+  header#about .logo {
     height: 0.75em;
     font-size: 1.75em;
   }
@@ -940,7 +961,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0;
   }
 
-  header#about > .logo {
+  header#about .logo {
     height: 1em;
     font-size: 2em;
   }
@@ -967,7 +988,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0.5em;
   }
 
-  header#about > .logo {
+  header#about .logo {
     height: 1.25em;
     font-size: 2em;
   }
@@ -995,7 +1016,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0.75em;
   }
   
-  header#about > .logo {
+  header#about .logo {
     height: 1.5em;
     font-size: 2em;
   }
@@ -1018,7 +1039,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 768px) and (max-height: 991.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 2em;
   }
  
@@ -1040,7 +1061,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 992px) and (max-height: 1199.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 2.25em;
   }
 
@@ -1062,7 +1083,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 1200px) and (max-height: 1599.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 3em;
   }
 
@@ -1084,7 +1105,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 1600px) and (max-height: 1999.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 3.5em;
   }
 
@@ -1106,7 +1127,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 2000px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 4em;
   }
 
@@ -1156,7 +1177,7 @@ menu.version-links > li:hover > img {
   }
 
   to {
-    opacity: var(--to, 1);
+    opacity: 1;
     visibility: visible;
   }
 }

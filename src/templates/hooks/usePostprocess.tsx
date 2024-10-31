@@ -1,34 +1,26 @@
-import { useEffect, useMemo } from "react";
+"use client";
+import { useMemo } from "react";
 
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { EffectComposer, UnrealBloomPass, RenderPass } from "three-stdlib";
 
 export const useBloom = () => {
-  const {
-    viewport: { dpr },
-    size,
-    gl,
-    scene,
-    camera,
-  } = useThree();
+  const { size, gl, scene, camera } = useThree();
 
-  const [composer, bloomPasses] = useMemo(() => {
+  const composer = useMemo(() => {
     const composer = new EffectComposer(gl);
 
     const renderPass = new RenderPass(scene, camera);
     composer.addPass(renderPass);
 
-    const resolution = new THREE.Vector2(size.width, size.height);
-    const bloomPasses = [new UnrealBloomPass(resolution, 100, 1, 0.005)] as const;
+    const resolution = new THREE.Vector2(size.width * gl.pixelRatio, size.height * gl.pixelRatio);
+    const bloom = new UnrealBloomPass(resolution, 100, 1, 0.005);
+    composer.addPass(bloom);
 
-    bloomPasses.forEach((bloomPass) => composer.addPass(bloomPass));
-    return [composer, bloomPasses];
-  }, [gl, camera, scene, size.height, size.width]);
-
-  useEffect(() => {
-    bloomPasses.forEach((bloomPass) => bloomPass.setSize(size.width * dpr, size.height * dpr));
-  }, [bloomPasses, dpr, size.height, size.width]);
+    return composer;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gl.pixelRatio, size]);
 
   useFrame((_, delta) => {
     composer.render(delta);

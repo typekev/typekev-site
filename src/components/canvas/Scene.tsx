@@ -1,19 +1,18 @@
 "use client";
+import { useEffect } from "react";
 
 import { Preload, useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
 
 import { r3f } from "@/helpers/global";
-
-import * as THREE from "three";
-import { useEffect } from "react";
 
 export default function Scene() {
   const { loaded } = useProgress();
 
   useEffect(() => {
-    document.body.style.setProperty("--name-transition-opacity", "0");
-    document.body.style.setProperty("--name-play-state", "running");
+    document.body.style.setProperty("--opening-transition-opacity", "0");
+    document.body.style.setProperty("--opening-play-state", "running");
   }, [loaded]);
 
   return (

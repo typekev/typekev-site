@@ -1,6 +1,6 @@
-export const title = "Kevin Gonzalez | Software Visionary & Engineering Leader";
+export const title = "Kevin Gonzalez | Software Engineering Leader";
 export const description =
-  "Explore the portfolio of Kevin Gonzalez (typekev), a seasoned Software Visionary and Engineering Leader. Learn about Kevin's work and interests, and connect with him via LinkedIn or email for meaningful discussions and potential collaborations.";
+  "Explore the portfolio of Kevin Gonzalez (typekev), a seasoned Software Engineering Leader. Learn about Kevin's work and interests, and connect with him via LinkedIn or email for meaningful discussions and potential collaborations.";
 const url = "https://typekev.com/";
 const author = "Kevin Gonzalez";
 const twitter = "@typekev";
@@ -44,7 +44,8 @@ export default function Head() {
       <meta name="apple-mobile-web-app-title" content="Kevin Gonzalez" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      <script src="https://unpkg.com/ios-pwa-splash@1.0.0/cdn.min.js" />
+      <script src="https://unpkg.com/ios-pwa-splash@1.0.0/cdn.min.js" async />
+      {/* eslint-disable-next-line react/no-unescaped-entities */}
       <script>iosPWASplash('/apple-touch-icon.png', '#060509');</script>
       <link rel="manifest" href="/site.webmanifest" />
 
