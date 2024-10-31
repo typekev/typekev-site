@@ -1,6 +1,6 @@
-export const title = "Kevin Gonzalez | Software Visionary & Engineering Leader";
+export const title = "Kevin Gonzalez | Software Engineering Leader";
 export const description =
-  "Explore the portfolio of Kevin Gonzalez (typekev), a seasoned Software Visionary and Engineering Leader. Learn about Kevin's work and interests, and connect with him via LinkedIn or email for meaningful discussions and potential collaborations.";
+  "Explore the portfolio of Kevin Gonzalez (typekev), a seasoned Software Engineering Leader. Learn about Kevin's work and interests, and connect with him via LinkedIn or email for meaningful discussions and potential collaborations.";
 const url = "https://typekev.com/";
 const author = "Kevin Gonzalez";
 const twitter = "@typekev";

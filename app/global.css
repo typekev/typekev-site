@@ -6,6 +6,7 @@
   --black: #060509;
   --transparent-black: #06050977;
   --transparent-black-faded: #06050940;
+  --transparent-black-accent: #06050930;
   --light-cyan: #b4e5e5;
   --transparent-light-cyan: #b4e5e577;
   --tropical-indigo: #a083ed;
@@ -74,7 +75,9 @@ footer small,
 .button svg,
 .button span,
 .opening-highlight-transition {
-  filter: drop-shadow(0 0 0.0625em currentColor);
+  filter: 
+    drop-shadow(0 0 0.25em var(--transparent-black-accent))
+    drop-shadow(0 0 0.0625em currentColor);
 }
 
 .opening-highlight-transition {
