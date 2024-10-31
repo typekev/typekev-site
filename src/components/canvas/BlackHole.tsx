@@ -8,13 +8,12 @@ import { useBloom } from "@/templates/hooks/usePostprocess";
 
 import type { ThreeElements } from "@react-three/fiber";
 
-const scrollMin = -0.25 as const;
 const scrollMax = 0.2 as const;
+const scrollMin = -0.4 as const;
 
 export function BlackHole(props: Omit<ThreeElements["primitive"], "object">) {
   const { scene } = useGLTF("/black-hole.glb");
 
-  const smallScreen = useMemo(() => window.innerWidth < 768, []);
   const scrollHeight = useMemo(() => document.documentElement.scrollHeight * 1.5, []);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const inverseScroll = useCallback((scrollY: number) => Math.max(scrollMax - scrollY / scrollHeight, scrollMin), []);
@@ -33,11 +32,8 @@ export function BlackHole(props: Omit<ThreeElements["primitive"], "object">) {
   useBloom();
 
   useEffect(() => {
-    const positionX = smallScreen ? 0.3 : 0.5;
-    scene.position.setX(positionX);
-
-    const scale = smallScreen ? 0.5 : 0.6;
-    scene.scale.set(scale, scale, scale);
+    scene.position.setX(0.75);
+    scene.position.setZ(-5);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
