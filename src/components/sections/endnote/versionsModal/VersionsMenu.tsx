@@ -1,5 +1,6 @@
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+
+import { useTranslations } from "next-intl";
 
 import v1Img from "./v1.jpeg";
 import v2Img from "./v2.jpeg";
