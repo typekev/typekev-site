@@ -5,9 +5,11 @@ export default function About() {
 
   return (
     <header id="about">
-      <h1 className="logo" data-text="K">
-        K
-      </h1>
+      <a href="#">
+        <h1 className="logo" data-text="K" aria-hidden="true">
+          K
+        </h1>
+      </a>
       <p>
         {t.rich("text", {
           regular: (chunks) => <span>{chunks}</span>,

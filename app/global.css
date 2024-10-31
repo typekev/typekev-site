@@ -162,7 +162,7 @@ header#about {
   padding-block-start: 2em;
 }
 
-header#about > .logo {
+header#about .logo {
   position: relative;
   display: block;
   margin: 0;
@@ -170,23 +170,24 @@ header#about > .logo {
   color: var(--pale-pink);
   --float-y: 0.125em;
   animation: floating 22s 4s ease-in-out infinite;
+  user-select: none;
 }
 
-header#about > .logo::before,
-header#about > .logo::after {
+header#about .logo::before,
+header#about .logo::after {
   position: absolute;
   content: attr(data-text);
   overflow: visible;
 }
 
-header#about > .logo::before {
+header#about .logo::before {
   inset: 4px;
   color: var(--light-cyan);
   --float-y: 0.0625em;
   animation: floating 18s 2s ease-in-out infinite;
 }
 
-header#about > .logo::after {
+header#about .logo::after {
   inset: 2px;
   color: var(--white);
   --float-y: 0.0625em;
@@ -928,7 +929,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0;
   }
 
-  header#about > .logo {
+  header#about .logo {
     height: 0.75em;
     font-size: 1.75em;
   }
@@ -955,7 +956,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0;
   }
 
-  header#about > .logo {
+  header#about .logo {
     height: 1em;
     font-size: 2em;
   }
@@ -982,7 +983,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0.5em;
   }
 
-  header#about > .logo {
+  header#about .logo {
     height: 1.25em;
     font-size: 2em;
   }
@@ -1010,7 +1011,7 @@ menu.version-links > li:hover > img {
     padding-block-start: 0.75em;
   }
   
-  header#about > .logo {
+  header#about .logo {
     height: 1.5em;
     font-size: 2em;
   }
@@ -1033,7 +1034,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 768px) and (max-height: 991.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 2em;
   }
  
@@ -1055,7 +1056,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 992px) and (max-height: 1199.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 2.25em;
   }
 
@@ -1077,7 +1078,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 1200px) and (max-height: 1599.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 3em;
   }
 
@@ -1099,7 +1100,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 1600px) and (max-height: 1999.98px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 3.5em;
   }
 
@@ -1121,7 +1122,7 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-height: 2000px) {
-  header#about > .logo {
+  header#about .logo {
     font-size: 4em;
   }
 
