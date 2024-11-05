@@ -5,7 +5,7 @@ export default function About() {
 
   return (
     <header id="about">
-      <a href="#">
+      <a href="#" aria-label="Typekev logo">
         <h1 className="logo" data-text="K" aria-hidden="true">
           K
         </h1>
