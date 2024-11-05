@@ -75,9 +75,7 @@ footer small,
 .button svg,
 .button span,
 .opening-highlight-transition {
-  filter: 
-    drop-shadow(0 0 0.25em var(--transparent-black-accent))
-    drop-shadow(0 0 0.0625em currentColor);
+  filter: drop-shadow(0 0 0.0625em currentColor);
 }
 
 .opening-highlight-transition {
