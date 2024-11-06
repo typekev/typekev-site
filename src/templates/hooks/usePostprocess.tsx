@@ -15,7 +15,7 @@ export const useBloom = () => {
     composer.addPass(renderPass);
 
     const resolution = new THREE.Vector2(size.width * gl.pixelRatio, size.height * gl.pixelRatio);
-    const bloom = new UnrealBloomPass(resolution, 100, 1, 0.005);
+    const bloom = new UnrealBloomPass(resolution, 200, 1, 0.0075);
     composer.addPass(bloom);
 
     return composer;
