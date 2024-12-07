@@ -38,7 +38,7 @@ export function BlackHole(props: Omit<ThreeElements["primitive"], "object">) {
   }, []);
 
   useFrame((_, delta) => {
-    scene.rotation.y += delta * 5;
+    scene.rotation.y += delta * 4;
     const scroll = inverseScroll(window.scrollY);
     if (scene.rotation.x !== scroll) scene.rotation.x = getRotationX(scene.rotation.x, scroll);
     if (scene.position.y !== -scroll - scrollMin) scene.position.y = getPositionY(scene.position.y, scroll);
