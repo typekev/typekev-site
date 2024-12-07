@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
-import { useBloom } from "@/templates/hooks/usePostprocess";
+import { useBloom } from "@/hooks/usePostprocess";
 
 import type { ThreeElements } from "@react-three/fiber";
 

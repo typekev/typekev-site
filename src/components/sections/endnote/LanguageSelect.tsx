@@ -2,17 +2,21 @@
 import { GlobeIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
+import { useHash } from "@/hooks/useHash";
 import { routing, useRouter } from "i18n/routing";
+
+import type { Bot } from "libs/typekev-bot/bots/types";
 
 const { locales } = routing;
 
 export function LanguageSelect() {
   const t = useTranslations("Locale");
   const router = useRouter();
-  const locale = useLocale();
+  const locale = useLocale() as Bot;
+  const hash = useHash();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    router.replace(`/${window.location.hash}`, { locale: e.target.value });
+    router.replace(`/${hash}`, { locale: e.target.value });
 
   return (
     <label>

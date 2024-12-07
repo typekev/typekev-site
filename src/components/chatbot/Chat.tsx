@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 
 import { ForwardIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Keyboard, { Cursor } from "react-mk";
 
+import { useHash } from "@/hooks/useHash";
 import { bots } from "libs/typekev-bot/bots";
 
 import type { Bot } from "libs/typekev-bot/bots/types";
@@ -17,53 +18,58 @@ interface Props {
 export function Chat({ toggleChat, visible }: Props) {
   const t = useTranslations("Bot");
   const locale = useLocale() as Bot;
+  const hash = useHash();
   const [userInput, setUserInput] = useState("");
   const [typeahead, setTypeahead] = useState("");
   const [userMessage, setUserMessage] = useState("");
   const [botReply, setBotReply] = useState(t("prompt"));
 
   const languageBot = bots[locale];
-
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const clearTypeahead = () => setTypeahead("");
-  const acceptTypeahead = () => {
+  const clearTypeahead = useCallback(() => setTypeahead(""), []);
+
+  const acceptTypeahead = useCallback(() => {
     if (typeahead) {
       setUserInput(languageBot.getChatSuggestion(typeahead) || typeahead);
       clearTypeahead();
     }
-  };
+  }, [typeahead, languageBot, clearTypeahead]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(e.target.value);
-    if (e.target.value.length > 5) {
-      const suggestion = languageBot.getChatSuggestion(e.target.value);
-      if (suggestion) {
-        const suggestionIndex = suggestion.toLowerCase().indexOf(e.target.value.toLowerCase());
-        setTypeahead(
-          suggestionIndex !== -1
-            ? `${e.target.value}${suggestion.substring(suggestionIndex + e.target.value.length)}`
-            : "",
-        );
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const input = e.target.value;
+      setUserInput(input);
+      if (input.length > 5) {
+        const suggestion = languageBot.getChatSuggestion(input);
+        if (suggestion) {
+          const suggestionIndex = suggestion.toLowerCase().indexOf(input.toLowerCase());
+          setTypeahead(suggestionIndex !== -1 ? `${input}${suggestion.substring(suggestionIndex + input.length)}` : "");
+        } else {
+          clearTypeahead();
+        }
+      } else {
+        clearTypeahead();
       }
-    } else {
-      clearTypeahead();
-    }
-  };
+    },
+    [languageBot, clearTypeahead],
+  );
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (typeahead && e.key === "Tab") {
-      e.preventDefault();
-      e.stopPropagation();
-      acceptTypeahead();
-    }
-  };
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (typeahead && e.key === "Tab") {
+        e.preventDefault();
+        acceptTypeahead();
+      }
+    },
+    [typeahead, acceptTypeahead],
+  );
 
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash.startsWith("#work-")) {
+      if (hash.startsWith("#work-")) {
         toggleChat(true);
-        const workplace = window.location.hash.substring(6);
+        const workplace = hash.substring(6);
         const query = languageBot.getChatSuggestion(workplace) || workplace;
         setUserMessage(query);
         setBotReply(languageBot.getBotReply(query) || workplace);
@@ -71,21 +77,16 @@ export function Chat({ toggleChat, visible }: Props) {
       }
     };
 
+    handleHashChange();
     addEventListener("hashchange", handleHashChange);
-    if (window.location.hash.startsWith("#work-")) {
-      document.getElementById(window.location.hash.substring(1))?.click();
-      setTimeout(() => handleHashChange(), 1000);
-    }
 
     return () => {
       removeEventListener("hashchange", handleHashChange);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [hash, toggleChat, languageBot]);
 
   useEffect(() => {
     if (visible) inputRef.current?.focus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   const keyboard = useMemo(
