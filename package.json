@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "prettier": "prettier **/*.tsx"
+    "prettier": "prettier **/*.tsx",
+    "prepare": "husky"
   },
   "browserslist": {
     "production": [
