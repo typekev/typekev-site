@@ -36,7 +36,7 @@ declare global {
 
 // eslint-disable-next-line react/display-name
 const Shader = forwardRef(({ children, ...props }: PropsWithChildren, ref) => {
-  const localRef = useRef<ShaderImplElement>() as MutableRefObject<ShaderImplElement>;
+  const localRef = useRef<ShaderImplElement>(null) as MutableRefObject<ShaderImplElement>;
 
   useImperativeHandle(ref, () => localRef.current);
 
