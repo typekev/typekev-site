@@ -11,13 +11,15 @@ export default function Scene() {
   const { loaded } = useProgress();
 
   useEffect(() => {
-    document.body.style.setProperty("--opening-transition-opacity", "0");
-    document.body.style.setProperty("--opening-play-state", "running");
+    if (loaded) {
+      document.body.style.setProperty("--opening-transition-opacity", "0");
+      document.body.style.setProperty("--opening-play-state", "running");
+    }
   }, [loaded]);
 
   return (
     <Canvas
-      className={loaded ? "black-hole-canvas" : undefined}
+      className="black-hole-canvas"
       style={{ position: "fixed", height: undefined }}
       eventPrefix="client"
       onCreated={(state) => (state.gl.toneMapping = THREE.AgXToneMapping)}
