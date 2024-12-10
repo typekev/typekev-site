@@ -574,6 +574,7 @@ aside.modal-background > .modal-close-button {
 .button:target > .highlighted-button-text::before,
 .button:target > .highlighted-button-text::after {
   position: relative;
+  cursor: text;
   display: inline-block;
   animation: rainbow 75s -1s linear infinite reverse;
   background: linear-gradient(90deg, var(--rainbow-colors));
