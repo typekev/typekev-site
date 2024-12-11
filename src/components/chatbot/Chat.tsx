@@ -80,8 +80,6 @@ export function Chat() {
     [botReply, userMessage],
   );
 
-  console.log(chatting, userMessage, params.get("chat"));
-
   return (
     <dialog className={chatting ? "" : "hidden"}>
       {userMessage && <p className="chat-message user">{userMessage}</p>}
