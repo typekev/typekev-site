@@ -1,93 +1,68 @@
 "use client";
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { ForwardIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Keyboard, { Cursor } from "react-mk";
 
-import { useHash } from "@/hooks/useHash";
+import { useRouter } from "i18n/routing";
 import { bots } from "libs/typekev-bot/bots";
 
 import type { Bot } from "libs/typekev-bot/bots/types";
 
-interface Props {
-  visible: boolean;
-  toggleChat: (visible?: boolean) => void;
-}
-
-export function Chat({ toggleChat, visible }: Props) {
+export function Chat() {
   const t = useTranslations("Bot");
-  const locale = useLocale() as Bot;
-  const hash = useHash();
-  const [userInput, setUserInput] = useState("");
+  const router = useRouter();
+  const [botReply, setBotReply] = useState("");
   const [typeahead, setTypeahead] = useState("");
-  const [userMessage, setUserMessage] = useState("");
-  const [botReply, setBotReply] = useState(t("prompt"));
+  const [userInput, setUserInput] = useState("");
 
+  const locale = useLocale() as Bot;
   const languageBot = bots[locale];
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  const clearTypeahead = useCallback(() => setTypeahead(""), []);
+  const params = useSearchParams();
+  const chatParam = useMemo(() => params.get("chat"), [params]);
+  const chatting = chatParam !== null;
+  const userMessage = decodeURIComponent(chatParam || "");
 
-  const acceptTypeahead = useCallback(() => {
+  const clearTypeahead = () => setTypeahead("");
+  const acceptTypeahead = () => {
     if (typeahead) {
       setUserInput(languageBot.getChatSuggestion(typeahead) || typeahead);
       clearTypeahead();
     }
-  }, [typeahead, languageBot, clearTypeahead]);
+  };
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const input = e.target.value;
-      setUserInput(input);
-      if (input.length > 5) {
-        const suggestion = languageBot.getChatSuggestion(input);
-        if (suggestion) {
-          const suggestionIndex = suggestion.toLowerCase().indexOf(input.toLowerCase());
-          setTypeahead(suggestionIndex !== -1 ? `${input}${suggestion.substring(suggestionIndex + input.length)}` : "");
-        } else {
-          clearTypeahead();
-        }
-      } else {
-        clearTypeahead();
-      }
-    },
-    [languageBot, clearTypeahead],
-  );
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    setUserInput(input);
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (typeahead && e.key === "Tab") {
-        e.preventDefault();
-        acceptTypeahead();
-      }
-    },
-    [typeahead, acceptTypeahead],
-  );
+    const suggestion = input.length > 4 ? languageBot.getChatSuggestion(input) : "";
+    if (suggestion) {
+      const suggestionIndex = suggestion.toLowerCase().indexOf(input.toLowerCase());
+      setTypeahead(suggestionIndex !== -1 ? `${input}${suggestion.substring(suggestionIndex + input.length)}` : "");
+    } else {
+      clearTypeahead();
+    }
+  };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (typeahead && e.key === "Tab") {
+      e.preventDefault();
+      acceptTypeahead();
+    }
+  };
+
+  const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    const handleHashChange = () => {
-      if (hash.startsWith("#work-")) {
-        toggleChat(true);
-        const workplace = hash.substring(6);
-        const query = languageBot.getChatSuggestion(workplace) || workplace;
-        setUserMessage(query);
-        setBotReply(languageBot.getBotReply(query) || workplace);
-        inputRef.current?.focus();
-      }
-    };
-
-    handleHashChange();
-    addEventListener("hashchange", handleHashChange);
-
-    return () => {
-      removeEventListener("hashchange", handleHashChange);
-    };
-  }, [hash, toggleChat, languageBot]);
-
-  useEffect(() => {
-    if (visible) inputRef.current?.focus();
-  }, [visible]);
+    if (chatting) {
+      inputRef.current?.focus();
+      setBotReply(userMessage ? languageBot.getBotReply(userMessage) || "?" : t("prompt"));
+    } else {
+      setBotReply(languageBot.getBotReply(t("goodbye")) || "...");
+    }
+  }, [userMessage, chatting, t, languageBot]);
 
   const keyboard = useMemo(
     () => (
@@ -106,11 +81,11 @@ export function Chat({ toggleChat, visible }: Props) {
   );
 
   return (
-    <dialog className={visible ? "" : "hidden"}>
+    <dialog className={chatting ? "" : "hidden"}>
       {userMessage && <p className="chat-message user">{userMessage}</p>}
       {botReply && (
         <p className="chat-message bot">
-          <span className="chat-message-text">{keyboard}</span>
+          <span className="chat-message-text">{params.get("translated") !== null ? botReply : keyboard}</span>
           <span className="chat-message-spacer">{botReply}</span>
         </p>
       )}
@@ -119,10 +94,9 @@ export function Chat({ toggleChat, visible }: Props) {
         onSubmit={(e) => {
           e.preventDefault();
           if (userInput.trim()) {
-            setUserMessage(userInput);
+            router.push(`?chat=${encodeURIComponent(userInput)}`, { scroll: false });
             setUserInput("");
             clearTypeahead();
-            setBotReply(languageBot.getBotReply(userInput) || "");
           }
         }}
       >
@@ -140,7 +114,7 @@ export function Chat({ toggleChat, visible }: Props) {
             onKeyDown={handleKeyDown}
             onClick={acceptTypeahead}
             aria-label="Your message"
-            autoFocus={visible}
+            autoFocus={params.get("chat") !== null}
           />
         </label>
         <button

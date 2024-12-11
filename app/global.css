@@ -23,8 +23,7 @@
   --opening-play-state: paused;
 }
 
-html:has(.modal-background:not(.hidden)),
-body:has(.modal-background:not(.hidden)) {
+html:has(.modal-background:not(.hidden)) {
   overflow: hidden;
 }
 
@@ -55,8 +54,8 @@ body > aside.background-gradient {
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   animation: rainbow 55s 0.5s linear infinite reverse;
-  transition: opacity 2s 3s ease;
-  will-change: background-position;
+  transition: opacity 4s 1s ease-in-out;
+  will-change: background-position, opacity;
   z-index: 1;
 }
 
@@ -74,25 +73,26 @@ footer p,
 footer small,
 .button svg,
 .button span,
-.opening-highlight-transition {
+.highlighted-text-overlay {
   filter: drop-shadow(0 0 0.0625em currentColor);
 }
 
-.opening-highlight-transition {
+.highlighted-text-overlay {
   position: absolute;
   opacity: var(--opening-transition-opacity);
-  transition: opacity 2s 3s ease;
+  transition: opacity 5s 3s ease-in-out;
   z-index: 1;
   user-select: none;
   pointer-events: none;
 }
 
-.button:target > .opening-highlight-transition {
-  padding: inherit;
+.button > .highlighted-text-overlay {
+  visibility: hidden;
 }
 
-.button:not(:target) > .opening-highlight-transition {
-  visibility: hidden;
+.button.active > .highlighted-text-overlay {
+  padding: inherit;
+  visibility: visible;
 }
 
 main {
@@ -103,6 +103,12 @@ main {
 
 strong {
   font-weight: 800;
+}
+
+section,
+address,
+header {
+  overflow-anchor: none;
 }
 
 section,
@@ -120,11 +126,6 @@ header > *,
 footer > * {
   pointer-events: all;
   width: fit-content;
-}
-
-section:target > h2.title::after,
-address:target > h2.title::after {
-  width: 100%;
 }
 
 h2.title {
@@ -151,7 +152,8 @@ h2.title::after {
 }
 
 h2.title:hover::after,
-h2.title:focus::after {
+h2.title:focus::after,
+a.active > h2.title::after {
   width: 100%;
 }
 
@@ -201,9 +203,8 @@ header#about p > strong > .highlighted-text,
 header#about p > strong > .highlighted-text::before,
 header#about p > strong > .highlighted-text::after {
   opacity: calc(1 - var(--opening-transition-opacity));
-  animation-delay: 3s;
   animation-play-state: var(--opening-play-state);
-  transition: opacity 0.5s 3s ease;
+  transition: opacity 3s ease-in-out;
 }
 
 section#work {
@@ -231,7 +232,7 @@ section#work ul > li:hover {
   padding-block-end: 0.125em;
 }
 
-section#work ul > li p.work-year {
+section#work ul > li p.button-superscript {
   position: absolute;
   font-weight: 400;
   font-size: 0.3125em;
@@ -241,8 +242,8 @@ section#work ul > li p.work-year {
   transition: margin 0.15s ease-in-out;
 }
 
-section#work ul > li:hover p.work-year,
-section#work ul > li a.button:hover + p.work-year {
+section#work ul > li:hover p.button-superscript,
+section#work ul > li a.button:hover + p.button-superscript {
   margin-block-start: -0.125em;
 }
 
@@ -285,10 +286,6 @@ footer#endnote > small > label {
   display: flex;
   align-items: center;
   gap: 0.625em;
-}
-
-footer#endnote > small > label > svg {
-  filter: drop-shadow(0 0 0.0625em currentColor);
 }
 
 footer#endnote > small > label > select {
@@ -360,10 +357,11 @@ dialog.tooltip {
   height: auto;
   margin-block-start: 0.125em;
   padding: 0.125em 0.375em;
-  filter: drop-shadow(0 0 0.125em var(--white));
 }
 
 aside.modal-background {
+  position: fixed;
+  inset: 0;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -374,14 +372,13 @@ aside.modal-background {
     var(--transparent-black) 100%
   );
   backdrop-filter: blur(0.375em);
-  position: fixed;
-  inset: 0;
+  width: 100%;
   opacity: 1;
   visibility: visible;
   transition:
     opacity 0.3s ease-in-out,
     visibility 0.3s ease-in-out;
-  z-index: 2;
+  z-index: 3;
 }
 
 aside.modal-background.hidden {
@@ -411,12 +408,14 @@ aside.modal-background > .modal-close-button {
   padding-block-end: 0.25em;
   font-weight: 500;
   --float-y: 0.125em;
-  transition: width ease-in-out 0.25s, max-height ease-in-out 0.25s;
+  transition:
+    width 0.5s ease-in-out,
+    max-height 0.5s ease-in-out;
   animation: floating 10s ease-in-out infinite;
   z-index: 3;
 }
 
-#bot.active {
+#bot.chatting {
   width: calc(100% + 24px);
   max-height: max(3em, 300px);
 }
@@ -430,16 +429,19 @@ aside.modal-background > .modal-close-button {
 
 #bot > dialog.hidden {
   pointer-events: none;
+  transition:
+    opacity 1.25s 0.75s ease-out,
+    visibility 1.25s 0.75s ease-out;
 }
 
-#bot > button {
+#bot > .bot-button {
   pointer-events: all;
   cursor: pointer;
   padding: 0.5em;
   border-radius: 1em;
 }
 
-#bot > button > svg {
+#bot > .bot-button > svg {
   width: min(3em, 8vmax);
   height: min(3em, 8vmax);
   margin-block-start: -0.25em;
@@ -447,9 +449,9 @@ aside.modal-background > .modal-close-button {
   animation: shake 5s ease-in-out infinite;
 }
 
-#bot > button:hover > svg,
-#bot > button:focus > svg,
-#bot > button.active > svg {
+#bot > .bot-button:hover > svg,
+#bot > .bot-button:focus > svg,
+#bot > .bot-button.active > svg {
   animation-play-state: running, paused, running;
   animation-duration: 4s, 0s, 0.5s;
 }
@@ -569,25 +571,25 @@ aside.modal-background > .modal-close-button {
 .highlighted-text,
 .highlighted-text::before,
 .highlighted-text::after,
-.button:target > .highlighted-button-text,
-.button:target > .highlighted-button-text::before,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text,
+.button.active > .highlighted-button-text::before,
+.button.active > .highlighted-button-text::after {
   position: relative;
+  cursor: text;
   display: inline-block;
   animation: rainbow 75s -1s linear infinite reverse;
   background: linear-gradient(90deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   background-clip: text;
-  color: transparent;
-  filter: none;
+  color: var(--transparent-white-faded);
   align-items: baseline;
   will-change: background-position;
 }
 
 .highlighted-text::before,
 .highlighted-text::after,
-.button:target > .highlighted-button-text::before,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::before,
+.button.active > .highlighted-button-text::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
@@ -595,14 +597,14 @@ aside.modal-background > .modal-close-button {
 }
 
 .highlighted-text::after,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::after {
   filter: blur(30px);
   opacity: 0.2;
 }
 
-.button:target > .highlighted-button-text,
-.button:target > .highlighted-button-text::before,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text,
+.button.active > .highlighted-button-text::before,
+.button.active > .highlighted-button-text::after {
   animation-duration: 40s;
   background-size: 1100% 100%;
 }
@@ -626,7 +628,7 @@ aside.modal-background > .modal-close-button {
 
 .button:hover,
 .button:focus,
-.button:target {
+.button.active {
   background: radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/20000%;
 }
 
@@ -636,28 +638,12 @@ aside.modal-background > .modal-close-button {
   transition: background 0.05s;
 }
 
-.button.active {
-  background-color: var(--transparent-white-faded);
-}
-
 .button:hover,
 .button:focus,
-.button:target,
+.button.active,
 .button:active,
 .button.active {
-  backdrop-filter: blur(0.5em);
-}
-
-#work-ses.button {
-  scroll-margin-block-start: 2.25em;
-}
-
-#work-emailtree.button {
-  scroll-margin-block-start: 4.125em;
-}
-
-#work-devoteam.button {
-  scroll-margin-block-start: 6em;
+  backdrop-filter: blur(0.75em);
 }
 
 .button-group {
@@ -753,7 +739,9 @@ menu.version-links > li > img {
   height: auto;
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.125s ease-in-out, transform 0.125s ease-in-out;
+  transition:
+    opacity 0.125s ease-in-out,
+    transform 0.125s ease-in-out;
   border-radius: 0.75em;
 }
 
@@ -774,17 +762,15 @@ menu.version-links > li:hover > img {
   inset-block-start: -10px;
   inset-inline-start: 0;
   width: 100%;
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 4s 4s ease forwards;
+  opacity: calc(1 - var(--opening-transition-opacity));
+  transition: opacity 3s ease;
 }
 
 .black-hole-canvas {
   inset-block-start: -10px;
   inset-inline-start: 0;
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 2s 3s ease forwards;
+  opacity: calc(1 - var(--opening-transition-opacity));
+  transition: opacity 3s ease;
 }
 
 @media (max-width: 575.98px) {
@@ -817,7 +803,6 @@ menu.version-links > li:hover > img {
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-
   main {
     font-size: 32px;
     padding-inline: 56px;
@@ -889,7 +874,7 @@ menu.version-links > li:hover > img {
   }
 }
 
-@media (min-width: 1600px) and (max-width: 1999.98px)  {
+@media (min-width: 1600px) and (max-width: 1999.98px) {
   main {
     font-size: 52px;
     padding-inline: 256px;
@@ -937,7 +922,9 @@ menu.version-links > li:hover > img {
     font-size: 1.75em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 0;
   }
 
@@ -949,7 +936,8 @@ menu.version-links > li:hover > img {
     margin-block: 0 5em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 504px;
   }
 }
@@ -964,7 +952,9 @@ menu.version-links > li:hover > img {
     font-size: 2em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 0.25em;
   }
 
@@ -976,7 +966,8 @@ menu.version-links > li:hover > img {
     margin-block: 0.5em 6em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 500px;
   }
 }
@@ -991,7 +982,9 @@ menu.version-links > li:hover > img {
     font-size: 2em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 0.5em;
   }
 
@@ -1003,23 +996,25 @@ menu.version-links > li:hover > img {
     margin-block: 2em 7em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 596px;
   }
 }
-
 
 @media (min-height: 576px) and (max-height: 767.98px) {
   header#about {
     padding-block-start: 0.75em;
   }
-  
+
   header#about .logo {
     height: 1.5em;
     font-size: 2em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 0.75em;
   }
 
@@ -1031,7 +1026,8 @@ menu.version-links > li:hover > img {
     margin-block: 3em 8em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 788px;
   }
 }
@@ -1040,10 +1036,12 @@ menu.version-links > li:hover > img {
   header#about .logo {
     font-size: 2em;
   }
- 
-  header#about > p, section#work, address#contact {
+
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 1em;
-  } 
+  }
 
   #bot {
     inset-block-end: 1em;
@@ -1053,7 +1051,8 @@ menu.version-links > li:hover > img {
     margin-block: 4em 9em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 1012px;
   }
 }
@@ -1063,9 +1062,11 @@ menu.version-links > li:hover > img {
     font-size: 2.25em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 1.5em;
-  }   
+  }
 
   #bot {
     inset-block-end: 1.5em;
@@ -1075,7 +1076,8 @@ menu.version-links > li:hover > img {
     margin-block: 5em 10em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 1220px;
   }
 }
@@ -1085,19 +1087,22 @@ menu.version-links > li:hover > img {
     font-size: 3em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 2em;
   }
 
   #bot {
     inset-block-end: 2em;
-  } 
+  }
 
   footer#endnote {
     margin-block: 5em 11em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 1620px;
   }
 }
@@ -1107,19 +1112,22 @@ menu.version-links > li:hover > img {
     font-size: 3.5em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 3em;
   }
 
   #bot {
     inset-block-end: 3em;
-  } 
+  }
 
   footer#endnote {
     margin-block: 6em 12em;
   }
 
-  .black-hole, .black-hole-canvas {
+  .black-hole,
+  .black-hole-canvas {
     height: 2020px;
   }
 }
@@ -1129,9 +1137,11 @@ menu.version-links > li:hover > img {
     font-size: 4em;
   }
 
-  header#about > p, section#work, address#contact {
+  header#about > p,
+  section#work,
+  address#contact {
     padding-block-end: 4em;
-  }   
+  }
 
   #bot {
     inset-block-end: 4em;
@@ -1141,8 +1151,9 @@ menu.version-links > li:hover > img {
     margin-block: 6em 13em;
   }
 
-  .black-hole, .black-hole-canvas {
-    height: calc(100% + 20px); 
+  .black-hole,
+  .black-hole-canvas {
+    height: calc(100% + 20px);
   }
 }
 

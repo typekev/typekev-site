@@ -19,7 +19,8 @@
   },
   "Bot": {
     "prompt": "Hutt Dir eng Fro? Fro mech!",
-    "placeholder": "Hei schreiwen..."
+    "placeholder": "Hei schreiwen...",
+    "goodbye": "Äddi"
   },
   "Locale": {
     "en": "Englesch (English)",
