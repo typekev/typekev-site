@@ -85,7 +85,7 @@ export function Chat() {
       {userMessage && <p className="chat-message user">{userMessage}</p>}
       {botReply && (
         <p className="chat-message bot">
-          <span className="chat-message-text">{keyboard}</span>
+          <span className="chat-message-text">{params.get("translated") !== null ? botReply : keyboard}</span>
           <span className="chat-message-spacer">{botReply}</span>
         </p>
       )}

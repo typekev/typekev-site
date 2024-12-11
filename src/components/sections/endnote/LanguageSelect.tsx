@@ -21,10 +21,10 @@ export function LanguageSelect() {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     startTransition(() => {
-      // @ts-expect-error -- TypeScript will validate that only known `params`
-      // are used in combination with a given `pathname`. Since the two will
-      // always match for the current route, we can skip runtime checks.
-      router.replace({ pathname, params }, { locale: e.target.value, scroll: false });
+      router.replace(
+        { pathname, query: { ...Object.fromEntries(params.entries()), translated: true } },
+        { locale: e.target.value, scroll: false },
+      );
     });
   };
 

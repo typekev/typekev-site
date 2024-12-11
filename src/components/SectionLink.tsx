@@ -1,4 +1,5 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import { forwardRef, useCallback, useEffect } from "react";
 
 import { useIsRouteActive } from "@/hooks/useIsRouteActive";
@@ -9,11 +10,12 @@ interface SectionLinkProps extends Omit<LinkProps, "onClick"> {
 }
 
 const SectionLink = forwardRef<HTMLAnchorElement, SectionLinkProps>(({ href, className, ...props }, ref) => {
+  const params = useSearchParams();
   const active = useIsRouteActive(href);
   const scroll = useCallback(() => document.getElementById(href.split("/")[1])?.scrollIntoView(), [href]);
 
   useEffect(() => {
-    if (active) scroll();
+    if (active && params.get("translated") === null) scroll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

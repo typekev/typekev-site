@@ -107,6 +107,12 @@ strong {
 
 section,
 address,
+header {
+  overflow-anchor: none;
+}
+
+section,
+address,
 header,
 footer {
   display: grid;
@@ -403,8 +409,8 @@ aside.modal-background > .modal-close-button {
   font-weight: 500;
   --float-y: 0.125em;
   transition:
-    width ease-in-out 0.25s,
-    max-height ease-in-out 0.25s;
+    width 0.5s ease-in-out,
+    max-height 0.5s ease-in-out;
   animation: floating 10s ease-in-out infinite;
   z-index: 3;
 }
@@ -575,8 +581,7 @@ aside.modal-background > .modal-close-button {
   background: linear-gradient(90deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   background-clip: text;
-  color: transparent;
-  filter: none;
+  color: var(--transparent-white-faded);
   align-items: baseline;
   will-change: background-position;
 }
@@ -638,7 +643,7 @@ aside.modal-background > .modal-close-button {
 .button.active,
 .button:active,
 .button.active {
-  backdrop-filter: blur(0.5em);
+  backdrop-filter: blur(0.75em);
 }
 
 .button-group {
