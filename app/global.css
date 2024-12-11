@@ -23,8 +23,7 @@
   --opening-play-state: paused;
 }
 
-html:has(.modal-background:not(.hidden)),
-body:has(.modal-background:not(.hidden)) {
+html:has(.modal-background:not(.hidden)) {
   overflow: hidden;
 }
 
@@ -51,7 +50,7 @@ html {
 body > aside.background-gradient {
   position: fixed;
   inset: 0;
-  opacity: max(var(--opening-transition-opacity), 0.15);
+  opacity: max(var(--opening-transition-opacity), 0.1);
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   animation: rainbow 55s 0.5s linear infinite reverse;
@@ -87,12 +86,13 @@ footer small,
   pointer-events: none;
 }
 
-.button:target > .highlighted-text-overlay {
-  padding: inherit;
+.button > .highlighted-text-overlay {
+  visibility: hidden;
 }
 
-.button:not(:target) > .highlighted-text-overlay {
-  visibility: hidden;
+.button.active > .highlighted-text-overlay {
+  padding: inherit;
+  visibility: visible;
 }
 
 main {
@@ -122,11 +122,6 @@ footer > * {
   width: fit-content;
 }
 
-section:target > h2.title::after,
-address:target > h2.title::after {
-  width: 100%;
-}
-
 h2.title {
   margin-block: 0 0.5em;
   font-weight: 300;
@@ -151,7 +146,8 @@ h2.title::after {
 }
 
 h2.title:hover::after,
-h2.title:focus::after {
+h2.title:focus::after,
+a.active > h2.title::after {
   width: 100%;
 }
 
@@ -230,7 +226,7 @@ section#work ul > li:hover {
   padding-block-end: 0.125em;
 }
 
-section#work ul > li p.work-year {
+section#work ul > li p.button-superscript {
   position: absolute;
   font-weight: 400;
   font-size: 0.3125em;
@@ -240,8 +236,8 @@ section#work ul > li p.work-year {
   transition: margin 0.15s ease-in-out;
 }
 
-section#work ul > li:hover p.work-year,
-section#work ul > li a.button:hover + p.work-year {
+section#work ul > li:hover p.button-superscript,
+section#work ul > li a.button:hover + p.button-superscript {
   margin-block-start: -0.125em;
 }
 
@@ -284,10 +280,6 @@ footer#endnote > small > label {
   display: flex;
   align-items: center;
   gap: 0.625em;
-}
-
-footer#endnote > small > label > svg {
-  filter: drop-shadow(0 0 0.0625em currentColor);
 }
 
 footer#endnote > small > label > select {
@@ -359,10 +351,11 @@ dialog.tooltip {
   height: auto;
   margin-block-start: 0.125em;
   padding: 0.125em 0.375em;
-  filter: drop-shadow(0 0 0.125em var(--white));
 }
 
 aside.modal-background {
+  position: fixed;
+  inset: 0;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -373,8 +366,7 @@ aside.modal-background {
     var(--transparent-black) 100%
   );
   backdrop-filter: blur(0.375em);
-  position: fixed;
-  inset: 0;
+  width: 100%;
   opacity: 1;
   visibility: visible;
   transition:
@@ -417,7 +409,7 @@ aside.modal-background > .modal-close-button {
   z-index: 3;
 }
 
-#bot.active {
+#bot.chatting {
   width: calc(100% + 24px);
   max-height: max(3em, 300px);
 }
@@ -431,16 +423,19 @@ aside.modal-background > .modal-close-button {
 
 #bot > dialog.hidden {
   pointer-events: none;
+  transition:
+    opacity 1.25s 0.75s ease-out,
+    visibility 1.25s 0.75s ease-out;
 }
 
-#bot > button {
+#bot > .bot-button {
   pointer-events: all;
   cursor: pointer;
   padding: 0.5em;
   border-radius: 1em;
 }
 
-#bot > button > svg {
+#bot > .bot-button > svg {
   width: min(3em, 8vmax);
   height: min(3em, 8vmax);
   margin-block-start: -0.25em;
@@ -448,9 +443,9 @@ aside.modal-background > .modal-close-button {
   animation: shake 5s ease-in-out infinite;
 }
 
-#bot > button:hover > svg,
-#bot > button:focus > svg,
-#bot > button.active > svg {
+#bot > .bot-button:hover > svg,
+#bot > .bot-button:focus > svg,
+#bot > .bot-button.active > svg {
   animation-play-state: running, paused, running;
   animation-duration: 4s, 0s, 0.5s;
 }
@@ -570,9 +565,9 @@ aside.modal-background > .modal-close-button {
 .highlighted-text,
 .highlighted-text::before,
 .highlighted-text::after,
-.button:target > .highlighted-button-text,
-.button:target > .highlighted-button-text::before,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text,
+.button.active > .highlighted-button-text::before,
+.button.active > .highlighted-button-text::after {
   position: relative;
   cursor: text;
   display: inline-block;
@@ -588,8 +583,8 @@ aside.modal-background > .modal-close-button {
 
 .highlighted-text::before,
 .highlighted-text::after,
-.button:target > .highlighted-button-text::before,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::before,
+.button.active > .highlighted-button-text::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
@@ -597,14 +592,14 @@ aside.modal-background > .modal-close-button {
 }
 
 .highlighted-text::after,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::after {
   filter: blur(30px);
   opacity: 0.2;
 }
 
-.button:target > .highlighted-button-text,
-.button:target > .highlighted-button-text::before,
-.button:target > .highlighted-button-text::after {
+.button.active > .highlighted-button-text,
+.button.active > .highlighted-button-text::before,
+.button.active > .highlighted-button-text::after {
   animation-duration: 40s;
   background-size: 1100% 100%;
 }
@@ -628,7 +623,7 @@ aside.modal-background > .modal-close-button {
 
 .button:hover,
 .button:focus,
-.button:target {
+.button.active {
   background: radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/20000%;
 }
 
@@ -638,28 +633,12 @@ aside.modal-background > .modal-close-button {
   transition: background 0.05s;
 }
 
-.button.active {
-  background-color: var(--transparent-white-faded);
-}
-
 .button:hover,
 .button:focus,
-.button:target,
+.button.active,
 .button:active,
 .button.active {
   backdrop-filter: blur(0.5em);
-}
-
-#work-ses.button {
-  scroll-margin-block-start: 2.25em;
-}
-
-#work-emailtree.button {
-  scroll-margin-block-start: 4.125em;
-}
-
-#work-devoteam.button {
-  scroll-margin-block-start: 6em;
 }
 
 .button-group {

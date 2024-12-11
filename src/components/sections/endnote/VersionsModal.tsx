@@ -1,41 +1,22 @@
 "use client";
-import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
+import { PropsWithChildren, useEffect } from "react";
 
 import { XIcon } from "lucide-react";
-import ReactDOM from "react-dom";
 
-interface Props {
-  menu: ReactNode;
-}
+import { useIsRouteActive } from "@/hooks/useIsRouteActive";
+import { Link, useRouter } from "i18n/routing";
 
-export function VersionsModal({ menu, children }: PropsWithChildren<Props>) {
-  const [root, setRoot] = useState<HTMLElement | null>(null);
-  const [hidden, setHidden] = useState(true);
+export function VersionsModal({ children }: PropsWithChildren) {
+  const active = useIsRouteActive("/versions");
+  const router = useRouter();
 
-  const link = (
-    <a
-      className="endnote-link"
-      role="button"
-      data-toggle="modal"
-      aria-hidden="true"
-      onClick={() => setHidden(false)}
-      data-text={children}
-    >
-      {children}
-    </a>
-  );
+  const close = () => router.replace("/", { scroll: false });
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setHidden(true);
-      }
+      if (event.key === "Escape") close();
     };
-
     addEventListener("keydown", handleKeyDown);
-
-    const modalRoot = document.getElementById("root");
-    setRoot(modalRoot);
 
     return () => {
       removeEventListener("keydown", handleKeyDown);
@@ -44,27 +25,13 @@ export function VersionsModal({ menu, children }: PropsWithChildren<Props>) {
   }, []);
 
   return (
-    <>
-      {link}
-      {root
-        ? ReactDOM.createPortal(
-            <aside className={`modal-background ${hidden ? "hidden" : ""}`} onClick={() => setHidden(true)}>
-              <button
-                className="button icon-button modal-close-button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setHidden(true);
-                }}
-              >
-                <XIcon size="2.5em" strokeWidth={2} />
-              </button>
-              <dialog className={`versions-modal ${hidden ? "hidden" : ""}`} onClick={(e) => e.stopPropagation()}>
-                {menu}
-              </dialog>
-            </aside>,
-            root,
-          )
-        : null}
-    </>
+    <aside className={`modal-background ${!active ? "hidden" : ""}`} onClick={close}>
+      <Link href="/" className="button icon-button modal-close-button" role="button" scroll={false} replace>
+        <XIcon size="2.5em" strokeWidth={2} />
+      </Link>
+      <dialog className={`versions-modal ${!active ? "hidden" : ""}`} onClick={(e) => e.stopPropagation()}>
+        {children}
+      </dialog>
+    </aside>
   );
 }

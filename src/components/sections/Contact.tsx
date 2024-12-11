@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 
-import { AnchorButton } from "@/components/AnchorButton";
+import { ButtonLink } from "@/components/ButtonLink";
+import { SectionLink } from "@/components/SectionLink";
 import { email, linkedInUrl } from "@/helpers/links";
 
 import { CopyButton } from "./contact/CopyButton";
@@ -10,15 +11,15 @@ export default function Contact() {
 
   return (
     <address id="contact">
-      <h2 className="title">
-        <a href="#contact">{t("title")}</a>
-      </h2>
+      <SectionLink href="/contact" replace>
+        <h2 className="title">{t("title")}</h2>
+      </SectionLink>
       <ul>
         <li>
-          <AnchorButton href={linkedInUrl}>LinkedIn</AnchorButton>
+          <ButtonLink href={linkedInUrl}>LinkedIn</ButtonLink>
         </li>
         <li className="button-group">
-          <AnchorButton href={`mailto:${email}`}>Email</AnchorButton>
+          <ButtonLink href={`mailto:${email}`}>Email</ButtonLink>
           <CopyButton />
         </li>
       </ul>

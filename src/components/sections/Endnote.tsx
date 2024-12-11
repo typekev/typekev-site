@@ -1,6 +1,7 @@
 import { SiGithub, SiLinkedin, SiX } from "@icons-pack/react-simple-icons";
 
 import { githubUrl, linkedInUrl, xUrl } from "@/helpers/links";
+import { Link } from "i18n/routing";
 
 import { LanguageSelect } from "./endnote/LanguageSelect";
 import { Note } from "./endnote/Note";
@@ -10,19 +11,19 @@ export default function Endnote() {
     <footer id="endnote">
       <menu className="social-links">
         <li className="button">
-          <a href={githubUrl} aria-label="View my GitHub profile">
+          <Link href={githubUrl} aria-label="View my GitHub profile">
             <SiGithub />
-          </a>
+          </Link>
         </li>
         <li className="button">
-          <a href={linkedInUrl} aria-label="View my LinkedIn profile">
+          <Link href={linkedInUrl} aria-label="View my LinkedIn profile">
             <SiLinkedin />
-          </a>
+          </Link>
         </li>
         <li className="button">
-          <a href={xUrl} aria-label="View my X (formerly known as Twitter) profile">
+          <Link href={xUrl} aria-label="View my X (formerly known as Twitter) profile">
             <SiX />
-          </a>
+          </Link>
         </li>
       </menu>
       <Note />

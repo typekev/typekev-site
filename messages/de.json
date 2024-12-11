@@ -19,7 +19,8 @@
   },
   "Bot": {
     "prompt": "Haben Sie eine Frage? Fragen Sie mich!",
-    "placeholder": "Hier tippen..."
+    "placeholder": "Hier tippen...",
+    "goodbye": "Tschüss"
   },
   "Locale": {
     "en": "Englisch (English)",

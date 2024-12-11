@@ -57,6 +57,9 @@ const nextConfig = {
 
     return config;
   },
+  async rewrites() {
+    return [{ source: "/:locale/:route*", destination: "/en" }];
+  },
 };
 
 const KEYS_TO_OMIT = [

@@ -9,6 +9,7 @@ import {
   typescriptUrl,
   vercelUrl,
 } from "@/helpers/links";
+import { Link } from "i18n/routing";
 
 import { VersionsModal } from "./VersionsModal";
 import { VersionsMenu } from "./versionsModal/VersionsMenu";
@@ -17,45 +18,54 @@ export function Note() {
   const t = useTranslations("Endnote");
 
   return (
-    <p>
-      {t.rich("text", {
-        design: (chunks) => (
-          <a href={figmaUrl} className="endnote-link" data-text={chunks}>
-            {chunks}
-          </a>
-        ),
-        ts: (chunks) => (
-          <a href={typescriptUrl} className="endnote-link" data-text={chunks}>
-            {chunks}
-          </a>
-        ),
-        three: (chunks) => (
-          <a href={threeJsUrl} className="endnote-link" data-text={chunks}>
-            {chunks}
-          </a>
-        ),
-        next: (chunks) => (
-          <a href={nextJsUrl} className="endnote-link" data-text={chunks}>
-            {chunks}
-          </a>
-        ),
-        react: (chunks) => (
-          <a href={reactUrl} className="endnote-link" data-text={chunks}>
-            {chunks}
-          </a>
-        ),
-        github: (chunks) => (
-          <a href={githubTypekevSiteUrl} className="endnote-link" data-text={chunks}>
-            {chunks}
-          </a>
-        ),
-        versions: (chunks) => <VersionsModal menu={<VersionsMenu />}>{chunks}</VersionsModal>,
-        host: (chunks) => (
-          <a href={vercelUrl} className="endnote-link" data-text={chunks}>
-            {chunks}
-          </a>
-        ),
-      })}
-    </p>
+    <>
+      <VersionsModal>
+        <VersionsMenu />
+      </VersionsModal>
+      <p>
+        {t.rich("text", {
+          design: (chunks) => (
+            <Link href={figmaUrl} className="endnote-link" data-text={chunks}>
+              {chunks}
+            </Link>
+          ),
+          ts: (chunks) => (
+            <Link href={typescriptUrl} className="endnote-link" data-text={chunks}>
+              {chunks}
+            </Link>
+          ),
+          three: (chunks) => (
+            <Link href={threeJsUrl} className="endnote-link" data-text={chunks}>
+              {chunks}
+            </Link>
+          ),
+          next: (chunks) => (
+            <Link href={nextJsUrl} className="endnote-link" data-text={chunks}>
+              {chunks}
+            </Link>
+          ),
+          react: (chunks) => (
+            <Link href={reactUrl} className="endnote-link" data-text={chunks}>
+              {chunks}
+            </Link>
+          ),
+          github: (chunks) => (
+            <Link href={githubTypekevSiteUrl} className="endnote-link" data-text={chunks}>
+              {chunks}
+            </Link>
+          ),
+          versions: (chunks) => (
+            <Link href="/versions" className="endnote-link" data-text={chunks} scroll={false}>
+              {chunks}
+            </Link>
+          ),
+          host: (chunks) => (
+            <Link href={vercelUrl} className="endnote-link" data-text={chunks}>
+              {chunks}
+            </Link>
+          ),
+        })}
+      </p>
+    </>
   );
 }
