@@ -8,17 +8,14 @@
   --transparent-black-faded: #06050940;
   --transparent-black-accent: #06050930;
   --light-cyan: #b4e5e5;
-  --transparent-light-cyan: #b4e5e577;
   --tropical-indigo: #a083ed;
   --transparent-tropical-indigo: #a083ed2f;
+  --peach-orange: #ffcf9e;
   --pale-pink: #ffc0cb;
-  --transparent-pale-pink: #ffc0cb77;
-  --light-coral-orange: #ff9e9e;
-  --sky-blue: #87ceeb;
-  --transparent-sky-blue: #87ceeb77;
   --light-lavender-purple: #dfc5fe;
-  --rainbow-colors: var(--light-cyan) 10%, var(--tropical-indigo), var(--pale-pink), var(--light-coral-orange),
-    var(--sky-blue), var(--light-lavender-purple), var(--light-cyan) 90%;
+  --light-coral-orange: #ff9e9e;
+  --rainbow-colors: var(--light-cyan) 5%, var(--tropical-indigo), var(--peach-orange), var(--pale-pink),
+    var(--light-lavender-purple), var(--light-coral-orange), var(--light-cyan) 95%;
   --opening-transition-opacity: 1;
   --opening-play-state: paused;
 }
@@ -41,10 +38,6 @@ html {
   color: white;
   font-weight: 600;
   background: var(--black);
-  opacity: 0;
-  visibility: hidden;
-  animation: fade-in 1s ease-in forwards;
-  will-change: opacity;
 }
 
 body > aside.background-gradient {
@@ -53,10 +46,11 @@ body > aside.background-gradient {
   opacity: max(var(--opening-transition-opacity), 0.1);
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
-  animation: rainbow 55s 0.5s linear infinite reverse;
-  transition: opacity 4s 1s ease-in-out;
-  will-change: background-position, opacity;
+  animation: rainbow 55s linear infinite reverse;
+  transition: opacity 4s ease-in-out;
   z-index: 1;
+  pointer-events: none;
+  will-change: background-position, opacity;
 }
 
 input,
@@ -80,7 +74,7 @@ footer small,
 .highlighted-text-overlay {
   position: absolute;
   opacity: var(--opening-transition-opacity);
-  transition: opacity 5s 3s ease-in-out;
+  transition: opacity 5s 2s ease-in-out;
   z-index: 1;
   user-select: none;
   pointer-events: none;
@@ -99,6 +93,7 @@ main {
   display: grid;
   position: relative;
   z-index: 1;
+  pointer-events: none;
 }
 
 strong {
