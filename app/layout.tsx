@@ -2,10 +2,9 @@ import { Fragment_Mono, Poppins } from "next/font/google";
 import { PropsWithChildren } from "react";
 
 import { Analytics } from "@vercel/analytics/react";
+import { getLocale } from "next-intl/server";
 
-import { BlackHole } from "@/components/canvas/BlackHole";
-import Scene from "@/components/canvas/Scene";
-import { Common, View } from "@/components/canvas/View";
+import { BlackHoleScene } from "@/components/canvas/BlackHoleScene";
 import "@/global.css"; // eslint-disable-line import/no-unassigned-import
 
 import { title, description } from "./head";
@@ -23,18 +22,16 @@ const fragmentMono = Fragment_Mono({
 
 export const metadata = { title, description };
 
-export default async function Layout({ children }: PropsWithChildren) {
+export default async function RootLayout({ children }: PropsWithChildren) {
+  const locale = await getLocale();
+
   return (
-    <html className={`${fragmentMono.variable} ${poppins.variable}`}>
+    <html lang={locale} className={`${fragmentMono.variable} ${poppins.variable}`}>
       <head />
       <body id="root">
         <aside className="background-gradient" />
         {children}
-        <Scene />
-        <View orbit className="black-hole">
-          <BlackHole />
-          <Common />
-        </View>
+        <BlackHoleScene />
         <Analytics />
       </body>
     </html>

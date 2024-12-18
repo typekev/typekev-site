@@ -39,8 +39,7 @@
     "react-dom": "^19.0.0",
     "react-mk": "1.1.6",
     "three": "^0.171.0",
-    "three-stdlib": "^2.34.0",
-    "tunnel-rat": "^0.1.2"
+    "three-stdlib": "^2.34.0"
   },
   "peerDependencies": {
     "natural": "^8.0.1"
