@@ -10,7 +10,8 @@ import { SectionLink } from "@/components/SectionLink";
 import { blobGameUrl, devoteamUrl, emailtreeUrl, githubUrl, resumeUrl, reactMKUrl, sesUrl } from "@/helpers/links";
 import { Link } from "i18n/routing";
 import { bots } from "libs/typekev-bot/bots";
-import { Bot } from "libs/typekev-bot/bots/types";
+
+import type { Bot } from "libs/typekev-bot/bots/types";
 
 import { OpenButton } from "./work/OpenButton";
 

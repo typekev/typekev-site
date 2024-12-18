@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { useLayoutEffect, useTransition } from "react";
 
 import { GlobeIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
@@ -27,6 +27,11 @@ export function LanguageSelect() {
       );
     });
   };
+
+  useLayoutEffect(() => {
+    const html = document.querySelector("html");
+    html?.setAttribute("lang", locale);
+  }, [locale]);
 
   return (
     <label>
