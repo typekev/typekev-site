@@ -14,7 +14,7 @@ export function OpenButton({ href }: Props) {
       target="_blank"
       aria-label="Navigate to associated workplace's website"
     >
-      <ArrowUpRightIcon size="0.875em" strokeWidth={1.5} />
+      <ArrowUpRightIcon size="0.875em" strokeWidth={1.25} />
     </Link>
   );
 }

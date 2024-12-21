@@ -27,7 +27,7 @@ export default function Work() {
   return (
     <section id="work">
       <SectionLink href="/work" replace>
-        <h2 className="title">{t("title")}</h2>
+        <h2 className="title underline">{t("title")}</h2>
       </SectionLink>
       <ul>
         <li className="button-group">
@@ -52,19 +52,21 @@ export default function Work() {
           <OpenButton href={devoteamUrl} />
         </li>
         <li>
-          <ButtonLink href={resumeUrl}>{t("resume")}</ButtonLink>
-          <p className="button-superscript">{t("more")}</p>
+          <ButtonLink href={resumeUrl} aria-label="Link to my Résumé">
+            {t("resume")}
+          </ButtonLink>
         </li>
         <li className="button-group">
-          <ButtonLink href={githubUrl}>GitHub</ButtonLink>
-          <p className="button-superscript">{t("portfolio")}</p>
+          <ButtonLink href={githubUrl} aria-label="Link to my GitHub portfolio">
+            GitHub
+          </ButtonLink>
           <Link
             href={reactMKUrl}
             target="_blank"
             className="button icon-button"
             aria-label="Navigate to my NPM library"
           >
-            <KeyboardIcon size="0.875em" strokeWidth={1.75} />
+            <KeyboardIcon size="0.875em" strokeWidth={1.5} />
             <dialog className="tooltip">React Mechanical Keyboard &mdash; NPM Library</dialog>
           </Link>
           <Link
@@ -73,7 +75,7 @@ export default function Work() {
             className="button icon-button"
             aria-label="Navigate to my NextJS game"
           >
-            <Gamepad2Icon size="0.875em" strokeWidth={1.75} />
+            <Gamepad2Icon size="0.875em" strokeWidth={1.5} />
             <dialog className="tooltip">Blob &mdash; Web-Based Retro Game</dialog>
           </Link>
         </li>

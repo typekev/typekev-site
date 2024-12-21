@@ -22,7 +22,7 @@ export function CopyButton() {
 
   return (
     <button className="button icon-button copy-button" onClick={onCopy} aria-label={label}>
-      <Icon size="0.875em" strokeWidth={1.75} />
+      <Icon size="0.875em" strokeWidth={1.25} />
       <dialog className="tooltip" role="tooltip" open>
         {label}
       </dialog>

@@ -1,4 +1,4 @@
-import { Fragment_Mono, Poppins } from "next/font/google";
+import { Ubuntu_Mono, Gantari } from "next/font/google";
 import { PropsWithChildren } from "react";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -9,15 +9,15 @@ import "@/global.css"; // eslint-disable-line import/no-unassigned-import
 
 import { title, description } from "./head";
 
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
+const poppins = Gantari({
+  weight: ["100", "300", "400", "700", "800"],
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-gantari",
 });
-const fragmentMono = Fragment_Mono({
+const fragmentMono = Ubuntu_Mono({
   weight: ["400"],
   subsets: ["latin"],
-  variable: "--font-fragment-mono",
+  variable: "--font-ubuntu-mono",
 });
 
 export const metadata = { title, description };

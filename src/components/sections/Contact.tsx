@@ -12,7 +12,7 @@ export default function Contact() {
   return (
     <address id="contact">
       <SectionLink href="/contact" replace>
-        <h2 className="title">{t("title")}</h2>
+        <h2 className="title underline">{t("title")}</h2>
       </SectionLink>
       <ul>
         <li>
