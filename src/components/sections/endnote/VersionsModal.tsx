@@ -33,7 +33,7 @@ export function VersionsModal({ children }: PropsWithChildren) {
   return (
     <aside className={`modal-background ${!active ? "hidden" : ""}`} onClick={close}>
       <Link href="/" className="button icon-button modal-close-button" role="button" scroll={false} replace>
-        <XIcon size="2.5em" strokeWidth={2} />
+        <XIcon size="2.5em" strokeWidth={1.5} />
       </Link>
       <dialog className={`versions-modal ${!active ? "hidden" : ""}`} onClick={(e) => e.stopPropagation()}>
         {init && children}

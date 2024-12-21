@@ -34,7 +34,7 @@ export function Chatbot() {
         scroll={false}
         aria-label="Toggle chat box"
       >
-        <BotIcon strokeWidth={2} />
+        <BotIcon strokeWidth={1.75} />
       </Link>
     </article>
   );

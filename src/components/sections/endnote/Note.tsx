@@ -25,42 +25,42 @@ export function Note() {
       <p>
         {t.rich("text", {
           design: (chunks) => (
-            <Link href={figmaUrl} className="endnote-link" data-text={chunks}>
+            <Link href={figmaUrl} className="endnote-link underline" data-text={chunks}>
               {chunks}
             </Link>
           ),
           ts: (chunks) => (
-            <Link href={typescriptUrl} className="endnote-link" data-text={chunks}>
+            <Link href={typescriptUrl} className="endnote-link underline" data-text={chunks}>
               {chunks}
             </Link>
           ),
           three: (chunks) => (
-            <Link href={threeJsUrl} className="endnote-link" data-text={chunks}>
+            <Link href={threeJsUrl} className="endnote-link underline" data-text={chunks}>
               {chunks}
             </Link>
           ),
           next: (chunks) => (
-            <Link href={nextJsUrl} className="endnote-link" data-text={chunks}>
+            <Link href={nextJsUrl} className="endnote-link underline" data-text={chunks}>
               {chunks}
             </Link>
           ),
           react: (chunks) => (
-            <Link href={reactUrl} className="endnote-link" data-text={chunks}>
+            <Link href={reactUrl} className="endnote-link underline" data-text={chunks}>
               {chunks}
             </Link>
           ),
           github: (chunks) => (
-            <Link href={githubTypekevSiteUrl} className="endnote-link" data-text={chunks}>
+            <Link href={githubTypekevSiteUrl} className="endnote-link underline" data-text={chunks}>
               {chunks}
             </Link>
           ),
           versions: (chunks) => (
-            <Link href="/versions" className="endnote-link" data-text={chunks} scroll={false}>
+            <Link href="/versions" className="endnote-link underline" data-text={chunks} scroll={false}>
               {chunks}
             </Link>
           ),
           host: (chunks) => (
-            <Link href={vercelUrl} className="endnote-link" data-text={chunks}>
+            <Link href={vercelUrl} className="endnote-link underline" data-text={chunks}>
               {chunks}
             </Link>
           ),

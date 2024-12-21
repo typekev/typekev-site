@@ -4,9 +4,7 @@
   },
   "Work": {
     "title": "Working history",
-    "more": "...More",
-    "resume": "Résumé",
-    "portfolio": "...Portfolio"
+    "resume": "Résumé"
   },
   "Contact": {
     "title": "Contact me",
@@ -14,7 +12,7 @@
     "copy": "Copy email to clipboard"
   },
   "Endnote": {
-    "text": "I designed this website in <design>Figma</design> and developed it using <ts>TypeScript</ts>, <three>Three.js</three>, and the <next>Next.js</next> framework for <react>React</react>. All associated code is open source and available on <github>GitHub</github>. This website—and all its <versions>prior versions</versions>—are continuously deployed with <host>Vercel</host>.",
+    "text": "I designed this website in <design>Figma</design> and developed it using <ts>TypeScript</ts>, <three>Three.js</three>, and the <next>Next.js</next> framework for <react>React.js</react>. All associated code is open source and available on <github>GitHub</github>. This website—and all its <versions>prior versions</versions>—are continuously deployed with <host>Vercel</host>.",
     "version": "Version"
   },
   "Bot": {

@@ -4,9 +4,7 @@
   },
   "Work": {
     "title": "Arbeitsgeschichte",
-    "more": "...Mehr",
-    "resume": "Lebenslauf",
-    "portfolio": "...Arbeitsportfolio"
+    "resume": "Lebenslauf"
   },
   "Contact": {
     "title": "Kontaktiere mich",
@@ -14,7 +12,7 @@
     "copy": "Email in die Zwischenablage kopieren"
   },
   "Endnote": {
-    "text": "Ich habe diese Website in <design>Figma</design> entworfen und mit <ts>TypeScript</ts>, <three>Three.js</three> und dem <next>Next.js</next>-Framework für <react>React</react> entwickelt. Der gesamte zugehörige Code ist Open Source und auf <github>GitHub</github> verfügbar. Diese Website—sowie alle ihre <versions>früheren Versionen</versions>—werden kontinuierlich mit <host>Vercel</host> bereitgestellt.",
+    "text": "Ich habe diese Website in <design>Figma</design> entworfen und mit <ts>TypeScript</ts>, <three>Three.js</three> und dem <next>Next.js</next>-Framework für <react>React.js</react> entwickelt. Der gesamte zugehörige Code ist Open Source und auf <github>GitHub</github> verfügbar. Diese Website—sowie alle ihre <versions>früheren Versionen</versions>—werden kontinuierlich mit <host>Vercel</host> bereitgestellt.",
     "version": "Version"
   },
   "Bot": {
