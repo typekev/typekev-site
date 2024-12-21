@@ -7,11 +7,11 @@
   --transparent-black: #06050977;
   --transparent-black-faded: #06050940;
   --transparent-black-accent: #06050930;
-  --light-cyan: #b4e5e5;
-  --tropical-indigo: #a083ed;
-  --transparent-tropical-indigo: #a083ed2f;
-  --peach-orange: #ffcf9e;
-  --pale-pink: #ffc0cb;
+  --light-cyan: #c7ecec;
+  --tropical-indigo: #c2b0f3;
+  --transparent-tropical-indigo: #b199f02f;
+  --peach-orange: #ffc285;
+  --pale-pink: #ffa7b6;
   --light-lavender-purple: #dfc5fe;
   --light-coral-orange: #ff9e9e;
   --rainbow-colors: var(--light-cyan) 5%, var(--tropical-indigo), var(--peach-orange), var(--pale-pink),
@@ -43,11 +43,11 @@ html {
 body > aside.background-gradient {
   position: fixed;
   inset: 0;
-  opacity: max(var(--opening-transition-opacity), 0.1);
+  opacity: max(min(var(--opening-transition-opacity), 0.9), 0.08);
   background: linear-gradient(-80deg, var(--rainbow-colors));
   background-size: 1000% 100%;
   animation: rainbow 55s linear infinite reverse;
-  transition: opacity 4s ease-in-out;
+  transition: opacity 4s linear;
   z-index: 1;
   pointer-events: none;
   will-change: background-position, opacity;
@@ -68,7 +68,7 @@ footer small,
 .button svg,
 .button span,
 .highlighted-text-overlay {
-  filter: drop-shadow(0 0 0.0625em currentColor);
+  filter: drop-shadow(0 0 0.03125em currentColor);
 }
 
 .highlighted-text-overlay {
@@ -97,7 +97,7 @@ main {
 }
 
 strong {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 section,
@@ -157,36 +157,23 @@ header#about {
   padding-block-start: 2em;
 }
 
-header#about .logo {
+header#about h1.logo {
   position: relative;
-  display: block;
   margin: 0;
   overflow: visible;
-  color: var(--pale-pink);
-  --float-y: 0.125em;
-  animation: floating 22s 4s ease-in-out infinite;
   user-select: none;
+  font-weight: 900;
 }
 
-header#about .logo::before,
-header#about .logo::after {
+header#about h1.logo::before {
+  filter: blur(0.0625em);
+}
+
+header#about h1.logo::after {
   position: absolute;
+  inset: 0;
   content: attr(data-text);
-  overflow: visible;
-}
-
-header#about .logo::before {
-  inset: 4px;
-  color: var(--light-cyan);
-  --float-y: 0.0625em;
-  animation: floating 18s 2s ease-in-out infinite;
-}
-
-header#about .logo::after {
-  inset: 2px;
-  color: var(--white);
-  --float-y: 0.0625em;
-  animation: floating 14s 3s ease-in-out infinite;
+  opacity: 0.7;
 }
 
 header#about p > strong {
@@ -194,6 +181,7 @@ header#about p > strong {
   display: inline-block;
 }
 
+header#about h1.logo::before,
 header#about p > strong > .highlighted-text,
 header#about p > strong > .highlighted-text::before,
 header#about p > strong > .highlighted-text::after {
@@ -563,6 +551,7 @@ aside.modal-background > .modal-close-button {
   text-overflow: ellipsis;
 }
 
+.logo::before,
 .highlighted-text,
 .highlighted-text::before,
 .highlighted-text::after,
@@ -581,6 +570,7 @@ aside.modal-background > .modal-close-button {
   will-change: background-position;
 }
 
+.logo::before,
 .highlighted-text::before,
 .highlighted-text::after,
 .button.active > .highlighted-button-text::before,
@@ -588,7 +578,7 @@ aside.modal-background > .modal-close-button {
   position: absolute;
   inset: 0;
   content: attr(data-text);
-  filter: blur(15px);
+  filter: blur(0.3125em);
 }
 
 .highlighted-text::after,
@@ -757,15 +747,15 @@ menu.version-links > li:hover > img {
   inset-block-start: -10px;
   inset-inline-start: 0;
   width: 100%;
-  opacity: calc(1 - var(--opening-transition-opacity));
-  transition: opacity 3s ease;
 }
 
 .black-hole-canvas {
   inset-block-start: -10px;
   inset-inline-start: 0;
-  opacity: calc(1 - var(--opening-transition-opacity));
-  transition: opacity 3s ease;
+  opacity: 0;
+  visibility: hidden;
+  animation-play-state: var(--opening-play-state);
+  animation: fade-in 3s ease-in-out forwards;
 }
 
 @media (max-width: 575.98px) {

@@ -1,16 +1,17 @@
-export const title = "Kevin Gonzalez | Software Engineering Leader";
+export const title = "Kevin Gonzalez";
 export const description =
-  "Explore the portfolio of Kevin Gonzalez (typekev), a seasoned Software Engineering Leader. Learn about Kevin's work and interests, and connect with him via LinkedIn or email for meaningful discussions and potential collaborations.";
+  "Kevin Gonzalez is a Luxembourg-based product-focused software engineer dedicated to developing exceptional, customer-centric software experiences.";
 const url = "https://typekev.com/";
 const author = "Kevin Gonzalez";
 const twitter = "@typekev";
+const image = "/v5.jpeg";
 
 export default function Head() {
   return (
     <>
       {/* Recommended Meta Tags */}
       <meta charSet="utf-8" />
-      <meta name="language" content="english" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta httpEquiv="content-type" content="text/html" />
       <meta name="author" content={author} />
       <meta name="designer" content={author} />
@@ -21,20 +22,28 @@ export default function Head() {
       <meta name="description" content={description} />
       <meta
         name="keywords"
-        content="Software Engineer,Product Manager,Project Manager,Data Scientist,Computer Scientist,Artificial Intelligence"
+        content="Software Engineer, Product Engineer, Senior Software Engineer, Principal Software Engineer, Software Engineering Lead, Engineering Lead, Product Engineering Lead, Software Engineer in Luxembourg, Software Engineer from New York, AI Engineer, Satellite Software Engineer, Product Development Engineer, Cloud Engineer, Web Developer, Software Developer"
       />
       <meta name="robots" content="index,follow" />
       <meta name="distribution" content="web" />
-      {/* 
-      Facebook Open Graph meta tags
-        documentation: https://developers.facebook.com/docs/sharing/opengraph */}
+
+      {/* Facebook Open Graph meta tags */}
       <meta property="og:title" content={title} />
-      <meta property="og:type" content="site" />
+      <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
-      <meta property="og:image" content={"/icons/share.png"} />
+      <meta property="og:image" content={image} />
       <meta property="og:site_name" content={title} />
       <meta property="og:description" content={description} />
+      <meta property="og:profile:first_name" content="Kevin" />
+      <meta property="og:profile:last_name" content="Gonzalez" />
+      <meta property="og:profile:username" content="typekev" />
+      <meta property="og:locale" content="en_US" />
 
+      <link rel="canonical" href="https://typekev.com/" />
+      <link rel="alternate" hrefLang="en" href="https://typekev.com/en" />
+      <link rel="alternate" hrefLang="de" href="https://typekev.com/de" />
+      <link rel="alternate" hrefLang="fr" href="https://typekev.com/fr" />
+      <link rel="alternate" hrefLang="lu" href="https://typekev.com/lu" />
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -50,18 +59,19 @@ export default function Head() {
       <link rel="manifest" href="/site.webmanifest" />
 
       {/* Meta Tags for HTML pages on Mobile */}
-      {/* <meta name="format-detection" content="telephone=yes"/>
-        <meta name="HandheldFriendly" content="true"/>  */}
       <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1.0" />
       <meta name="theme-color" content="#060509" />
       <link rel="shortcut icon" href="/apple-touch-icon.png" />
 
-      {/* 
-      Twitter Summary card
-        documentation: https://dev.twitter.com/cards/getting-started
-        Be sure validate your Twitter card markup on the documentation site. */}
-      <meta name="twitter:card" content="summary" />
+      {/* Twitter Summary card */}
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={twitter} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+
+      {/* Google Site Verification */}
+      <meta name="google-site-verification" content="w13ZaXcqdnD2RPoT5eARCsqU5HpPRxKijms2p60J-Yg" />
     </>
   );
 }
