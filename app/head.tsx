@@ -11,7 +11,7 @@ export default function Head() {
     <>
       {/* Recommended Meta Tags */}
       <meta charSet="utf-8" />
-      <meta name="language" content="english" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta httpEquiv="content-type" content="text/html" />
       <meta name="author" content={author} />
       <meta name="designer" content={author} />
@@ -39,6 +39,11 @@ export default function Head() {
       <meta property="og:profile:username" content="typekev" />
       <meta property="og:locale" content="en_US" />
 
+      <link rel="canonical" href="https://typekev.com/" />
+      <link rel="alternate" hrefLang="en" href="https://typekev.com/en" />
+      <link rel="alternate" hrefLang="de" href="https://typekev.com/de" />
+      <link rel="alternate" hrefLang="fr" href="https://typekev.com/fr" />
+      <link rel="alternate" hrefLang="lu" href="https://typekev.com/lu" />
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
