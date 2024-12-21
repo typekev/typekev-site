@@ -8,7 +8,7 @@ export default function About() {
   return (
     <header id="about">
       <SectionLink href="/about" aria-label="Typekev logo" scroll={false} replace>
-        <h1 className="logo" data-text="K" aria-hidden="true">
+        <h1 className="logo" data-text="K" role="presentation">
           K
         </h1>
       </SectionLink>
@@ -17,7 +17,7 @@ export default function About() {
           regular: (chunks) => <span>{chunks}</span>,
           highlighted: (chunks) => (
             <strong>
-              <span className="highlighted-text-overlay" data-text={chunks} aria-hidden="true">
+              <span className="highlighted-text-overlay" aria-hidden="true">
                 {chunks}
               </span>
               <span className="highlighted-text" data-text={chunks}>
