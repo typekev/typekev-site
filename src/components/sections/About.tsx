@@ -9,6 +9,9 @@ export default function About() {
     <header id="about">
       <SectionLink href="/about" aria-label="Typekev logo" scroll={false} replace>
         <h1 className="logo" data-text="K" role="presentation">
+          <span className="highlighted-text-overlay" aria-hidden="true">
+            K
+          </span>
           K
         </h1>
       </SectionLink>
