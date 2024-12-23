@@ -53,6 +53,19 @@ body > aside.background-gradient {
   will-change: background-position, opacity;
 }
 
+body > aside.shadow-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(var(--transparent-black-accent) 30%, transparent 50%);
+  opacity: 0;
+  visibility: hidden;
+  animation: fade-in 4s linear forwards;
+  animation-play-state: var(--opening-play-state);
+  z-index: 1;
+  pointer-events: none;
+}
+
 input,
 button,
 select {
@@ -160,6 +173,7 @@ a:is([href*="//"], [href*="mailto"]) > span:focus::after
 header#about {
   place-content: center start;
   padding-block-start: 2em;
+  font-weight: 400;
 }
 
 header#about h1.logo {
@@ -737,7 +751,12 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole {
-  background: radial-gradient(ellipse 130% 50% at 70% 45%, var(--transparent-tropical-indigo) 0%, transparent);
+  background: radial-gradient(
+    ellipse 65% 50% at 70% 40%,
+    transparent,
+    var(--transparent-tropical-indigo) 60%,
+    transparent
+  );
   position: fixed;
   inset-block-start: -10px;
   inset-inline-start: 0;
@@ -756,7 +775,7 @@ menu.version-links > li:hover > img {
 @media (max-width: 575.98px) {
   main {
     font-size: 28px;
-    margin-inline: 32px;
+    padding-inline: 32px;
   }
 
   #bot > dialog {

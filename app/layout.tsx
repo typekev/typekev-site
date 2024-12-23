@@ -29,6 +29,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <html lang={locale} className={`${fragmentMono.variable} ${poppins.variable}`}>
       <head />
       <body id="root">
+        <aside className="shadow-gradient" />
         <aside className="background-gradient" />
         {children}
         <BlackHoleScene />
