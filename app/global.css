@@ -163,13 +163,21 @@ a:is([href*="//"], [href*="mailto"]) > span::after
 
 a:is([href*="//"], [href*="mailto"]) > span
 {
-  padding-block: 0 0.25em;
+  transition: padding-block 0.2s ease-in-out;
 }
 
 a:is([href*="//"], [href*="mailto"]) > span::after
 {
-  inset-block-end: 0.375em;
+  inset-block-end: 0.3125em;
+  inset-inline: 0.25em;
   height: 0.03125em;
+  max-width: calc(100% - 0.5em);
+}
+
+a:is([href*="//"], [href*="mailto"]) > span:hover,
+a:is([href*="//"], [href*="mailto"]) > span:focus
+{
+  padding-block: 0 0.25em;
 }
 
 .underline:hover::after,
@@ -238,7 +246,7 @@ section#work ul > li {
 }
 
 section#work ul > li .highlighted-button-text {
-  transition: margin-block 0.15s ease-in-out;
+  transition: margin-block 0.2s ease-in-out;
 }
 
 section#work ul > li a.button:hover > .highlighted-button-text {
@@ -251,7 +259,7 @@ section#work ul > li p.button-superscript {
   inset-block-start: 0;
   inset-inline-start: 1em;
   margin: 0;
-  transition: inset 0.15s ease-in-out;
+  transition: inset 0.2s ease-in-out;
 }
 
 section#work ul > li a.button:hover + p.button-superscript {
@@ -615,10 +623,13 @@ aside.modal-background > .modal-close-button {
   transition:
     background 0.5s ease-out,
     backdrop-filter 0.25s ease-in-out;
-  padding-inline: 0.125em;
   background: transparent;
   background-position: center;
   border-radius: 0.125em;
+}
+
+.button > span {
+  padding: 0.125em 0.25em;
 }
 
 .button:hover,
