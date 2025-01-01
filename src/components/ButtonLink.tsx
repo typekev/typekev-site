@@ -4,7 +4,7 @@ import { Link, LinkProps } from "i18n/routing";
 
 const ButtonLink = forwardRef<HTMLAnchorElement, LinkProps>(({ children, ...props }, ref) => {
   return (
-    <Link ref={ref} {...props} className="button" role="button" scroll={false} replace>
+    <Link ref={ref} {...props} className="button" role="button" scroll={false}>
       <span>{children}</span>
     </Link>
   );
