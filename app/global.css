@@ -161,6 +161,17 @@ a:is([href*="//"], [href*="mailto"]) > span::after
   transition: width 0.3s ease;
 }
 
+a:is([href*="//"], [href*="mailto"]) > span
+{
+  padding-block: 0 0.25em;
+}
+
+a:is([href*="//"], [href*="mailto"]) > span::after
+{
+  inset-block-end: 0.375em;
+  height: 0.03125em;
+}
+
 .underline:hover::after,
 .underline:focus::after,
 a.active > .underline::after,
@@ -213,7 +224,8 @@ section#work {
   padding-block-start: 1em;
 }
 
-section#work ul {
+section#work ul,
+address#contact ul {
   display: grid;
   gap: 0.25em;
   list-style-type: none;
@@ -223,43 +235,33 @@ section#work ul {
 
 section#work ul > li {
   position: relative;
-  width: fit-content;
-  padding-block-start: 0.125em;
-  padding-block-end: 0;
-  transition: padding 0.15s ease-in-out;
 }
 
-section#work ul > li:hover {
-  padding-block-start: 0;
-  padding-block-end: 0.125em;
+section#work ul > li .highlighted-button-text {
+  transition: margin-block 0.15s ease-in-out;
+}
+
+section#work ul > li a.button:hover > .highlighted-button-text {
+  margin-block: 0.125em -0.125em;
 }
 
 section#work ul > li p.button-superscript {
   position: absolute;
   font-size: 0.3125em;
-  inset-block-start: 0.125em;
+  inset-block-start: 0;
   inset-inline-start: 1em;
   margin: 0;
   transition: inset 0.15s ease-in-out;
 }
 
-section#work ul > li:hover p.button-superscript,
 section#work ul > li a.button:hover + p.button-superscript {
-  inset-block-start: 0em;
+  inset-block-start: 0.625em;
 }
 
 address#contact {
   padding-block-start: 2em;
   margin-block-end: -6em;
   font-style: normal;
-}
-
-address#contact ul {
-  display: grid;
-  gap: 0.25em;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
 }
 
 address#contact button.copy-button {
@@ -613,7 +615,7 @@ aside.modal-background > .modal-close-button {
   transition:
     background 0.5s ease-out,
     backdrop-filter 0.25s ease-in-out;
-  padding: 0.125em 0.25em;
+  padding-inline: 0.125em;
   background: transparent;
   background-position: center;
   border-radius: 0.125em;
