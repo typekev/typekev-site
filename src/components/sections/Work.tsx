@@ -52,12 +52,12 @@ export default function Work() {
           <OpenButton href={devoteamUrl} />
         </li>
         <li>
-          <ButtonLink href={resumeUrl} aria-label="Link to my Résumé">
+          <ButtonLink href={resumeUrl} target="_blank" aria-label="Link to my Résumé">
             {t("resume")}
           </ButtonLink>
         </li>
         <li className="button-group">
-          <ButtonLink href={githubUrl} aria-label="Link to my GitHub portfolio">
+          <ButtonLink href={githubUrl} target="_blank" aria-label="Link to my GitHub portfolio">
             GitHub
           </ButtonLink>
           <Link
