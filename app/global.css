@@ -619,6 +619,7 @@ aside.modal-background > .modal-close-button {
 }
 
 a.button > span {
+  pointer-events: none;
   padding: 0.125em 0.25em;
 }
 
