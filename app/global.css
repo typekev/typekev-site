@@ -1198,6 +1198,11 @@ menu.version-links > li:hover > img {
 }
 
 @media (hover: none), (hover: on-demand), (-moz-touch-enabled: 1), (pointer: coarse) {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   .black-hole {
     pointer-events: none;
     z-index: -1;
