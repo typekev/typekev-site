@@ -3,7 +3,8 @@
     "text": "<regular>Salut, je suis </regular><highlighted>Kévin</highlighted><regular>, un leader en ingénierie logicielle qui développe des systèmes intelligents pour l'optimisation de la capacité et du rendement des satellites.</regular>"
   },
   "Work": {
-    "title": "Historique de travail",
+    "title": "Expérience",
+    "present": "PRÉSENT",
     "resume": "Curriculum Vitae"
   },
   "Contact": {

@@ -16,10 +16,14 @@ export default function Contact() {
       </SectionLink>
       <ul>
         <li>
-          <ButtonLink href={linkedInUrl}>LinkedIn</ButtonLink>
+          <ButtonLink href={linkedInUrl} role="link">
+            LinkedIn
+          </ButtonLink>
         </li>
         <li className="button-group">
-          <ButtonLink href={`mailto:${email}`}>Email</ButtonLink>
+          <ButtonLink href={`mailto:${email}`} role="link">
+            Email
+          </ButtonLink>
           <CopyButton />
         </li>
       </ul>
