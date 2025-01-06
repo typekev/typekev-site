@@ -676,7 +676,7 @@ a.button.active > span {
 .button:focus,
 .button:active,
 .button.active {
-  backdrop-filter: blur(0.75em);
+  backdrop-filter: blur(0.5em);
 }
 
 .button-group {
