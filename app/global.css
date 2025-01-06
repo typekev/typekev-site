@@ -291,12 +291,14 @@ footer#endnote > small {
 }
 
 footer#endnote > small > label {
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.625em;
 }
 
 footer#endnote > small > label > select {
+  cursor: pointer;
   background: var(--transparent-white-accent);
   border: 0.125rem solid var(--transparent-white-faded);
   box-shadow: 0 0 0.25em var(--transparent-white-accent);
