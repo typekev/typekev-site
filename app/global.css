@@ -769,6 +769,11 @@ menu.version-links > li:hover > a {
   background: transparent;
 }
 
+menu.version-links > li > a > .button {
+  pointer-events: none;
+  padding: 0.125em 0.25em;
+}
+
 menu.version-links > li > img {
   display: block;
   width: 100%;
