@@ -3,6 +3,7 @@
   --transparent-white: #fdf9f777;
   --transparent-white-faded: #fdf9f740;
   --transparent-white-accent: #fdf9f720;
+  --transparent-white-accent-faded: #fdf9f710;
   --black: #060509;
   --transparent-black: #06050977;
   --transparent-black-faded: #06050940;
@@ -41,6 +42,7 @@ html {
 }
 
 body > aside.background-gradient {
+  pointer-events: none;
   position: fixed;
   inset: 0;
   opacity: max(min(var(--opening-transition-opacity), 0.9), 0.08);
@@ -49,11 +51,11 @@ body > aside.background-gradient {
   animation: rainbow 55s linear infinite reverse;
   transition: opacity 4s linear;
   z-index: 1;
-  pointer-events: none;
   will-change: background-position, opacity;
 }
 
 body > aside.shadow-gradient {
+  pointer-events: none;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -63,7 +65,6 @@ body > aside.shadow-gradient {
   animation: fade-in 4s linear forwards;
   animation-play-state: var(--opening-play-state);
   z-index: 1;
-  pointer-events: none;
 }
 
 input,
@@ -85,12 +86,12 @@ footer small,
 }
 
 .highlighted-text-overlay {
+  pointer-events: none;
+  user-select: none;
   position: absolute;
   opacity: var(--opening-transition-opacity);
   transition: opacity 5s 2s ease-in-out;
   z-index: 1;
-  user-select: none;
-  pointer-events: none;
 }
 
 .button > .highlighted-text-overlay {
@@ -98,15 +99,14 @@ footer small,
 }
 
 .button.active > .highlighted-text-overlay {
-  padding: inherit;
   visibility: visible;
 }
 
 main {
+  pointer-events: none;
   display: grid;
   position: relative;
   z-index: 1;
-  pointer-events: none;
 }
 
 strong {
@@ -123,9 +123,9 @@ section,
 address,
 header,
 footer {
+  pointer-events: none;
   display: grid;
   grid-auto-rows: min-content;
-  pointer-events: none;
 }
 
 section > *,
@@ -149,8 +149,7 @@ h2.title {
 }
 
 .underline::after,
-a:is([href*="//"], [href*="mailto"]) > span::after
-{
+a[role="link"].button > span::after {
   content: "";
   position: absolute;
   inset-block-end: 0;
@@ -161,31 +160,18 @@ a:is([href*="//"], [href*="mailto"]) > span::after
   transition: width 0.3s ease;
 }
 
-a:is([href*="//"], [href*="mailto"]) > span
-{
-  transition: padding-block 0.2s ease-in-out;
-}
-
-a:is([href*="//"], [href*="mailto"]) > span::after
-{
+a[role="link"].button > span::after {
   inset-block-end: 0.3125em;
   inset-inline: 0.25em;
   height: 0.03125em;
   max-width: calc(100% - 0.5em);
 }
 
-a:is([href*="//"], [href*="mailto"]) > span:hover,
-a:is([href*="//"], [href*="mailto"]) > span:focus
-{
-  padding-block: 0 0.25em;
-}
-
 .underline:hover::after,
 .underline:focus::after,
 a.active > .underline::after,
-a:is([href*="//"], [href*="mailto"]) > span:hover::after,
-a:is([href*="//"], [href*="mailto"]) > span:focus::after
-{
+a[role="link"].button:hover > span::after,
+a[role="link"].button:focus > span::after {
   width: 100%;
 }
 
@@ -196,10 +182,10 @@ header#about {
 }
 
 header#about h1.logo {
+  user-select: none;
   position: relative;
   margin: 0;
   overflow: visible;
-  user-select: none;
   font-weight: 800;
 }
 
@@ -235,7 +221,7 @@ section#work {
 section#work ul,
 address#contact ul {
   display: grid;
-  gap: 0.25em;
+  gap: 0.75rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -245,25 +231,36 @@ section#work ul > li {
   position: relative;
 }
 
-section#work ul > li .highlighted-button-text {
-  transition: margin-block 0.2s ease-in-out;
+section#work ul > li > a[role="button"].button > span {
+  padding-block: 0.0625em 0.1875em;
 }
 
-section#work ul > li a.button:hover > .highlighted-button-text {
-  margin-block: 0.125em -0.125em;
+section#work ul > li > a[role="button"].button:hover > span,
+section#work ul > li > a[role="button"].button:focus > span,
+section#work ul > li > a[role="button"].button:active > span,
+section#work ul > li > a[role="button"].button.active > span {
+  padding-block: 0 0.25em;
 }
 
-section#work ul > li p.button-superscript {
+section#work ul > li .button-subscript {
+  pointer-events: none;
   position: absolute;
-  font-size: 0.3125em;
-  inset-block-start: 0;
-  inset-inline-start: 1em;
+  font-size: 0.25em;
+  font-weight: 400;
+  inset-block-end: 0.375em;
+  inset-inline-start: 1.25em;
   margin: 0;
-  transition: inset 0.2s ease-in-out;
+  white-space: pre;
+  letter-spacing: 0.0625rem;
+  transition: inset 0.15s ease-in-out;
 }
 
-section#work ul > li a.button:hover + p.button-superscript {
-  inset-block-start: 0.625em;
+section#work ul > li > a[role="button"].button:hover + .button-subscript,
+section#work ul > li > a[role="button"].button:focus + .button-subscript,
+section#work ul > li > a[role="button"].button:active + .button-subscript,
+section#work ul > li > a[role="button"].button.active + .button-subscript {
+  inset-block-end: 0.625em;
+  filter: none;
 }
 
 address#contact {
@@ -473,9 +470,9 @@ aside.modal-background > .modal-close-button {
 }
 
 #bot .chat-message-text {
+  pointer-events: none;
   padding-inline-end: inherit;
   position: absolute;
-  pointer-events: none;
 }
 
 #bot .chat-message-text > #cursor {
@@ -554,16 +551,21 @@ aside.modal-background > .modal-close-button {
 }
 
 #bot .chat-input label.chat-typeahead {
+  pointer-events: none;
   position: absolute;
   width: auto;
   inset: 0;
   margin-inline-end: 3.5em;
-  pointer-events: none;
   z-index: 0;
 }
 
 #bot .chat-input .chat-typeahead input {
   color: var(--transparent-white);
+}
+
+#bot .chat-input button.button {
+  border-radius: 0.5em;
+  background-color: transparent;
 }
 
 #bot .chat-input .icon-button svg {
@@ -580,7 +582,10 @@ aside.modal-background > .modal-close-button {
 .highlighted-text::after,
 .button.active > .highlighted-button-text,
 .button.active > .highlighted-button-text::before,
-.button.active > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::after,
+.button.active + .button-subscript > .highlighted-button-text,
+.button.active + .button-subscript > .highlighted-button-text::before,
+.button.active + .button-subscript > .highlighted-button-text::after {
   position: relative;
   cursor: text;
   display: inline-block;
@@ -597,7 +602,9 @@ aside.modal-background > .modal-close-button {
 .highlighted-text::before,
 .highlighted-text::after,
 .button.active > .highlighted-button-text::before,
-.button.active > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::after,
+.button.active + .button-subscript > .highlighted-button-text::before,
+.button.active + .button-subscript > .highlighted-button-text::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
@@ -605,14 +612,33 @@ aside.modal-background > .modal-close-button {
 }
 
 .highlighted-text::after,
-.button.active > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::after,
+.button.active + .button-subscript > .highlighted-button-text::after {
   filter: blur(30px);
   opacity: 0.2;
 }
 
+a.button > span {
+  padding: 0.125em 0.25em;
+}
+
+a.button > span:not(.highlighted-text-overlay) {
+  transition: padding-block 0.15s ease-in-out;
+}
+
+a.button:hover > span,
+a.button:focus > span,
+a.button:active > span,
+a.button.active > span {
+  padding-block: 0.0625em 0.1875em;
+}
+
 .button.active > .highlighted-button-text,
 .button.active > .highlighted-button-text::before,
-.button.active > .highlighted-button-text::after {
+.button.active > .highlighted-button-text::after,
+.button.active + .button-subscript > .highlighted-button-text,
+.button.active + .button-subscript > .highlighted-button-text::before,
+.button.active + .button-subscript > .highlighted-button-text::after {
   animation-duration: 40s;
   background-size: 1100% 100%;
 }
@@ -621,32 +647,33 @@ aside.modal-background > .modal-close-button {
   display: grid;
   width: fit-content;
   transition:
-    background 0.5s ease-out,
+    background-size 0.5s ease-out,
+    background-color 0.15s ease-in-out,
     backdrop-filter 0.25s ease-in-out;
-  background: transparent;
-  background-position: center;
+  background-color: var(--transparent-white-accent-faded);
+  background-image: none;
   border-radius: 0.125em;
-}
-
-.button > span {
-  padding: 0.125em 0.25em;
+  backdrop-filter: blur(0.25em);
 }
 
 .button:hover,
 .button:focus,
 .button.active {
-  background: radial-gradient(circle, var(--transparent-white-accent) 1%, transparent 1%) center/20000%;
+  background-color: var(--transparent-white-accent);
+  background-image: radial-gradient(circle, var(--transparent-white-accent) 0.9%, transparent 1%);
+  background-position: center;
+  background-size: 20000%;
+  background-repeat: no-repeat;
 }
 
 .button:active {
   background-color: var(--transparent-white-faded);
   background-size: 100%;
-  transition: background 0.05s;
+  transition: background-size 0s;
 }
 
 .button:hover,
 .button:focus,
-.button.active,
 .button:active,
 .button.active {
   backdrop-filter: blur(0.75em);
@@ -655,7 +682,7 @@ aside.modal-background > .modal-close-button {
 .button-group {
   display: inline-flex;
   align-items: center;
-  gap: 0.125em;
+  gap: 0.75rem;
 }
 
 .icon-button {
@@ -663,7 +690,8 @@ aside.modal-background > .modal-close-button {
   cursor: pointer;
   color: inherit;
   font-size: inherit;
-  padding: 0.25em;
+  padding: 0.28125em;
+  z-index: 1;
 }
 
 .endnote-link {
