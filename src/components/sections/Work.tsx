@@ -34,30 +34,31 @@ export default function Work() {
           <SectionLink href={sesHref} className="button">
             <HighlightedButtonText>SES Satellites</HighlightedButtonText>
           </SectionLink>
-          <p className="button-superscript">2022 &mdash;</p>
+          <p className="button-subscript">
+            <HighlightedButtonText>2022 &mdash; {t("present")}</HighlightedButtonText>
+          </p>
           <OpenButton href={sesUrl} />
         </li>
         <li className="button-group">
           <SectionLink href={emailtreeHref} className="button">
             <HighlightedButtonText>EmailTree AI</HighlightedButtonText>
           </SectionLink>
-          <p className="button-superscript">2021 &mdash; 2022</p>
+          <p className="button-subscript">
+            <HighlightedButtonText>2021 &mdash; 2022</HighlightedButtonText>
+          </p>
           <OpenButton href={emailtreeUrl} />
         </li>
         <li className="button-group">
           <SectionLink href={devoteamHref} className="button">
             <HighlightedButtonText>Devoteam</HighlightedButtonText>
           </SectionLink>
-          <p className="button-superscript">2017 &mdash; 2021</p>
+          <p className="button-subscript">
+            <HighlightedButtonText>2017 &mdash; 2021</HighlightedButtonText>
+          </p>
           <OpenButton href={devoteamUrl} />
         </li>
-        <li>
-          <ButtonLink href={resumeUrl} target="_blank" aria-label="Link to my Résumé">
-            {t("resume")}
-          </ButtonLink>
-        </li>
         <li className="button-group">
-          <ButtonLink href={githubUrl} target="_blank" aria-label="Link to my GitHub portfolio">
+          <ButtonLink href={githubUrl} target="_blank" role="link" aria-label="Link to my GitHub portfolio">
             GitHub
           </ButtonLink>
           <Link
@@ -78,6 +79,11 @@ export default function Work() {
             <Gamepad2Icon size="0.875em" strokeWidth={1.5} />
             <dialog className="tooltip">Blob &mdash; Web-Based Retro Game</dialog>
           </Link>
+        </li>
+        <li>
+          <ButtonLink href={resumeUrl} target="_blank" role="link" aria-label="Link to my Résumé">
+            {t("resume")}
+          </ButtonLink>
         </li>
       </ul>
     </section>

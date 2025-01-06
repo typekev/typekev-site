@@ -3,7 +3,8 @@
     "text": "<regular>Hi, I'm </regular><highlighted>Kevin</highlighted><regular>, a software engineering leader developing intelligent systems for satellite capacity and yield optimization.</regular>"
   },
   "Work": {
-    "title": "Working history",
+    "title": "Experience",
+    "present": "PRESENT",
     "resume": "Résumé"
   },
   "Contact": {

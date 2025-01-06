@@ -3,7 +3,8 @@
     "text": "<regular>Hallo, ich bin </regular><highlighted>Kevin</highlighted><regular>, ein führender softwareentwickler, der intelligente systeme zur optimierung der satellitenkapazität und -leistung entwickelt.</regular>"
   },
   "Work": {
-    "title": "Arbeitsgeschichte",
+    "title": "Erfahrung",
+    "present": "HEUTE",
     "resume": "Lebenslauf"
   },
   "Contact": {
