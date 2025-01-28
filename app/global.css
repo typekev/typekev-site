@@ -8,12 +8,12 @@
   --transparent-black: #06050977;
   --transparent-black-faded: #06050940;
   --transparent-black-accent: #06050930;
-  --light-cyan: #c7ecec;
-  --tropical-indigo: #c2b0f3;
+  --light-cyan: #b3ffff;
+  --tropical-indigo: #bca3ff;
   --transparent-tropical-indigo: #b199f02f;
   --peach-orange: #ffc285;
   --pale-pink: #ffa7b6;
-  --light-lavender-purple: #dfc5fe;
+  --light-lavender-purple: #ddc2ff;
   --light-coral-orange: #ff9e9e;
   --rainbow-colors: var(--light-cyan) 5%, var(--tropical-indigo), var(--peach-orange), var(--pale-pink),
     var(--light-lavender-purple), var(--light-coral-orange), var(--light-cyan) 95%;
@@ -45,13 +45,50 @@ body > aside.background-gradient {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  opacity: max(min(var(--opening-transition-opacity), 0.9), 0.08);
-  background: linear-gradient(-80deg, var(--rainbow-colors));
-  background-size: 1000% 100%;
-  animation: rainbow 55s linear infinite reverse;
-  transition: opacity 4s linear;
-  z-index: 1;
+  opacity: var(--opening-transition-opacity);
+  transition: opacity 1s 0.5s linear;
+  z-index: 4;
   will-change: background-position, opacity;
+}
+
+body > aside.background-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 0.3125em solid transparent; /* Border width */
+  border-image-slice: 1;
+  background: linear-gradient(-80deg, var(--rainbow-colors));
+  background-size: 300% 100%;
+  animation: rainbow 15s linear infinite reverse;
+  -webkit-mask:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(black, black) border-box;
+  mask:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(black, black) border-box;
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+body > aside.background-gradient.blur {
+  filter: blur(0.125em);
+}
+
+body > aside.background-gradient.blur::before {
+  border-width: 0.625em;
+  border-radius: 1em;
+  inset: -0.125em;
+}
+
+body > aside.background-gradient.blur-2 {
+  filter: blur(0.25em);
+}
+
+body > aside.background-gradient.blur-2::before {
+  border-width: 0.5em;
+  border-radius: 1em;
+  inset: 0.0625em;
 }
 
 body > aside.shadow-gradient {
@@ -90,7 +127,7 @@ footer small,
   user-select: none;
   position: absolute;
   opacity: var(--opening-transition-opacity);
-  transition: opacity 5s 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
   z-index: 1;
 }
 
@@ -106,7 +143,7 @@ main {
   pointer-events: none;
   display: grid;
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 strong {
@@ -190,14 +227,13 @@ header#about h1.logo {
 }
 
 header#about h1.logo::before {
-  filter: blur(0.0625em);
+  filter: blur(0.03125em);
 }
 
 header#about h1.logo::after {
   position: absolute;
   inset: 0;
   content: attr(data-text);
-  opacity: 0.7;
 }
 
 header#about p > strong {
@@ -211,7 +247,7 @@ header#about p > strong > .highlighted-text::before,
 header#about p > strong > .highlighted-text::after {
   opacity: calc(1 - var(--opening-transition-opacity));
   animation-play-state: var(--opening-play-state);
-  transition: opacity 3s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 section#work {
@@ -616,7 +652,7 @@ aside.modal-background > .modal-close-button {
 .highlighted-text::after,
 .button.active > .highlighted-button-text::after,
 .button.active + .button-subscript > .highlighted-button-text::after {
-  filter: blur(30px);
+  filter: blur(5em);
   opacity: 0.2;
 }
 
@@ -800,12 +836,6 @@ menu.version-links > li:hover > img {
 }
 
 .black-hole {
-  background: radial-gradient(
-    ellipse 65% 50% at 70% 40%,
-    transparent,
-    var(--transparent-tropical-indigo) 60%,
-    transparent
-  );
   position: fixed;
   inset-block-start: -10px;
   inset-inline-start: 0;
@@ -1224,6 +1254,15 @@ menu.version-links > li:hover > img {
 
   to {
     background-position: 1000% 50%;
+  }
+}
+
+@keyframes rainbow-border {
+  0% {
+    border-image-source: linear-gradient(0deg, var(--rainbow-colors));
+  }
+  100% {
+    border-image-source: linear-gradient(360deg, var(--rainbow-colors));
   }
 }
 

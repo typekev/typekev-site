@@ -31,6 +31,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       <body id="root">
         <aside className="shadow-gradient" />
         <aside className="background-gradient" />
+        <aside className="background-gradient blur" />
+        <aside className="background-gradient blur-2" />
         {children}
         <BlackHoleScene />
         <Analytics />
