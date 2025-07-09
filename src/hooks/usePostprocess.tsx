@@ -14,13 +14,14 @@ export const useBloom = () => {
     const renderPass = new RenderPass(scene, camera);
     composer.addPass(renderPass);
 
-    const resolution = new THREE.Vector2(size.width * gl.pixelRatio, size.height * gl.pixelRatio);
+    const pixelRatio = gl.getPixelRatio();
+    const resolution = new THREE.Vector2(size.width * pixelRatio, size.height * pixelRatio);
     const bloom = new UnrealBloomPass(resolution, 300, 1, 0.008);
     composer.addPass(bloom);
 
     return composer;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gl.pixelRatio, size]);
+  }, [size]);
 
   useFrame((_, delta) => {
     composer.render(delta);
