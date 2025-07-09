@@ -42,7 +42,7 @@
     "three-stdlib": "^2.36.0"
   },
   "peerDependencies": {
-    "natural": "^8.0.1"
+    "natural": "^8.1.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.3.5",
