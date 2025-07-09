@@ -29,8 +29,8 @@ importers:
         specifier: ^0.525.0
         version: 0.525.0(react@19.1.0)
       natural:
-        specifier: ^8.0.1
-        version: 8.0.1
+        specifier: ^8.1.0
+        version: 8.1.0
       next:
         specifier: ^15.3.5
         version: 15.3.5(@babel/core@7.26.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1793,6 +1793,7 @@ packages:
     resolution:
       { integrity: sha512-P92xmHDQjSKPLHqFxefqMxASNq/aWJMEZugpCjf+AF/pgcUpMMQCg7t7+ewko0/u8AapvF3luf/FoehddEK+sA== }
     engines: { node: ">=16.20.1" }
+    deprecated: a critical bug affecting only useBigInt64=true deserialization usage is fixed in bson@6.10.3
 
   buffer-from@1.1.2:
     resolution:
@@ -3326,9 +3327,9 @@ packages:
     resolution:
       { integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw== }
 
-  natural@8.0.1:
+  natural@8.1.0:
     resolution:
-      { integrity: sha512-VVw8O5KrfvwqAFeNZEgBbdgA+AQaBlHcXEootWU7TWDaFWFI0VLfzyKMsRjnfdS3cVCpWmI04xLJonCvEv11VQ== }
+      { integrity: sha512-qHKU+BzPXzEDwToFBzlI+3oI2jeN3xRNP421ifoF2Fw7ej+5zEO3Z5wUKPjz00jhz9/ESerIUGfhPqqkOqlWPA== }
     engines: { node: ">=0.4.10" }
 
   negotiator@1.0.0:
@@ -7705,7 +7706,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  natural@8.0.1:
+  natural@8.1.0:
     dependencies:
       afinn-165: 1.0.4
       afinn-165-financialmarketnews: 3.0.0
@@ -8725,7 +8726,7 @@ snapshots:
       "@webassemblyjs/ast": 1.14.1
       "@webassemblyjs/wasm-edit": 1.14.1
       "@webassemblyjs/wasm-parser": 1.14.1
-      acorn: 8.14.0
+      acorn: 8.15.0
       browserslist: 4.24.3
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.17.1
