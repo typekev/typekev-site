@@ -1,69 +1,26 @@
 {
   "name": "typekev-site",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "private": true,
-  "engines": {
-    "node": ">=14"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix",
-    "prettier": "prettier **/*.tsx",
-    "prepare": "husky"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "lint": "eslint"
   },
   "dependencies": {
-    "@ducanh2912/next-pwa": "^10.2.9",
-    "@icons-pack/react-simple-icons": "^10.2.0",
-    "@react-three/drei": "^10.5.0",
-    "@react-three/fiber": "9.2.0",
-    "@vercel/analytics": "^1.5.0",
-    "glsl-random": "^0.0.5",
-    "lucide-react": "^0.525.0",
-    "next": "^15.3.5",
-    "next-intl": "^4.3.4",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-mk": "1.1.6",
-    "three": "^0.178.0",
-    "three-stdlib": "^2.36.0"
-  },
-  "peerDependencies": {
-    "natural": "^8.1.0"
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "next": "16.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^15.3.5",
-    "@types/negotiator": "^0.6.4",
-    "@types/node": "^24.0.12",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@types/three": "^0.178.1",
-    "@typescript-eslint/eslint-plugin": "^8.36.0",
-    "@typescript-eslint/parser": "^8.36.0",
-    "eslint": "^9.30.1",
-    "eslint-config-next": "^15.3.5",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-import": "^2.32.0",
-    "file-loader": "^6.2.0",
-    "glslify": "^7.1.1",
-    "glslify-loader": "^2.0.0",
-    "husky": "^9.1.7",
-    "prettier": "^3.6.2",
-    "raw-loader": "^4.0.2",
-    "typescript": "^5.8.3",
-    "url-loader": "^4.1.1"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.0"
   }
 }
