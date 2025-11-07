@@ -1,8 +1,9 @@
+import "./globals.css";
+
 import { Geist, Geist_Mono } from "next/font/google";
 
 import Background from "@/components/Background";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import "./globals.css";
 
 const geist = Geist({
   subsets: ["latin"],
