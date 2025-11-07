@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -122,3 +123,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+@custom-variant active (:is(:active, .active)&);
