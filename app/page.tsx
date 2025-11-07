@@ -1,12 +1,15 @@
 import { Profile } from "@/components/Profile";
+import { Ventures } from "@/components/Ventures";
 
 export default function Home() {
   return (
-    <main
-      id="main-content"
-      className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:py-12 lg:grid lg:grid-cols-2 lg:gap-16 relative z-10"
-    >
-      <Profile />
-    </main>
+    <>
+      <header className="flex flex-col items-center lg:items-start gap-10 lg:gap-16">
+        <Profile />
+      </header>
+      <main>
+        <Ventures />
+      </main>
+    </>
   );
 }

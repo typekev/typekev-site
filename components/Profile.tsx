@@ -2,7 +2,7 @@ import { ProfileImage } from "./profile/ProfileImage";
 
 export function Profile() {
   return (
-    <header className="flex flex-col items-center lg:items-start gap-10 lg:gap-16">
+    <>
       <ProfileImage />
       <h1 className="text-balance text-5xl font-black tracking-tight text-foreground text-center lg:text-left md:text-7xl lg:text-6xl">
         I build scalable AI products and lead high-impact teams.
@@ -14,6 +14,6 @@ export function Profile() {
           Satellite Yield & AI Product Engineering at SES.
         </p>
       </blockquote>
-    </header>
+    </>
   );
 }

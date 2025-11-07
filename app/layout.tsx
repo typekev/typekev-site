@@ -23,7 +23,9 @@ export default function RootLayout({ children }: Props) {
       <head>
         <meta name="apple-mobile-web-app-title" content="keving.me" />
       </head>
-      <body className={`${geist.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geist.variable} ${geistMono.variable} antialiased mx-auto max-w-7xl px-6 py-16 md:py-24 lg:py-12 lg:grid lg:grid-cols-2 lg:gap-16 relative`}
+      >
         <ThemeToggle />
         <Background />
         {children}
