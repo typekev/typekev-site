@@ -1,4 +1,5 @@
 import { Career } from "@/components/Career";
+import { Connect } from "@/components/Connect";
 import { Profile } from "@/components/Profile";
 import { Ventures } from "@/components/Ventures";
 
@@ -11,6 +12,7 @@ export default function Home() {
       <main className="flex flex-col gap-16">
         <Ventures />
         <Career />
+        <Connect />
       </main>
     </>
   );
