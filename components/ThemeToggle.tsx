@@ -51,7 +51,7 @@ export const ThemeToggle = memo(function ThemeToggle() {
   }, [isMuted]);
 
   return (
-    <div className="fixed right-6 top-6 z-50 flex gap-3">
+    <menu className="fixed right-6 top-6 z-50 flex gap-3">
       <Button
         variant="glass"
         size="icon"
@@ -65,7 +65,6 @@ export const ThemeToggle = memo(function ThemeToggle() {
           <Volume2 className="relative z-10 h-5 w-5" />
         )}
       </Button>
-
       <Button
         variant="glass"
         size="icon"
@@ -79,6 +78,6 @@ export const ThemeToggle = memo(function ThemeToggle() {
           <Sun className="relative z-10 h-5 w-5" />
         )}
       </Button>
-    </div>
+    </menu>
   );
 });
