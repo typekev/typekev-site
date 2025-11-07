@@ -23,7 +23,7 @@ const hiddenKeys: Partial<Record<Key, Freq>> = {
 };
 
 export function MusicPad() {
-  const { playNote, nextOctave } = useAudio();
+  const { playNote, nextOctave, isMuted } = useAudio();
   const [pressedKeys, setPressedKeys] = useState<Set<Key>>(new Set());
 
   useEffect(() => {
@@ -40,7 +40,6 @@ export function MusicPad() {
     const handleKeyUp = (event: KeyboardEvent) => {
       const key = event.key.toUpperCase() as Key;
       if (keys[key] || hiddenKeys[key] || key === "O") {
-        // Remove key from pressed keys
         setPressedKeys((prev) => {
           const newSet = new Set(prev);
           newSet.delete(key);
@@ -59,7 +58,7 @@ export function MusicPad() {
   }, [playNote, nextOctave]);
 
   return (
-    <fieldset className="grid grid-cols-3 gap-2.5">
+    <fieldset className="flex flex-wrap justify-center md:grid md:grid-cols-9 lg:grid-cols-3 gap-2.5">
       <legend className="sr-only">
         Music Pad controlled by QWERTYUIO keys
       </legend>
@@ -70,8 +69,9 @@ export function MusicPad() {
           variant="glass"
           size="lg-icon"
           className={`size-14 font-black uppercase ${
-            pressedKeys.has(key as Key) ? "active" : ""
+            pressedKeys.has(key as Key) && !isMuted ? "active" : ""
           }`}
+          disabled={isMuted}
         >
           {key}
         </Button>
@@ -83,8 +83,9 @@ export function MusicPad() {
           variant="glass"
           size="lg-icon"
           className={`size-14 font-black uppercase border-secondary dark:border-secondary text-secondary shadow-secondary/25 active:bg-secondary/20 dark:active:bg-secondary/50 ${
-            pressedKeys.has(key as Key) ? "active" : ""
+            pressedKeys.has(key as Key) && !isMuted ? "active" : ""
           }`}
+          disabled={isMuted}
         >
           {key}
         </Button>
@@ -94,8 +95,9 @@ export function MusicPad() {
         variant="glass"
         size="lg-icon"
         className={`size-14 font-black uppercase border-accent dark:border-accent text-accent shadow-accent/25 active:bg-accent/20 dark:active:bg-accent/50 ${
-          pressedKeys.has("O") ? "active" : ""
+          pressedKeys.has("O") && !isMuted ? "active" : ""
         }`}
+        disabled={isMuted}
       >
         O
       </Button>

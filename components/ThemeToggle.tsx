@@ -5,6 +5,7 @@ import { memo, useCallback, useEffect, useState } from "react";
 import { Moon, Sun, Volume2, VolumeX } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { MuteChangeEvent } from "@/types/types";
 
 export const ThemeToggle = memo(function ThemeToggle() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -46,7 +47,9 @@ export const ThemeToggle = memo(function ThemeToggle() {
     setIsMuted(newMuted);
     localStorage.setItem("muted", String(newMuted));
     window.dispatchEvent(
-      new CustomEvent("mutechange", { detail: { isMuted: newMuted } })
+      new CustomEvent<MuteChangeEvent["detail"]>("mutechange", {
+        detail: { isMuted: newMuted },
+      })
     );
   }, [isMuted]);
 

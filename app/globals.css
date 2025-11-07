@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant active (:is(:active, .active)&);
 
 @theme inline {
   --color-background: var(--background);
@@ -123,5 +123,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-@custom-variant active (:is(:active, .active)&);
