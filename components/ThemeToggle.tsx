@@ -54,9 +54,8 @@ export const ThemeToggle = memo(function ThemeToggle() {
     <menu className="fixed right-6 top-6 z-50 flex gap-3">
       <Button
         variant="glass"
-        size="icon"
+        size="lg-icon"
         onClick={toggleMute}
-        className="h-12 w-12 rounded-2xl"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
         {isMuted ? (
@@ -67,9 +66,8 @@ export const ThemeToggle = memo(function ThemeToggle() {
       </Button>
       <Button
         variant="glass"
-        size="icon"
+        size="lg-icon"
         onClick={toggleTheme}
-        className="h-12 w-12 rounded-2xl"
         aria-label="Toggle theme"
       >
         {theme === "light" ? (

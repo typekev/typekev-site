@@ -1,9 +1,13 @@
+import { MusicPad } from "./profile/MusicPad";
 import { ProfileImage } from "./profile/ProfileImage";
 
 export function Profile() {
   return (
     <>
-      <ProfileImage />
+      <section className="relative flex flex-col lg:flex-row shrink-0 items-center gap-2 lg:gap-10 -mb-4 lg:-mb-8 -mt-4 lg:mt-0">
+        <ProfileImage />
+        <MusicPad />
+      </section>
       <h1 className="text-balance text-5xl font-black tracking-tight text-foreground text-center lg:text-left md:text-7xl lg:text-6xl">
         I build scalable AI products and lead high-impact teams.
       </h1>

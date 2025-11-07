@@ -65,7 +65,7 @@ export function ProfileImage() {
   };
 
   return (
-    <figure className="relative h-56 w-56 shrink-0 -mb-4 lg:-mb-8 -mt-4 lg:mt-0">
+    <figure className="relative h-56 w-56">
       <svg
         viewBox="0 0 200 200"
         className="absolute inset-0 h-full w-full"
