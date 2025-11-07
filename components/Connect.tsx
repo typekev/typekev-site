@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 
 export function Connect() {
   return (
-    <section aria-labelledby="contact-heading">
+    <section aria-labelledby="connect-heading">
       <h2
-        id="contact-heading"
+        id="connect-heading"
         className="mb-6 text-md font-extrabold uppercase tracking-wide text-foreground/90"
       >
         Connect
