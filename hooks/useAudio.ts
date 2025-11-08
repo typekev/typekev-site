@@ -36,6 +36,25 @@ export function useAudio() {
     return false;
   });
 
+  const getOscillatorType = useCallback((): OscillatorType => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const oscillatorParam = urlParams.get("oscillator");
+      if (oscillatorParam) {
+        const validTypes: OscillatorType[] = [
+          "sine",
+          "square",
+          "sawtooth",
+          "triangle",
+        ];
+        if (validTypes.includes(oscillatorParam as OscillatorType)) {
+          return oscillatorParam as OscillatorType;
+        }
+      }
+    }
+    return "square";
+  }, []);
+
   useEffect(() => {
     const handleMuteChange = (event: MuteChangeEvent) => {
       setIsMuted(event.detail.isMuted);
@@ -76,7 +95,7 @@ export function useAudio() {
       const oscillator = audioContextRef.current.createOscillator();
       const gainNode = audioContextRef.current.createGain();
 
-      oscillator.type = "square";
+      oscillator.type = getOscillatorType();
       oscillator.frequency.setValueAtTime(
         frequency,
         audioContextRef.current.currentTime
@@ -91,7 +110,7 @@ export function useAudio() {
 
       activeNotesRef.current.set(noteKey, { oscillator, gainNode });
     },
-    [currentOctave, isMuted]
+    [currentOctave, isMuted, getOscillatorType]
   );
 
   const stopNote = useCallback(
@@ -123,7 +142,7 @@ export function useAudio() {
         const oscillator = audioContextRef.current.createOscillator();
         const gainNode = audioContextRef.current.createGain();
 
-        oscillator.type = "square";
+        oscillator.type = getOscillatorType();
         oscillator.frequency.setValueAtTime(
           frequency,
           audioContextRef.current.currentTime
@@ -143,7 +162,7 @@ export function useAudio() {
         oscillator.stop(audioContextRef.current.currentTime + fadeOutDuration);
       }
     },
-    [currentOctave, isMuted]
+    [currentOctave, isMuted, getOscillatorType]
   );
 
   const stopAllNotes = useCallback(() => {
