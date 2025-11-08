@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { delay } from "@/lib/utils";
+import { delay, getOscillatorType } from "@/lib/utils";
 import type { MuteChangeEvent } from "@/types/types";
 
 const octaves = { o2: 0.25, o3: 0.5, o4: 1, o5: 2, o6: 4, o7: 8 };
@@ -35,25 +35,6 @@ export function useAudio() {
     }
     return false;
   });
-
-  const getOscillatorType = useCallback((): OscillatorType => {
-    if (typeof window !== "undefined") {
-      const urlParams = new URLSearchParams(window.location.search);
-      const oscillatorParam = urlParams.get("oscillator");
-      if (oscillatorParam) {
-        const validTypes: OscillatorType[] = [
-          "sine",
-          "square",
-          "sawtooth",
-          "triangle",
-        ];
-        if (validTypes.includes(oscillatorParam as OscillatorType)) {
-          return oscillatorParam as OscillatorType;
-        }
-      }
-    }
-    return "square";
-  }, []);
 
   useEffect(() => {
     const handleMuteChange = (event: MuteChangeEvent) => {
@@ -95,7 +76,7 @@ export function useAudio() {
       const oscillator = audioContextRef.current.createOscillator();
       const gainNode = audioContextRef.current.createGain();
 
-      oscillator.type = getOscillatorType();
+      oscillator.type = getOscillatorType() || "square";
       oscillator.frequency.setValueAtTime(
         frequency,
         audioContextRef.current.currentTime
@@ -110,7 +91,7 @@ export function useAudio() {
 
       activeNotesRef.current.set(noteKey, { oscillator, gainNode });
     },
-    [currentOctave, isMuted, getOscillatorType]
+    [currentOctave, isMuted]
   );
 
   const stopNote = useCallback(
@@ -142,7 +123,7 @@ export function useAudio() {
         const oscillator = audioContextRef.current.createOscillator();
         const gainNode = audioContextRef.current.createGain();
 
-        oscillator.type = getOscillatorType();
+        oscillator.type = getOscillatorType() || "square";
         oscillator.frequency.setValueAtTime(
           frequency,
           audioContextRef.current.currentTime
@@ -162,7 +143,7 @@ export function useAudio() {
         oscillator.stop(audioContextRef.current.currentTime + fadeOutDuration);
       }
     },
-    [currentOctave, isMuted, getOscillatorType]
+    [currentOctave, isMuted]
   );
 
   const stopAllNotes = useCallback(() => {

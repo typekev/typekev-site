@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { type Freq, useAudio } from "@/hooks/useAudio";
 
 import { Button } from "../ui/button";
 
-type Key = "Q" | "W" | "E" | "R" | "T" | "Y" | "U" | "I" | "O";
-
-const keys: Partial<Record<Key, Freq>> = {
+export type Key = "Q" | "W" | "E" | "R" | "T" | "Y" | "U" | "I" | "O";
+export const keys: Partial<Record<Key, Freq>> = {
   Q: "C",
   W: "D",
   E: "E",
@@ -25,9 +25,12 @@ const hiddenKeys: Partial<Record<Key, Freq>> = {
 export function MusicPad() {
   const { startNote, stopNote, nextOctave, isMuted } = useAudio();
   const [pressedKeys, setPressedKeys] = useState<Set<Key>>(new Set());
+  const searchParams = useSearchParams();
+  const oscillatorParam = searchParams.get("oscillator");
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (!oscillatorParam) return;
       const key = event.key.toUpperCase() as Key;
       if ((keys[key] || hiddenKeys[key] || key === "O") && !event.repeat) {
         setPressedKeys((prev) => new Set(prev).add(key));
@@ -38,6 +41,7 @@ export function MusicPad() {
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
+      if (!oscillatorParam) return;
       const key = event.key.toUpperCase() as Key;
       if (keys[key] || hiddenKeys[key] || key === "O") {
         setPressedKeys((prev) => {
@@ -57,7 +61,11 @@ export function MusicPad() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [nextOctave, startNote, stopNote]);
+  }, [nextOctave, startNote, stopNote, oscillatorParam]);
+
+  if (!oscillatorParam) {
+    return null;
+  }
 
   return (
     <fieldset className="flex flex-wrap justify-center md:grid md:grid-cols-9 lg:grid-cols-3 gap-2.5">
