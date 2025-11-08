@@ -77,6 +77,7 @@ export function MusicPad() {
           key={key}
           onMouseDown={() => startNote(freq)}
           onMouseUp={() => stopNote(freq)}
+          onMouseLeave={() => stopNote(freq)}
           variant="glass"
           size="lg-icon"
           className={`size-14 font-black uppercase ${
@@ -92,6 +93,7 @@ export function MusicPad() {
           key={key}
           onMouseDown={() => startNote(freq)}
           onMouseUp={() => stopNote(freq)}
+          onMouseLeave={() => stopNote(freq)}
           variant="glass"
           size="lg-icon"
           className={`size-14 font-black uppercase border-secondary dark:border-secondary text-secondary shadow-secondary/25 active:bg-secondary/20 dark:active:bg-secondary/50 ${
