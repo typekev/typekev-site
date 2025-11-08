@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { delay } from "@/lib/utils";
 import type { MuteChangeEvent } from "@/types/types";
 
 const octaves = { o2: 0.25, o3: 0.5, o4: 1, o5: 2, o6: 4, o7: 8 };
@@ -19,8 +20,14 @@ const baseC4Frequencies = {
 };
 export type Freq = keyof typeof baseC4Frequencies;
 
+interface ActiveNote {
+  oscillator: OscillatorNode;
+  gainNode: GainNode;
+}
+
 export function useAudio() {
   const audioContextRef = useRef<AudioContext | null>(null);
+  const activeNotesRef = useRef<Map<string, ActiveNote>>(new Map());
   const [currentOctave, setCurrentOctave] = useState<Octave>("o4");
   const [isMuted, setIsMuted] = useState(() => {
     if (typeof window !== "undefined") {
@@ -57,15 +64,66 @@ export function useAudio() {
     };
   }, []);
 
-  const playNote = useCallback(
+  const startNote = useCallback(
     (note: Freq) => {
+      if (!audioContextRef.current || isMuted) return;
+
+      const noteKey = `${note}-${currentOctave}`;
+      if (activeNotesRef.current.has(noteKey)) return;
+
+      const frequency = baseC4Frequencies[note] * octaves[currentOctave];
+
+      const oscillator = audioContextRef.current.createOscillator();
+      const gainNode = audioContextRef.current.createGain();
+
+      oscillator.type = "square";
+      oscillator.frequency.setValueAtTime(
+        frequency,
+        audioContextRef.current.currentTime
+      );
+
+      gainNode.gain.setValueAtTime(0.1, audioContextRef.current.currentTime);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContextRef.current.destination);
+
+      oscillator.start();
+
+      activeNotesRef.current.set(noteKey, { oscillator, gainNode });
+    },
+    [currentOctave, isMuted]
+  );
+
+  const stopNote = useCallback(
+    (note: Freq) => {
+      const noteKey = `${note}-${currentOctave}`;
+      const activeNote = activeNotesRef.current.get(noteKey);
+
+      if (activeNote && audioContextRef.current) {
+        const { oscillator, gainNode } = activeNote;
+
+        const fadeOutDuration = 0.75;
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.0001,
+          audioContextRef.current.currentTime + fadeOutDuration
+        );
+
+        oscillator.stop(audioContextRef.current.currentTime + fadeOutDuration);
+        activeNotesRef.current.delete(noteKey);
+      }
+    },
+    [currentOctave]
+  );
+
+  const playNote = useCallback(
+    (note: Freq, octave = currentOctave, fadeOutDuration = 0.75) => {
       if (audioContextRef.current && !isMuted) {
-        const frequency = baseC4Frequencies[note] * octaves[currentOctave];
+        const frequency = baseC4Frequencies[note] * octaves[octave];
 
         const oscillator = audioContextRef.current.createOscillator();
         const gainNode = audioContextRef.current.createGain();
 
-        oscillator.type = "sine";
+        oscillator.type = "square";
         oscillator.frequency.setValueAtTime(
           frequency,
           audioContextRef.current.currentTime
@@ -73,23 +131,65 @@ export function useAudio() {
 
         gainNode.gain.setValueAtTime(0.1, audioContextRef.current.currentTime);
 
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContextRef.current.currentTime + fadeOutDuration
+        );
+
         oscillator.connect(gainNode);
         gainNode.connect(audioContextRef.current.destination);
 
         oscillator.start();
-        oscillator.stop(audioContextRef.current.currentTime + 0.5);
+        oscillator.stop(audioContextRef.current.currentTime + fadeOutDuration);
       }
     },
     [currentOctave, isMuted]
   );
 
+  const stopAllNotes = useCallback(() => {
+    if (!audioContextRef.current) return;
+
+    for (const [, activeNote] of activeNotesRef.current) {
+      const { oscillator, gainNode } = activeNote;
+
+      const fadeOutDuration = 0.2;
+      gainNode.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioContextRef.current.currentTime + fadeOutDuration
+      );
+
+      oscillator.stop(audioContextRef.current.currentTime + fadeOutDuration);
+    }
+
+    activeNotesRef.current.clear();
+  }, []);
+
+  const playChord = useCallback(
+    async (
+      notes: Freq[],
+      octave = currentOctave,
+      timeout = 75,
+      fadeOutDuration = 0.75
+    ) => {
+      for (const note of notes) {
+        playNote(note, octave, fadeOutDuration);
+        await delay(timeout);
+      }
+    },
+    [playNote, currentOctave]
+  );
+
   const nextOctave = useCallback(() => {
+    stopAllNotes();
+
     const octaveKeys = Object.keys(octaves) as Octave[];
     setCurrentOctave((prevOctave) => {
       const currentIndex = octaveKeys.indexOf(prevOctave);
-      return octaveKeys[(currentIndex + 1) % octaveKeys.length];
+      const nextOctave = octaveKeys[(currentIndex + 1) % octaveKeys.length];
+      playChord(["C", "G"], nextOctave);
+      return nextOctave;
     });
-  }, []);
+  }, [stopAllNotes, playChord]);
 
-  return { playNote, nextOctave, isMuted };
+  return { playNote, startNote, stopNote, playChord, nextOctave, isMuted };
 }
