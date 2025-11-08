@@ -72,7 +72,7 @@ export function MusicPad() {
       <legend className="sr-only">
         Music Pad controlled by QWERTYUIO keys
       </legend>
-      {Object.entries(keys).map(([key, freq]) => (
+      {Object.entries(keys).map(([key, freq], index) => (
         <Button
           key={key}
           onMouseDown={() => startNote(freq)}
@@ -80,15 +80,18 @@ export function MusicPad() {
           onMouseLeave={() => stopNote(freq)}
           variant="glass"
           size="lg-icon"
-          className={`size-14 font-black uppercase ${
+          className={`size-14 font-black uppercase animate-in fade-in slide-in-from-bottom-2 ${
             pressedKeys.has(key as Key) && !isMuted ? "active" : ""
           }`}
+          style={{
+            animationDuration: `${(1 + index) * 200}ms`,
+          }}
           disabled={isMuted}
         >
           {key}
         </Button>
       ))}
-      {Object.entries(hiddenKeys).map(([key, freq]) => (
+      {Object.entries(hiddenKeys).map(([key, freq], index) => (
         <Button
           key={key}
           onMouseDown={() => startNote(freq)}
@@ -96,9 +99,14 @@ export function MusicPad() {
           onMouseLeave={() => stopNote(freq)}
           variant="glass"
           size="lg-icon"
-          className={`size-14 font-black uppercase border-secondary dark:border-secondary text-secondary shadow-secondary/25 active:bg-secondary/20 dark:active:bg-secondary/50 ${
+          className={`size-14 font-black uppercase border-secondary dark:border-secondary text-secondary shadow-secondary/25 active:bg-secondary/20 dark:active:bg-secondary/50 animate-in fade-in slide-in-from-bottom-2 ${
             pressedKeys.has(key as Key) && !isMuted ? "active" : ""
           }`}
+          style={{
+            animationDuration: `${
+              (1 + Object.keys(keys).length + index) * 300
+            }ms`,
+          }}
           disabled={isMuted}
         >
           {key}
@@ -108,9 +116,15 @@ export function MusicPad() {
         onClick={nextOctave}
         variant="glass"
         size="lg-icon"
-        className={`size-14 font-black uppercase border-accent dark:border-accent text-accent shadow-accent/25 active:bg-accent/20 dark:active:bg-accent/50 ${
+        className={`size-14 font-black uppercase border-accent dark:border-accent text-accent shadow-accent/25 active:bg-accent/20 dark:active:bg-accent/50 animate-in fade-in slide-in-from-bottom-2 ${
           pressedKeys.has("O") && !isMuted ? "active" : ""
         }`}
+        style={{
+          animationDuration: `${
+            (1 + Object.keys(keys).length + Object.keys(hiddenKeys).length) *
+            300
+          }ms`,
+        }}
         disabled={isMuted}
       >
         O
