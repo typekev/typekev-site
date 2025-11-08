@@ -25,6 +25,7 @@ const hiddenKeys: Partial<Record<Key, Freq>> = {
 export function MusicPad() {
   const { startNote, stopNote, nextOctave, isMuted } = useAudio();
   const [pressedKeys, setPressedKeys] = useState<Set<Key>>(new Set());
+  const [revealedKeys, setRevealedKeys] = useState<Set<Key>>(new Set());
   const searchParams = useSearchParams();
   const oscillatorParam = searchParams.get("oscillator");
 
@@ -35,8 +36,14 @@ export function MusicPad() {
       if ((keys[key] || hiddenKeys[key] || key === "O") && !event.repeat) {
         setPressedKeys((prev) => new Set(prev).add(key));
         if (keys[key]) return startNote(keys[key]);
-        if (hiddenKeys[key]) return startNote(hiddenKeys[key]);
-        if (key === "O") return nextOctave();
+        if (hiddenKeys[key]) {
+          setRevealedKeys((prev) => new Set(prev).add(key));
+          return startNote(hiddenKeys[key]);
+        }
+        if (key === "O") {
+          setRevealedKeys((prev) => new Set(prev).add("O"));
+          return nextOctave();
+        }
       }
     };
 
@@ -68,7 +75,17 @@ export function MusicPad() {
   }
 
   return (
-    <fieldset className="flex flex-wrap justify-center md:grid md:grid-cols-9 lg:grid-cols-3 gap-2.5">
+    <fieldset
+      className={`grid grid-cols-3 md:grid-cols-9 lg:grid-cols-3 gap-2.5 transition-all ${
+        revealedKeys.size === 0
+          ? "md:-mr-48 lg:-mb-2.5"
+          : revealedKeys.size === 1
+          ? "md:-mr-32"
+          : revealedKeys.size === 2
+          ? "md:-mr-16"
+          : ""
+      } lg:mr-0`}
+    >
       <legend className="sr-only">
         Music Pad controlled by QWERTYUIO keys
       </legend>
@@ -92,43 +109,63 @@ export function MusicPad() {
         </Button>
       ))}
       {Object.entries(hiddenKeys).map(([key, freq], index) => (
-        <Button
+        <label
           key={key}
-          onMouseDown={() => startNote(freq)}
-          onMouseUp={() => stopNote(freq)}
-          onMouseLeave={() => stopNote(freq)}
+          className={
+            revealedKeys.has(key as Key)
+              ? ""
+              : "h-0 overflow-visible inline-block opacity-0"
+          }
+          onClick={() =>
+            setRevealedKeys((prev) => new Set(prev).add(key as Key))
+          }
+        >
+          <Button
+            onMouseDown={() => startNote(freq)}
+            onMouseUp={() => stopNote(freq)}
+            onMouseLeave={() => stopNote(freq)}
+            variant="glass"
+            size="lg-icon"
+            className={`size-14 font-black uppercase border-secondary dark:border-secondary text-secondary shadow-secondary/25 active:bg-secondary/20 dark:active:bg-secondary/50 animate-in fade-in slide-in-from-bottom-2 ${
+              pressedKeys.has(key as Key) && !isMuted ? "active" : ""
+            }`}
+            style={{
+              animationDuration: `${
+                (1 + Object.keys(keys).length + index) * 300
+              }ms`,
+            }}
+            disabled={isMuted}
+          >
+            {key}
+          </Button>
+        </label>
+      ))}
+      <label
+        className={
+          revealedKeys.has("O")
+            ? ""
+            : "h-0 overflow-visible inline-block opacity-0"
+        }
+        onClick={() => setRevealedKeys((prev) => new Set(prev).add("O"))}
+      >
+        <Button
+          onClick={nextOctave}
           variant="glass"
           size="lg-icon"
-          className={`size-14 font-black uppercase border-secondary dark:border-secondary text-secondary shadow-secondary/25 active:bg-secondary/20 dark:active:bg-secondary/50 animate-in fade-in slide-in-from-bottom-2 ${
-            pressedKeys.has(key as Key) && !isMuted ? "active" : ""
+          className={`size-14 font-black uppercase border-accent dark:border-accent text-accent shadow-accent/25 active:bg-accent/20 dark:active:bg-accent/50 animate-in fade-in slide-in-from-bottom-2 ${
+            pressedKeys.has("O") && !isMuted ? "active" : ""
           }`}
           style={{
             animationDuration: `${
-              (1 + Object.keys(keys).length + index) * 300
+              (1 + Object.keys(keys).length + Object.keys(hiddenKeys).length) *
+              300
             }ms`,
           }}
           disabled={isMuted}
         >
-          {key}
+          O
         </Button>
-      ))}
-      <Button
-        onClick={nextOctave}
-        variant="glass"
-        size="lg-icon"
-        className={`size-14 font-black uppercase border-accent dark:border-accent text-accent shadow-accent/25 active:bg-accent/20 dark:active:bg-accent/50 animate-in fade-in slide-in-from-bottom-2 ${
-          pressedKeys.has("O") && !isMuted ? "active" : ""
-        }`}
-        style={{
-          animationDuration: `${
-            (1 + Object.keys(keys).length + Object.keys(hiddenKeys).length) *
-            300
-          }ms`,
-        }}
-        disabled={isMuted}
-      >
-        O
-      </Button>
+      </label>
     </fieldset>
   );
 }
