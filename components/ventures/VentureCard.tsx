@@ -9,10 +9,12 @@ import { cn } from "@/lib/utils";
 
 interface VentureCardProps extends React.ComponentProps<typeof Card> {
   image: string;
+  blurImage: string;
 }
 
 export function VentureCard({
   image,
+  blurImage,
   children,
   className,
   ...props
@@ -77,6 +79,8 @@ export function VentureCard({
           fill
           className="object-cover transition-all duration-700 group-hover:scale-105 opacity-70 dark:opacity-80 group-hover:opacity-100 group-hover:dark:opacity-100 saturate-200 dark:saturate-150 group-hover:saturate-150 group-hover:dark:saturate-100"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          placeholder="blur"
+          blurDataURL={blurImage}
         />
         <figcaption className="absolute bottom-0 left-0 right-0 p-4">
           <article className="inline-block px-3 py-2 rounded-lg bg-muted/30 backdrop-blur-xl">

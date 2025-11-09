@@ -12,12 +12,22 @@ export function Ventures() {
       <ul className="grid gap-6 perspective-1000">
         <li>
           <a href="https://symphonee.ai/">
-            <VentureCard image="/images/symphonee.png">Symphonee</VentureCard>
+            <VentureCard
+              image="/images/symphonee.jpeg"
+              blurImage="/images/symphonee-small.jpeg"
+            >
+              Symphonee
+            </VentureCard>
           </a>
         </li>
         <li>
           <a href="https://scaletiny.com/">
-            <VentureCard image="/images/scale-tiny.png">Scale Tiny</VentureCard>
+            <VentureCard
+              image="/images/scale-tiny.jpeg"
+              blurImage="/images/scale-tiny-small.jpeg"
+            >
+              Scale Tiny
+            </VentureCard>
           </a>
         </li>
       </ul>

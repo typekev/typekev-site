@@ -10,15 +10,40 @@ import { Button } from "../ui/button";
 import { Key, keys } from "./MusicPad";
 
 const images = [
-  { name: "Normal", src: "/images/kevin.jpg" },
-  { name: "Sketch", src: "/images/kevin-sketch.png" },
-  { name: "Pop Art", src: "/images/kevin-pop-art.png" },
-  { name: "Watercolor", src: "/images/kevin-watercolor.png" },
-  { name: "Cartoon", src: "/images/kevin-cartoon.png" },
-  { name: "Tokyo Pastel", src: "/images/kevin-tokyo-pastel.png" },
+  {
+    name: "Normal",
+    src: "/images/kevin.jpeg",
+    placeholder: "/images/kevin.jpeg",
+  },
+  {
+    name: "Sketch",
+    src: "/images/kevin-sketch.jpeg",
+    placeholder: "/images/kevin-sketch-small.jpeg",
+  },
+  {
+    name: "Pop Art",
+    src: "/images/kevin-pop-art.jpeg",
+    placeholder: "/images/kevin-pop-art-small.jpeg",
+  },
+  {
+    name: "Watercolor",
+    src: "/images/kevin-watercolor.jpeg",
+    placeholder: "/images/kevin-watercolor-small.jpeg",
+  },
+  {
+    name: "Cartoon",
+    src: "/images/kevin-cartoon.jpeg",
+    placeholder: "/images/kevin-cartoon-small.jpeg",
+  },
+  {
+    name: "Tokyo Pastel",
+    src: "/images/kevin-tokyo-pastel.jpeg",
+    placeholder: "/images/kevin-tokyo-pastel-small.jpeg",
+  },
   {
     name: "Tokyo Pastel Cartoon",
-    src: "/images/kevin-tokyo-pastel-cartoon.png",
+    src: "/images/kevin-tokyo-pastel-cartoon.jpeg",
+    placeholder: "/images/kevin-tokyo-pastel-cartoon-small.jpeg",
   },
 ];
 
@@ -154,6 +179,8 @@ export function ProfileImage() {
       >
         <Image
           src={images[imageIndex].src}
+          placeholder="blur"
+          blurDataURL={images[imageIndex].placeholder}
           alt="Kevin Gonzalez - Engineering Leader and Technology Executive"
           className="object-cover"
           fill
