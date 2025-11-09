@@ -41,10 +41,7 @@ export default function Background() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
+    const initializeLayers = () => {
       const numPoints = 50;
       layersRef.current = Array.from({ length: 6 }, (_, i) => ({
         points: Array.from({ length: numPoints }, (_, j) => ({
@@ -60,6 +57,28 @@ export default function Background() {
         phaseSpeed: 0.0005 + i * 0.0002,
       }));
     };
+
+    const updateLayers = () => {
+      const numPoints = 50;
+      layersRef.current.forEach((layer, i) => {
+        layer.points.forEach((point, j) => {
+          point.x = (canvas.width / (numPoints - 1)) * j;
+        });
+        layer.baseY = canvas.height * (0.3 + i * 0.15);
+      });
+    };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      if (layersRef.current.length === 0) {
+        initializeLayers();
+      } else {
+        updateLayers();
+      }
+    };
+
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
