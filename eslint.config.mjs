@@ -31,14 +31,7 @@ const eslintConfig = defineConfig([
       "import/no-duplicates": "error",
     },
   },
-  globalIgnores([
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-    "types/routes.d.ts",
-    "types/validator.ts",
-  ]),
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
 ]);
 
 export default eslintConfig;
