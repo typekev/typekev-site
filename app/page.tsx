@@ -1,3 +1,4 @@
+import { Archive } from "@/components/Archive";
 import { Career } from "@/components/Career";
 import { Connect } from "@/components/Connect";
 import { Profile } from "@/components/Profile";
@@ -14,7 +15,8 @@ export default function Home() {
         <Career />
         <Connect />
       </main>
-      <footer className="col-2 text-right mx-8 my-12">
+      <footer className="col-2 text-right mx-8 my-12 ml-auto">
+        <Archive />
         <p className="text-sm font-bold uppercase tracking-wide">
           © Kevin Gonzalez {new Date().getFullYear()}
         </p>
