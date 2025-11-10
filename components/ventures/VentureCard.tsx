@@ -75,7 +75,7 @@ export function VentureCard({
       <figure className="relative aspect-3/2 overflow-hidden">
         <Image
           src={image}
-          alt={children?.toString() || "Venture"}
+          alt={`Venture banner for ${children?.toString()}`}
           fill
           className="object-cover transition-all duration-700 group-hover:scale-105 opacity-70 dark:opacity-80 group-hover:opacity-100 group-hover:dark:opacity-100 saturate-200 dark:saturate-150 group-hover:saturate-150 group-hover:dark:saturate-100"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
