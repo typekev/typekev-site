@@ -9,7 +9,7 @@ export function Ventures() {
       >
         Ventures
       </h2>
-      <ul className="grid gap-6 perspective-1000">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 perspective-1000">
         <li className="animate-in fade-in duration-500">
           <a href="https://symphonee.ai/">
             <VentureCard

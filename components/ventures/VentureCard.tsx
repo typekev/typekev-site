@@ -83,11 +83,11 @@ export function VentureCard({
           blurDataURL={blurImage}
         />
         <figcaption className="absolute bottom-0 left-0 right-0 p-4">
-          <article className="inline-block px-3 py-2 rounded-lg bg-muted/30 backdrop-blur-xl">
+          <cite className="inline-block not-italic px-3 py-2 rounded-lg bg-muted/30 backdrop-blur-xl">
             <h3 className="text-lg font-bold tracking-wide uppercase text-shadow-sm text-shadow-muted/10">
               {children}
             </h3>
-          </article>
+          </cite>
         </figcaption>
       </figure>
     </Card>
