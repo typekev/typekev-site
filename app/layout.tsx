@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import Background from "@/components/Background";
@@ -14,6 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
 });
+
+export const metadata: Metadata = {
+  title: "Kevin Gonzalez – AI Product & Engineering Leader",
+  description:
+    "Engineering leader empowering high-impact teams to build AI products. Co-founder & CTO of Symphonee. Founder of Scale Tiny. Satellite yield & AI at SES.",
+};
 
 type Props = Readonly<{ children: React.ReactNode }>;
 

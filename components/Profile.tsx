@@ -14,7 +14,7 @@ export function Profile() {
         </Suspense>
       </section>
       <h1 className="text-balance text-5xl font-black tracking-tight text-foreground text-center lg:text-left md:text-7xl lg:text-6xl">
-        I build scalable AI products and lead high-impact teams.
+        I build meaningful AI products and lead high-impact teams.
       </h1>
       <blockquote className="border-l-4 border-foreground/30 pl-8 bg-muted/30 backdrop-blur-xl rounded-r-2xl py-4 pr-6 glass-strong">
         <p className="text-2xl font-medium leading-relaxed text-foreground">
