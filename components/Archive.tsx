@@ -101,14 +101,23 @@ export function Archive() {
           Archived Website Versions
         </DialogTitle>
         <ol className="grid grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-2">
-          {archiveVersions.map((version) => (
-            <li key={version.version}>
+          {archiveVersions.map((version, index) => (
+            <li
+              key={version.version}
+              className="animate-in fade-in"
+              style={{
+                animationDuration: `${(6 + index) * 100}ms`,
+              }}
+            >
               <a href={version.url} target="_blank" rel="noopener noreferrer">
                 <ArchiveCard version={version} />
               </a>
             </li>
           ))}
-          <li>
+          <li
+            className="animate-in fade-in"
+            style={{ animationDuration: "1100ms" }}
+          >
             <a
               href="https://github.com/typekev/typekev-site"
               target="_blank"
