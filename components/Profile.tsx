@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 import { MusicPad } from "./profile/MusicPad";
-import { ProfileImage } from "./profile/ProfileImage";
+import { ProfileBadge } from "./profile/ProfileBadge";
 import { ProfileImageSkeleton } from "./profile/ProfileImageSkeleton";
 
 export function Profile() {
@@ -9,7 +9,7 @@ export function Profile() {
     <>
       <section className="relative flex flex-col lg:flex-row shrink-0 items-center gap-2 lg:gap-10 -mb-4 lg:-mb-8 -mt-4 lg:mt-0">
         <Suspense fallback={<ProfileImageSkeleton />}>
-          <ProfileImage />
+          <ProfileBadge />
           <MusicPad />
         </Suspense>
       </section>
