@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,77 +9,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-interface ArchiveVersion {
-  version: string;
-  image: string;
-  year: string;
-  description: string;
-  url?: string;
-}
-
-const archiveVersions: ArchiveVersion[] = [
-  {
-    version: "v1",
-    image: "/archive/v1.jpeg",
-    year: "2016",
-    description: "Flat minimal, playful retro.",
-    url: "https://v1.keving.me",
-  },
-  {
-    version: "v2",
-    image: "/archive/v2.jpeg",
-    year: "2018",
-    description: "Futuristic geometric, vibrant.",
-    url: "https://v2.keving.me",
-  },
-  {
-    version: "v3",
-    image: "/archive/v3.jpeg",
-    year: "2019",
-    description: "Material design, astral-inspired.",
-    url: "https://v3.keving.me",
-  },
-  {
-    version: "v4",
-    image: "/archive/v4.jpeg",
-    year: "2022",
-    description: "Ultra-minimal typographic, austere.",
-    url: "https://v4.keving.me",
-  },
-  {
-    version: "v5",
-    image: "/archive/v5.jpeg",
-    year: "2024",
-    description: "Modern luminous, interstellar.",
-    url: "https://v5.keving.me",
-  },
-];
-
-function ArchiveCard({ version }: { version: ArchiveVersion }) {
-  return (
-    <figure className="group flex aspect-16/11 overflow-hidden rounded-lg border-4 border-black/90 dark:border-white/90 backdrop-blur-sm">
-      <Image
-        src={version.image}
-        alt={`Website version ${version.version}`}
-        fill
-        className="object-cover object-top-left transition-all duration-500 scale-101 group-hover:scale-105 opacity-90 group-hover:opacity-100 saturate-90 group-hover:saturate-100 z-0"
-      />
-      <figcaption className="h-full pt-2 pb-4 bg-muted/10 backdrop-blur-md z-1">
-        <cite className="flex flex-col justify-between items-center h-full text-xs md:text-md sm:text-sm not-italic font-mono text-muted dark:text-muted-foreground">
-          <strong className="font-extrabold px-0.5 sm:px-[2.5px] rounded-sm sm:rounded-md border-[1.5px] border-muted dark:border-muted-foreground">
-            {version.version}
-          </strong>
-          <time className="font-semibold -rotate-90">{version.year}</time>
-        </cite>
-      </figcaption>
-      <figcaption className="p-2.5 sm:h-fit w-full bg-muted/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-1">
-        <p className="text-xs md:text-sm tracking-tighter font-black text-muted dark:text-white">
-          {version.description}
-        </p>
-      </figcaption>
-    </figure>
-  );
-}
+import { ArchivedSiteCard } from "./archive/ArchivedSiteCard";
+import { archivedSitesData } from "./archive/archivedSitesData";
 
 export function Archive() {
   return (
@@ -101,16 +30,16 @@ export function Archive() {
           Archived Website Versions
         </DialogTitle>
         <ol className="grid grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-2">
-          {archiveVersions.map((version, index) => (
+          {archivedSitesData.map((website, index) => (
             <li
-              key={version.version}
+              key={website.version}
               className="animate-in fade-in"
               style={{
                 animationDuration: `${(6 + index) * 100}ms`,
               }}
             >
-              <a href={version.url} target="_blank" rel="noopener noreferrer">
-                <ArchiveCard version={version} />
+              <a href={website.url} target="_blank" rel="noopener noreferrer">
+                <ArchivedSiteCard website={website} />
               </a>
             </li>
           ))}
