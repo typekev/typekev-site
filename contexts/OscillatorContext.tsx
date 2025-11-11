@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useEffect, useEffectEvent, useRef, useState } from "react";
 
 import type { Note, Octave } from "@/lib/audio";
 import { createAudioContext, getFreq, getMutedState, octaves, Oscillator } from "@/lib/audio";
@@ -24,24 +24,18 @@ export function OscillatorProvider({ children }: React.PropsWithChildren) {
   const audioRef = useRef<AudioContext | null>(null);
   const activeFreqsRef = useRef<Map<number, ActiveFreq>>(new Map());
   const [currentOctave, setCurrentOctave] = useState<Octave>("o4");
-  const [isMuted, setIsMuted] = useState(getMutedState());
+  const [isMuted, setIsMuted] = useState(true);
 
+  const initMuteState = useEffectEvent(() => setIsMuted(getMutedState()));
   useEffect(() => {
-    const handleMuteChange = (event: MuteChangeEvent) => {
-      setIsMuted(event.detail.isMuted);
-    };
-
+    initMuteState();
+    const handleMuteChange = (event: MuteChangeEvent) => setIsMuted(event.detail.isMuted);
     window.addEventListener("mutechange", handleMuteChange as EventListener);
 
-    return () => {
-      window.removeEventListener("mutechange", handleMuteChange as EventListener);
-    };
-  }, []);
-
-  useEffect(() => {
     audioRef.current = createAudioContext();
 
     return () => {
+      window.removeEventListener("mutechange", handleMuteChange as EventListener);
       audioRef.current?.close();
     };
   }, []);
