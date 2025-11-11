@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 
+import { OscillatorProvider } from "@/contexts/OscillatorContext";
+
 import { MusicPad } from "./profile/MusicPad";
 import { ProfileBadge } from "./profile/ProfileBadge";
 import { ProfileImageSkeleton } from "./profile/ProfileImageSkeleton";
@@ -9,8 +11,10 @@ export function Profile() {
     <>
       <section className="relative flex flex-col lg:flex-row shrink-0 items-center gap-2 lg:gap-10 -mb-4 lg:-mb-8 -mt-4 lg:mt-0">
         <Suspense fallback={<ProfileImageSkeleton />}>
-          <ProfileBadge />
-          <MusicPad />
+          <OscillatorProvider>
+            <ProfileBadge />
+            <MusicPad />
+          </OscillatorProvider>
         </Suspense>
       </section>
       <h1 className="text-balance text-5xl font-black tracking-tight text-foreground text-center lg:text-left md:text-7xl lg:text-6xl">

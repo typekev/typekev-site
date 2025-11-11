@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { type Freq, useAudio } from "@/hooks/useAudio";
+import { useOscillator } from "@/hooks/useOscillator";
+import type { Note } from "@/lib/audio";
 
 import { Button } from "../ui/button";
 
 export type Key = "Q" | "W" | "E" | "R" | "T" | "Y" | "U" | "I" | "O";
-export const keys: Partial<Record<Key, Freq>> = {
+export const keys: Partial<Record<Key, Note>> = {
   Q: "C",
   W: "D",
   E: "E",
@@ -17,13 +18,13 @@ export const keys: Partial<Record<Key, Freq>> = {
   Y: "A",
 };
 
-const hiddenKeys: Partial<Record<Key, Freq>> = {
+const hiddenKeys: Partial<Record<Key, Note>> = {
   U: "B",
   I: "NextC",
 };
 
 export function MusicPad() {
-  const { startNote, stopNote, nextOctave, isMuted } = useAudio();
+  const { startNote, stopNote, nextOctave, isMuted } = useOscillator();
   const [pressedKeys, setPressedKeys] = useState<Set<Key>>(new Set());
   const [revealedKeys, setRevealedKeys] = useState<Set<Key>>(new Set());
   const searchParams = useSearchParams();
@@ -86,9 +87,7 @@ export function MusicPad() {
           : ""
       } lg:mr-0`}
     >
-      <legend className="sr-only">
-        Music Pad controlled by QWERTYUIO keys
-      </legend>
+      <legend className="sr-only">Music Pad controlled by QWERTYUIO keys</legend>
       {Object.entries(keys).map(([key, freq], index) => (
         <Button
           key={key}
@@ -112,13 +111,9 @@ export function MusicPad() {
         <label
           key={key}
           className={
-            revealedKeys.has(key as Key)
-              ? ""
-              : "h-0 overflow-visible inline-block opacity-0"
+            revealedKeys.has(key as Key) ? "" : "h-0 overflow-visible inline-block opacity-0"
           }
-          onClick={() =>
-            setRevealedKeys((prev) => new Set(prev).add(key as Key))
-          }
+          onClick={() => setRevealedKeys((prev) => new Set(prev).add(key as Key))}
         >
           <Button
             onMouseDown={() => startNote(freq)}
@@ -130,9 +125,7 @@ export function MusicPad() {
               pressedKeys.has(key as Key) && !isMuted ? "active" : ""
             }`}
             style={{
-              animationDuration: `${
-                (1 + Object.keys(keys).length + index) * 300
-              }ms`,
+              animationDuration: `${(1 + Object.keys(keys).length + index) * 300}ms`,
             }}
             disabled={isMuted}
           >
@@ -141,11 +134,7 @@ export function MusicPad() {
         </label>
       ))}
       <label
-        className={
-          revealedKeys.has("O")
-            ? ""
-            : "h-0 overflow-visible inline-block opacity-0"
-        }
+        className={revealedKeys.has("O") ? "" : "h-0 overflow-visible inline-block opacity-0"}
         onClick={() => setRevealedKeys((prev) => new Set(prev).add("O"))}
       >
         <Button
@@ -157,8 +146,7 @@ export function MusicPad() {
           }`}
           style={{
             animationDuration: `${
-              (1 + Object.keys(keys).length + Object.keys(hiddenKeys).length) *
-              300
+              (1 + Object.keys(keys).length + Object.keys(hiddenKeys).length) * 300
             }ms`,
           }}
           disabled={isMuted}

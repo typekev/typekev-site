@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-import { useAudio } from "@/hooks/useAudio";
+import { useOscillator } from "@/hooks/useOscillator";
 
 import { Button } from "../ui/button";
 import { Key, keys } from "./MusicPad";
@@ -14,7 +14,7 @@ import { RotatingText } from "./RotatingText";
 export function ProfileBadge() {
   const searchParams = useSearchParams();
   const oscillatorParam = searchParams.get("oscillator");
-  const { playNote, playChord } = useAudio();
+  const { playNote, playArpeggio } = useOscillator();
   const [secretState, setSecretState] = useState(oscillatorParam ? 2 : 0);
   const [isHovering, setIsHovering] = useState(false);
   const [imageIndex, setImageIndex] = useState(() => {
@@ -22,11 +22,7 @@ export function ProfileBadge() {
       const savedIndex = localStorage.getItem("profileImageIndex");
       if (savedIndex !== null) {
         const parsedIndex = parseInt(savedIndex, 10);
-        if (
-          !isNaN(parsedIndex) &&
-          parsedIndex >= 0 &&
-          parsedIndex < images.length
-        ) {
+        if (!isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < images.length) {
           return parsedIndex;
         }
       }
@@ -52,7 +48,7 @@ export function ProfileBadge() {
 
     if (secretState === 1 && imageIndex === images.length - 1) {
       setSecretState(2);
-      playChord(["C", "E", "G", "B"], undefined, 125, 2);
+      playArpeggio(["C", "E", "G", "B"], undefined, 125, 2);
       const url = new URL(window.location.href);
       url.searchParams.set("oscillator", "square");
       window.history.replaceState({}, "", url);
@@ -74,9 +70,7 @@ export function ProfileBadge() {
           <Image
             key={image.src}
             src={image.src}
-            className={
-              index === imageIndex ? "block [&:has(~.block)]:hidden" : "hidden"
-            }
+            className={index === imageIndex ? "block [&:has(~.block)]:hidden" : "hidden"}
             placeholder="blur"
             blurDataURL={image.placeholder}
             alt="Kevin Gonzalez - Engineering Leader and Technology Executive"

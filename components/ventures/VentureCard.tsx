@@ -1,6 +1,5 @@
 "use client";
 
-import type React from "react";
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -12,13 +11,7 @@ interface VentureCardProps extends React.ComponentProps<typeof Card> {
   blurImage: string;
 }
 
-export function VentureCard({
-  image,
-  blurImage,
-  children,
-  className,
-  ...props
-}: VentureCardProps) {
+export function VentureCard({ image, blurImage, children, className, ...props }: VentureCardProps) {
   const [transform, setTransform] = useState(
     "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
   );
@@ -49,9 +42,7 @@ export function VentureCard({
 
   const handleMouseLeave = useCallback(() => {
     setIsHovering(false);
-    setTransform(
-      "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
-    );
+    setTransform("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
   }, []);
 
   return (
