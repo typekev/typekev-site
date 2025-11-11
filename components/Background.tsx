@@ -12,6 +12,27 @@ interface WaveLayer {
   phaseSpeed: number;
 }
 
+const numPoints = 50 as const;
+const lightColors = [
+  "rgba(0, 191, 255, 0.5)",
+  "rgba(0, 191, 255, 0.6)",
+  "rgba(255, 255, 255, 1)",
+  "rgba(247, 126, 45, 0.8)",
+  "rgba(247, 126, 45, 0.7)",
+  "rgba(247, 126, 45, 0.6)",
+  "rgba(247, 126, 45, 0.5)",
+] as const;
+
+const darkColors = [
+  "rgba(50, 55, 74, 0.9)",
+  "rgba(50, 55, 74, 1)",
+  "rgba(89, 79, 99, 1)",
+  "rgba(0, 0, 0, 0.6)",
+  "rgba(89, 79, 99, 0.9)",
+  "rgba(89, 79, 99, 0.8)",
+  "rgba(89, 79, 99, 0.7)",
+] as const;
+
 export default function Background() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -38,11 +59,10 @@ export default function Background() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { desynchronized: true });
     if (!ctx) return;
 
     const initializeLayers = () => {
-      const numPoints = 50;
       layersRef.current = Array.from({ length: 6 }, (_, i) => ({
         points: Array.from({ length: numPoints }, (_, j) => ({
           x: (canvas.width / (numPoints - 1)) * j,
@@ -59,7 +79,6 @@ export default function Background() {
     };
 
     const updateLayers = () => {
-      const numPoints = 50;
       layersRef.current.forEach((layer, i) => {
         layer.points.forEach((point, j) => {
           point.x = (canvas.width / (numPoints - 1)) * j;
@@ -92,26 +111,6 @@ export default function Background() {
       if (!ctx || !canvas) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const lightColors = [
-        "rgba(0, 191, 255, 0.5)",
-        "rgba(0, 191, 255, 0.6)",
-        "rgba(255, 255, 255, 1)",
-        "rgba(247, 126, 45, 0.8)",
-        "rgba(247, 126, 45, 0.7)",
-        "rgba(247, 126, 45, 0.6)",
-        "rgba(247, 126, 45, 0.5)",
-      ];
-
-      const darkColors = [
-        "rgba(50, 55, 74, 0.9)",
-        "rgba(50, 55, 74, 1)",
-        "rgba(89, 79, 99, 1)",
-        "rgba(0, 0, 0, 0.6)",
-        "rgba(89, 79, 99, 0.9)",
-        "rgba(89, 79, 99, 0.8)",
-        "rgba(89, 79, 99, 0.7)",
-      ];
 
       const colors = isDark ? darkColors : lightColors;
 

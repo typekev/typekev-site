@@ -1,19 +1,18 @@
 "use client";
 
-import { memo, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Moon, Sun, Volume2, VolumeX } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { MuteChangeEvent } from "@/types/types";
 
-export const ThemeToggle = memo(function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
+type Modes = "light" | "dark";
+
+export default function ThemeToggle() {
+  const [theme, setTheme] = useState<Modes>(() => {
     if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as
-        | "light"
-        | "dark"
-        | null;
+      const savedTheme = localStorage.getItem("theme") as Modes | null;
       if (savedTheme) return savedTheme;
 
       const prefersDark = window.matchMedia(
@@ -61,11 +60,8 @@ export const ThemeToggle = memo(function ThemeToggle() {
         onClick={toggleMute}
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
-        {isMuted ? (
-          <VolumeX className="relative z-10 h-5 w-5" />
-        ) : (
-          <Volume2 className="relative z-10 h-5 w-5" />
-        )}
+        <VolumeX className={`size-5 ${isMuted ? "block" : "hidden"}`} />
+        <Volume2 className={`size-5 ${isMuted ? "hidden" : "block"}`} />
       </Button>
       <Button
         variant="glass"
@@ -73,12 +69,9 @@ export const ThemeToggle = memo(function ThemeToggle() {
         onClick={toggleTheme}
         aria-label="Toggle theme"
       >
-        {theme === "light" ? (
-          <Moon className="relative z-10 h-5 w-5" />
-        ) : (
-          <Sun className="relative z-10 h-5 w-5" />
-        )}
+        <Moon className={`size-5 ${theme === "light" ? "block" : "hidden"}`} />
+        <Sun className={`size-5 ${theme === "dark" ? "block" : "hidden"}`} />
       </Button>
     </menu>
   );
-});
+}
