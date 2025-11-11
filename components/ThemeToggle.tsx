@@ -1,35 +1,32 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useState } from "react";
 
 import { Moon, Sun, Volume2, VolumeX } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { getMutedState } from "@/lib/audio";
+import { getTheme, type Theme } from "@/lib/theme";
 import { MuteChangeEvent } from "@/types/types";
 
-type Modes = "light" | "dark";
-
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Modes>(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as Modes | null;
-      if (savedTheme) return savedTheme;
+  const [isMuted, setIsMuted] = useState<boolean>(true);
+  const [theme, setTheme] = useState<Theme>("light");
 
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      return prefersDark ? "dark" : "light";
-    }
-    return "light";
-  });
+  const initMuteState = useEffectEvent(() => setIsMuted(getMutedState()));
+  useEffect(() => {
+    initMuteState();
 
-  const [isMuted, setIsMuted] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      const savedMuted = localStorage.getItem("muted");
-      return savedMuted === "true";
-    }
-    return false;
-  });
+    const mql = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleThemeChange = (e: MediaQueryListEvent) =>
+      setTheme(getTheme() ?? (e.matches ? "dark" : "light"));
+
+    handleThemeChange({ matches: mql.matches } as MediaQueryListEvent);
+    mql.addEventListener("change", handleThemeChange);
+    return () => {
+      mql.removeEventListener("change", handleThemeChange);
+    };
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -63,12 +60,7 @@ export default function ThemeToggle() {
         <VolumeX className={`size-5 ${isMuted ? "block" : "hidden"}`} />
         <Volume2 className={`size-5 ${isMuted ? "hidden" : "block"}`} />
       </Button>
-      <Button
-        variant="glass"
-        size="lg-icon"
-        onClick={toggleTheme}
-        aria-label="Toggle theme"
-      >
+      <Button variant="glass" size="lg-icon" onClick={toggleTheme} aria-label="Toggle theme">
         <Moon className={`size-5 ${theme === "light" ? "block" : "hidden"}`} />
         <Sun className={`size-5 ${theme === "dark" ? "block" : "hidden"}`} />
       </Button>

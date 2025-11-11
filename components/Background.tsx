@@ -128,8 +128,7 @@ export default function Background() {
 
           const targetY =
             layer.baseY +
-            Math.sin(point.x * layer.frequency + layer.phase) *
-              layer.amplitude -
+            Math.sin(point.x * layer.frequency + layer.phase) * layer.amplitude -
             mouseOffset;
 
           point.vy += (targetY - point.y) * 0.02;
@@ -155,12 +154,7 @@ export default function Background() {
         ctx.lineTo(0, canvas.height);
         ctx.closePath();
 
-        const gradient = ctx.createLinearGradient(
-          0,
-          layer.baseY - 200,
-          0,
-          canvas.height
-        );
+        const gradient = ctx.createLinearGradient(0, layer.baseY - 200, 0, canvas.height);
         gradient.addColorStop(0, colors[layer.colorIndex % colors.length]);
         gradient.addColorStop(
           1,
