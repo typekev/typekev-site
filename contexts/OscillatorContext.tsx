@@ -29,6 +29,7 @@ export function OscillatorProvider({ children }: React.PropsWithChildren) {
   const initMuteState = useEffectEvent(() => setIsMuted(getMutedState()));
   useEffect(() => {
     initMuteState();
+
     const handleMuteChange = (event: MuteChangeEvent) => setIsMuted(event.detail.isMuted);
     window.addEventListener("mutechange", handleMuteChange as EventListener);
 

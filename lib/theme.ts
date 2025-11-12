@@ -8,3 +8,13 @@ export const getTheme = (): Theme | undefined => {
     if (theme && THEMES.includes(theme)) return theme;
   }
 };
+
+export const getSystemTheme = (): Theme =>
+  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+export const applyTheme = (theme: Theme) =>
+  document.documentElement.classList.toggle("dark", theme === "dark");
+
+export const storeTheme = (theme: Theme) => localStorage.setItem("theme", theme);
+
+export const deleteTheme = () => localStorage.removeItem("theme");

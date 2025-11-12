@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import Background from "@/components/Background";
-import ThemeToggle from "@/components/ThemeToggle";
+import Toggles from "@/components/Toggles";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: Props) {
       <body
         className={`${geist.variable} ${geistMono.variable} antialiased relative flex flex-col gap-20 lg:grid lg:grid-cols-2 mx-auto max-w-7xl px-6 py-16 md:py-24 lg:py-12`}
       >
-        <ThemeToggle />
+        <Toggles />
         <Background />
         {children}
       </body>
