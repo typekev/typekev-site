@@ -16,20 +16,14 @@ export function Archive() {
   return (
     <Dialog modal={false}>
       <DialogTrigger asChild>
-        <Button
-          variant="link"
-          size="sm"
-          className="font-bold tracking-wide px-0"
-        >
+        <Button variant="link" size="sm" className="font-bold tracking-wide px-0">
           Archive
         </Button>
       </DialogTrigger>
 
       <DialogContent className="auto-rows-min content-center p-3 sm:p-4 h-full sm:h-fit max-h-full max-w-full md:max-h-5/6 overflow-auto lg:max-w-4xl bg-white/70 dark:bg-black/50 backdrop-blur-sm">
-        <DialogTitle className="font-mono uppercase">
-          Archived Website Versions
-        </DialogTitle>
-        <ol className="grid grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-2">
+        <DialogTitle className="font-mono uppercase">Archived Website Versions</DialogTitle>
+        <nav className="grid grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-2">
           {archivedSitesData.map((website, index) => (
             <li
               key={website.version}
@@ -43,10 +37,7 @@ export function Archive() {
               </a>
             </li>
           ))}
-          <li
-            className="animate-in fade-in"
-            style={{ animationDuration: "1100ms" }}
-          >
+          <li className="animate-in fade-in" style={{ animationDuration: "1100ms" }}>
             <a
               href="https://github.com/typekev/typekev-site"
               target="_blank"
@@ -68,10 +59,9 @@ export function Archive() {
               </figure>
             </a>
           </li>
-        </ol>
+        </nav>
         <DialogDescription className="text-md font-semibold">
-          The links above will take you to retired versions of this site, dating
-          back to 2016.
+          The links above will take you to retired versions of this site, dating back to 2016.
         </DialogDescription>
         <DialogFooter>
           <DialogClose>
