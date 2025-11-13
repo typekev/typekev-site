@@ -1,9 +1,25 @@
 "use client";
 
-import { createContext, useCallback, useEffect, useEffectEvent, useRef, useState } from "react";
+import {
+  createContext,
+  Suspense,
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useRef,
+  useState,
+} from "react";
+import { useSearchParams } from "next/navigation";
 
 import type { Note, Octave } from "@/lib/audio";
-import { createAudioContext, getFreq, getMutedState, octaves, Oscillator } from "@/lib/audio";
+import {
+  createAudioContext,
+  getFreq,
+  getMutedState,
+  octaves,
+  Oscillator,
+  validOscillators,
+} from "@/lib/audio";
 import { delay } from "@/lib/utils";
 import type { MuteChangeEvent } from "@/types/types";
 
@@ -13,6 +29,7 @@ export type OscillatorContextType = Readonly<{
   stopNote: (note: Note) => void;
   playArpeggio: (notes: Note[], octave?: Octave, timeout?: number, fade?: number) => Promise<void>;
   nextOctave: () => void;
+  oscillatorParam: OscillatorType | null;
   isMuted: boolean;
 }>;
 
@@ -24,6 +41,7 @@ export function OscillatorProvider({ children }: React.PropsWithChildren) {
   const audioRef = useRef<AudioContext | null>(null);
   const activeFreqsRef = useRef<Map<number, ActiveFreq>>(new Map());
   const [currentOctave, setCurrentOctave] = useState<Octave>("o4");
+  const [oscillatorParam, setOscillatorParam] = useState<OscillatorType | null>(null);
   const [isMuted, setIsMuted] = useState(true);
 
   const initMuteState = useEffectEvent(() => setIsMuted(getMutedState()));
@@ -119,8 +137,35 @@ export function OscillatorProvider({ children }: React.PropsWithChildren) {
     stopNote,
     playArpeggio,
     nextOctave,
+    oscillatorParam,
     isMuted,
   };
 
-  return <OscillatorContext.Provider value={value}>{children}</OscillatorContext.Provider>;
+  return (
+    <OscillatorContext.Provider value={value}>
+      <Suspense>
+        <OscillatorWatcher setOscillatorParam={setOscillatorParam} />
+      </Suspense>
+      {children}
+    </OscillatorContext.Provider>
+  );
+}
+
+interface OscillatorWatcherProps {
+  setOscillatorParam: (param: OscillatorType | null) => void;
+}
+
+export function OscillatorWatcher({ setOscillatorParam }: OscillatorWatcherProps) {
+  const searchParams = useSearchParams();
+  const oscillatorParam = searchParams.get("oscillator");
+
+  useEffect(() => {
+    setOscillatorParam(
+      validOscillators.includes(oscillatorParam as OscillatorType)
+        ? (oscillatorParam as OscillatorType)
+        : null
+    );
+  }, [oscillatorParam, setOscillatorParam]);
+
+  return null;
 }

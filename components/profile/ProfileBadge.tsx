@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 
 import { useOscillator } from "@/hooks/useOscillator";
 
@@ -12,9 +11,7 @@ import { profileImagesData as images } from "./profileImagesData";
 import { RotatingText } from "./RotatingText";
 
 export function ProfileBadge() {
-  const searchParams = useSearchParams();
-  const oscillatorParam = searchParams.get("oscillator");
-  const { playNote, playArpeggio } = useOscillator();
+  const { playNote, playArpeggio, oscillatorParam } = useOscillator();
   const [secretState, setSecretState] = useState(oscillatorParam ? 2 : 0);
   const [isHovering, setIsHovering] = useState(false);
   const [imageIndex, setImageIndex] = useState(() => {
@@ -76,7 +73,8 @@ export function ProfileBadge() {
             alt="Kevin Gonzalez - Engineering Leader and Technology Executive"
             width={152}
             height={152}
-            priority={index === imageIndex}
+            preload={index === imageIndex}
+            loading="eager"
           />
         ))}
       </Button>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 
 import { useOscillator } from "@/hooks/useOscillator";
 import type { Note } from "@/lib/audio";
@@ -24,11 +23,9 @@ const hiddenKeys: Partial<Record<Key, Note>> = {
 };
 
 export function MusicPad() {
-  const { startNote, stopNote, nextOctave, isMuted } = useOscillator();
+  const { startNote, stopNote, nextOctave, oscillatorParam, isMuted } = useOscillator();
   const [pressedKeys, setPressedKeys] = useState<Set<Key>>(new Set());
   const [revealedKeys, setRevealedKeys] = useState<Set<Key>>(new Set());
-  const searchParams = useSearchParams();
-  const oscillatorParam = searchParams.get("oscillator");
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

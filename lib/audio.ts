@@ -14,6 +14,8 @@ export type Freq = (typeof baseC4Freqs)[Note] | number;
 export const octaves = { o2: 0.25, o3: 0.5, o4: 1, o5: 2, o6: 4, o7: 8 };
 export type Octave = keyof typeof octaves;
 
+export const validOscillators: OscillatorType[] = ["sine", "square", "sawtooth", "triangle"];
+
 export const getMutedState = () => {
   if (typeof window !== "undefined") {
     return localStorage.getItem("muted") === "true";
@@ -34,8 +36,7 @@ const getOscillatorType = (): OscillatorType | undefined => {
     const urlParams = new URLSearchParams(window.location.search);
     const oscillatorParam = urlParams.get("oscillator");
     if (oscillatorParam) {
-      const validTypes: OscillatorType[] = ["sine", "square", "sawtooth", "triangle"];
-      if (validTypes.includes(oscillatorParam as OscillatorType)) {
+      if (validOscillators.includes(oscillatorParam as OscillatorType)) {
         return oscillatorParam as OscillatorType;
       }
     }

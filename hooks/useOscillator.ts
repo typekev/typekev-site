@@ -1,9 +1,6 @@
 import { useContext } from "react";
 
-import {
-  OscillatorContext,
-  type OscillatorContextType,
-} from "@/contexts/OscillatorContext";
+import { OscillatorContext, type OscillatorContextType } from "@/contexts/OscillatorContext";
 
 export function useOscillator(): OscillatorContextType {
   const context = useContext(OscillatorContext);

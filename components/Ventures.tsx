@@ -10,22 +10,16 @@ export function Ventures() {
         Ventures
       </h2>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 perspective-1000">
-        <li className="animate-in fade-in duration-500">
+        <li>
           <a href="https://symphonee.ai/">
-            <VentureCard
-              image="/images/symphonee.jpeg"
-              blurImage="/images/symphonee-small.jpeg"
-            >
+            <VentureCard image="/images/symphonee.jpeg" blurImage="/images/symphonee-small.jpeg">
               Symphonee
             </VentureCard>
           </a>
         </li>
-        <li className="animate-in fade-in duration-700">
+        <li>
           <a href="https://scaletiny.com/">
-            <VentureCard
-              image="/images/scale-tiny.jpeg"
-              blurImage="/images/scale-tiny-small.jpeg"
-            >
+            <VentureCard image="/images/scale-tiny.jpeg" blurImage="/images/scale-tiny-small.jpeg">
               Scale Tiny
             </VentureCard>
           </a>
