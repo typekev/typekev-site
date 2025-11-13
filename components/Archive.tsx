@@ -44,18 +44,17 @@ export function Archive() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <figure className="group flex flex-col justify-center items-center justify-items-center aspect-16/11 rounded-lg border-4 bg-transparent border-black/90 dark:border-white/90">
+                <figure className="group flex flex-col justify-center items-center justify-items-center aspect-16/11 overflow-hidden rounded-lg border-4 bg-transparent border-black/90 dark:border-white/90">
                   <svg
-                    height="1792"
-                    viewBox="0 0 1792 1792"
-                    width="1792"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="size-3/4 duration-500 scale-101 group-hover:scale-105 dark:fill-white"
+                    fill="currentColor"
+                    className="size-3/4 scale-100 group-hover:scale-105 duration-500"
                   >
-                    <path d="M704 1216q0 40-12.5 82t-43 76-72.5 34-72.5-34-43-76-12.5-82 12.5-82 43-76 72.5-34 72.5 34 43 76 12.5 82zm640 0q0 40-12.5 82t-43 76-72.5 34-72.5-34-43-76-12.5-82 12.5-82 43-76 72.5-34 72.5 34 43 76 12.5 82zm160 0q0-120-69-204t-187-84q-41 0-195 21-71 11-157 11t-157-11q-152-21-195-21-118 0-187 84t-69 204q0 88 32 153.5t81 103 122 60 140 29.5 149 7h168q82 0 149-7t140-29.5 122-60 81-103 32-153.5zm224-176q0 207-61 331-38 77-105.5 133t-141 86-170 47.5-171.5 22-167 4.5q-78 0-142-3t-147.5-12.5-152.5-30-137-51.5-121-81-86-115q-62-123-62-331 0-237 136-396-27-82-27-170 0-116 51-218 108 0 190 39.5t189 123.5q147-35 309-35 148 0 280 32 105-82 187-121t189-39q51 102 51 218 0 87-27 168 136 160 136 398z" />
+                    <path d="M12,2A10,10,0,0,0,8.84,21.5c.5.08.66-.23.66-.5V19.31C6.73,19.91,6.14,18,6.14,18A2.69,2.69,0,0,0,5,16.5c-.91-.62.07-.6.07-.6a2.1,2.1,0,0,1,1.53,1,2.15,2.15,0,0,0,2.91.83,2.16,2.16,0,0,1,.63-1.34C8,16.17,5.62,15.31,5.62,11.5a3.87,3.87,0,0,1,1-2.71,3.58,3.58,0,0,1,.1-2.64s.84-.27,2.75,1a9.63,9.63,0,0,1,5,0c1.91-1.29,2.75-1,2.75-1a3.58,3.58,0,0,1,.1,2.64,3.87,3.87,0,0,1,1,2.71c0,3.82-2.34,4.66-4.57,4.91a2.39,2.39,0,0,1,.69,1.85V21c0,.27.16.59.67.5A10,10,0,0,0,12,2Z" />
                   </svg>
-                  <figcaption className="sm:mb-3 text-center text-xs sm:text-sm md:text-md lg:text-lg font-semibold text-black dark:text-white whitespace-pre">
-                    <span className="hidden sm:inline">View on</span> GitHub
+                  <figcaption className="max-w-full -mt-1 text-center text-xs sm:text-sm md:text-md lg:text-lg font-black text-black dark:text-white whitespace-pre">
+                    View on GitHub
                   </figcaption>
                 </figure>
               </a>
