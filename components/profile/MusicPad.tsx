@@ -72,6 +72,8 @@ export function MusicPad() {
     return null;
   }
 
+  const revealKey = (key: Key) => setRevealedKeys((prev) => new Set(prev).add(key as Key));
+
   return (
     <fieldset
       className={`grid grid-cols-3 md:grid-cols-9 lg:grid-cols-3 gap-2.5 transition-all ${
@@ -110,7 +112,8 @@ export function MusicPad() {
           className={
             revealedKeys.has(key as Key) ? "" : "h-0 overflow-visible inline-block opacity-0"
           }
-          onClick={() => setRevealedKeys((prev) => new Set(prev).add(key as Key))}
+          onClick={() => revealKey(key as Key)}
+          onMouseDown={() => revealKey(key as Key)}
         >
           <Button
             onMouseDown={() => startNote(freq)}
@@ -132,7 +135,7 @@ export function MusicPad() {
       ))}
       <label
         className={revealedKeys.has("O") ? "" : "h-0 overflow-visible inline-block opacity-0"}
-        onClick={() => setRevealedKeys((prev) => new Set(prev).add("O"))}
+        onClick={() => revealKey("O")}
       >
         <Button
           onClick={nextOctave}
