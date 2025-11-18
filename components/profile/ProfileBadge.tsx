@@ -8,6 +8,7 @@ import { useOscillator } from "@/hooks/useOscillator";
 
 import { Button } from "../ui/button";
 import { Key, keys } from "./MusicPad";
+import { ProfileBadgeSkeleton } from "./ProfileBadgeSkeleton";
 import { profileImagesData as images } from "./profileImagesData";
 import { RotatingText } from "./RotatingText";
 
@@ -22,7 +23,7 @@ export function ProfileBadge() {
   const { playNote, playArpeggio, oscillatorParam } = useOscillator();
   const [isHovering, setIsHovering] = useState(false);
   const [secretState, setSecretState] = useState(0);
-  const [imageIndex, setImageIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState<number>();
 
   const initOscillator = useEffectEvent(() => oscillatorParam && setSecretState(2));
   useEffect(() => {
@@ -33,6 +34,8 @@ export function ProfileBadge() {
   useEffect(() => {
     initProfileImage();
   }, []);
+
+  if (imageIndex === undefined) return <ProfileBadgeSkeleton />;
 
   const handleProfileClick = () => {
     if (secretState === 0 && imageIndex === images.length - 1) setSecretState(1);
@@ -52,11 +55,9 @@ export function ProfileBadge() {
       router.replace(url.toString(), { scroll: false });
     }
 
-    setImageIndex((prev) => {
-      const nextIndex = (prev + 1) % images.length;
-      localStorage.setItem("profileImageIndex", nextIndex.toString());
-      return nextIndex;
-    });
+    const nextIndex = (imageIndex + 1) % images.length;
+    setImageIndex(nextIndex);
+    localStorage.setItem("profileImageIndex", nextIndex.toString());
   };
 
   return (
