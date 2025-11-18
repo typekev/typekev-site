@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { useOscillator } from "@/hooks/useOscillator";
 
@@ -10,31 +11,31 @@ import { Key, keys } from "./MusicPad";
 import { profileImagesData as images } from "./profileImagesData";
 import { RotatingText } from "./RotatingText";
 
-export function ProfileBadge() {
-  const { playNote, playArpeggio, oscillatorParam } = useOscillator();
-  const [secretState, setSecretState] = useState(oscillatorParam ? 2 : 0);
-  const [isHovering, setIsHovering] = useState(false);
-  const [imageIndex, setImageIndex] = useState(() => {
-    if (typeof window !== "undefined") {
-      const savedIndex = localStorage.getItem("profileImageIndex");
-      if (savedIndex !== null) {
-        const parsedIndex = parseInt(savedIndex, 10);
-        if (!isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < images.length) {
-          return parsedIndex;
-        }
-      }
-    }
-    return 0;
-  });
+const getProfileImageIndex = () => {
+  if (typeof window === "undefined") return 0;
+  const index = Number(localStorage.getItem("profileImageIndex"));
+  return Number.isInteger(index) && index >= 0 && index < images.length ? index : 0;
+};
 
+export function ProfileBadge() {
+  const router = useRouter();
+  const { playNote, playArpeggio, oscillatorParam } = useOscillator();
+  const [isHovering, setIsHovering] = useState(false);
+  const [secretState, setSecretState] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
+
+  const initOscillator = useEffectEvent(() => oscillatorParam && setSecretState(2));
   useEffect(() => {
-    localStorage.setItem("profileImageIndex", imageIndex.toString());
-  }, [imageIndex]);
+    initOscillator();
+  }, [oscillatorParam]);
+
+  const initProfileImage = useEffectEvent(() => setImageIndex(getProfileImageIndex()));
+  useEffect(() => {
+    initProfileImage();
+  }, []);
 
   const handleProfileClick = () => {
-    if (secretState === 0 && imageIndex === images.length - 1) {
-      setSecretState(1);
-    }
+    if (secretState === 0 && imageIndex === images.length - 1) setSecretState(1);
 
     if (secretState > 0) {
       const keyNames = Object.keys(keys) as Key[];
@@ -48,10 +49,14 @@ export function ProfileBadge() {
       playArpeggio(["C", "E", "G", "B"], undefined, 125, 2);
       const url = new URL(window.location.href);
       url.searchParams.set("oscillator", "square");
-      window.history.replaceState({}, "", url);
+      router.replace(url.toString(), { scroll: false });
     }
 
-    setImageIndex((prev) => (prev + 1) % images.length);
+    setImageIndex((prev) => {
+      const nextIndex = (prev + 1) % images.length;
+      localStorage.setItem("profileImageIndex", nextIndex.toString());
+      return nextIndex;
+    });
   };
 
   return (

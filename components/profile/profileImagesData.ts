@@ -25,11 +25,6 @@ export const profileImagesData = [
     placeholder: "/images/kevin-cartoon-small.jpeg",
   },
   {
-    name: "Tokyo Pastel",
-    src: "/images/kevin-tokyo-pastel.jpeg",
-    placeholder: "/images/kevin-tokyo-pastel-small.jpeg",
-  },
-  {
     name: "Tokyo Pastel Cartoon",
     src: "/images/kevin-tokyo-pastel-cartoon.jpeg",
     placeholder: "/images/kevin-tokyo-pastel-cartoon-small.jpeg",
