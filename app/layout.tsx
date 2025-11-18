@@ -1,41 +1,42 @@
-import { Ubuntu_Mono, Gantari } from "next/font/google";
-import { PropsWithChildren } from "react";
+import "./globals.css";
 
-import { Analytics } from "@vercel/analytics/react";
-import { getLocale } from "next-intl/server";
+import { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 
-import { BlackHoleScene } from "@/components/canvas/BlackHoleScene";
-import "@/global.css"; // eslint-disable-line import/no-unassigned-import
+import Background from "@/components/Background";
+import Toggles from "@/components/Toggles";
 
-import { title, description } from "./head";
-
-const poppins = Gantari({
-  weight: ["100", "300", "400", "700", "800"],
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-gantari",
-});
-const fragmentMono = Ubuntu_Mono({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-ubuntu-mono",
+  variable: "--font-geist",
 });
 
-export const metadata = { title, description };
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 
-export default async function RootLayout({ children }: PropsWithChildren) {
-  const locale = await getLocale();
+export const metadata: Metadata = {
+  title: "Kevin Gonzalez – AI Product & Engineering Leader",
+  description:
+    "Engineering leader empowering high-impact teams to build AI products. Co-founder & CTO of Symphonee. Founder of Scale Tiny. Satellite yield & AI at SES.",
+};
 
+type Props = Readonly<{ children: React.ReactNode }>;
+
+export default function RootLayout({ children }: Props) {
   return (
-    <html lang={locale} className={`${fragmentMono.variable} ${poppins.variable}`}>
-      <head />
-      <body id="root">
-        <aside className="shadow-gradient" />
-        <aside className="background-gradient" />
-        <aside className="background-gradient blur" />
-        <aside className="background-gradient blur-2" />
+    <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-title" content="keving.me" />
+        <meta name="theme-color" content="#0a0a0a" />
+      </head>
+      <body
+        className={`${geist.variable} ${geistMono.variable} antialiased relative flex flex-col gap-20 lg:grid lg:grid-cols-2 max-w-7xl mx-auto! px-6! py-16! md:py-24! lg:py-12!`}
+      >
+        <Toggles />
+        <Background />
         {children}
-        <BlackHoleScene />
-        <Analytics />
       </body>
     </html>
   );
