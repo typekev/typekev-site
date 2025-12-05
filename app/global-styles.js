@@ -2,8 +2,9 @@ import { injectGlobal } from 'styled-components';
 
 import {
   accentColorDarkGradient,
+  backgroundColorDark,
+  backgroundDarkGradient,
   primaryText,
-  accentColor,
 } from 'static/Colors';
 import { dropShadow } from 'static/Accents';
 import { medium } from 'static/Dimens';
@@ -17,6 +18,8 @@ injectGlobal`
       height: 100%;
       width: 100%;
       overflow: hidden;
+      background-color: ${backgroundColorDark} !important;
+      background-image: ${backgroundDarkGradient} !important;
     }
 
     h1,
