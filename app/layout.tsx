@@ -3,6 +3,8 @@ import "./globals.css";
 import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import Background from "@/components/Background";
 import Toggles from "@/components/Toggles";
 
@@ -37,6 +39,7 @@ export default function RootLayout({ children }: Props) {
         <Toggles />
         <Background />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
