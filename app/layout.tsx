@@ -3,6 +3,7 @@ import "./globals.css";
 import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Background from "@/components/Background";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: Props) {
         {children}
         <SpeedInsights />
       </body>
+      <GoogleAnalytics gaId="G-Y3R80V22FS" />
     </html>
   );
 }
