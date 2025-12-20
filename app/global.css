@@ -269,14 +269,14 @@ section#work ul > li {
 }
 
 section#work ul > li > a[role="button"].button > span {
-  padding-block: 0.0625em 0.1875em;
+  padding-block: 0.225em 0.025em;
 }
 
 section#work ul > li > a[role="button"].button:hover > span,
 section#work ul > li > a[role="button"].button:focus > span,
 section#work ul > li > a[role="button"].button:active > span,
 section#work ul > li > a[role="button"].button.active > span {
-  padding-block: 0 0.25em;
+  padding-block: 0.2em 0.05em;
 }
 
 section#work ul > li .button-subscript {
@@ -284,7 +284,7 @@ section#work ul > li .button-subscript {
   position: absolute;
   font-size: 0.25em;
   font-weight: 400;
-  inset-block-end: 0.375em;
+  inset-block-start: 0.625em;
   inset-inline-start: 1.25em;
   margin: 0;
   white-space: pre;
@@ -296,7 +296,7 @@ section#work ul > li > a[role="button"].button:hover + .button-subscript,
 section#work ul > li > a[role="button"].button:focus + .button-subscript,
 section#work ul > li > a[role="button"].button:active + .button-subscript,
 section#work ul > li > a[role="button"].button.active + .button-subscript {
-  inset-block-end: 0.625em;
+  inset-block-start: 0.375em;
   filter: none;
 }
 
