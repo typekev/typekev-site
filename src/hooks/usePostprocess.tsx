@@ -3,7 +3,7 @@ import { useMemo } from "react";
 
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { EffectComposer, UnrealBloomPass, RenderPass } from "three-stdlib";
+import { EffectComposer, RenderPass, UnrealBloomPass } from "three-stdlib";
 
 export const useBloom = () => {
   const { size, gl, scene, camera } = useThree();

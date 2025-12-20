@@ -1,13 +1,11 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import { useLayoutEffect, useTransition } from "react";
-
-import { GlobeIcon } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
-import { routing, useRouter, usePathname } from "i18n/routing";
-
+import { routing, usePathname, useRouter } from "i18n/routing";
 import type { Bot } from "libs/typekev-bot/bots/types";
+import { GlobeIcon } from "lucide-react";
 
 const { locales } = routing;
 

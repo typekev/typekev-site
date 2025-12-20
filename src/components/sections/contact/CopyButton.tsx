@@ -1,8 +1,8 @@
 "use client";
-import { useState, useCallback, useTransition } from "react";
-
-import { ClipboardCopyIcon, ClipboardCheckIcon } from "lucide-react";
+import { useCallback, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
+
+import { ClipboardCheckIcon, ClipboardCopyIcon } from "lucide-react";
 
 import { email } from "@/helpers/links";
 

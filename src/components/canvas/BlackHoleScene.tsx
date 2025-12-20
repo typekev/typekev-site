@@ -1,6 +1,6 @@
 "use client";
-import dynamic from "next/dynamic";
 import { RefObject, useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 
 const BlackHoleCanvas = dynamic(() => import("./BlackHoleCanvas").then((mod) => mod.BlackHoleCanvas), { ssr: false });
 

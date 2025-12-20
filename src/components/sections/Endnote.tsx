@@ -1,7 +1,7 @@
 import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
+import { Link } from "i18n/routing";
 
 import { githubUrl, linkedInUrl, xUrl } from "@/helpers/links";
-import { Link } from "i18n/routing";
 
 import { LanguageSelect } from "./endnote/LanguageSelect";
 import { Note } from "./endnote/Note";

@@ -1,15 +1,13 @@
 "use client";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
-
-import { ForwardIcon } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
 import Keyboard, { Cursor } from "react-mk";
+import { useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 
 import { useRouter } from "i18n/routing";
 import { bots } from "libs/typekev-bot/bots";
-
 import type { Bot } from "libs/typekev-bot/bots/types";
+import { ForwardIcon } from "lucide-react";
 
 export function Chat() {
   const t = useTranslations("Bot");
@@ -55,12 +53,13 @@ export function Chat() {
   };
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const onReply = useEffectEvent((msg: string) => setBotReply(msg));
   useEffect(() => {
     if (chatting) {
       inputRef.current?.focus();
-      setBotReply(userMessage ? languageBot.getBotReply(userMessage) || "?" : t("prompt"));
+      onReply(userMessage ? languageBot.getBotReply(userMessage) || "?" : t("prompt"));
     } else {
-      setBotReply(languageBot.getBotReply(t("goodbye")) || "...");
+      onReply(languageBot.getBotReply(t("goodbye")) || "...");
     }
   }, [userMessage, chatting, t, languageBot]);
 

@@ -1,10 +1,10 @@
 "use client";
 import { PropsWithChildren, useEffect, useState } from "react";
 
+import { Link, useRouter } from "i18n/routing";
 import { XIcon } from "lucide-react";
 
 import { useIsRouteActive } from "@/hooks/useIsRouteActive";
-import { Link, useRouter } from "i18n/routing";
 
 export function VersionsModal({ children }: PropsWithChildren) {
   const [init, setInit] = useState(false);

@@ -1,17 +1,16 @@
 import { use } from "react";
-
-import { Gamepad2Icon, KeyboardIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { getLocale } from "next-intl/server";
+
+import { Link } from "i18n/routing";
+import { bots } from "libs/typekev-bot/bots";
+import type { Bot } from "libs/typekev-bot/bots/types";
+import { Gamepad2Icon, KeyboardIcon } from "lucide-react";
 
 import { ButtonLink } from "@/components/ButtonLink";
 import { HighlightedButtonText } from "@/components/HighlightedButtonText";
 import { SectionLink } from "@/components/SectionLink";
-import { blobGameUrl, devoteamUrl, emailtreeUrl, githubUrl, resumeUrl, reactMKUrl, sesUrl } from "@/helpers/links";
-import { Link } from "i18n/routing";
-import { bots } from "libs/typekev-bot/bots";
-
-import type { Bot } from "libs/typekev-bot/bots/types";
+import { blobGameUrl, devoteamUrl, emailtreeUrl, githubUrl, reactMKUrl, resumeUrl, sesUrl } from "@/helpers/links";
 
 import { OpenButton } from "./work/OpenButton";
 

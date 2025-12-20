@@ -1,9 +1,10 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import { forwardRef, useCallback, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+
+import { Link, LinkProps } from "i18n/routing";
 
 import { useIsRouteActive } from "@/hooks/useIsRouteActive";
-import { Link, LinkProps } from "i18n/routing";
 
 interface SectionLinkProps extends Omit<LinkProps, "onClick"> {
   href: string;

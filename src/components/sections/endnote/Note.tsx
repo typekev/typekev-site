@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
 
+import { Link } from "i18n/routing";
+
 import {
   figmaUrl,
   githubTypekevSiteUrl,
@@ -9,7 +11,6 @@ import {
   typescriptUrl,
   vercelUrl,
 } from "@/helpers/links";
-import { Link } from "i18n/routing";
 
 import { VersionsModal } from "./VersionsModal";
 import { VersionsMenu } from "./versionsModal/VersionsMenu";

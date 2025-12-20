@@ -4,7 +4,6 @@ import { RefObject, useRef, useState } from "react";
 import { OrbitControls, PerspectiveCamera, Preload, View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
-
 import type { OrbitControls as OrbitControlsType } from "three-stdlib";
 
 import { BlackHole } from "./BlackHole";

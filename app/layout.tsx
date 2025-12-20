@@ -1,13 +1,14 @@
-import { Ubuntu_Mono, Gantari } from "next/font/google";
-import { PropsWithChildren } from "react";
+import "@/global.css";
 
-import { Analytics } from "@vercel/analytics/react";
+import { PropsWithChildren } from "react";
+import { Gantari, Ubuntu_Mono } from "next/font/google";
 import { getLocale } from "next-intl/server";
 
-import { BlackHoleScene } from "@/components/canvas/BlackHoleScene";
-import "@/global.css"; // eslint-disable-line import/no-unassigned-import
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { title, description } from "./head";
+import { BlackHoleScene } from "@/components/canvas/BlackHoleScene";
+
+import { description, title } from "./head";
 
 const poppins = Gantari({
   weight: ["100", "300", "400", "700", "800"],
@@ -35,7 +36,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <aside className="background-gradient blur-2" />
         {children}
         <BlackHoleScene />
-        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

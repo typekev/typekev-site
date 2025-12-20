@@ -1,6 +1,5 @@
-import { ArrowUpRightIcon } from "lucide-react";
-
 import { Link } from "i18n/routing";
+import { ArrowUpRightIcon } from "lucide-react";
 
 interface Props {
   href: string;

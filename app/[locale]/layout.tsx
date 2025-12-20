@@ -1,12 +1,12 @@
-import { PropsWithChildren } from "react";
+import "@/global.css";
 
+import { PropsWithChildren } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
-import "@/global.css"; // eslint-disable-line import/no-unassigned-import
 import { routing } from "i18n/routing";
 
-import { title, description } from "../head";
+import { description, title } from "../head";
 
 export const metadata = { title, description };
 

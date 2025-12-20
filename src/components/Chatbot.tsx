@@ -1,11 +1,10 @@
 "use client";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-
-import { BotIcon } from "lucide-react";
 
 import { Link, usePathname } from "i18n/routing";
+import { BotIcon } from "lucide-react";
 
 const Chat = dynamic(() => import("./chatbot/Chat").then((mod) => mod.Chat), { ssr: false });
 

@@ -2,11 +2,10 @@
 import { useCallback, useEffect, useMemo } from "react";
 
 import { useGLTF } from "@react-three/drei";
+import type { ThreeElements } from "@react-three/fiber";
 import { useFrame } from "@react-three/fiber";
 
 import { useBloom } from "@/hooks/usePostprocess";
-
-import type { ThreeElements } from "@react-three/fiber";
 
 const scrollMax = 0.2 as const;
 const scrollMin = -0.4 as const;
