@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 export function Connect() {
   return (
     <section aria-labelledby="connect-heading">
-      <h2
+      <h3
         id="connect-heading"
         className="mb-4 text-md font-extrabold uppercase tracking-wide text-foreground/90"
       >
         Connect
-      </h2>
+      </h3>
       <address className="grid space-y-1 not-italic">
         <Button asChild variant="link" className="px-0! w-fit">
           <a href="mailto:hi@keving.me" aria-label="Send email to Kevin Gonzalez">

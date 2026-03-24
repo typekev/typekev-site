@@ -76,9 +76,9 @@ export function VentureCard({ image, blurImage, children, className, ...props }:
         />
         <figcaption className="absolute bottom-0 left-0 right-0 p-4">
           <cite className="inline-block not-italic px-3 py-2 rounded-lg bg-muted/30 backdrop-blur-xl">
-            <h3 className="text-lg font-bold tracking-wide text-shadow-sm text-shadow-muted/10">
+            <p className="text-lg font-bold tracking-wide text-shadow-sm text-shadow-muted/10">
               {children}
-            </h3>
+            </p>
           </cite>
         </figcaption>
       </figure>

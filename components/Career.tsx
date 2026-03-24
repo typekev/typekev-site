@@ -3,12 +3,12 @@ import { careerData } from "./career/careerData";
 export function Career() {
   return (
     <section aria-labelledby="career-heading">
-      <h2
+      <h3
         id="career-heading"
         className="mb-6 text-md font-extrabold uppercase tracking-wide text-foreground/90"
       >
         Career
-      </h2>
+      </h3>
       <ol className="space-y-3">
         {careerData.map((exp) => (
           <li
