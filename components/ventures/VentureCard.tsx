@@ -13,7 +13,7 @@ interface VentureCardProps extends React.ComponentProps<typeof Card> {
 
 export function VentureCard({ image, blurImage, children, className, ...props }: VentureCardProps) {
   const [transform, setTransform] = useState(
-    "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
+    "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
   );
   const [isHovering, setIsHovering] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -32,7 +32,7 @@ export function VentureCard({ image, blurImage, children, className, ...props }:
     const rotateY = ((x - centerX) / centerX) * 6;
 
     setTransform(
-      `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`
+      `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`,
     );
   }, []);
 
@@ -50,7 +50,7 @@ export function VentureCard({ image, blurImage, children, className, ...props }:
       ref={cardRef}
       className={cn(
         "group relative p-0 overflow-hidden border-2 border-foreground/20 bg-white/10 backdrop-blur-xl transition-all duration-300 hover:border-foreground/40 hover:bg-white/15 dark:bg-white/30 dark:hover:bg-white/50 preserve-3d focus-within:ring-2 focus-within:ring-foreground focus-within:ring-offset-2 focus-within:ring-offset-background",
-        className
+        className,
       )}
       style={{
         transform,
@@ -76,9 +76,9 @@ export function VentureCard({ image, blurImage, children, className, ...props }:
         />
         <figcaption className="absolute bottom-0 left-0 right-0 p-4">
           <cite className="inline-block not-italic px-3 py-2 rounded-lg bg-muted/30 backdrop-blur-xl">
-            <h3 className="text-lg font-bold tracking-wide uppercase text-shadow-sm text-shadow-muted/10">
+            <p className="text-lg font-bold tracking-wide text-shadow-sm text-shadow-muted/10">
               {children}
-            </h3>
+            </p>
           </cite>
         </figcaption>
       </figure>

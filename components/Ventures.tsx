@@ -3,12 +3,12 @@ import { VentureCard } from "./ventures/VentureCard";
 export function Ventures() {
   return (
     <section aria-labelledby="ventures-heading">
-      <h2
+      <h3
         id="ventures-heading"
-        className="mb-6 text-md font-extrabold uppercase tracking-wide text-foreground/90"
+        className="mb-6 text-md font-black uppercase tracking-wide text-foreground/90"
       >
         Ventures
-      </h2>
+      </h3>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 perspective-1000">
         <li>
           <a href="https://symphonee.ai/">
