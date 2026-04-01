@@ -39,7 +39,7 @@ export function ChatDialog() {
   }, [messages]);
 
   const sendMessage = useCallback((text: string) => {
-    const userMessage: ChatMessageData = { role: "user", text };
+    const userMessage: ChatMessageData = { role: "user", text, timestamp: Date.now() };
     setMessages((prev) => [...prev, userMessage]);
 
     const response = getBotResponse(text);
