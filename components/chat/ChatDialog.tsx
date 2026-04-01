@@ -5,6 +5,7 @@ import { type PropsWithChildren, useCallback, useEffect, useRef, useState } from
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -79,13 +80,16 @@ export default function ChatDialog({ children }: PropsWithChildren) {
             <ChatSuggestions suggestions={currentSuggestions} onSelect={sendMessage} />
           )}
         </section>
-        <footer className="px-4 pb-4">
+        <footer className="px-4">
           <ChatInput
             onSend={sendMessage}
             onValueChange={handleInputChange}
             suggestion={inputSuggestion}
           />
         </footer>
+        <DialogDescription className="text-[10px] text-center text-muted-foreground font-light tracking-tight px-2 pt-1.5 pb-4">
+          This AI language model runs exclusively in your browser, no data is sent to any server.
+        </DialogDescription>
       </DialogContent>
     </Dialog>
   );
