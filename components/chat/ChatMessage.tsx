@@ -34,7 +34,7 @@ export function ChatMessage({ message, onAction }: Props) {
   return (
     <li className="flex justify-start">
       <article className="max-w-[85%] space-y-3">
-        <section className="rounded-2xl rounded-bl-sm bg-muted px-4 py-3 text-sm">
+        <section className="rounded-2xl rounded-bl-sm bg-muted px-4 py-3 text-sm wrap-break-word max-w-fit">
           {response.content.map((section, i) => (
             <section key={i}>
               {section.title && <p className="font-semibold mb-1">{section.title}</p>}
