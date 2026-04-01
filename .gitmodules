@@ -1,0 +1,3 @@
+[submodule "typekev-bot"]
+	path = typekev-bot
+	url = https://github.com/typekev/typekev-bot.git
