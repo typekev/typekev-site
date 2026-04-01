@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { Bot } from "lucide-react";
+import { BotMessageSquare } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -68,8 +68,13 @@ export function ChatDialog() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="glass" size="lg-icon" aria-label="Open chat">
-          <Bot className="size-7" />
+        <Button
+          variant="glass-tinted"
+          size="lg-icon"
+          className="sm:size-13.5 saturate-75 dark:saturate-125 hover:saturate-100"
+          aria-label="Open chat"
+        >
+          <BotMessageSquare className="size-6.5 sm:size-7.5 text-accent brightness-75 dark:brightness-125"  />
         </Button>
       </DialogTrigger>
       <DialogContent className="flex h-[min(600px,80vh)] flex-col gap-0 p-0 sm:max-w-md">
