@@ -11,17 +11,17 @@ export const careerData = [
   },
   {
     company: "SES Satellites",
-    role: "Yield Excellence Programs Lead",
+    role: "Software Engineering Programmes Lead",
     years: "2022 - Present",
   },
   {
     company: "EmailTree AI",
-    role: "Principal Software Engineer",
+    role: "Principal Software Engineer & AI Lead",
     years: "2021 - 2022",
   },
   {
     company: "Devoteam",
-    role: "Lead Software Engineer",
+    role: "Lead Software Engineer & AI Solutions Leader",
     years: "2017 - 2021",
   },
   {
