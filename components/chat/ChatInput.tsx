@@ -70,7 +70,8 @@ export function ChatInput({ onSend, onValueChange, suggestion, disabled }: Props
       </label>
       <Button
         type="submit"
-        variant="default"
+        variant="secondary"
+        className="bg-accent saturate-75 hover:bg-accent hover:saturate-90"
         size="icon"
         disabled={disabled || !value.trim()}
         aria-label="Send message"

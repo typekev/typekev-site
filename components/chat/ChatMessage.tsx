@@ -16,15 +16,15 @@ export function ChatMessage({ message, onAction }: Props) {
   if (message.role === "user") {
     return (
       <li className="relative flex justify-end">
-        <p className="max-w-[80%] rounded-2xl rounded-br-sm bg-primary px-4 py-2 text-primary-foreground text-sm">
+        <p className="max-w-[80%] rounded-2xl rounded-br-sm bg-accent saturate-75 px-4 py-2 text-primary-foreground font-medium text-sm">
           {message.text}
         </p>
-        <span className="absolute -bottom-4.5 right-0.5 text-[11px] font-medium text-muted-foreground">
+        <time className="absolute -bottom-4.25 right-0.5 text-[11px] tracking-tighter font-medium text-muted-foreground">
           {new Date(message.timestamp).toLocaleTimeString([], {
             hour: "numeric",
             minute: "2-digit",
           })}
-        </span>
+        </time>
       </li>
     );
   }
