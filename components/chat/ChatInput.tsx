@@ -58,9 +58,13 @@ export function ChatInput({ onSend, onValueChange, suggestion, disabled }: Props
           autoComplete="off"
         />
         {suggestion && value && suggestion !== value && (
-          <output className="pointer-events-none absolute inset-0 flex items-center px-3 text-sm text-muted-foreground/50">
-            <data className="invisible" value={value}>{value}</data>
-            <data value={suggestion.slice(value.length)}>{suggestion.slice(value.length)}</data>
+          <output className="pointer-events-none absolute inset-0 flex items-center ml-px px-3 text-sm text-muted-foreground/50 whitespace-pre">
+            <data className="invisible" value={value}>
+              {value}
+            </data>
+            <data className="overflow-hidden text-ellipsis" value={suggestion.slice(value.length)}>
+              {suggestion.slice(value.length)}
+            </data>
           </output>
         )}
       </label>

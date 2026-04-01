@@ -58,7 +58,7 @@ export function ChatDialog() {
   }, []);
 
   const handleInputChange = useCallback((text: string) => {
-    if (text.trim()) {
+    if (text.trim().length > 2) {
       setInputSuggestion(getSuggestion(text) ?? undefined);
     } else {
       setInputSuggestion(undefined);
