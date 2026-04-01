@@ -13,9 +13,9 @@ export function Career() {
         {careerData.map((exp) => (
           <li
             key={exp.company}
-            className="border-l-4 border-foreground/30 pl-6 py-3 rounded-r-xl bg-muted/20 backdrop-blur-xl transition-all duration-200 hover:border-l-8 hover:bg-muted/40 hover:border-foreground/50 focus-within:ring-2 focus-within:ring-foreground focus-within:ring-offset-2 focus-within:ring-offset-background"
+            className="border-l-4 border-foreground/30 px-6 py-3 rounded-r-xl bg-muted/20 backdrop-blur-xl transition-all duration-200 hover:border-l-8 hover:bg-muted/40 hover:border-foreground/50 focus-within:ring-2 focus-within:ring-foreground focus-within:ring-offset-2 focus-within:ring-offset-background"
           >
-            <p className="text-xl font-bold">{exp.role}</p>
+            <p className="mb-0.5 text-xl/tight font-bold">{exp.role}</p>
             <p className="text-base/tight font-semibold">{exp.company}</p>
             <time className="text-sm font-medium">{exp.years}</time>
           </li>
