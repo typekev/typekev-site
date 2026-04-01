@@ -7,7 +7,7 @@ export function Connect() {
     <section aria-labelledby="connect-heading">
       <h3
         id="connect-heading"
-        className="mb-4 text-md font-black uppercase tracking-wide text-foreground/90"
+        className="mb-4 text-md font-black uppercase tracking-wide text-foreground/90 scroll-m-8"
       >
         Connect
       </h3>

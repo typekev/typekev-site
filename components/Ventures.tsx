@@ -5,7 +5,7 @@ export function Ventures() {
     <section aria-labelledby="ventures-heading">
       <h3
         id="ventures-heading"
-        className="mb-6 text-md font-black uppercase tracking-wide text-foreground/90"
+        className="mb-6 text-md font-black uppercase tracking-wide text-foreground/90 scroll-m-8"
       >
         Ventures
       </h3>
