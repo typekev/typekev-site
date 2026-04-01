@@ -5,7 +5,7 @@ export function Career() {
     <section aria-labelledby="career-heading">
       <h3
         id="career-heading"
-        className="mb-6 text-md font-black uppercase tracking-wide text-foreground/90"
+        className="mb-6 text-md font-black uppercase tracking-wide text-foreground/90 scroll-m-8"
       >
         Career
       </h3>
