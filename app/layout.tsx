@@ -7,7 +7,7 @@ import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Background from "@/components/Background";
-import { ChatDialog } from "@/components/chat/ChatDialog";
+import { Chat } from "@/components/Chat";
 import Toggles from "@/components/Toggles";
 
 const geist = Geist({
@@ -41,9 +41,7 @@ export default function RootLayout({ children }: Props) {
         <Toggles />
         <Background />
         {children}
-        <aside className="fixed bottom-6 right-6 z-50">
-          <ChatDialog />
-        </aside>
+        <Chat />
         <SpeedInsights />
       </body>
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
