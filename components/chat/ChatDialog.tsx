@@ -1,10 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { type PropsWithChildren, useCallback, useEffect, useRef, useState } from "react";
 
-import { BotMessageSquare } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -20,7 +17,7 @@ import type { ChatMessageData } from "./ChatMessage";
 import { ChatMessage } from "./ChatMessage";
 import { ChatSuggestions } from "./ChatSuggestions";
 
-export function ChatDialog() {
+export default function ChatDialog({ children }: PropsWithChildren) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessageData[]>(() => {
     const greeting = getGreeting();
@@ -67,16 +64,7 @@ export function ChatDialog() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="glass-tinted"
-          size="lg-icon"
-          className="sm:size-13.5 saturate-75 dark:saturate-125 hover:saturate-100"
-          aria-label="Open chat"
-        >
-          <BotMessageSquare className="size-6.5 sm:size-7.5 text-accent brightness-75 dark:brightness-125"  />
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="flex h-[min(600px,80vh)] flex-col gap-0 p-0 sm:max-w-md">
         <DialogHeader className="border-b px-4 py-3">
           <DialogTitle className="text-base">Chat with Kevin&apos;s AI</DialogTitle>
