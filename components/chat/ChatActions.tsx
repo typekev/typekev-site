@@ -1,13 +1,4 @@
-import {
-  Briefcase,
-  Code,
-  ExternalLink,
-  Gamepad2,
-  Mail,
-  Package,
-  Rocket,
-  Send,
-} from "lucide-react";
+import { Briefcase, Code, ExternalLink, Gamepad2, Mail, Package, Rocket, Send } from "lucide-react";
 
 import { GitHubIcon } from "@/components/icons/GitHubIcon";
 import { LinkedInIcon } from "@/components/icons/LinkedInIcon";
@@ -39,16 +30,12 @@ export function ChatActions({ actions, onAction }: Props) {
     <menu className="flex flex-wrap gap-2">
       {actions.map((action) => {
         const Icon = action.icon ? iconMap[action.icon] : ExternalLink;
-        const variant = action.priority === "primary" ? "default" : "ghost";
+        const variant = action.priority === "primary" ? "glass-tinted" : "outline";
 
         if (action.type === "internal") {
           return (
             <li key={action.label}>
-              <Button
-                variant={variant}
-                size="sm"
-                onClick={() => onAction?.(action)}
-              >
+              <Button variant={variant} size="sm" onClick={() => onAction?.(action)}>
                 {Icon && <Icon className="size-3.5" />}
                 {action.label}
               </Button>
