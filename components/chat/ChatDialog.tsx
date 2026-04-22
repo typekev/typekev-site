@@ -66,9 +66,9 @@ export default function ChatDialog({ children }: PropsWithChildren) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="flex h-[min(600px,80vh)] flex-col gap-0 p-0 sm:max-w-md">
+      <DialogContent className="flex h-[min(600px,80vh)] flex-col gap-0 p-0 sm:max-w-md md:max-w-lg lg:max-w-xl">
         <DialogHeader className="border-b px-4 py-3">
-          <DialogTitle className="text-base">Chat with Kevin&apos;s AI</DialogTitle>
+          <DialogTitle className="text-lg font-bold">Kevin&nbsp;AI</DialogTitle>
         </DialogHeader>
         <section ref={scrollRef} className="flex-1 overflow-y-auto space-y-4 px-4 py-4">
           <ol className="space-y-4">
