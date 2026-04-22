@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kevin Gonzalez – AI Product & Engineering Leader",
   description:
-    "Engineering leader empowering high-impact teams to build AI products. Co-founder & CTO of Symphonee. Founder of Scale Tiny. Satellite yield & AI at SES.",
+    "Engineering leader empowering high-impact teams to build AI products. Co-founder & CTO of Symphonee AI. Founder of Scale Tiny. Satellite yield & AI at SES.",
 };
 
 type Props = Readonly<{ children: React.ReactNode }>;

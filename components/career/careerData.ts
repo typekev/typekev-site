@@ -1,6 +1,6 @@
 export const careerData = [
   {
-    company: "Symphonee",
+    company: "Symphonee AI",
     role: "Co-founder & CTO",
     years: "2025 - Present",
   },
@@ -11,7 +11,7 @@ export const careerData = [
   },
   {
     company: "SES Satellites",
-    role: "Software Engineering Programmes Lead",
+    role: "Software Programs Lead",
     years: "2022 - Present",
   },
   {

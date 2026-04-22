@@ -13,7 +13,7 @@ export function Ventures() {
         <li>
           <a href="https://symphonee.ai/">
             <VentureCard image="/images/symphonee.jpeg" blurImage="/images/symphonee-small.jpeg">
-              Symphonee
+              Symphonee AI
             </VentureCard>
           </a>
         </li>
