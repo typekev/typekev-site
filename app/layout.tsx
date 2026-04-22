@@ -7,7 +7,6 @@ import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Background from "@/components/Background";
-import { Chat } from "@/components/Chat";
 import Toggles from "@/components/Toggles";
 
 const geist = Geist({
@@ -41,7 +40,6 @@ export default function RootLayout({ children }: Props) {
         <Toggles />
         <Background />
         {children}
-        <Chat />
         <SpeedInsights />
       </body>
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
