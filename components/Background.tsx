@@ -179,7 +179,7 @@ export default function Background() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none opacity-50 blur-sm dark:blur-none mix-blend-normal z-0"
+      className="pointer-events-none fixed inset-0 z-0 opacity-50 mix-blend-normal blur-sm dark:blur-none"
     />
   );
 }

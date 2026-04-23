@@ -8,22 +8,22 @@ interface Props {
 
 export function ArchivedSiteCard({ website }: Props) {
   return (
-    <figure className="relative group flex aspect-16/11 overflow-hidden rounded-md border-3 border-foreground/10 hover:border-foreground/50 duration-500">
+    <figure className="group relative flex aspect-16/11 overflow-hidden rounded-md border-3 border-foreground/10 duration-500 hover:border-foreground/50">
       <Image
         src={website.image}
         alt={`Website version ${website.version}`}
         fill
-        className="object-cover object-top-left group-hover:scale-110 opacity-100 group-hover:opacity-90 saturate-60 group-hover:saturate-110 duration-500 z-0"
+        className="z-0 object-cover object-top-left opacity-100 saturate-60 duration-500 group-hover:scale-110 group-hover:opacity-90 group-hover:saturate-110"
       />
-      <figcaption className="h-full pt-1 pb-3 sm:pb-3.5 bg-muted/10 backdrop-blur-md z-1">
-        <cite className="flex flex-col justify-between items-center h-full text-[12px] md:text-md sm:text-sm not-italic font-mono text-muted dark:text-muted-foreground">
-          <strong className="font-extrabold px-0.5 sm:px-[2.5px] rounded-sm sm:rounded-md border-[1.5px] border-muted dark:border-muted-foreground">
+      <figcaption className="z-1 h-full bg-muted/10 pt-1 pb-3 backdrop-blur-md sm:pb-3.5">
+        <cite className="md:text-md flex h-full flex-col items-center justify-between font-mono text-[12px] text-muted not-italic sm:text-sm dark:text-muted-foreground">
+          <strong className="rounded-sm border-[1.5px] border-muted px-0.5 font-extrabold sm:rounded-md sm:px-[2.5px] dark:border-muted-foreground">
             {website.version}
           </strong>
-          <time className="font-semibold -rotate-90">{website.year}</time>
+          <time className="-rotate-90 font-semibold">{website.year}</time>
         </cite>
       </figcaption>
-      <figcaption className="hidden md:block mt-auto sm:px-1.5 py-1 text-xs/3 sm:text-sm/4 lg:text-md/4 tracking-tighter bg-black/50 backdrop-blur-[1px] rounded-tr-lg overflow-hidden opacity-0 group-hover:opacity-100 duration-500 z-1">
+      <figcaption className="lg:text-md/4 z-1 mt-auto hidden overflow-hidden rounded-tr-lg bg-black/50 py-1 text-xs/3 tracking-tighter opacity-0 backdrop-blur-[1px] duration-500 group-hover:opacity-100 sm:px-1.5 sm:text-sm/4 md:block">
         <em className="text-muted dark:text-muted-foreground">{website.description}</em>
       </figcaption>
     </figure>

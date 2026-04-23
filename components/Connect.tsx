@@ -7,18 +7,18 @@ export function Connect() {
     <section aria-labelledby="connect-heading">
       <h3
         id="connect-heading"
-        className="mb-4 text-md font-black uppercase tracking-wide text-foreground/90 scroll-m-8"
+        className="text-md mb-4 scroll-m-8 font-black tracking-wide text-foreground/90 uppercase"
       >
         Connect
       </h3>
       <address className="grid space-y-1 not-italic">
-        <Button asChild variant="link" className="px-0! w-fit">
+        <Button asChild variant="link" className="w-fit px-0!">
           <a href="mailto:hi@keving.me" aria-label="Send email to Kevin Gonzalez">
             <Send />
             hi@keving.me
           </a>
         </Button>
-        <Button asChild variant="link" className="px-0! w-fit">
+        <Button asChild variant="link" className="w-fit px-0!">
           <a
             href="https://linkedin.com/in/typekev"
             target="_blank"
@@ -31,7 +31,7 @@ export function Connect() {
             LinkedIn
           </a>
         </Button>
-        <Button asChild variant="link" className="px-0! w-fit">
+        <Button asChild variant="link" className="w-fit px-0!">
           <a
             href="https://github.com/typekev"
             target="_blank"

@@ -76,7 +76,7 @@ export function MusicPad() {
 
   return (
     <fieldset
-      className={`grid grid-cols-3 md:grid-cols-9 lg:grid-cols-3 gap-2.5 transition-all ${
+      className={`grid grid-cols-3 gap-2.5 transition-all md:grid-cols-9 lg:grid-cols-3 ${
         revealedKeys.size === 0
           ? "md:-mr-48 lg:-mb-2.5"
           : revealedKeys.size === 1
@@ -95,7 +95,7 @@ export function MusicPad() {
           onMouseLeave={() => stopNote(freq)}
           variant="glass"
           size="lg-icon"
-          className={`size-14 font-black uppercase animate-in fade-in slide-in-from-bottom-2 ${
+          className={`size-14 animate-in font-black uppercase fade-in slide-in-from-bottom-2 ${
             pressedKeys.has(key as Key) && !isMuted ? "active" : ""
           }`}
           style={{
@@ -110,7 +110,7 @@ export function MusicPad() {
         <label
           key={key}
           className={
-            revealedKeys.has(key as Key) ? "" : "h-0 overflow-visible inline-block opacity-0"
+            revealedKeys.has(key as Key) ? "" : "inline-block h-0 overflow-visible opacity-0"
           }
           onClick={() => revealKey(key as Key)}
           onMouseDown={() => revealKey(key as Key)}
@@ -121,7 +121,7 @@ export function MusicPad() {
             onMouseLeave={() => stopNote(freq)}
             variant="glass"
             size="lg-icon"
-            className={`size-14 font-black uppercase border-secondary dark:border-secondary text-secondary shadow-secondary/25 active:bg-secondary/20 dark:active:bg-secondary/50 animate-in fade-in slide-in-from-bottom-2 ${
+            className={`size-14 animate-in border-secondary font-black text-secondary uppercase shadow-secondary/25 fade-in slide-in-from-bottom-2 active:bg-secondary/20 dark:border-secondary dark:active:bg-secondary/50 ${
               pressedKeys.has(key as Key) && !isMuted ? "active" : ""
             }`}
             style={{
@@ -134,14 +134,14 @@ export function MusicPad() {
         </label>
       ))}
       <label
-        className={revealedKeys.has("O") ? "" : "h-0 overflow-visible inline-block opacity-0"}
+        className={revealedKeys.has("O") ? "" : "inline-block h-0 overflow-visible opacity-0"}
         onClick={() => revealKey("O")}
       >
         <Button
           onClick={nextOctave}
           variant="glass"
           size="lg-icon"
-          className={`size-14 font-black uppercase border-accent dark:border-accent text-accent shadow-accent/25 active:bg-accent/20 dark:active:bg-accent/50 animate-in fade-in slide-in-from-bottom-2 ${
+          className={`size-14 animate-in border-accent font-black text-accent uppercase shadow-accent/25 fade-in slide-in-from-bottom-2 active:bg-accent/20 dark:border-accent dark:active:bg-accent/50 ${
             pressedKeys.has("O") && !isMuted ? "active" : ""
           }`}
           style={{
