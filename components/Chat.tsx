@@ -2,7 +2,7 @@
 
 import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
-import { Loader, MessageCircleMore, MessageSquareMore } from "lucide-react";
+import { Loader, MessageCircleMore } from "lucide-react";
 
 import { Button } from "./ui/button";
 
