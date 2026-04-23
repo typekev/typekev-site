@@ -7,17 +7,17 @@ import { Ventures } from "@/components/Ventures";
 export default function Home() {
   return (
     <>
-      <header className="flex flex-col items-center lg:items-start gap-10 lg:gap-16 lg:sticky lg:top-12 lg:h-fit z-1">
+      <header className="z-1 flex flex-col items-center gap-10 lg:sticky lg:top-12 lg:h-fit lg:items-start lg:gap-16">
         <Profile />
       </header>
-      <main className="flex flex-col gap-20 z-1">
+      <main className="z-1 flex flex-col gap-20">
         <Ventures />
         <Career />
         <Connect />
       </main>
-      <footer className="col-2 text-right mx-8 my-12 ml-auto">
+      <footer className="col-2 mx-8 my-12 ml-auto text-right">
         <Archive />
-        <p className="text-sm font-bold uppercase tracking-wide">
+        <p className="text-sm font-bold tracking-wide uppercase">
           © Kevin Gonzalez {new Date().getFullYear()}
         </p>
       </footer>

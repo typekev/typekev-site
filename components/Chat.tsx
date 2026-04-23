@@ -12,7 +12,7 @@ const ChatButton = (props: ComponentPropsWithoutRef<typeof Button>) => (
   <Button
     variant="glass-tinted"
     size="lg"
-    className="text-accent text-base tracking-wide font-medium gap-1.5 dark:saturate-125 hover:saturate-100 *:brightness-75 dark:*:brightness-125"
+    className="gap-1.5 text-base font-medium tracking-wide text-accent *:brightness-75 hover:saturate-100 dark:saturate-125 dark:*:brightness-125"
     aria-label="Open chat"
     {...props}
   >

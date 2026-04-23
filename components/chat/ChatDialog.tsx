@@ -70,7 +70,7 @@ export default function ChatDialog({ children }: PropsWithChildren) {
         <DialogHeader className="border-b px-4 py-3">
           <DialogTitle className="text-lg font-bold">Kevin&nbsp;AI</DialogTitle>
         </DialogHeader>
-        <section ref={scrollRef} className="flex-1 overflow-y-auto space-y-4 px-4 py-4">
+        <section ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">
           <ol className="space-y-4">
             {messages.map((msg, i) => (
               <ChatMessage key={i} message={msg} onAction={handleAction} />
@@ -87,7 +87,7 @@ export default function ChatDialog({ children }: PropsWithChildren) {
             suggestion={inputSuggestion}
           />
         </footer>
-        <DialogDescription className="text-[10px] text-center text-muted-foreground font-light tracking-tight px-2 pt-1.5 pb-4">
+        <DialogDescription className="px-2 pt-1.5 pb-4 text-center text-[10px] font-light tracking-tight text-muted-foreground">
           This AI language model runs exclusively in your browser, no data is sent to any server.
         </DialogDescription>
       </DialogContent>

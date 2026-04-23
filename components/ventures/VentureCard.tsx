@@ -49,7 +49,7 @@ export function VentureCard({ image, blurImage, children, className, ...props }:
     <Card
       ref={cardRef}
       className={cn(
-        "group relative p-0 overflow-hidden border-2 border-foreground/20 bg-white/10 backdrop-blur-xl transition-all duration-300 hover:border-foreground/40 hover:bg-white/15 dark:bg-white/30 dark:hover:bg-white/50 preserve-3d focus-within:ring-2 focus-within:ring-foreground focus-within:ring-offset-2 focus-within:ring-offset-background",
+        "group preserve-3d relative overflow-hidden border-2 border-foreground/20 bg-white/10 p-0 backdrop-blur-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-foreground focus-within:ring-offset-2 focus-within:ring-offset-background hover:border-foreground/40 hover:bg-white/15 dark:bg-white/30 dark:hover:bg-white/50",
         className,
       )}
       style={{
@@ -67,16 +67,16 @@ export function VentureCard({ image, blurImage, children, className, ...props }:
         <Image
           src={image}
           alt={`Venture banner for ${children?.toString()}`}
-          className="object-cover transition-all duration-700 group-hover:scale-105 opacity-70 dark:opacity-80 group-hover:opacity-100 group-hover:dark:opacity-100 saturate-200 dark:saturate-150 group-hover:saturate-150 group-hover:dark:saturate-100"
+          className="object-cover opacity-70 saturate-200 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:saturate-150 dark:opacity-80 dark:saturate-150 group-hover:dark:opacity-100 group-hover:dark:saturate-100"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           placeholder="blur"
           blurDataURL={blurImage}
           fill
           preload
         />
-        <figcaption className="absolute bottom-0 left-0 right-0 p-4">
-          <cite className="inline-block not-italic px-3 py-2 rounded-lg bg-muted/30 backdrop-blur-xl">
-            <p className="text-lg font-bold tracking-wide text-shadow-sm text-shadow-muted/10">
+        <figcaption className="absolute inset-x-0 bottom-0 p-4">
+          <cite className="inline-block rounded-lg bg-muted/30 px-3 py-2 not-italic backdrop-blur-xl">
+            <p className="text-lg font-bold tracking-wide text-shadow-muted/10 text-shadow-sm">
               {children}
             </p>
           </cite>

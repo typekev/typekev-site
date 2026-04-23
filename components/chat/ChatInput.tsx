@@ -54,11 +54,11 @@ export function ChatInput({ onSend, onValueChange, suggestion, disabled }: Props
           onKeyDown={handleKeyDown}
           placeholder="Ask about Kevin..."
           disabled={disabled}
-          className="w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring/50 placeholder:text-muted-foreground disabled:opacity-50"
+          className="w-full rounded-lg border bg-background px-3 py-2 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/50 disabled:opacity-50"
           autoComplete="off"
         />
         {suggestion && value && suggestion !== value && (
-          <output className="pointer-events-none absolute inset-0 flex items-center ml-px px-3 text-sm text-muted-foreground/50 whitespace-pre">
+          <output className="pointer-events-none absolute inset-0 ml-px flex items-center px-3 text-sm whitespace-pre text-muted-foreground/50">
             <data className="invisible" value={value}>
               {value}
             </data>

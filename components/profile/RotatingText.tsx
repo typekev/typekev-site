@@ -63,7 +63,7 @@ export function RotatingText({ isHovering }: Props) {
         />
       </defs>
       <text
-        className="text-[14.05px] font-mono font-extrabold uppercase tracking-widest whitespace-pre"
+        className="font-mono text-[14.05px] font-extrabold tracking-widest whitespace-pre uppercase"
         fill="var(--foreground)"
       >
         <textPath href="#circlePath" startOffset="0%">

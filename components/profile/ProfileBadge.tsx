@@ -67,7 +67,7 @@ export function ProfileBadge() {
         onClick={handleProfileClick}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-        className="absolute left-1/2 top-1/2 size-40 p-0 -translate-x-1/2 -translate-y-1/2 overflow-hidden border-4 border-foreground/20 rounded-full hover:scale-103 hover:border-foreground/40 transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="absolute top-1/2 left-1/2 size-40 -translate-1/2 overflow-hidden rounded-full border-4 border-foreground/20 p-0 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 hover:scale-103 hover:border-foreground/40 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)]"
       >
         {images.map((image, index) => (
           <Image

@@ -65,10 +65,10 @@ export function ThemeToggle() {
         </Button>
       </li>
       <li
-        className={`transition-all duration-300 ease-in-out pt-3 z-1 ${
+        className={`z-1 pt-3 transition-all duration-300 ease-in-out ${
           showResetButton
-            ? "mt-0 opacity-100 scale-100"
-            : "-mt-15 opacity-0 scale-0 hover:mt-0 hover:opacity-100 hover:scale-100"
+            ? "mt-0 scale-100 opacity-100"
+            : "-mt-15 scale-0 opacity-0 hover:mt-0 hover:scale-100 hover:opacity-100"
         } ${hasReset ? "pointer-events-none" : ""}`}
       >
         <Button
