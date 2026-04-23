@@ -13,7 +13,7 @@ const ChatButton = (props: ComponentPropsWithoutRef<typeof Button>) => (
     variant="glass-tinted"
     size="lg"
     className="gap-1.5 text-base font-medium tracking-wide text-accent *:brightness-75 hover:saturate-100 dark:saturate-125 dark:*:brightness-125"
-    aria-label="Open chat"
+    aria-label="Open chat with Kevin AI"
     {...props}
   >
     {props.disabled ? (

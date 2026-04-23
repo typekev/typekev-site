@@ -7,7 +7,7 @@ import { Ventures } from "@/components/Ventures";
 export default function Home() {
   return (
     <>
-      <header className="z-1 flex flex-col items-center gap-10 lg:sticky lg:top-12 lg:h-fit lg:items-start lg:gap-16">
+      <header className="z-1 flex flex-col items-center gap-8 md:gap-10 lg:sticky lg:top-12 lg:h-fit lg:items-start lg:gap-16">
         <Profile />
       </header>
       <main className="z-1 flex flex-col gap-20">
