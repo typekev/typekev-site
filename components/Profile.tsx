@@ -20,10 +20,10 @@ export function Profile() {
       <h2 className="text-center text-5xl font-black tracking-tight text-balance text-foreground md:text-7xl lg:text-left lg:text-6xl">
         I build meaningful AI products and lead high-impact teams.
       </h2>
-      <section className="container grid justify-items-center md:justify-items-end gap-4">
+      <section className="container grid justify-items-center gap-4 md:justify-items-end">
         <blockquote className="glass-strong rounded-r-2xl border-l-4 border-foreground/30 bg-muted/30 py-4 pr-6 pl-8 backdrop-blur-xl">
-          <p className="text-xl md:text-2xl/normal font-medium text-foreground">
-            Engineering leader and technology executive from New York City. Co-founder & CTO of
+          <p className="text-xl font-medium text-foreground md:text-2xl/normal">
+            Engineering leader and technology executive based in Luxembourg. Co-founder & CTO of
             Symphonee AI. Founder of Scale Tiny. Driving Satellite Yield & AI software programs at
             SES.
           </p>
