@@ -2,6 +2,8 @@
 
 import { type PropsWithChildren, useCallback, useEffect, useRef, useState } from "react";
 
+import { MessageCircleMore } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -68,7 +70,10 @@ export default function ChatDialog({ children }: PropsWithChildren) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="flex h-[min(600px,80vh)] flex-col gap-0 p-0 sm:max-w-md md:max-w-lg lg:max-w-xl">
         <DialogHeader className="border-b px-4 py-3">
-          <DialogTitle className="text-lg font-bold">Kevin&nbsp;AI</DialogTitle>
+          <DialogTitle className="text-lg font-bold">
+            <MessageCircleMore className="mr-1.5 mb-0.5 inline-block" />
+            Kevin&nbsp;AI
+          </DialogTitle>
         </DialogHeader>
         <section ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">
           <ol className="space-y-4">
