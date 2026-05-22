@@ -11,7 +11,7 @@ export const careerData = [
   },
   {
     company: "SES Satellites",
-    role: "Software Programs Lead",
+    role: "Software & Technology Programs Lead",
     years: "2022 - Present",
   },
   {
@@ -31,7 +31,7 @@ export const careerData = [
   },
   {
     company: "Netcom",
-    role: "Engineering Manager",
+    role: "Manager",
     years: "2013 - 2015",
   },
   {
