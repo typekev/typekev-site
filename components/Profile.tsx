@@ -23,9 +23,8 @@ export function Profile() {
       <section className="container grid justify-items-center gap-4 md:justify-items-end">
         <blockquote className="glass-strong rounded-r-2xl border-l-4 border-foreground/30 bg-muted/30 py-4 pr-6 pl-8 backdrop-blur-xl">
           <p className="text-xl font-medium text-foreground md:text-2xl/normal">
-            Engineering leader and technology executive based in Luxembourg. Co-founder & CTO of
-            Symphonee AI. Founder of Scale Tiny. Driving Satellite Yield & AI software programs at
-            SES.
+            Luxembourg-based engineering leader and technical program manager. Founder of Symphonee
+            AI and Scale Tiny, currently driving satellite yield and AI software programs at SES.
           </p>
         </blockquote>
         <menu className="flex gap-3">

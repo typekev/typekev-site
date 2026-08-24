@@ -1,7 +1,7 @@
 export const careerData = [
   {
     company: "Symphonee AI",
-    role: "Co-founder & CTO",
+    role: "Founder",
     years: "2025 - Present",
   },
   {
