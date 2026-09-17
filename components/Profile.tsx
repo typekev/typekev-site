@@ -36,7 +36,7 @@ export function Profile() {
             asChild
           >
             <a
-              href="https://calendar.app.google/FAbR9Ngii1aK6qcA9"
+              href="https://calendar.app.google/kKChGXNWPvy2JxUN8"
               target="_blank"
               rel="noopener noreferrer"
             >
