@@ -23,6 +23,22 @@ export const metadata: Metadata = {
   title: "Kevin Gonzalez | Technical Program Manager & Engineering Leader",
   description:
     "Luxembourg-based engineering leader and technical program manager. Founder of Symphonee AI and Scale Tiny, currently driving satellite yield and AI software programs at SES.",
+  icons: {
+    icon: [
+      {
+        url: "/favicons/keving-light.png",
+        type: "image/png",
+        sizes: "1024x1024",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicons/keving-dark.png",
+        type: "image/png",
+        sizes: "1024x1024",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 type Props = Readonly<{ children: React.ReactNode }>;
