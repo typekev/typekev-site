@@ -313,7 +313,7 @@ export default function Coaching() {
                   name: "Scale Tiny",
                   description:
                     "My software development studio, taking products from idea to launch and scaling them to thousands of users.",
-                  image: "/images/scale-tiny-cube.jpeg",
+                  image: "/images/scale-tiny-cube-v2.jpeg",
                   href: "https://scaletiny.com/",
                 },
               ].map((project) => (
