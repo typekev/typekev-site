@@ -6,8 +6,14 @@ import { ArrowLeft, ArrowUpRight, CalendarDays, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
+import { careerData } from "./careerData";
+import { coachingData } from "./coachingData";
 import { CoachingNav } from "./CoachingNav";
+import { includedData } from "./includedData";
 import { MobileCoachingNav } from "./MobileCoachingNav";
+import { questionsData } from "./questionsData";
+import { recognitionData } from "./recognitionData";
+import { venturesData } from "./venturesData";
 
 const bookingUrl = "https://calendar.app.google/kKChGXNWPvy2JxUN8";
 
@@ -17,144 +23,6 @@ export const metadata: Metadata = {
     "Personal career coaching for software engineers pursuing global opportunities, leadership, or products of their own. Practical 1-on-1 guidance from an engineering leader and founder.",
   alternates: { canonical: "https://keving.me/coaching" },
 };
-
-const career = [
-  {
-    place: "North America • New York",
-    detail:
-      "IT infrastructure and hands-on software engineering taught me how to solve real problems, earn trust, and turn technical work into business value.",
-  },
-  {
-    place: "Belgium • Netherlands • Luxembourg",
-    detail:
-      "Enterprise consultancy, C-suite technical advisory, and progression to Principal AI Lead. I learned to make complex work understood, valued, and funded across borders.",
-  },
-  {
-    place: "Southeast Asia • Philippines",
-    detail:
-      "Building business ventures in the Philippines widened my understanding of international teams and markets. I founded Symphonee AI and Scale Tiny, a software development studio whose products serve thousands of users.",
-  },
-  {
-    place: "Global",
-    detail:
-      "At SES Satellites, I direct satellite yield and AI software programs and multi-million-dollar AI and cloud roadmaps. The enterprise operates across Europe, North America, Asia-Pacific, Latin America, and the Middle East.",
-  },
-];
-
-const coaching = [
-  {
-    title: "Choose the right direction",
-    paragraphs: [
-      "We start with where you are and what you want to change. Together, we’ll look at your experience, strengths, priorities, and constraints, then identify the paths worth pursuing.",
-      "The goal is not simply to find another role. It is to make a considered decision about what you want your career to become.",
-    ],
-  },
-  {
-    title: "Present your experience at its best",
-    paragraphs: [
-      "Strong experience only helps when other people can see its value.",
-      "We’ll sharpen your resume, LinkedIn, portfolio, and professional story so your technical depth, impact, and leadership come through clearly.",
-    ],
-  },
-  {
-    title: "Create better opportunities",
-    paragraphs: [
-      "We’ll focus on opportunities that fit the direction you have chosen.",
-      "That might mean identifying companies and markets, approaching recruiters and hiring managers, strengthening your network, preparing for internal progression, or working through an idea you want to turn into a product.",
-    ],
-  },
-  {
-    title: "Prepare for the moments that matter",
-    paragraphs: [
-      "An interview, a promotion conversation, an international offer, a compensation discussion, or the decision to build something yourself can change the direction of your career.",
-      "We’ll prepare for those moments before they arrive, so you can approach them with clarity and confidence.",
-    ],
-  },
-];
-
-const recognition = [
-  {
-    id: "press",
-    title: "Luxemburger Wort: Demystifying AI",
-    detail:
-      "Featured in Luxemburger Wort article “Learning about & Demystifying Artificial Intelligence.”",
-    context:
-      "Much of my work has involved making complex things easier to understand. I take the same approach to coaching: understand the situation clearly, focus on what matters, and decide what to do about it.",
-    href: "https://www.wort.lu/wirtschaft/kuenstliche-intelligenz-lernen-und-entmystifizieren/1078884.html",
-    link: "Read the article in Luxemburger Wort",
-  },
-  {
-    title: "Wolves Summit: Great Pitch Contest",
-    detail: "Third place and Microsoft recognition in 2021, representing EmailTree AI.",
-    href: "https://www.siliconluxembourg.lu/emailtree-awarded-third-place-at-wolves-summit/",
-    link: "Read the article in Silicon Luxembourg",
-  },
-  {
-    title: "AI Academy: Luxembourg’s Most Innovative ICT Training Programme",
-    detail: "Co-founded the Microsoft × Devoteam AI Academy team behind the 2019 award.",
-    href: "https://www.devoteam.com/lu/news-and-pr/lai-academy-de-devoteam-luxembourg-recompensee-lors-des-ict-luxembourg-awards/",
-    link: "About the award",
-  },
-  {
-    title: "GitHub Arctic Code Vault Contributor",
-    detail: "Open-source work preserved in GitHub’s Arctic Code Vault.",
-    href: "https://github.com/users/typekev/achievements/arctic-code-vault-contributor",
-    link: "View the GitHub achievement",
-  },
-];
-
-const included = [
-  "At least one private 1-on-1 call every week",
-  "Career direction and professional positioning",
-  "Resume, LinkedIn, portfolio, and ATS strategy",
-  "International roles, relocation, and sponsorship",
-  "Outreach and interview preparation",
-  "Engineering leadership and career progression",
-  "Product ideas and founder guidance",
-  "Support between calls, without a question quota",
-];
-
-const questions = [
-  {
-    title: "Do I need to know exactly what I want?",
-    paragraphs: [
-      "No. You may have a specific goal, several possibilities in mind, or simply know that you are ready for something different.",
-      "We can examine the options, understand what each would require, and decide which are worth pursuing.",
-    ],
-  },
-  {
-    title: "Is this only for engineers who want to move abroad?",
-    paragraphs: [
-      "No.",
-      "Working internationally is a major part of my own experience, but it is only one way to take your career further.",
-      "You might want to join a global company, move into engineering leadership, take on more ambitious work, build a product, or create a career that looks very different from the one you have today.",
-    ],
-  },
-  {
-    title: "Can you help with international opportunities?",
-    paragraphs: [
-      "Yes.",
-      "We can work through target markets, companies, positioning, recruiter outreach, remote and distributed roles, relocation, sponsorship, compensation, and interviewing across different markets.",
-      "The objective is not to apply everywhere. It is to understand where your experience is valuable and pursue those opportunities deliberately.",
-    ],
-  },
-  {
-    title: "Can you help if I want to build something of my own?",
-    paragraphs: [
-      "Yes.",
-      "If you are considering a product of your own, we can work through the idea, positioning, validation, scope, technical decisions, and how it fits into the rest of your career.",
-      "I build products myself, so these conversations can go well beyond conventional career advice.",
-    ],
-  },
-  {
-    title: "What should I bring to our first conversation?",
-    paragraphs: [
-      "Nothing formal.",
-      "Bring whatever is most relevant right now: a role you want, a country you are considering, a promotion you are working toward, an idea you want to build, or simply the sense that you are ready for more.",
-      "We’ll start there.",
-    ],
-  },
-];
 
 export default function Coaching() {
   return (
@@ -217,7 +85,7 @@ export default function Coaching() {
             positioning, and deliberate action.
           </p>
           <ol className="coaching-topics">
-            {coaching.map((item) => (
+            {coachingData.map((item) => (
               <li key={item.title}>
                 <h3>{item.title}</h3>
                 {item.paragraphs.map((paragraph) => (
@@ -267,7 +135,7 @@ export default function Coaching() {
           <section aria-labelledby="career-heading" className="coaching-subsection">
             <h3 id="career-heading">My career across three continents</h3>
             <ol className="coaching-timeline">
-              {career.map((step) => (
+              {careerData.map((step) => (
                 <li key={step.place}>
                   <h4>{step.place}</h4>
                   <p>{step.detail}</p>
@@ -279,7 +147,7 @@ export default function Coaching() {
           <section aria-labelledby="recognition-heading" className="coaching-subsection">
             <h3 id="recognition-heading">Press, recognition and open-source work</h3>
             <ul className="coaching-recognition">
-              {recognition.map((item) => (
+              {recognitionData.map((item) => (
                 <li key={item.title} id={item.id} className="scroll-mt-24 lg:scroll-mt-28">
                   <h4>{item.title}</h4>
                   <p>{item.detail}</p>
@@ -301,22 +169,7 @@ export default function Coaching() {
           <section aria-labelledby="ventures-heading" className="coaching-subsection">
             <h3 id="ventures-heading">Startups I founded</h3>
             <ul className="mt-6 grid grid-flow-dense gap-4">
-              {[
-                {
-                  name: "Symphonee AI",
-                  description:
-                    "The AI-native recruiting platform that brings sourcing, outreach, and hiring into one workspace, automating the busywork from first search to hire.",
-                  image: "/images/symphonee.jpeg",
-                  href: "https://symphonee.ai/",
-                },
-                {
-                  name: "Scale Tiny",
-                  description:
-                    "My software development studio, taking products from idea to launch and scaling them to thousands of users.",
-                  image: "/images/scale-tiny.jpeg",
-                  href: "https://scaletiny.com/",
-                },
-              ].map((project) => (
+              {venturesData.map((project) => (
                 <li key={project.name}>
                   <a
                     href={project.href}
@@ -373,7 +226,7 @@ export default function Coaching() {
             </p>
           </section>
           <ul className="space-y-4 text-base/relaxed sm:text-lg/relaxed">
-            {included.map((item) => (
+            {includedData.map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <Check className="mt-1 size-5 shrink-0" aria-hidden="true" />
                 {item}
@@ -401,7 +254,7 @@ export default function Coaching() {
             A few things you might be wondering.
           </h2>
           <ul className="coaching-topics">
-            {questions.map((item) => (
+            {questionsData.map((item) => (
               <li key={item.title}>
                 <h3>{item.title}</h3>
                 {item.paragraphs.map((paragraph) => (
