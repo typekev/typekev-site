@@ -1,4 +1,6 @@
-import { CalendarDays } from "lucide-react";
+import Link from "next/link";
+
+import { ArrowUpRight } from "lucide-react";
 
 import { OscillatorProvider } from "@/contexts/OscillatorContext";
 
@@ -9,41 +11,51 @@ import { Button } from "./ui/button";
 export function Profile() {
   return (
     <>
-      <h1 className="sr-only">Kevin Gonzalez</h1>
-      <section className="relative -my-4 flex shrink-0 flex-col items-center gap-2 lg:mt-0 lg:-mb-8 lg:flex-row lg:gap-10">
+      <section
+        aria-label="About Kevin"
+        className="relative flex w-full min-w-0 shrink-0 flex-col items-center gap-6"
+      >
         <OscillatorProvider>
           <ProfileBadge />
           <MusicPad />
         </OscillatorProvider>
       </section>
-      <h2 className="text-center text-5xl font-black tracking-tight text-balance text-foreground md:text-7xl lg:text-left lg:text-6xl">
-        I build meaningful AI products and lead high-impact teams.
-      </h2>
-      <section className="container grid justify-items-center gap-4 md:justify-items-end">
-        <blockquote className="glass-strong rounded-r-2xl border-l-4 border-foreground/30 bg-muted/30 py-4 pr-6 pl-8 backdrop-blur-xl">
-          <p className="text-xl font-medium text-foreground md:text-2xl/normal">
-            Luxembourg-based engineering leader and technical program manager. Founder of Symphonee
-            AI and Scale Tiny, currently driving satellite yield and AI software programs at SES.
-          </p>
-        </blockquote>
-        <menu className="flex gap-3">
-          <Button
-            variant="glass"
-            size="lg"
-            className="gap-1.5 text-base font-medium tracking-wide"
-            aria-label="Book a call with Kevin Gonzalez"
-            asChild
+      <h1 className="profile-intro">
+        Hi, I’m{" "}
+        <em className="text-accent brightness-70 dark:brightness-100">
+          <Link
+            href="/coaching#my-experience"
+            className="font-name text-[0.98em] font-[650] tracking-tighter not-italic underline transition-opacity hover:opacity-85"
           >
-            <a
-              href="https://calendar.app.google/kKChGXNWPvy2JxUN8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Book a call
-              <CalendarDays className="size-4.5" />
-            </a>
-          </Button>
-        </menu>
+            Kevin Gonzalez
+          </Link>
+          .
+        </em>{" "}
+        I&nbsp;help software engineers build global careers, turn ideas into products, and lead
+        engineering teams.
+      </h1>
+      <section className="container grid justify-items-center gap-5 lg:justify-items-end">
+        <section
+          aria-label="Career coaching"
+          className="rounded-r-2xl border-l-4 border-foreground/30 bg-muted/40 px-6 py-4 backdrop-blur-xl"
+        >
+          <p className="text-xl font-medium text-foreground md:text-2xl">
+            <em className="font-semibold not-italic">Let’s take your career further together.</em>{" "}
+            I&nbsp;coach&nbsp;software engineers who want to work inter&shy;nationally, grow into
+            leadership, or build something of their own.
+          </p>
+        </section>
+        <Button
+          variant="glass"
+          size="lg"
+          className="h-11 w-1/2 gap-1.5 text-base font-semibold tracking-wide lg:w-auto"
+          asChild
+        >
+          <Link href="/coaching">
+            Start here
+            <ArrowUpRight className="size-4.5 stroke-[2.5]" aria-hidden="true" />
+          </Link>
+        </Button>
       </section>
     </>
   );
