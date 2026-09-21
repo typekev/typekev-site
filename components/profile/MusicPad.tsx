@@ -108,7 +108,7 @@ export function MusicPad() {
       {Object.entries(hiddenKeys).map(([key, freq], index) => (
         <label
           key={key}
-          className={revealedKeys.has(key as Key) ? "" : "opacity-0 sm:hidden"}
+          className={revealedKeys.has(key as Key) ? "" : "inline-block h-0 overflow-visible opacity-0 sm:hidden"}
           onClick={() => revealKey(key as Key)}
           onMouseDown={() => revealKey(key as Key)}
         >
@@ -131,7 +131,7 @@ export function MusicPad() {
         </label>
       ))}
       <label
-        className={revealedKeys.has("O") ? "" : "opacity-0 sm:hidden"}
+        className={revealedKeys.has("O") ? "" : "inline-block h-0 overflow-visible opacity-0 sm:hidden"}
         onClick={() => revealKey("O")}
       >
         <Button
