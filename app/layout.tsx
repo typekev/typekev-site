@@ -53,6 +53,9 @@ export default function RootLayout({ children }: Props) {
       <body
         className={`${geist.variable} ${geistMono.variable} relative mx-auto! flex max-w-7xl flex-col gap-20 px-6! py-16! antialiased md:py-24! lg:grid lg:grid-cols-2 lg:py-12!`}
       >
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <Toggles />
         <Background />
         {children}
