@@ -305,14 +305,14 @@ export default function Coaching() {
                 {
                   name: "Symphonee AI",
                   description:
-                    "An AI recruiting platform I founded and brought to market, bringing sourcing, outreach, and hiring workflows into one workspace. It draws on my experience turning applied AI into a complete product and understanding how hiring teams work.",
+                    "The AI-native recruiting platform that brings sourcing, outreach, and hiring into one workspace, automating the busywork from first search to hire.",
                   image: "/images/symphonee.jpeg",
                   href: "https://symphonee.ai/",
                 },
                 {
                   name: "Scale Tiny",
                   description:
-                    "A micro-SaaS studio I founded whose products serve thousands of users. Taking these products from idea to launch and growth has given me firsthand experience in finding a market, making product decisions, and responding to real users.",
+                    "My software development studio, taking products from idea to launch and scaling them to thousands of users.",
                   image: "/images/scale-tiny.jpeg",
                   href: "https://scaletiny.com/",
                 },
