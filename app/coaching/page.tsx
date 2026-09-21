@@ -32,7 +32,7 @@ const career = [
   {
     place: "Southeast Asia • Philippines",
     detail:
-      "Building business ventures in the Philippines widened my understanding of international teams and markets. As the founder of Symphonee AI and Scale Tiny, I build software tools that have reached thousands of active users.",
+      "Building business ventures in the Philippines widened my understanding of international teams and markets. I founded Symphonee AI and Scale Tiny, a software development studio whose products serve thousands of users.",
   },
   {
     place: "Global",
@@ -255,7 +255,7 @@ export default function Coaching() {
             broader responsibility, leading engineers, and building products from the ground up.
           </p>
           <p>
-            Today, I lead satellite yield and AI software programs at SES and build Symphonee AI and
+            Today, I lead satellite yield and AI software programs at SES and run Symphonee AI and
             Scale Tiny.
           </p>
           <p>
