@@ -5,9 +5,9 @@ import {
   Suspense,
   useCallback,
   useEffect,
-  useEffectEvent,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -16,12 +16,13 @@ import {
   createAudioContext,
   getFreq,
   getMutedState,
+  getServerMutedState,
   octaves,
   Oscillator,
+  subscribeMutedState,
   validOscillators,
 } from "@/lib/audio";
 import { delay } from "@/lib/utils";
-import type { MuteChangeEvent } from "@/types/types";
 
 export type OscillatorContextType = Readonly<{
   playNote: (note: Note, octave?: Octave, fade?: number) => void;
@@ -42,19 +43,12 @@ export function OscillatorProvider({ children }: React.PropsWithChildren) {
   const activeFreqsRef = useRef<Map<number, ActiveFreq>>(new Map());
   const [currentOctave, setCurrentOctave] = useState<Octave>("o4");
   const [oscillatorParam, setOscillatorParam] = useState<OscillatorType | null>(null);
-  const [isMuted, setIsMuted] = useState(true);
+  const isMuted = useSyncExternalStore(subscribeMutedState, getMutedState, getServerMutedState);
 
-  const initMuteState = useEffectEvent(() => setIsMuted(getMutedState()));
   useEffect(() => {
-    initMuteState();
-
-    const handleMuteChange = (event: MuteChangeEvent) => setIsMuted(event.detail.isMuted);
-    window.addEventListener("mutechange", handleMuteChange as EventListener);
-
     audioRef.current = createAudioContext();
 
     return () => {
-      window.removeEventListener("mutechange", handleMuteChange as EventListener);
       audioRef.current?.close();
     };
   }, []);
