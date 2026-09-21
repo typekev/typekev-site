@@ -20,8 +20,8 @@ export function Ventures() {
         <li>
           <a href="https://scaletiny.com/">
             <VentureCard
-              image="/images/scale-tiny-color.jpeg"
-              blurImage="/images/scale-tiny-color-small.jpeg"
+              image="/images/scale-tiny-cube.jpeg"
+              blurImage="/images/scale-tiny-cube-small.jpeg"
             >
               Scale Tiny
             </VentureCard>
