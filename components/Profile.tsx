@@ -4,22 +4,15 @@ import { ArrowUpRight } from "lucide-react";
 
 import { OscillatorProvider } from "@/contexts/OscillatorContext";
 
-import { MusicPad } from "./profile/MusicPad";
-import { ProfileBadge } from "./profile/ProfileBadge";
+import { ProfileMedia } from "./profile/ProfileMedia";
 import { Button } from "./ui/button";
 
 export function Profile() {
   return (
     <>
-      <section
-        aria-label="About Kevin"
-        className="relative flex w-full min-w-0 shrink-0 flex-col items-center gap-6"
-      >
-        <OscillatorProvider>
-          <ProfileBadge />
-          <MusicPad />
-        </OscillatorProvider>
-      </section>
+      <OscillatorProvider>
+        <ProfileMedia />
+      </OscillatorProvider>
       <h1 className="profile-intro">
         Hi, I’m{" "}
         <em className="text-accent brightness-70 dark:brightness-100">

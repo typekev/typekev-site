@@ -164,6 +164,29 @@ body:has(.coaching-header)>canvas {
 }
 
 @layer components {
+  @media (width < 40rem) {
+    .profile-media > figure,
+    .profile-media > fieldset {
+      grid-area: 1 / 1;
+      transition: opacity 250ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+    }
+
+    .profile-media[data-show-pad="true"] > figure,
+    .profile-media[data-show-pad="false"] > fieldset {
+      visibility: hidden;
+      pointer-events: none;
+      opacity: 0;
+      transition-delay: 0s, 250ms;
+    }
+  }
+
+  @media (width < 40rem) and (prefers-reduced-motion: reduce) {
+    .profile-media > figure,
+    .profile-media > fieldset {
+      transition: none;
+    }
+  }
+
   .profile-intro {
     @apply text-center text-4xl font-black tracking-tight text-balance text-foreground md:text-5xl/13 lg:text-start;
   }
