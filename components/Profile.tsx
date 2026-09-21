@@ -2,7 +2,6 @@ import { CalendarDays } from "lucide-react";
 
 import { OscillatorProvider } from "@/contexts/OscillatorContext";
 
-import { Chat } from "./Chat";
 import { MusicPad } from "./profile/MusicPad";
 import { ProfileBadge } from "./profile/ProfileBadge";
 import { Button } from "./ui/button";
@@ -44,7 +43,6 @@ export function Profile() {
               <CalendarDays className="size-4.5" />
             </a>
           </Button>
-          <Chat />
         </menu>
       </section>
     </>
