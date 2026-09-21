@@ -16,7 +16,7 @@ export default function Home() {
         <Career />
         <Connect />
       </main>
-      <footer className="z-1 my-4 text-center lg:col-start-2 lg:text-right">
+      <footer className="z-1 my-4 text-start lg:col-start-2 lg:text-end">
         <Archive />
         <p className="text-sm font-bold tracking-wide uppercase">
           © Kevin Gonzalez {new Date().getFullYear()}

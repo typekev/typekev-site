@@ -122,6 +122,7 @@
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     scroll-behavior: smooth;
   }
@@ -157,14 +158,14 @@
   }
 }
 
-body:has(.coaching-header) > canvas {
+body:has(.coaching-header)>canvas {
   opacity: 0.32;
   filter: blur(12px);
 }
 
 @layer components {
   .profile-intro {
-    @apply text-center text-4xl font-black tracking-tight text-balance text-foreground md:text-5xl/13 lg:text-left;
+    @apply text-center text-4xl font-black tracking-tight text-balance text-foreground md:text-5xl/13 lg:text-start;
   }
 }
 
@@ -192,7 +193,7 @@ body:has(.coaching-header) > canvas {
     line-height: 1.16;
   }
 
-  .coaching-chapter > p,
+  .coaching-chapter>p,
   .coaching-topics p,
   .coaching-note p,
   .coaching-timeline p,
@@ -212,7 +213,7 @@ body:has(.coaching-header) > canvas {
     @apply mt-10 divide-y divide-foreground/15 sm:mt-12;
   }
 
-  .coaching-topics > li {
+  .coaching-topics>li {
     @apply py-8 first:pt-0 last:pb-0 sm:py-10;
   }
 
@@ -228,13 +229,13 @@ body:has(.coaching-header) > canvas {
     @apply mt-8 ml-1 border-l border-foreground/25;
   }
 
-  .coaching-timeline > li {
+  .coaching-timeline>li {
     @apply relative pb-8 pl-7 last:pb-0 sm:pb-10 sm:pl-9;
   }
 
-  .coaching-timeline > li::before {
+  .coaching-timeline>li::before {
     content: "";
-    @apply absolute top-1 -left-1.5 size-3 rounded-full border-2 border-background bg-foreground/70;
+    @apply absolute top-1 -inset-s-1.5 size-3 rounded-full border-2 border-background bg-foreground/70;
   }
 
   .coaching-timeline h4 {
@@ -249,7 +250,7 @@ body:has(.coaching-header) > canvas {
     @apply mt-8 divide-y divide-foreground/15 rounded-2xl border border-foreground/15 bg-card/60 px-6 sm:px-8;
   }
 
-  .coaching-recognition > li {
+  .coaching-recognition>li {
     @apply py-6;
   }
 

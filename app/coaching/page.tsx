@@ -272,7 +272,7 @@ export default function Coaching() {
         </section>
       </main>
 
-      <footer className="relative z-1 mx-auto my-4 w-full max-w-3xl text-center lg:col-span-2 lg:text-right">
+      <footer className="relative z-1 mx-auto my-4 w-full max-w-3xl text-start lg:col-span-2 lg:text-end">
         <Button asChild variant="link" size="sm" className="px-0 font-bold tracking-wide">
           <Link href="/">Back to keving.me</Link>
         </Button>

@@ -15,7 +15,7 @@ export function ChatSuggestions({ suggestions, onSelect }: Props) {
           <Button
             variant="ghost"
             size="sm"
-            className="h-auto border px-2.5 py-1 text-left text-xs font-normal whitespace-normal"
+            className="h-auto border px-2.5 py-1 text-start text-xs font-normal whitespace-normal"
             onClick={() => onSelect(suggestion)}
           >
             {suggestion}
