@@ -61,6 +61,9 @@ export default function Background() {
 
     const ctx = canvas.getContext("2d", { desynchronized: true });
     if (!ctx) return;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reducedMotion = motionPreference.matches;
+    let animationId: number | undefined;
 
     const initializeLayers = () => {
       layersRef.current = Array.from({ length: 6 }, (_, i) => ({
@@ -96,18 +99,14 @@ export default function Background() {
       } else {
         updateLayers();
       }
-    };
 
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+      if (reducedMotion) drawFrame();
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
-    window.addEventListener("mousemove", handleMouseMove);
-
-    let animationId: number;
-    const animate = () => {
+    const drawFrame = () => {
       if (!ctx || !canvas) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -115,25 +114,30 @@ export default function Background() {
       const colors = isDark ? darkColors : lightColors;
 
       layersRef.current.forEach((layer) => {
-        layer.phase += layer.phaseSpeed;
+        if (!reducedMotion) layer.phase += layer.phaseSpeed;
 
         layer.points.forEach((point) => {
           const distToMouse = Math.sqrt(
             Math.pow(point.x - mouseRef.current.x, 2) +
-              Math.pow(layer.baseY - mouseRef.current.y, 2)
+              Math.pow(layer.baseY - mouseRef.current.y, 2),
           );
 
           const mouseInfluence = Math.max(0, 1 - distToMouse / 300);
-          const mouseOffset = mouseInfluence * 20;
+          const mouseOffset = reducedMotion ? 0 : mouseInfluence * 20;
 
           const targetY =
             layer.baseY +
             Math.sin(point.x * layer.frequency + layer.phase) * layer.amplitude -
             mouseOffset;
 
-          point.vy += (targetY - point.y) * 0.02;
-          point.vy *= 0.85;
-          point.y += point.vy;
+          if (reducedMotion) {
+            point.y = targetY;
+            point.vy = 0;
+          } else {
+            point.vy += (targetY - point.y) * 0.02;
+            point.vy *= 0.85;
+            point.y += point.vy;
+          }
         });
 
         ctx.beginPath();
@@ -158,27 +162,48 @@ export default function Background() {
         gradient.addColorStop(0, colors[layer.colorIndex % colors.length]);
         gradient.addColorStop(
           1,
-          colors[layer.colorIndex % colors.length].replace(/[\d.]+\)$/, "0)")
+          colors[layer.colorIndex % colors.length].replace(/[\d.]+\)$/, "0)"),
         );
 
         ctx.fillStyle = gradient;
         ctx.fill();
       });
+    };
 
+    const animate = () => {
+      drawFrame();
       animationId = requestAnimationFrame(animate);
     };
-    animate();
+
+    const updateMotion = () => {
+      if (animationId !== undefined) cancelAnimationFrame(animationId);
+      reducedMotion = motionPreference.matches;
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (reducedMotion) {
+        drawFrame();
+      } else {
+        window.addEventListener("mousemove", handleMouseMove);
+        animate();
+      }
+    };
+
+    resizeCanvas();
+    updateMotion();
+    window.addEventListener("resize", resizeCanvas);
+    motionPreference.addEventListener("change", updateMotion);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationId);
+      motionPreference.removeEventListener("change", updateMotion);
+      if (animationId !== undefined) cancelAnimationFrame(animationId);
     };
   }, [isDark]);
 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 opacity-50 mix-blend-normal blur-sm dark:blur-none"
     />
   );

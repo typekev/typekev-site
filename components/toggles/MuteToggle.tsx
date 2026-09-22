@@ -1,30 +1,20 @@
 "use client";
 
-import { useCallback, useEffect, useEffectEvent, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 
 import { Volume2, VolumeX } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { getMutedState } from "@/lib/audio";
-import { MuteChangeEvent } from "@/types/types";
-
-type MuteDetail = MuteChangeEvent["detail"];
+import { getMutedState, getServerMutedState, subscribeMutedState } from "@/lib/audio";
 
 export function MuteToggle() {
-  const [isMuted, setIsMuted] = useState<boolean>(true);
-
-  const initMuteState = useEffectEvent(() => setIsMuted(getMutedState()));
-  useEffect(() => {
-    initMuteState();
-  }, []);
+  const isMuted = useSyncExternalStore(subscribeMutedState, getMutedState, getServerMutedState);
 
   const toggleMute = useCallback(() => {
     const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
     localStorage.setItem("muted", nextMuted.toString());
 
-    const muteEvent = new CustomEvent<MuteDetail>("mutechange", { detail: { isMuted: nextMuted } });
-    window.dispatchEvent(muteEvent);
+    window.dispatchEvent(new Event("mutechange"));
   }, [isMuted]);
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useEffectEvent, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -18,22 +18,29 @@ const getProfileImageIndex = () => {
   return Number.isInteger(index) && index >= 0 && index < images.length ? index : 0;
 };
 
+const subscribeProfileImage = (onChange: () => void) => {
+  window.addEventListener("profileimagechange", onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener("profileimagechange", onChange);
+    window.removeEventListener("storage", onChange);
+  };
+};
+
+const getServerProfileImageIndex = () => undefined;
+
 export function ProfileBadge() {
   const router = useRouter();
   const { playNote, playArpeggio, oscillatorParam } = useOscillator();
   const [isHovering, setIsHovering] = useState(false);
   const [secretState, setSecretState] = useState(0);
-  const [imageIndex, setImageIndex] = useState<number>();
+  const imageIndex = useSyncExternalStore(
+    subscribeProfileImage,
+    getProfileImageIndex,
+    getServerProfileImageIndex
+  );
 
-  const initOscillator = useEffectEvent(() => oscillatorParam && setSecretState(2));
-  useEffect(() => {
-    initOscillator();
-  }, [oscillatorParam]);
-
-  const initProfileImage = useEffectEvent(() => setImageIndex(getProfileImageIndex()));
-  useEffect(() => {
-    initProfileImage();
-  }, []);
+  if (oscillatorParam && secretState !== 2) setSecretState(2);
 
   if (imageIndex === undefined) return <ProfileBadgeSkeleton />;
 
@@ -56,14 +63,15 @@ export function ProfileBadge() {
     }
 
     const nextIndex = (imageIndex + 1) % images.length;
-    setImageIndex(nextIndex);
     localStorage.setItem("profileImageIndex", nextIndex.toString());
+    window.dispatchEvent(new Event("profileimagechange"));
   };
 
   return (
     <figure className="relative size-56">
       <RotatingText isHovering={isHovering} />
       <Button
+        aria-label="Show next profile picture"
         onClick={handleProfileClick}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}

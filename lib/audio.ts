@@ -23,6 +23,17 @@ export const getMutedState = () => {
   return false;
 };
 
+export const getServerMutedState = () => true;
+
+export const subscribeMutedState = (onChange: () => void) => {
+  window.addEventListener("mutechange", onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener("mutechange", onChange);
+    window.removeEventListener("storage", onChange);
+  };
+};
+
 export const createAudioContext = () =>
   new (window.AudioContext ||
     (

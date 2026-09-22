@@ -20,6 +20,7 @@ export function RotatingText({ isHovering }: Props) {
 
   useEffect(() => {
     const targetVelocity = isHovering ? FAST_VELOCITY : SLOW_VELOCITY;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const animate = (currentTime: number) => {
       if (!lastTimeRef.current) lastTimeRef.current = currentTime;
@@ -35,10 +36,22 @@ export function RotatingText({ isHovering }: Props) {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animationFrameRef.current = requestAnimationFrame(animate);
+    const updateMotion = () => {
+      if (animationFrameRef.current !== undefined) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      lastTimeRef.current = undefined;
+      if (!motionPreference.matches) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    updateMotion();
+    motionPreference.addEventListener("change", updateMotion);
 
     return () => {
-      if (animationFrameRef.current) {
+      motionPreference.removeEventListener("change", updateMotion);
+      if (animationFrameRef.current !== undefined) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };

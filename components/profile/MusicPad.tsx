@@ -22,6 +22,13 @@ const hiddenKeys: Partial<Record<Key, Note>> = {
   I: "NextC",
 };
 
+const rowLayouts = [
+  "sm:max-w-94 sm:grid-cols-6",
+  "sm:max-w-110 sm:grid-cols-7",
+  "sm:max-w-126 sm:grid-cols-8",
+  "sm:max-w-142 sm:grid-cols-9",
+] as const;
+
 export function MusicPad() {
   const { startNote, stopNote, nextOctave, oscillatorParam, isMuted } = useOscillator();
   const [pressedKeys, setPressedKeys] = useState<Set<Key>>(new Set());
@@ -76,15 +83,7 @@ export function MusicPad() {
 
   return (
     <fieldset
-      className={`grid grid-cols-3 gap-2.5 transition-all md:grid-cols-9 lg:grid-cols-3 ${
-        revealedKeys.size === 0
-          ? "md:-mr-48 lg:-mb-2.5"
-          : revealedKeys.size === 1
-          ? "md:-mr-32"
-          : revealedKeys.size === 2
-          ? "md:-mr-16"
-          : ""
-      } lg:mr-0`}
+      className={`mx-auto grid w-full max-w-47 min-w-0 grid-cols-3 gap-2.5 sm:gap-2 ${rowLayouts[revealedKeys.size]}`}
     >
       <legend className="sr-only">Music Pad controlled by QWERTYUIO keys</legend>
       {Object.entries(keys).map(([key, freq], index) => (
@@ -95,7 +94,7 @@ export function MusicPad() {
           onMouseLeave={() => stopNote(freq)}
           variant="glass"
           size="lg-icon"
-          className={`size-14 animate-in font-black uppercase fade-in slide-in-from-bottom-2 ${
+          className={`aspect-square h-auto w-full min-w-0 animate-in font-black uppercase fade-in slide-in-from-bottom-2 ${
             pressedKeys.has(key as Key) && !isMuted ? "active" : ""
           }`}
           style={{
@@ -109,9 +108,7 @@ export function MusicPad() {
       {Object.entries(hiddenKeys).map(([key, freq], index) => (
         <label
           key={key}
-          className={
-            revealedKeys.has(key as Key) ? "" : "inline-block h-0 overflow-visible opacity-0"
-          }
+          className={revealedKeys.has(key as Key) ? "" : "inline-block h-0 overflow-visible opacity-0 sm:hidden"}
           onClick={() => revealKey(key as Key)}
           onMouseDown={() => revealKey(key as Key)}
         >
@@ -121,7 +118,7 @@ export function MusicPad() {
             onMouseLeave={() => stopNote(freq)}
             variant="glass"
             size="lg-icon"
-            className={`size-14 animate-in border-secondary font-black text-secondary uppercase shadow-secondary/25 fade-in slide-in-from-bottom-2 active:bg-secondary/20 dark:border-secondary dark:active:bg-secondary/50 ${
+            className={`aspect-square h-auto w-full min-w-0 animate-in border-secondary font-black text-secondary uppercase shadow-secondary/25 fade-in slide-in-from-bottom-2 active:bg-secondary/20 dark:border-secondary dark:active:bg-secondary/50 ${
               pressedKeys.has(key as Key) && !isMuted ? "active" : ""
             }`}
             style={{
@@ -134,14 +131,14 @@ export function MusicPad() {
         </label>
       ))}
       <label
-        className={revealedKeys.has("O") ? "" : "inline-block h-0 overflow-visible opacity-0"}
+        className={revealedKeys.has("O") ? "" : "inline-block h-0 overflow-visible opacity-0 sm:hidden"}
         onClick={() => revealKey("O")}
       >
         <Button
           onClick={nextOctave}
           variant="glass"
           size="lg-icon"
-          className={`size-14 animate-in border-accent font-black text-accent uppercase shadow-accent/25 fade-in slide-in-from-bottom-2 active:bg-accent/20 dark:border-accent dark:active:bg-accent/50 ${
+          className={`aspect-square h-auto w-full min-w-0 animate-in border-accent font-black text-accent uppercase shadow-accent/25 fade-in slide-in-from-bottom-2 active:bg-accent/20 dark:border-accent dark:active:bg-accent/50 ${
             pressedKeys.has("O") && !isMuted ? "active" : ""
           }`}
           style={{

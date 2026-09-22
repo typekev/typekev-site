@@ -7,8 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
+  --font-name: var(--font-lemonada);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -77,7 +78,6 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-
 }
 
 .dark {
@@ -121,5 +121,167 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 4px;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply fixed top-4 left-4 z-60 -translate-y-24 rounded-md bg-background px-4 py-3 font-semibold text-foreground focus:translate-y-0;
+  }
+
+  .text-link {
+    @apply underline decoration-foreground/35 underline-offset-4 transition-colors hover:decoration-foreground;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body:has(.coaching-header)>canvas {
+  opacity: 0.32;
+  filter: blur(12px);
+}
+
+@layer components {
+  @media (width < 40rem) {
+    .profile-media > figure,
+    .profile-media > fieldset {
+      grid-area: 1 / 1;
+      transition: opacity 250ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+    }
+
+    .profile-media[data-show-pad="true"] > figure,
+    .profile-media[data-show-pad="false"] > fieldset {
+      visibility: hidden;
+      pointer-events: none;
+      opacity: 0;
+      transition-delay: 0s, 250ms;
+    }
+  }
+
+  @media (width < 40rem) and (prefers-reduced-motion: reduce) {
+    .profile-media > figure,
+    .profile-media > fieldset {
+      transition: none;
+    }
+  }
+
+  .profile-intro {
+    @apply text-center text-4xl font-black tracking-tight text-balance text-foreground md:text-5xl/13 lg:text-start;
+  }
+}
+
+@media (min-width: 64rem) {
+  body:has(.profile-intro) {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+    column-gap: 4rem;
+  }
+}
+
+@layer components {
+  .coaching-hero-title {
+    @apply font-bold tracking-tight text-balance;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    line-height: 1.08;
+  }
+
+  .coaching-chapter {
+    @apply scroll-mt-24 lg:scroll-mt-28;
+  }
+
+  .coaching-title {
+    @apply mb-6 font-bold tracking-tight text-balance;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.16;
+  }
+
+  .coaching-chapter>p,
+  .coaching-topics p,
+  .coaching-note p,
+  .coaching-timeline p,
+  .coaching-recognition p {
+    @apply mt-4 max-w-[65ch] text-base/relaxed text-foreground/80 sm:text-lg/relaxed;
+  }
+
+  .coaching-main h3 {
+    @apply text-xl/tight font-semibold tracking-tight sm:text-2xl/tight;
+  }
+
+  .coaching-main h4 {
+    @apply text-lg/tight font-semibold sm:text-xl/tight;
+  }
+
+  .coaching-topics {
+    @apply mt-10 divide-y divide-foreground/15 sm:mt-12;
+  }
+
+  .coaching-topics>li {
+    @apply py-8 first:pt-0 last:pb-0 sm:py-10;
+  }
+
+  .coaching-note {
+    @apply mt-10 rounded-r-2xl border-l-4 border-foreground/25 bg-card/60 p-6 sm:mt-12 sm:p-8;
+  }
+
+  .coaching-subsection {
+    @apply mt-12 sm:mt-16;
+  }
+
+  .coaching-timeline {
+    @apply mt-8 ml-1 border-l border-foreground/25;
+  }
+
+  .coaching-timeline>li {
+    @apply relative pb-8 pl-7 last:pb-0 sm:pb-10 sm:pl-9;
+  }
+
+  .coaching-timeline>li::before {
+    content: "";
+    @apply absolute top-1 -inset-s-1.5 size-3 rounded-full border-2 border-background bg-foreground/70;
+  }
+
+  .coaching-timeline h4 {
+    @apply font-mono text-base/relaxed font-semibold tracking-tight;
+  }
+
+  .coaching-timeline p {
+    @apply mt-2;
+  }
+
+  .coaching-recognition {
+    @apply mt-8 divide-y divide-foreground/15 rounded-2xl border border-foreground/15 bg-card/60 px-6 sm:px-8;
+  }
+
+  .coaching-recognition>li {
+    @apply py-6;
+  }
+
+  .coaching-recognition p {
+    @apply mt-2 text-base/relaxed;
+  }
+
+  .coaching-offer {
+    @apply min-w-0 rounded-3xl border border-foreground/20 bg-card/85 p-6 shadow-xl shadow-foreground/5 sm:p-10 md:p-12;
   }
 }

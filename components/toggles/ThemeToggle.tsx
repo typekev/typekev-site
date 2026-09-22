@@ -1,35 +1,33 @@
 "use client";
 
-import { useCallback, useEffect, useEffectEvent, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import { Moon, Sun, SunMoon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import type { Theme } from "@/lib/theme";
-import { applyTheme, deleteTheme, getSystemTheme, getTheme, storeTheme } from "@/lib/theme";
+import {
+  applyTheme,
+  deleteTheme,
+  getCurrentTheme,
+  getServerTheme,
+  storeTheme,
+  subscribeTheme,
+} from "@/lib/theme";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const theme = useSyncExternalStore(subscribeTheme, getCurrentTheme, getServerTheme);
   const [showResetButton, setShowResetButton] = useState<boolean>(false);
   const [hasReset, setHasReset] = useState<boolean>(false);
   const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleThemeChange = useEffectEvent((e: MediaQueryListEvent) =>
-    setTheme(getTheme() ?? (e.matches ? "dark" : "light"))
-  );
   useEffect(() => {
-    const mql = window.matchMedia("(prefers-color-scheme: dark)");
-    handleThemeChange({ matches: mql.matches } as MediaQueryListEvent);
-    mql.addEventListener("change", handleThemeChange);
-
     return () => {
-      mql.removeEventListener("change", handleThemeChange);
       if (resetTimeoutRef.current) clearTimeout(resetTimeoutRef.current);
     };
   }, []);
 
   useEffect(() => {
-    applyTheme(theme);
+    applyTheme(getCurrentTheme());
   }, [theme]);
 
   const showResetButtonTemporarily = useCallback(() => {
@@ -41,7 +39,6 @@ export function ThemeToggle() {
 
   const toggleTheme = useCallback(() => {
     const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
     storeTheme(newTheme);
     setHasReset(false);
     showResetButtonTemporarily();
@@ -49,7 +46,6 @@ export function ThemeToggle() {
 
   const resetTheme = useCallback(() => {
     deleteTheme();
-    setTheme(getSystemTheme());
     setHasReset(true);
     setShowResetButton(false);
 

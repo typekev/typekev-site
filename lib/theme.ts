@@ -19,6 +19,28 @@ export const applyTheme = (theme: Theme) => {
     ?.setAttribute("content", theme === "dark" ? "#0a0a0a" : "#ffffff");
 };
 
-export const storeTheme = (theme: Theme) => localStorage.setItem("theme", theme);
+export const getCurrentTheme = (): Theme => getTheme() ?? getSystemTheme();
 
-export const deleteTheme = () => localStorage.removeItem("theme");
+export const getServerTheme = (): Theme => "light";
+
+export const subscribeTheme = (onChange: () => void) => {
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  media.addEventListener("change", onChange);
+  window.addEventListener("themechange", onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    media.removeEventListener("change", onChange);
+    window.removeEventListener("themechange", onChange);
+    window.removeEventListener("storage", onChange);
+  };
+};
+
+export const storeTheme = (theme: Theme) => {
+  localStorage.setItem("theme", theme);
+  window.dispatchEvent(new Event("themechange"));
+};
+
+export const deleteTheme = () => {
+  localStorage.removeItem("theme");
+  window.dispatchEvent(new Event("themechange"));
+};
