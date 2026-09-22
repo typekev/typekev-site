@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import { Metadata } from "next";
-import { Geist, Geist_Mono, Lemonada } from "next/font/google";
+import { Fraunces,Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -19,9 +19,10 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-const lemonada = Lemonada({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-lemonada",
+  variable: "--font-fraunces",
+  axes: ["SOFT"],
 });
 
 export const metadata: Metadata = {
@@ -56,7 +57,7 @@ export default function RootLayout({ children }: Props) {
         <meta name="theme-color" content="#0a0a0a" />
       </head>
       <body
-        className={`${geist.variable} ${geistMono.variable} ${lemonada.variable} relative mx-auto! flex min-h-dvh max-w-7xl flex-col gap-20 px-6! py-24! font-sans antialiased lg:grid lg:grid-cols-2 lg:py-12!`}
+        className={`${geist.variable} ${geistMono.variable} ${fraunces.variable} relative mx-auto! flex min-h-dvh max-w-7xl flex-col gap-20 px-6! py-24! font-sans antialiased lg:grid lg:grid-cols-2 lg:py-12!`}
       >
         <a href="#main-content" className="skip-link">
           Skip to content

@@ -15,10 +15,10 @@ export function Profile() {
       </OscillatorProvider>
       <h1 className="profile-intro">
         Hi, I’m{" "}
-        <em className="text-accent brightness-70 dark:brightness-100">
+        <em>
           <Link
             href="/coaching#my-experience"
-            className="font-name text-[0.98em] font-[650] tracking-tighter not-italic underline transition-opacity hover:opacity-85"
+            className="font-name font-[735] not-italic underline brightness-70 transition-colors [font-variation-settings:'SOFT'100] hover:text-accent dark:brightness-100"
           >
             Kevin Gonzalez
           </Link>
