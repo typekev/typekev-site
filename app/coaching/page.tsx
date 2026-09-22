@@ -240,7 +240,7 @@ export default function Coaching() {
           >
             <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
               <CalendarDays className="size-5" aria-hidden="true" />
-              Book a free conversation
+              Book a free consultation
             </a>
           </Button>
           <p className="mt-5! text-base/relaxed!">
